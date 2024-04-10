@@ -995,9 +995,9 @@ static void Task_BuyMenu(u8 taskId)
             }
             // Prevent TM rebuying
 			else if (ItemId_GetPocket(itemId) == POCKET_TM_HM && CheckBagHasItem(itemId, 1))
-+           {
-+                BuyMenuDisplayMessage(taskId, gText_YouAlreadyHaveThis, BuyMenuReturnToItemList);
-+           }
+            {
+                BuyMenuDisplayMessage(taskId, gText_YouAlreadyHaveThis, BuyMenuReturnToItemList);
+            }
 			else
             {
                 if (sMartInfo.martType == MART_TYPE_NORMAL)
