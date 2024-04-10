@@ -7,6 +7,7 @@
 #include "new_game.h"
 #include "overworld.h"
 #include "malloc.h"
+#include "event_data.h"
 
 // Reloads the game, continuing from the point of the last save
 // Used to gracefully exit after a link connection error

@@ -20,12 +20,12 @@ BattleFrontier_Lounge7_EventScript_ChooseLeftTutorMove::
 	message BattleFrontier_Lounge7_Text_TeachWhichMove
 	waitmessage
 	special ShowBattlePointsWindow
-	setvar VAR_TEMP_FRONTIER_TUTOR_ID, 0
+	setvar VAR_TEMP_E, 0
 	setvar VAR_0x8004, SCROLL_MULTI_BF_MOVE_TUTOR_1
 	setvar VAR_0x8006, 0
 	special ShowScrollableMultichoice
 	waitstate
-	copyvar VAR_TEMP_FRONTIER_TUTOR_SELECTION, VAR_RESULT
+	copyvar VAR_TEMP_D, VAR_RESULT
 	switch VAR_RESULT
 	case 0, BattleFrontier_Lounge7_EventScript_Softboiled
 	case 1, BattleFrontier_Lounge7_EventScript_SeismicToss
@@ -44,12 +44,12 @@ BattleFrontier_Lounge7_EventScript_ChooseLeftTutorMove::
 BattleFrontier_Lounge7_EventScript_ChooseNewLeftTutorMove::
 	message BattleFrontier_Lounge7_Text_TeachWhichMove
 	waitmessage
-	setvar VAR_TEMP_FRONTIER_TUTOR_ID, 0
+	setvar VAR_TEMP_E, 0
 	setvar VAR_0x8004, SCROLL_MULTI_BF_MOVE_TUTOR_1
 	setvar VAR_0x8006, 1
 	special ShowScrollableMultichoice
 	waitstate
-	copyvar VAR_TEMP_FRONTIER_TUTOR_SELECTION, VAR_RESULT
+	copyvar VAR_TEMP_D, VAR_RESULT
 	switch VAR_RESULT
 	case 0, BattleFrontier_Lounge7_EventScript_Softboiled
 	case 1, BattleFrontier_Lounge7_EventScript_SeismicToss
@@ -134,12 +134,12 @@ BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove::
 	message BattleFrontier_Lounge7_Text_TeachWhichMove
 	waitmessage
 	special ShowBattlePointsWindow
-	setvar VAR_TEMP_FRONTIER_TUTOR_ID, 1
+	setvar VAR_TEMP_E, 1
 	setvar VAR_0x8004, SCROLL_MULTI_BF_MOVE_TUTOR_2
 	setvar VAR_0x8006, 0
 	special ShowScrollableMultichoice
 	waitstate
-	copyvar VAR_TEMP_FRONTIER_TUTOR_SELECTION, VAR_RESULT
+	copyvar VAR_TEMP_D, VAR_RESULT
 	switch VAR_RESULT
 	case 0, BattleFrontier_Lounge7_EventScript_DefenseCurl
 	case 1, BattleFrontier_Lounge7_EventScript_Snore
@@ -158,12 +158,12 @@ BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove::
 BattleFrontier_Lounge7_EventScript_ChooseNewRightTutorMove::
 	message BattleFrontier_Lounge7_Text_TeachWhichMove
 	waitmessage
-	setvar VAR_TEMP_FRONTIER_TUTOR_ID, 1
+	setvar VAR_TEMP_E, 1
 	setvar VAR_0x8004, SCROLL_MULTI_BF_MOVE_TUTOR_2
 	setvar VAR_0x8006, 1
 	special ShowScrollableMultichoice
 	waitstate
-	copyvar VAR_TEMP_FRONTIER_TUTOR_SELECTION, VAR_RESULT
+	copyvar VAR_TEMP_D, VAR_RESULT
 	switch VAR_RESULT
 	case 0, BattleFrontier_Lounge7_EventScript_DefenseCurl
 	case 1, BattleFrontier_Lounge7_EventScript_Snore
@@ -243,11 +243,11 @@ BattleFrontier_Lounge7_EventScript_CancelChooseMon::
 
 @ VAR_0x8008 is the price
 @ VAR_TEMP_C is the scroll multichoice ID
-@ VAR_TEMP_FRONTIER_TUTOR_SELECTION is the move selection
-@ VAR_TEMP_FRONTIER_TUTOR_ID is which move tutor was spoken to
+@ VAR_TEMP_D is the move selection
+@ VAR_TEMP_E is which move tutor was spoken to
 BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection::
-	copyvar VAR_0x8004, VAR_TEMP_FRONTIER_TUTOR_SELECTION
-	copyvar VAR_0x8005, VAR_TEMP_FRONTIER_TUTOR_ID
+	copyvar VAR_0x8004, VAR_TEMP_D
+	copyvar VAR_0x8005, VAR_TEMP_E
 	special BufferBattleFrontierTutorMoveName
 	buffernumberstring STR_VAR_2, VAR_0x8008
 	copyvar VAR_0x8004, VAR_TEMP_C
@@ -275,7 +275,7 @@ BattleFrontier_Lounge7_EventScript_TeachTutorMove::
 	end
 
 BattleFrontier_Lounge7_EventScript_ChooseNewMove::
-	goto_if_eq VAR_TEMP_FRONTIER_TUTOR_ID, 0, BattleFrontier_Lounge7_EventScript_ChooseNewLeftTutorMove
+	goto_if_eq VAR_TEMP_E, 0, BattleFrontier_Lounge7_EventScript_ChooseNewLeftTutorMove
 	goto BattleFrontier_Lounge7_EventScript_ChooseNewRightTutorMove
 	end
 
@@ -290,16 +290,16 @@ BattleFrontier_Lounge7_EventScript_Gentleman::
 BattleFrontier_Lounge7_Text_LeftTutorIntro:
 	.string "Buhahaha!\p"
 	.string "You couldn't tell it from looking now,\n"
-	.string "but I used to be one tough TRAINER.\p"
+	.string "but I used to be one tough Trainer.\p"
 	.string "I had a reputation as the toughest\n"
-	.string "BEAUTY around, I tell you!\p"
+	.string "Beauty around, I tell you!\p"
 	.string "… … … … … …\p"
 	.string "What is it now?\n"
 	.string "You don't believe me.\p"
 	.string "I'm not like that blowhard woman over\n"
 	.string "there. I'm actually talented!\p"
 	.string "Let me prove it to you.\n"
-	.string "I can teach your POKéMON special and\l"
+	.string "I can teach your Pokémon special and\l"
 	.string "yet cute moves.\p"
 	.string "But my lessons don't come free.\n"
 	.string "How about paying for the moves I teach\l"
@@ -308,7 +308,7 @@ BattleFrontier_Lounge7_Text_LeftTutorIntro:
 BattleFrontier_Lounge7_Text_LeftTutorWelcomeBack:
 	.string "Buhahaha!\p"
 	.string "Are you back to learn special and\n"
-	.string "yet cute POKéMON moves?$"
+	.string "yet cute Pokémon moves?$"
 
 BattleFrontier_Lounge7_Text_TeachWhichMove:
 	.string "Fine, fine, look here!\n"
@@ -319,7 +319,7 @@ BattleFrontier_Lounge7_Text_MoveWillBeXBattlePoints:
 	.string "That will be {STR_VAR_2} Battle Points, okay?$"
 
 BattleFrontier_Lounge7_Text_TeachMoveToWhichMon:
-	.string "Fine, fine, now pick the POKéMON\n"
+	.string "Fine, fine, now pick the Pokémon\n"
 	.string "I should teach the move to.$"
 
 BattleFrontier_Lounge7_Text_HaventGotEnoughPoints:
@@ -339,16 +339,16 @@ BattleFrontier_Lounge7_Text_YouDontWantTo:
 BattleFrontier_Lounge7_Text_RightTutorIntro:
 	.string "Ihihihi!\p"
 	.string "I know it's hard to see now, but I used\n"
-	.string "to be one fantastic TRAINER.\p"
+	.string "to be one fantastic Trainer.\p"
 	.string "I had a reputation as the most\n"
-	.string "invincible SWIMMER around, I tell you!\p"
+	.string "invincible Swimmer around, I tell you!\p"
 	.string "… … … … … …\p"
 	.string "What's wrong?\n"
 	.string "You don't believe me.\p"
 	.string "I'm not like that buffoonish woman over\n"
 	.string "there. I'm actually experienced!\p"
 	.string "I can prove it to you.\n"
-	.string "I can teach your POKéMON hard and\l"
+	.string "I can teach your Pokémon hard and\l"
 	.string "yet pretty moves.\p"
 	.string "But my lessons don't come free.\n"
 	.string "How about paying for the moves I teach\l"
@@ -357,7 +357,7 @@ BattleFrontier_Lounge7_Text_RightTutorIntro:
 BattleFrontier_Lounge7_Text_RightTutorWelcomeBack:
 	.string "Ihihihi!\p"
 	.string "Have you come to learn hard and\n"
-	.string "yet pretty POKéMON moves?$"
+	.string "yet pretty Pokémon moves?$"
 
 BattleFrontier_Lounge7_Text_ThinkLadiesDontGetAlong:
 	.string "Those ladies, the way they bad-mouth\n"
@@ -367,12 +367,12 @@ BattleFrontier_Lounge7_Text_ThinkLadiesDontGetAlong:
 	.string "stay out here together, would they?$"
 
 BattleFrontier_Lounge7_Text_LadiesWereStrongAndBeautiful:
-	.string "When I was just a wee YOUNGSTER,\n"
+	.string "When I was just a wee Youngster,\n"
 	.string "those ladies were strong and beautiful.\p"
-	.string "They were idols among us TRAINERS.\p"
+	.string "They were idols among us Trainers.\p"
 	.string "Even now, age hasn't dulled their\n"
 	.string "abilities.\p"
-	.string "In fact, their POKéMON moves have\n"
+	.string "In fact, their Pokémon moves have\n"
 	.string "grown even more polished.\p"
 	.string "But… For some reason, I can't help\n"
 	.string "but feel this…\p"
@@ -426,12 +426,12 @@ BattleFrontier_Lounge7_Text_ThunderWaveDesc::
 BattleFrontier_Lounge7_Text_SwordsDanceDesc::
 	.string "A fighting dance\n"
 	.string "that sharply\n"
-	.string "raises ATTACK.$"
+	.string "raises Attack.$"
 
 BattleFrontier_Lounge7_Text_DefenseCurlDesc::
 	.string "Curls up to con-\n"
 	.string "ceal weak spots\n"
-	.string "and raise DEFENSE.$"
+	.string "and raise Defense.$"
 
 BattleFrontier_Lounge7_Text_SnoreDesc::
 	.string "A loud attack\n"
@@ -451,7 +451,7 @@ BattleFrontier_Lounge7_Text_SwiftDesc::
 BattleFrontier_Lounge7_Text_IcyWindDesc::
 	.string "A chilling attack\n"
 	.string "that lowers the\n"
-	.string "foe's SPEED.$"
+	.string "foe's Speed.$"
 
 BattleFrontier_Lounge7_Text_EndureDesc::
 	.string "Endures any at-\n"

@@ -1729,6 +1729,11 @@
 	.2byte \quantity
 	.endm
 
+  @ Like callnative, but function expects a ctx
+  .macro callfunc func:req
+  .byte 0xe3
+  .4byte \func
+  .endm
 
 @ Supplementary
 
@@ -1938,4 +1943,15 @@
 	setvar VAR_0x8005, \level
 	setvar VAR_0x8006, \item
 	special CreateEnemyEventMon
+	.endm
+
+	@ Adds unit system string to the respective stringvar.
+	@ texttype values:
+	@ UNIT_TEXT_LENGTH_SMALL_SINGLE,  UNIT_TEXT_LENGTH_SMALL_PLURAL,  UNIT_TEXT_LENGTH_SMALL_SYMBOL.
+	@ UNIT_TEXT_LENGTH_MEDIUM_SINGLE, UNIT_TEXT_LENGTH_MEDIUM_PLURAL, UNIT_TEXT_LENGTH_MEDIUM_SYMBOL.
+	@ UNIT_TEXT_WEIGHT_SINGLE,        UNIT_TEXT_WEIGHT_PLURAL,        UNIT_TEXT_WEIGHT_SYMBOL.
+	.macro bufferunitsystemtext texttype:req, stringvarnumber=1
+	setvar VAR_0x8000, \texttype
+	setvar VAR_0x8001, \stringvarnumber
+	special BufferUnitSystemText
 	.endm

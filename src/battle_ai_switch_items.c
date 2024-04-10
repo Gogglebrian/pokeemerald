@@ -51,7 +51,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
     if (gBattleMons[GetBattlerAtPosition(opposingPosition)].ability != ABILITY_WONDER_GUARD)
         return FALSE;
 
-    // Check if Pokémon has a super effective move.
+    // Check if Pokemon has a super effective move.
     for (opposingBattler = GetBattlerAtPosition(opposingPosition), i = 0; i < MAX_MON_MOVES; i++)
     {
         move = gBattleMons[gActiveBattler].moves[i];
@@ -81,7 +81,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
     else
         party = gEnemyParty;
 
-    // Find a Pokémon in the party that has a super effective move.
+    // Find a Pokemon in the party that has a super effective move.
     for (i = firstId; i < lastId; i++)
     {
         if (GetMonData(&party[i], MON_DATA_HP) == 0)
@@ -113,7 +113,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
         }
     }
 
-    return FALSE; // There is not a single Pokémon in the party that has a super effective move against a mon with Wonder Guard.
+    return FALSE; // There is not a single Pokemon in the party that has a super effective move against a mon with Wonder Guard.
 }
 
 static bool8 FindMonThatAbsorbsOpponentsMove(void)
@@ -642,6 +642,7 @@ u8 GetMostSuitableMonToSwitchInto(void)
     s32 i, j;
     u8 invalidMons;
     u16 move;
+    bool8 checkedAllMonForSEMoves = FALSE;
 
     if (*(gBattleStruct->monToSwitchIntoId + gActiveBattler) != PARTY_SIZE)
         return *(gBattleStruct->monToSwitchIntoId + gActiveBattler);
@@ -687,9 +688,9 @@ u8 GetMostSuitableMonToSwitchInto(void)
 
     invalidMons = 0;
 
-    while (invalidMons != (1 << PARTY_SIZE) - 1) // All mons are invalid.
+    while (invalidMons != 0x3F) // All mons are invalid.
     {
-        bestDmg = TYPE_MUL_NO_EFFECT;
+        bestDmg = 255;
         bestMonId = PARTY_SIZE;
         // Find the mon whose type is the most suitable offensively.
         for (i = firstId; i < lastId; i++)
@@ -712,7 +713,7 @@ u8 GetMostSuitableMonToSwitchInto(void)
                 /* Possible bug: this comparison gives the type that takes the most damage, when
                 a "good" AI would want to select the type that takes the least damage. Unknown if this
                 is a legitimate mistake or if it's an intentional, if weird, design choice */
-                if (bestDmg < typeDmg)
+                if (bestDmg > typeDmg)
                 {
                     bestDmg = typeDmg;
                     bestMonId = i;
@@ -734,14 +735,19 @@ u8 GetMostSuitableMonToSwitchInto(void)
                     break;
             }
 
-            if (i != MAX_MON_MOVES)
+            if (i != MAX_MON_MOVES || (checkedAllMonForSEMoves && bestDmg <= TYPE_MUL_NOT_EFFECTIVE))
                 return bestMonId; // Has both the typing and at least one super effective move.
 
             invalidMons |= gBitTable[bestMonId]; // Sorry buddy, we want something better.
+            if (invalidMons == 0x3F && !checkedAllMonForSEMoves)
+            {
+                invalidMons = 0;
+                checkedAllMonForSEMoves = TRUE;
+            }
         }
         else
         {
-            invalidMons = (1 << PARTY_SIZE) - 1; // No viable mon to switch.
+            invalidMons = 0x3F; // No viable mon to switch.
         }
     }
 
@@ -846,7 +852,11 @@ static bool8 ShouldUseItem(void)
             continue;
 
         if (item == ITEM_ENIGMA_BERRY)
+            #ifndef FREE_ENIGMA_BERRY
             itemEffects = gSaveBlock1Ptr->enigmaBerry.itemEffect;
+            #else
+            itemEffects = 0;
+            #endif
         else
             itemEffects = gItemEffectTable[item - ITEM_POTION];
 
@@ -862,7 +872,7 @@ static bool8 ShouldUseItem(void)
             shouldUse = TRUE;
             break;
         case AI_ITEM_HEAL_HP:
-            paramOffset = GetItemEffectParamOffset(item, 4, ITEM4_HEAL_HP);
+            paramOffset = GetItemEffectParamOffset(item, 4, 4);
             if (paramOffset == 0)
                 break;
             if (gBattleMons[gActiveBattler].hp == 0)
@@ -935,7 +945,7 @@ static bool8 ShouldUseItem(void)
         {
             BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_USE_ITEM, 0);
             *(gBattleStruct->chosenItem + (gActiveBattler / 2) * 2) = item;
-            gBattleResources->battleHistory->trainerItems[i] = ITEM_NONE;
+            gBattleResources->battleHistory->trainerItems[i] = 0;
             return shouldUse;
         }
     }

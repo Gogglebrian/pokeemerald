@@ -1067,7 +1067,7 @@ static void SpriteCB_InputArrow(struct Sprite *sprite)
     if (sprite->sDelay == 0 || --sprite->sDelay == 0)
     {
         sprite->sDelay = 8;
-        sprite->sXPosId = MOD(sprite->sXPosId + 1, ARRAY_COUNT(x));
+        sprite->sXPosId = (sprite->sXPosId + 1) & (ARRAY_COUNT(x) - 1);
     }
     sprite->x2 = x[sprite->sXPosId];
 }
@@ -1097,7 +1097,7 @@ static void SpriteCB_Underscore(struct Sprite *sprite)
         sprite->sDelay++;
         if (sprite->sDelay > 8)
         {
-            sprite->sYPosId = MOD(sprite->sYPosId + 1, ARRAY_COUNT(y));
+            sprite->sYPosId = (sprite->sYPosId + 1) & (ARRAY_COUNT(y) - 1);
             sprite->sDelay = 0;
         }
     }
@@ -1416,9 +1416,17 @@ static void NamingScreen_CreatePCIcon(void)
 static void NamingScreen_CreateMonIcon(void)
 {
     u8 spriteId;
+    u8 index;
 
     LoadMonIconPalettes();
     spriteId = CreateMonIcon(sNamingScreen->monSpecies, SpriteCallbackDummy, 56, 40, 0, sNamingScreen->monPersonality, 1);
+    index = IndexOfSpritePaletteTag(56000); // POKE_ICON_BASE_PAL_TAG
+    if (index < 16) {
+      u32 otId = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
+      const u32 *palette = GetMonSpritePalFromSpeciesAndPersonality(sNamingScreen->monSpecies, otId, sNamingScreen->monPersonality);
+      LoadCompressedPalette(palette, index*16 + 0x100, 32);
+      gSprites[spriteId].oam.paletteNum = index;
+    }
     gSprites[spriteId].oam.priority = 3;
 }
 
@@ -1479,6 +1487,9 @@ static bool8 KeyboardKeyHandler_Character(u8 input)
     if (input == INPUT_A_BUTTON)
     {
         bool8 textFull = AddTextCharacter();
+
+        if (sNamingScreen ->currentPage == KBPAGE_LETTERS_UPPER && GetTextEntryPosition() == 1)
+            MainState_StartPageSwap();
 
         SquishCursor();
         if (textFull)
@@ -2058,23 +2069,23 @@ static bool8 IsWideLetter(u8 character)
     return FALSE;
 }
 
-// Debug? Arguments aren't sensible for non-player screens.
-static void UNUSED Debug_NamingScreenPlayer(void)
+// Debug? Unused, and arguments aren't sensible for non-player screens.
+static void Debug_NamingScreenPlayer(void)
 {
     DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
-static void UNUSED Debug_NamingScreenBox(void)
+static void Debug_NamingScreenBox(void)
 {
     DoNamingScreen(NAMING_SCREEN_BOX, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
-static void UNUSED Debug_NamingScreenCaughtMon(void)
+static void Debug_NamingScreenCaughtMon(void)
 {
     DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
 
-static void UNUSED Debug_NamingScreenNickname(void)
+static void Debug_NamingScreenNickname(void)
 {
     DoNamingScreen(NAMING_SCREEN_NICKNAME, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldWithOpenMenu);
 }
@@ -2584,5 +2595,3 @@ static const struct SpritePalette sSpritePalettes[] =
     {gNamingScreenMenu_Pal[4], PALTAG_OK_BUTTON},
     {}
 };
-
-

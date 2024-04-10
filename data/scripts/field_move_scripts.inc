@@ -47,15 +47,15 @@ EventScript_CancelCut::
 
 Text_WantToCut:
 	.string "This tree looks like it can be\n"
-	.string "CUT down!\p"
-	.string "Would you like to CUT it?$"
+	.string "Cut down!\p"
+	.string "Would you like to Cut it?$"
 
 Text_MonUsedFieldMove:
 	.string "{STR_VAR_1} used {STR_VAR_2}!$"
 
 Text_CantCut:
 	.string "This tree looks like it can be\n"
-	.string "CUT down!$"
+	.string "Cut down!$"
 
 @ Interact with smashable rock
 EventScript_RockSmash::
@@ -95,9 +95,119 @@ EventScript_SmashRock::
 	releaseall
 	end
 
+EventScript_FollowerFieldMove:
+	callfunc ScrFunc_GetDirectionToFace
+	.2byte VAR_0x8005
+	.byte OBJ_EVENT_ID_FOLLOWER
+	.byte OBJ_EVENT_ID_PLAYER
+	specialvar VAR_0x8006, GetPlayerFacingDirection
+	goto_if_eq VAR_0x8005, DIR_NONE, EventScript_FollowerFieldMoveEnd
+	@ Swap follower and player
+	call EventScript_FollowerSwap
+	@ Face follower in direction and jump
+	switch VAR_0x8006
+	case DIR_NORTH, EventScript_FollowerJumpNorth
+	case DIR_EAST, EventScript_FollowerJumpEast
+	case DIR_SOUTH, EventScript_FollowerJumpSouth
+	case DIR_WEST, EventScript_FollowerJumpWest
+EventScript_FollowerFieldMoveEnd:
+	return
+
+EventScript_FollowerSwap:
+	switch VAR_0x8005
+	case DIR_NORTH, EventScript_FollowerMoveNorth
+	case DIR_EAST, EventScript_FollowerMoveEast
+	case DIR_SOUTH, EventScript_FollowerMoveSouth
+	case DIR_WEST, EventScript_FollowerMoveWest
+	return
+
+EventScript_FollowerMoveNorth:
+	applymovement OBJ_EVENT_ID_FOLLOWER, Movement_WalkUp
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkDown
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+	return
+
+EventScript_FollowerMoveEast:
+	applymovement OBJ_EVENT_ID_FOLLOWER, Movement_WalkRight
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkLeft
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement 0
+	return
+
+EventScript_FollowerMoveSouth:
+	applymovement OBJ_EVENT_ID_FOLLOWER, Movement_WalkDown
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkUp
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	return
+
+EventScript_FollowerMoveWest:
+	applymovement OBJ_EVENT_ID_FOLLOWER, Movement_WalkLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkRight
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
+	waitmovement 0
+	return
+
+EventScript_FollowerJumpNorth:
+	applymovement OBJ_EVENT_ID_FOLLOWER, Movement_JumpUp
+	waitmovement 0
+	return
+
+EventScript_FollowerJumpEast:
+	applymovement OBJ_EVENT_ID_FOLLOWER, Movement_JumpRight
+	waitmovement 0
+	return
+
+EventScript_FollowerJumpSouth:
+	applymovement OBJ_EVENT_ID_FOLLOWER, Movement_JumpDown
+	waitmovement 0
+	return
+
+EventScript_FollowerJumpWest:
+	applymovement OBJ_EVENT_ID_FOLLOWER, Movement_JumpLeft
+	waitmovement 0
+	return
+
 EventScript_EndSmash::
 	releaseall
 	end
+
+Movement_WalkUp:
+	walk_up
+	step_end
+
+Movement_JumpUp:
+	jump_in_place_up
+	step_end
+
+Movement_WalkRight:
+	walk_right
+	step_end
+
+Movement_JumpRight:
+	jump_in_place_right
+	step_end
+
+Movement_WalkDown:
+	walk_down
+	step_end
+
+Movement_JumpDown:
+	jump_in_place_down
+	step_end
+
+Movement_WalkLeft:
+	walk_left
+	step_end
+
+Movement_JumpLeft:
+	jump_in_place_left
+	step_end
 
 Movement_SmashRock:
 	rock_smash_break
@@ -115,10 +225,10 @@ EventScript_CancelSmash::
 
 Text_WantToSmash:
 	.string "This rock appears to be breakable.\n"
-	.string "Would you like to use ROCK SMASH?$"
+	.string "Would you like to use Rock Smash?$"
 
 Text_CantSmash:
-	.string "It's a rugged rock, but a POKéMON\n"
+	.string "It's a rugged rock, but a Pokémon\n"
 	.string "may be able to smash it.$"
 
 EventScript_StrengthBoulder::
@@ -165,21 +275,21 @@ EventScript_CancelStrength::
 	end
 
 Text_WantToStrength:
-	.string "It's a big boulder, but a POKéMON\n"
+	.string "It's a big boulder, but a Pokémon\n"
 	.string "may be able to push it aside.\p"
-	.string "Would you like to use STRENGTH?$"
+	.string "Would you like to use Strength?$"
 
 Text_MonUsedStrength:
-	.string "{STR_VAR_1} used STRENGTH!\p"
-	.string "{STR_VAR_1}'s STRENGTH made it\n"
+	.string "{STR_VAR_1} used Strength!\p"
+	.string "{STR_VAR_1}'s Strength made it\n"
 	.string "possible to move boulders around!$"
 
 Text_CantStrength:
-	.string "It's a big boulder, but a POKéMON\n"
+	.string "It's a big boulder, but a Pokémon\n"
 	.string "may be able to push it aside.$"
 
 Text_StrengthActivated:
-	.string "STRENGTH made it possible to move\n"
+	.string "Strength made it possible to move\n"
 	.string "boulders around.$"
 
 EventScript_UseWaterfall::
@@ -210,10 +320,10 @@ Text_CantWaterfall:
 
 Text_WantToWaterfall:
 	.string "It's a large waterfall.\n"
-	.string "Would you like to use WATERFALL?$"
+	.string "Would you like to use Waterfall?$"
 
 Text_MonUsedWaterfall:
-	.string "{STR_VAR_1} used WATERFALL.$"
+	.string "{STR_VAR_1} used Waterfall.$"
 
 EventScript_UseDive::
 	lockall
@@ -263,23 +373,23 @@ EventScript_EndSurface::
 	end
 
 Text_CantDive:
-	.string "The sea is deep here. A POKéMON\n"
+	.string "The sea is deep here. A Pokémon\n"
 	.string "may be able to go underwater.$"
 
 Text_WantToDive:
 	.string "The sea is deep here.\n"
-	.string "Would you like to use DIVE?$"
+	.string "Would you like to use Dive?$"
 
 Text_MonUsedDive:
-	.string "{STR_VAR_1} used DIVE.$"
+	.string "{STR_VAR_1} used Dive.$"
 
 Text_CantSurface:
 	.string "Light is filtering down from above.\n"
-	.string "A POKéMON may be able to surface.$"
+	.string "A Pokémon may be able to surface.$"
 
 Text_WantToSurface:
 	.string "Light is filtering down from above.\n"
-	.string "Would you like to use DIVE?$"
+	.string "Would you like to use Dive?$"
 
 EventScript_FailSweetScent::
 	msgbox Text_FailSweetScent, MSGBOX_SIGN

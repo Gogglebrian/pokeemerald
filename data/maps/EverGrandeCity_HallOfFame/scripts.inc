@@ -14,8 +14,19 @@ EverGrandeCity_HallOfFame_EventScript_TurnPlayerNorth::
 	end
 
 EverGrandeCity_HallOfFame_OnFrame:
-	map_script_2 VAR_TEMP_1, 0, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame
+	map_script_2 VAR_TEMP_1, 0, EverGrandeCity_HallOfFame_EventScript_GiveItems
 	.2byte 0
+
+EverGrandeCity_HallOfFame_EventScript_GiveItems::
+	checkitem ITEM_EON_TICKET
+	goto_if_eq VAR_RESULT, FALSE, EverGrandeCity_HallOfFame_EventScript_GiveEonTicket
+	checkitem ITEM_MYSTIC_TICKET
+	goto_if_eq VAR_RESULT, FALSE, EverGrandeCity_HallOfFame_EventScript_GiveMysticTicket
+	checkitem ITEM_AURORA_TICKET
+	goto_if_eq VAR_RESULT, FALSE, EverGrandeCity_HallOfFame_EventScript_GiveAuroraTicket
+	checkitem ITEM_OLD_SEA_MAP
+	goto_if_eq VAR_RESULT, FALSE, EverGrandeCity_HallOfFame_EventScript_GiveOldSeaMap
+	goto EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame
 
 EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame::
 	lockall
@@ -49,6 +60,22 @@ EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame::
 	goto_if_eq VAR_RESULT, MALE, EverGrandeCity_HallOfFame_EventScript_GameClearMale
 	goto_if_eq VAR_RESULT, FEMALE, EverGrandeCity_HallOfFame_EventScript_GameClearFemale
 	end
+
+EverGrandeCity_HallOfFame_EventScript_GiveEonTicket::
+	additem ITEM_EON_TICKET
+	goto EverGrandeCity_HallOfFame_EventScript_GiveItems
+
+EverGrandeCity_HallOfFame_EventScript_GiveMysticTicket::
+	additem ITEM_MYSTIC_TICKET
+	goto EverGrandeCity_HallOfFame_EventScript_GiveItems
+
+EverGrandeCity_HallOfFame_EventScript_GiveAuroraTicket::
+	additem ITEM_AURORA_TICKET
+	goto EverGrandeCity_HallOfFame_EventScript_GiveItems
+
+EverGrandeCity_HallOfFame_EventScript_GiveOldSeaMap::
+	additem ITEM_OLD_SEA_MAP
+	goto EverGrandeCity_HallOfFame_EventScript_GiveItems
 
 EverGrandeCity_HallOfFame_EventScript_GameClearMale::
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
@@ -84,16 +111,16 @@ EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame2:
 	step_end
 
 EverGrandeCity_HallOfFame_Text_HereWeHonorLeagueChampions:
-	.string "WALLACE: This room…\p"
+	.string "Wallace: This room…\p"
 	.string "This is where we keep records of\n"
-	.string "POKéMON that prevailed through\l"
+	.string "Pokémon that prevailed through\l"
 	.string "harsh battles.\p"
-	.string "It is here that the LEAGUE CHAMPIONS\n"
+	.string "It is here that the League Champions\n"
 	.string "are honored.$"
 
 EverGrandeCity_HallOfFame_Text_LetsRecordYouAndYourPartnersNames:
-	.string "WALLACE: Come on, let's record your\n"
-	.string "name as a TRAINER who triumphed over\l"
-	.string "the POKéMON LEAGUE, and the names of\l"
+	.string "Wallace: Come on, let's record your\n"
+	.string "name as a Trainer who triumphed over\l"
+	.string "the Pokémon League, and the names of\l"
 	.string "the partners who battled with you.$"
 

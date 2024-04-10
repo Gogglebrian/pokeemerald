@@ -14,6 +14,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "pokedex.h"
+#include "pokedex_plus_hgss.h"
 #include "pokedex_area_screen.h"
 #include "pokedex_cry_screen.h"
 #include "scanline_effect.h"
@@ -1396,6 +1397,7 @@ static const struct SearchOptionText sDexSearchTypeOptions[NUMBER_OF_MON_TYPES +
     {gText_DexEmptyString, gTypeNames[TYPE_ICE]},
     {gText_DexEmptyString, gTypeNames[TYPE_DRAGON]},
     {gText_DexEmptyString, gTypeNames[TYPE_DARK]},
+    {gText_DexEmptyString, gTypeNames[TYPE_FAIRY]},
     {},
 };
 
@@ -1430,6 +1432,7 @@ static const u8 sDexSearchTypeIds[NUMBER_OF_MON_TYPES] =
     TYPE_ICE,
     TYPE_DRAGON,
     TYPE_DARK,
+    TYPE_FAIRY,
 };
 
 // Number pairs are the task data for tracking the cursor pos and scroll offset of each option list
@@ -1519,8 +1522,10 @@ void ResetPokedex(void)
     {
         gSaveBlock2Ptr->pokedex.owned[i] = 0;
         gSaveBlock2Ptr->pokedex.seen[i] = 0;
+        #ifndef FREE_EXTRA_SEEN_FLAGS
         gSaveBlock1Ptr->seen1[i] = 0;
         gSaveBlock1Ptr->seen2[i] = 0;
+        #endif
     }
 }
 
@@ -1588,8 +1593,16 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
         pokedexView->unkArr3[i] = 0;
 }
 
+#define HGSS_DEX TRUE
+
 void CB2_OpenPokedex(void)
 {
+    if (HGSS_DEX)
+    {
+        CB2_OpenPokedexPlusHGSS();
+        return;
+    }
+
     switch (gMain.state)
     {
     case 0:
@@ -1758,7 +1771,7 @@ static void Task_HandlePokedexStartMenuInput(u8 taskId)
                 CreateMonSpritesAtPos(sPokedexView->selectedPokemon, 0xE);
                 gMain.newKeys |= START_BUTTON;  //Exit menu
                 break;
-            case 3: //CLOSE POKéDEX
+            case 3: //CLOSE POKEDEX
                 BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
                 gTasks[taskId].func = Task_ClosePokedex;
                 PlaySE(SE_PC_OFF);
@@ -1958,12 +1971,12 @@ static void Task_HandleSearchResultsStartMenuInput(u8 taskId)
                 CreateMonSpritesAtPos(sPokedexView->selectedPokemon, 0xE);
                 gMain.newKeys |= START_BUTTON;
                 break;
-            case 3: //BACK TO POKéDEX
+            case 3: //BACK TO POKEDEX
                 BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
                 gTasks[taskId].func = Task_ReturnToPokedexFromSearchResults;
                 PlaySE(SE_TRUCK_DOOR);
                 break;
-            case 4: //CLOSE POKéDEX
+            case 4: //CLOSE POKEDEX
                 BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
                 gTasks[taskId].func = Task_ClosePokedexFromSearchResultsStartMenu;
                 PlaySE(SE_PC_OFF);
@@ -2049,7 +2062,7 @@ static void Task_ClosePokedexFromSearchResultsStartMenu(u8 taskId)
 
 #undef tLoadScreenTaskId
 
-// For loading main pokedex page or Pokédex search results
+// For loading main pokedex page or pokedex search results
 static bool8 LoadPokedexListPage(u8 page)
 {
     switch (gMain.state)
@@ -3755,7 +3768,7 @@ static void Task_LoadSizeScreen(u8 taskId)
 
             StringCopy(string, gText_SizeComparedTo);
             StringAppend(string, gSaveBlock2Ptr->playerName);
-            PrintInfoScreenText(string, GetStringCenterAlignXOffset(FONT_NORMAL, string, DISPLAY_WIDTH), 121);
+            PrintInfoScreenText(string, GetStringCenterAlignXOffset(FONT_NORMAL, string, 0xF0), 0x79);
             gMain.state++;
         }
         break;
@@ -4072,14 +4085,14 @@ static void Task_ExitCaughtMonPage(u8 taskId)
 
 static void SpriteCB_SlideCaughtMonToCenter(struct Sprite *sprite)
 {
-    if (sprite->x < DISPLAY_WIDTH / 2)
+    if (sprite->x < 0x78)
         sprite->x += 2;
-    if (sprite->x > DISPLAY_WIDTH / 2)
+    if (sprite->x > 0x78)
         sprite->x -= 2;
 
-    if (sprite->y < DISPLAY_HEIGHT / 2)
+    if (sprite->y < 0x50)
         sprite->y += 1;
-    if (sprite->y > DISPLAY_HEIGHT / 2)
+    if (sprite->y > 0x50)
         sprite->y -= 1;
 }
 
@@ -4103,7 +4116,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     const u8 *description;
 
     if (newEntry)
-        PrintInfoScreenText(gText_PokedexRegistration, GetStringCenterAlignXOffset(FONT_NORMAL, gText_PokedexRegistration, DISPLAY_WIDTH), 0);
+        PrintInfoScreenText(gText_PokedexRegistration, GetStringCenterAlignXOffset(FONT_NORMAL, gText_PokedexRegistration, 0xF0), 0);
     if (value == 0)
         value = NationalToHoennOrder(num);
     else
@@ -4142,7 +4155,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         description = gPokedexEntries[num].description;
     else
         description = sExpandedPlaceholder_PokedexDescription;
-    PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, DISPLAY_WIDTH), 95);
+    PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, 0xF0), 0x5F);
 }
 
 static void PrintMonHeight(u16 height, u8 left, u8 top)
@@ -4150,7 +4163,12 @@ static void PrintMonHeight(u16 height, u8 left, u8 top)
     u8 buffer[16];
     u32 inches, feet;
     u8 i = 0;
+    int offset;
+    u8 result;
+    offset = 0;
 
+    if (gSaveBlock2Ptr->optionsUnitSystem == 0) //Imperial
+    {
     inches = (height * 10000) / 254;
     if (inches % 10 >= 5)
         inches += 10;
@@ -4176,15 +4194,62 @@ static void PrintMonHeight(u16 height, u8 left, u8 top)
     buffer[i++] = CHAR_DBL_QUOTE_RIGHT;
     buffer[i++] = EOS;
     PrintInfoScreenText(buffer, left, top);
+    }
+    else //Metric
+    {
+        buffer[i++] = EXT_CTRL_CODE_BEGIN;
+        buffer[i++] = EXT_CTRL_CODE_CLEAR_TO;
+        i++;
+        buffer[i++] = CHAR_SPACE;
+        buffer[i++] = CHAR_SPACE;
+        buffer[i++] = CHAR_SPACE;
+        buffer[i++] = CHAR_SPACE;
+        buffer[i++] = CHAR_SPACE;
+
+        result = (height / 1000);
+        if (result == 0)
+        {
+            offset = 6;
+        }
+        else
+        {
+            buffer[i++] = result + CHAR_0;
+        }
+
+        result = (height % 1000) / 100;
+        if (result == 0 && offset != 0)
+        {
+            offset += 6;
+        }
+        else
+        {
+            buffer[i++] = result + CHAR_0;
+        }
+
+        buffer[i++] = (((height % 1000) % 100) / 10) + CHAR_0;
+        buffer[i++] = CHAR_COMMA;
+        buffer[i++] = (((height % 1000) % 100) % 10) + CHAR_0;
+        buffer[i++] = CHAR_SPACE;
+        buffer[i++] = CHAR_m;
+
+        buffer[i++] = EOS;
+        buffer[2] = offset;
+        PrintInfoScreenText(buffer, left, top);   
+    }
 }
 
 static void PrintMonWeight(u16 weight, u8 left, u8 top)
 {
     u8 buffer[16];
+    u8 buffer_metric[18];
     bool8 output;
-    u8 i;
+    u8 i = 0;
     u32 lbs = (weight * 100000) / 4536;
+    int offset = 0;
+    u8 result;
 
+    if (gSaveBlock2Ptr->optionsUnitSystem == 0) //Imperial
+    {
     if (lbs % 10u >= 5)
         lbs += 10;
     i = 0;
@@ -4234,6 +4299,41 @@ static void PrintMonWeight(u16 weight, u8 left, u8 top)
     buffer[i++] = CHAR_PERIOD;
     buffer[i++] = EOS;
     PrintInfoScreenText(buffer, left, top);
+    }
+    else //Metric
+    {
+        buffer_metric[i++] = EXT_CTRL_CODE_BEGIN;
+        buffer_metric[i++] = EXT_CTRL_CODE_CLEAR_TO;
+        i++;
+        buffer_metric[i++] = CHAR_SPACE;
+        buffer_metric[i++] = CHAR_SPACE;
+        buffer_metric[i++] = CHAR_SPACE;
+        buffer_metric[i++] = CHAR_SPACE;
+        buffer_metric[i++] = CHAR_SPACE;
+
+        result = (weight / 1000);
+        if (result == 0)
+            offset = 6;
+        else
+            buffer_metric[i++] = result + CHAR_0;
+
+        result = (weight % 1000) / 100;
+        if (result == 0 && offset != 0)
+            offset += 6;
+        else
+            buffer_metric[i++] = result + CHAR_0;
+
+        buffer_metric[i++] = (((weight % 1000) % 100) / 10) + CHAR_0;
+        buffer_metric[i++] = CHAR_COMMA;
+        buffer_metric[i++] = (((weight % 1000) % 100) % 10) + CHAR_0;
+        buffer_metric[i++] = CHAR_SPACE;
+        buffer_metric[i++] = CHAR_k;
+        buffer_metric[i++] = CHAR_g;
+
+        buffer_metric[i++] = EOS;
+        buffer_metric[2] = offset;
+        PrintInfoScreenText(buffer_metric, left, top);
+    }
 }
 
 const u8 *GetPokedexCategoryName(u16 dexNum) // unused
@@ -4271,6 +4371,7 @@ s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
     case FLAG_GET_SEEN:
         if (gSaveBlock2Ptr->pokedex.seen[index] & mask)
         {
+            #ifndef FREE_EXTRA_SEEN_FLAGS
             if ((gSaveBlock2Ptr->pokedex.seen[index] & mask) == (gSaveBlock1Ptr->seen1[index] & mask)
              && (gSaveBlock2Ptr->pokedex.seen[index] & mask) == (gSaveBlock1Ptr->seen2[index] & mask))
                 retVal = 1;
@@ -4281,11 +4382,15 @@ s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
                 gSaveBlock1Ptr->seen2[index] &= ~mask;
                 retVal = 0;
             }
+            #else
+                retVal = 1;
+            #endif
         }
         break;
     case FLAG_GET_CAUGHT:
         if (gSaveBlock2Ptr->pokedex.owned[index] & mask)
         {
+            #ifndef FREE_EXTRA_SEEN_FLAGS
             if ((gSaveBlock2Ptr->pokedex.owned[index] & mask) == (gSaveBlock2Ptr->pokedex.seen[index] & mask)
              && (gSaveBlock2Ptr->pokedex.owned[index] & mask) == (gSaveBlock1Ptr->seen1[index] & mask)
              && (gSaveBlock2Ptr->pokedex.owned[index] & mask) == (gSaveBlock1Ptr->seen2[index] & mask))
@@ -4298,12 +4403,17 @@ s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
                 gSaveBlock1Ptr->seen2[index] &= ~mask;
                 retVal = 0;
             }
+            #else
+                retVal = 1;
+            #endif
         }
         break;
     case FLAG_SET_SEEN:
         gSaveBlock2Ptr->pokedex.seen[index] |= mask;
+        #ifndef FREE_EXTRA_SEEN_FLAGS
         gSaveBlock1Ptr->seen1[index] |= mask;
         gSaveBlock1Ptr->seen2[index] |= mask;
+        #endif
         break;
     case FLAG_SET_CAUGHT:
         gSaveBlock2Ptr->pokedex.owned[index] |= mask;
@@ -4480,7 +4590,7 @@ static void PrintInfoSubMenuText(u8 windowId, const u8 *str, u8 left, u8 top)
     AddTextPrinterParameterized4(windowId, FONT_NORMAL, left, top, 0, 0, color, TEXT_SKIP_DRAW, str);
 }
 
-static void UNUSED UnusedPrintNum(u8 windowId, u16 num, u8 left, u8 top)
+static void UnusedPrintNum(u8 windowId, u16 num, u8 left, u8 top)
 {
     u8 str[4];
 
@@ -4514,7 +4624,7 @@ static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
     return i;
 }
 
-static void UNUSED UnusedPrintMonName(u8 windowId, const u8 *name, u8 left, u8 top)
+static void UnusedPrintMonName(u8 windowId, const u8 *name, u8 left, u8 top)
 {
     u8 str[POKEMON_NAME_LENGTH + 1];
     u8 i;
@@ -4535,7 +4645,7 @@ static void UNUSED UnusedPrintMonName(u8 windowId, const u8 *name, u8 left, u8 t
 }
 
 // Unused in the English version, used to print height/weight in versions which use metric system.
-static void UNUSED PrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top)
+static void PrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top)
 {
     u8 str[6];
     bool8 outputted = FALSE;
@@ -4606,8 +4716,8 @@ static void DrawFootprint(u8 windowId, u16 dexNum)
     CopyToWindowPixelBuffer(windowId, footprint4bpp, sizeof(footprint4bpp), 0);
 }
 
-// Ruby/Sapphire function.
-static void UNUSED RS_DrawFootprint(u16 offset, u16 tileNum)
+// Unused Ruby/Sapphire function.
+static void RS_DrawFootprint(u16 offset, u16 tileNum)
 {
     *(u16 *)(VRAM + offset * 0x800 + 0x232) = 0xF000 + tileNum + 0;
     *(u16 *)(VRAM + offset * 0x800 + 0x234) = 0xF000 + tileNum + 1;

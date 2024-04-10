@@ -147,7 +147,7 @@ static void (*const sSafariBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_TERMINATOR_NOP]           = SafariCmdEnd
 };
 
-static void UNUSED SpriteCB_Null4(void)
+static void SpriteCB_Null4(void)
 {
 }
 
@@ -230,6 +230,13 @@ static void HandleInputChooseAction(void)
             ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
         }
     }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        ActionSelectionDestroyCursorAt(gActionSelectionCursor[gActiveBattler]);
+        gActionSelectionCursor[gActiveBattler] = 3;
+        ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
+    }
 }
 
 static void CompleteOnBattlerSpriteCallbackDummy(void)
@@ -307,7 +314,7 @@ static void SafariBufferExecCompleted(void)
     }
 }
 
-static void UNUSED CompleteOnFinishedStatusAnimation(void)
+static void CompleteOnFinishedStatusAnimation(void)
 {
     if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].statusAnimActive)
         SafariBufferExecCompleted();

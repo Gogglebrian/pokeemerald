@@ -94,6 +94,7 @@ enum {
     MON_DATA_SPEED2,
     MON_DATA_SPATK2,
     MON_DATA_SPDEF2,
+    MON_DATA_NATURE,
 };
 
 struct PokemonSubstruct0
@@ -202,8 +203,7 @@ struct BoxPokemon
     u8 isBadEgg:1;
     u8 hasSpecies:1;
     u8 isEgg:1;
-    u8 blockBoxRS:1; // Unused, but Pokémon Box Ruby & Sapphire will refuse to deposit a Pokémon with this flag set
-    u8 unused:4;
+    u8 unused:5;
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings;
     u16 checksum;
@@ -319,11 +319,22 @@ struct SpeciesInfo
  /* 0x12 */ u8 friendship;
  /* 0x13 */ u8 growthRate;
  /* 0x14 */ u8 eggGroups[2];
- /* 0x16 */ u8 abilities[2];
+            #ifdef BATTLE_ENGINE
+ /* 0x16 */ u8 abilities[NUM_ABILITY_SLOTS];
+            #else
+            u8 abilities[2];
+            #endif
  /* 0x18 */ u8 safariZoneFleeRate;
  /* 0x19 */ u8 bodyColor : 7;
             u8 noFlip : 1;
-};
+            #ifndef BATTLE_ENGINE
+ /* 0x1A */ u8 abilityHidden;
+            #endif
+}; /* size = 28 */
+
+#define MOVE_CATEGORY_PHYSICAL 0
+#define MOVE_CATEGORY_SPECIAL 1
+#define MOVE_CATEGORY_STATUS 2
 
 struct BattleMove
 {
@@ -336,6 +347,7 @@ struct BattleMove
     u8 target;
     s8 priority;
     u8 flags;
+    u8 category;
 };
 
 #define SPINDA_SPOT_WIDTH 16
@@ -516,7 +528,6 @@ const u32 *GetMonFrontSpritePal(struct Pokemon *mon);
 const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 personality);
 const struct CompressedSpritePalette *GetMonSpritePalStruct(struct Pokemon *mon);
 const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species, u32 otId , u32 personality);
-bool32 IsHMMove2(u16 move);
 bool8 IsMonSpriteNotFlipped(u16 species);
 s8 GetMonFlavorRelation(struct Pokemon *mon, u8 flavor);
 s8 GetFlavorRelationByPersonality(u32 personality, u8 flavor);

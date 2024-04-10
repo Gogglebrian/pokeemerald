@@ -133,15 +133,15 @@ static const u8 ALIGNED(2) sBasePaletteColorMapTypes[32] =
     // sprite palettes
     COLOR_MAP_CONTRAST,
     COLOR_MAP_DARK_CONTRAST,
-    COLOR_MAP_CONTRAST,
-    COLOR_MAP_CONTRAST,
-    COLOR_MAP_CONTRAST,
-    COLOR_MAP_CONTRAST,
     COLOR_MAP_DARK_CONTRAST,
     COLOR_MAP_DARK_CONTRAST,
     COLOR_MAP_DARK_CONTRAST,
     COLOR_MAP_DARK_CONTRAST,
-    COLOR_MAP_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
+    COLOR_MAP_DARK_CONTRAST,
     COLOR_MAP_DARK_CONTRAST,
     COLOR_MAP_DARK_CONTRAST,
     COLOR_MAP_DARK_CONTRAST,
@@ -249,6 +249,7 @@ static void Task_WeatherMain(u8 taskId)
 
 static void None_Init(void)
 {
+    Weather_SetBlendCoeffs(8, 12); // Indoor shadows
     gWeatherPtr->targetColorMapIndex = 0;
     gWeatherPtr->colorMapStepDelay = 0;
 }
@@ -277,6 +278,7 @@ static void BuildColorMaps(void)
     u16 brightnessDelta;
     u16 colorMapIndex;
     u16 baseBrightness;
+    u32 remainingBrightness;
     s16 diff;
 
     sPaletteColorMapTypes = sBasePaletteColorMapTypes;
@@ -304,7 +306,11 @@ static void BuildColorMaps(void)
             }
 
             baseBrightness = curBrightness;
-            brightnessDelta = (0x1f00 - curBrightness) / (NUM_WEATHER_COLOR_MAPS - 3);
+            remainingBrightness = 0x1f00 - curBrightness;
+            if ((0x1f00 - curBrightness) < 0)
+                remainingBrightness += 0xf;
+
+            brightnessDelta = remainingBrightness / (NUM_WEATHER_COLOR_MAPS - 3);
             if (colorVal < 12)
             {
                 // For shadows (color values < 12), the remaining color mappings are
@@ -850,7 +856,8 @@ void ApplyWeatherColorMapToPal(u8 paletteIndex)
     ApplyColorMap(paletteIndex, 1, gWeatherPtr->colorMapIndex);
 }
 
-static bool8 UNUSED IsFirstFrameOfWeatherFadeIn(void)
+// Unused
+static bool8 IsFirstFrameOfWeatherFadeIn(void)
 {
     if (gWeatherPtr->palProcessingState == WEATHER_PAL_STATE_SCREEN_FADING_IN)
         return gWeatherPtr->fadeInFirstFrame;
@@ -991,8 +998,8 @@ bool8 Weather_UpdateBlend(void)
     return FALSE;
 }
 
-// Uses the same numbering scheme as the coord events
-static void UNUSED SetFieldWeather(u8 weather)
+// Unused. Uses the same numbering scheme as the coord events
+static void SetFieldWeather(u8 weather)
 {
     switch (weather)
     {

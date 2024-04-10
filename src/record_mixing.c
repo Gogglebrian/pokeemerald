@@ -318,7 +318,7 @@ static void Task_RecordMixing_Main(u8 taskId)
         sSentRecord = Alloc(sizeof(*sSentRecord));
         sReceivedRecords = Alloc(sizeof(*sReceivedRecords) * MAX_LINK_PLAYERS);
         SetLocalLinkPlayerId(gSpecialVar_0x8005);
-        VarSet(VAR_TEMP_MIXED_RECORDS, 1);
+        VarSet(VAR_TEMP_0, 1);
         sReadyToReceive = FALSE;
         PrepareExchangePacket();
         CreateRecordMixingLights();
@@ -972,14 +972,14 @@ static void ReceiveGiftItem(u16 *item, u8 multiplayerId)
     {
         if (!CheckBagHasItem(*item, 1) && !CheckPCHasItem(*item, 1) && AddBagItem(*item, 1))
         {
-            VarSet(VAR_TEMP_RECORD_MIX_GIFT_ITEM, *item);
+            VarSet(VAR_TEMP_1, *item);
             StringCopy(gStringVar1, gLinkPlayers[0].name);
             if (*item == ITEM_EON_TICKET)
                 FlagSet(FLAG_ENABLE_SHIP_SOUTHERN_ISLAND);
         }
         else
         {
-            VarSet(VAR_TEMP_RECORD_MIX_GIFT_ITEM, ITEM_NONE);
+            VarSet(VAR_TEMP_1, ITEM_NONE);
         }
     }
 }
@@ -1206,6 +1206,7 @@ static void ReceiveApprenticeData(struct Apprentice *records, size_t recordSize,
 
 static void GetNewHallRecords(struct RecordMixingHallRecords *dst, void *records, size_t recordSize, u32 multiplayerId, s32 linkPlayerCount)
 {
+    #ifndef FREE_RECORD_MIXING_HALL_RECORDS
     s32 i, j, k, l;
     s32 repeatTrainers;
 
@@ -1281,6 +1282,7 @@ static void GetNewHallRecords(struct RecordMixingHallRecords *dst, void *records
                 dst->hallRecords2P[j][k + HALL_RECORDS_COUNT] = sPartnerHallRecords[k]->twoPlayers[j];
         }
     }
+    #endif
 }
 
 static void FillWinStreakRecords1P(struct RankingHall1P *playerRecords, struct RankingHall1P *mixRecords)
@@ -1341,6 +1343,7 @@ static void FillWinStreakRecords2P(struct RankingHall2P *playerRecords, struct R
 
 static void SaveHighestWinStreakRecords(struct RecordMixingHallRecords *mixHallRecords)
 {
+    #ifndef FREE_RECORD_MIXING_HALL_RECORDS
     s32 i, j;
 
     for (i = 0; i < HALL_FACILITIES_COUNT; i++)
@@ -1348,12 +1351,15 @@ static void SaveHighestWinStreakRecords(struct RecordMixingHallRecords *mixHallR
         for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
             FillWinStreakRecords1P(gSaveBlock2Ptr->hallRecords1P[i][j], mixHallRecords->hallRecords1P[i][j]);
     }
+
     for (j = 0; j < FRONTIER_LVL_MODE_COUNT; j++)
         FillWinStreakRecords2P(gSaveBlock2Ptr->hallRecords2P[j], mixHallRecords->hallRecords2P[j]);
+    #endif
 }
 
 static void ReceiveRankingHallRecords(struct PlayerHallRecords *records, size_t recordSize, u32 multiplayerId)
 {
+    #ifndef FREE_RECORD_MIXING_HALL_RECORDS
     u8 linkPlayerCount = GetLinkPlayerCount();
     struct RecordMixingHallRecords *mixHallRecords = AllocZeroed(sizeof(*mixHallRecords));
 
@@ -1361,6 +1367,7 @@ static void ReceiveRankingHallRecords(struct PlayerHallRecords *records, size_t 
     SaveHighestWinStreakRecords(mixHallRecords);
 
     Free(mixHallRecords);
+    #endif
 }
 
 static void GetRecordMixingDaycareMail(struct RecordMixingDaycareMail *dst)

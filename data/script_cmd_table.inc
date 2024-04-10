@@ -205,8 +205,8 @@ gScriptCmdTable::
 	.4byte ScrCmd_nop1                              @ 0xca
 	.4byte ScrCmd_nop1                              @ 0xcb
 	.4byte ScrCmd_nop1                              @ 0xcc
-	.4byte ScrCmd_setmodernfatefulencounter         @ 0xcd
-	.4byte ScrCmd_checkmodernfatefulencounter       @ 0xce
+	.4byte ScrCmd_setmonmodernfatefulencounter      @ 0xcd
+	.4byte ScrCmd_checkmonmodernfatefulencounter    @ 0xce
 	.4byte ScrCmd_trywondercardscript               @ 0xcf
 	.4byte ScrCmd_nop1                              @ 0xd0
 	.4byte ScrCmd_warpspinenter                     @ 0xd1
@@ -227,6 +227,7 @@ gScriptCmdTable::
 	.4byte ScrCmd_warpwhitefade                     @ 0xe0
 	.4byte ScrCmd_buffercontestname                 @ 0xe1
 	.4byte ScrCmd_bufferitemnameplural              @ 0xe2
+	.4byte ScrCmd_callfunc                  		@ 0xe3
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

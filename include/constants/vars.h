@@ -9,7 +9,7 @@
 #define VAR_TEMP_0                 (TEMP_VARS_START + 0x0)
 #define VAR_TEMP_1                 (TEMP_VARS_START + 0x1)
 #define VAR_TEMP_2                 (TEMP_VARS_START + 0x2)
-#define VAR_TEMP_3                 (TEMP_VARS_START + 0x3) // Note: Used when the player checks a TV
+#define VAR_TEMP_3                 (TEMP_VARS_START + 0x3)
 #define VAR_TEMP_4                 (TEMP_VARS_START + 0x4)
 #define VAR_TEMP_5                 (TEMP_VARS_START + 0x5)
 #define VAR_TEMP_6                 (TEMP_VARS_START + 0x6)
@@ -23,7 +23,6 @@
 #define VAR_TEMP_E                 (TEMP_VARS_START + 0xE)
 #define VAR_TEMP_F                 (TEMP_VARS_START + 0xF)
 #define TEMP_VARS_END              VAR_TEMP_F
-#define NUM_TEMP_VARS              (TEMP_VARS_END - TEMP_VARS_START + 1)
 
 // object gfx id vars
 // These 0x10 vars are used to dynamically control a map object's sprite.
@@ -95,7 +94,7 @@
 #define VAR_POKELOT_RND1                                 0x404B
 #define VAR_POKELOT_RND2                                 0x404C
 #define VAR_POKELOT_PRIZE_PLACE                          0x404D
-#define VAR_UNUSED_0x404E                                0x404E // Unused Var
+#define VAR_REPEL_LAST_USED                              0x404E
 #define VAR_LOTAD_SIZE_RECORD                            0x404F
 #define VAR_LITTLEROOT_TOWN_STATE                        0x4050
 #define VAR_OLDALE_TOWN_STATE                            0x4051
@@ -264,8 +263,8 @@
 #define VAR_ROXANNE_CALL_STEP_COUNTER                    0x40F4
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER                   0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
-#define VAR_UNUSED_0x40F7                                0x40F7 // Unused Var
-#define VAR_UNUSED_0x40F8                                0x40F8 // Unused Var
+#define VAR_DEXNAV_SPECIES                               0x40F7 // Registered dexnav species
+#define VAR_DEXNAV_STEP_COUNTER                          0x40F8 // steps for finding hidden pokemon
 #define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
 #define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
 #define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
@@ -310,18 +309,5 @@
 // global script context. This means it will run faster, but cannot do any
 // cutscenes nor call a wait command. Used for weather effects in vanilla.
 #define TRIGGER_RUN_IMMEDIATELY   0
-
-// Temp var aliases
-#define VAR_TEMP_CHALLENGE_STATUS  VAR_TEMP_0
-
-#define VAR_TEMP_MIXED_RECORDS         VAR_TEMP_0
-#define VAR_TEMP_RECORD_MIX_GIFT_ITEM  VAR_TEMP_1
-
-#define VAR_TEMP_PLAYING_PYRAMID_MUSIC  VAR_TEMP_E
-
-#define VAR_TEMP_FRONTIER_TUTOR_SELECTION  VAR_TEMP_D
-#define VAR_TEMP_FRONTIER_TUTOR_ID         VAR_TEMP_E
-
-#define VAR_TEMP_TRANSFERRED_SPECIES  VAR_TEMP_1
 
 #endif // GUARD_CONSTANTS_VARS_H

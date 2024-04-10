@@ -61,6 +61,7 @@ void SpriteCB_FaintSlideAnim(struct Sprite *sprite);
 void DoBounceEffect(u8 battler, u8 which, s8 delta, s8 amplitude);
 void EndBounceEffect(u8 battler, u8 which);
 void SpriteCB_PlayerMonFromBall(struct Sprite *sprite);
+void SpriteCB_PlayerMonSlideIn(struct Sprite *sprite);
 void SpriteCB_TrainerThrowObject(struct Sprite *sprite);
 void AnimSetCenterToCornerVecX(struct Sprite *sprite);
 void BeginBattleIntroDummy(void);
@@ -82,7 +83,7 @@ extern struct MultiPartnerMenuPokemon gMultiPartnerParty[MULTI_PARTY_SIZE];
 extern const struct SpriteTemplate gUnusedBattleInitSprite;
 extern const struct OamData gOamData_BattleSpriteOpponentSide;
 extern const struct OamData gOamData_BattleSpritePlayerSide;
-extern const u8 gTypeEffectiveness[336];
+extern const u8 gTypeEffectiveness[372]; // 3 elements for each entry in the table (124 entries * 3 = 372).
 extern const u8 gTypeNames[NUMBER_OF_MON_TYPES][TYPE_NAME_LENGTH + 1];
 extern const struct TrainerMoney gTrainerMoneyTable[];
 extern const u8 gAbilityNames[][ABILITY_NAME_LENGTH + 1];
@@ -97,5 +98,11 @@ extern const u8 gStatusConditionString_ConfusionJpn[8];
 extern const u8 gStatusConditionString_LoveJpn[8];
 
 extern const u8 *const gStatusConditionStringsTable[7][2];
+
+struct TrainerBall
+{
+    u8 classId;
+    u8 Ball; // make this a u16 if needed
+};
 
 #endif // GUARD_BATTLE_MAIN_H

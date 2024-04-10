@@ -16,6 +16,7 @@
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
+#include "dexnav.h"
 #include "dma3.h"
 #include "event_data.h"
 #include "evolution_scene.h"
@@ -60,6 +61,7 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "cable_club.h"
+#include "wild_encounter.h"
 
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
@@ -170,7 +172,7 @@ EWRAM_DATA u16 gChosenMove = 0;
 EWRAM_DATA u16 gCalledMove = 0;
 EWRAM_DATA s32 gBattleMoveDamage = 0;
 EWRAM_DATA s32 gHpDealt = 0;
-EWRAM_DATA s32 gBideDmg[MAX_BATTLERS_COUNT] = {0};
+EWRAM_DATA s32 gTakenDmg[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastUsedItem = 0;
 EWRAM_DATA u8 gLastUsedAbility = 0;
 EWRAM_DATA u8 gBattlerAttacker = 0;
@@ -197,7 +199,7 @@ EWRAM_DATA u16 gChosenMoveByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gMoveResultFlags = 0;
 EWRAM_DATA u32 gHitMarker = 0;
 EWRAM_DATA static u8 sUnusedBattlersArray[MAX_BATTLERS_COUNT] = {0};
-EWRAM_DATA u8 gBideTarget[MAX_BATTLERS_COUNT] = {0};
+EWRAM_DATA u8 gTakenDmgByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0; // Never read
 EWRAM_DATA u16 gSideStatuses[NUM_BATTLE_SIDES] = {0};
 EWRAM_DATA struct SideTimer gSideTimers[NUM_BATTLE_SIDES] = {0};
@@ -246,6 +248,36 @@ u8 gHealthboxSpriteIds[MAX_BATTLERS_COUNT];
 u8 gMultiUsePlayerCursor;
 u8 gNumberOfMovesToChoose;
 u8 gBattleControllerData[MAX_BATTLERS_COUNT]; // Used by the battle controllers to store misc sprite/task IDs for each battler
+
+const struct TrainerBall gTrainerBallTable[] = { // Trainer pokeball table (see include/constants/trainers.h for all trainer classes)
+    {TRAINER_CLASS_BUG_CATCHER, ITEM_NET_BALL},
+    {TRAINER_CLASS_BUG_MANIAC, ITEM_NET_BALL},
+    {TRAINER_CLASS_FISHERMAN, ITEM_NET_BALL},
+    {TRAINER_CLASS_PKMN_BREEDER, ITEM_NEST_BALL},
+    {TRAINER_CLASS_CAMPER, ITEM_NEST_BALL},
+    {TRAINER_CLASS_PICNICKER, ITEM_NEST_BALL},
+    {TRAINER_CLASS_SWIMMER_M, ITEM_DIVE_BALL},
+    {TRAINER_CLASS_SWIMMER_F, ITEM_DIVE_BALL},
+    {TRAINER_CLASS_TUBER_M, ITEM_DIVE_BALL},
+    {TRAINER_CLASS_TUBER_F, ITEM_DIVE_BALL},
+    {TRAINER_CLASS_SIS_AND_BRO, ITEM_DIVE_BALL},
+    {TRAINER_CLASS_GUITARIST, ITEM_GREAT_BALL},
+    {TRAINER_CLASS_KINDLER, ITEM_GREAT_BALL},
+    {TRAINER_CLASS_COLLECTOR, ITEM_PREMIER_BALL},
+    {TRAINER_CLASS_LADY, ITEM_LUXURY_BALL},
+    {TRAINER_CLASS_RICH_BOY, ITEM_LUXURY_BALL},
+    {TRAINER_CLASS_COOLTRAINER, ITEM_GREAT_BALL},
+    {TRAINER_CLASS_DRAGON_TAMER, ITEM_ULTRA_BALL},
+    {TRAINER_CLASS_OLD_COUPLE, ITEM_ULTRA_BALL},
+    {TRAINER_CLASS_AQUA_ADMIN, ITEM_ULTRA_BALL},
+    {TRAINER_CLASS_AQUA_LEADER, ITEM_MASTER_BALL},
+    {TRAINER_CLASS_MAGMA_ADMIN, ITEM_ULTRA_BALL},
+    {TRAINER_CLASS_MAGMA_LEADER, ITEM_MASTER_BALL},
+    {TRAINER_CLASS_LEADER, ITEM_ULTRA_BALL},
+    {TRAINER_CLASS_ELITE_FOUR, ITEM_MASTER_BALL},
+    {TRAINER_CLASS_CHAMPION, ITEM_MASTER_BALL},
+    {0xFF, ITEM_POKE_BALL},
+};
 
 static const struct ScanlineEffectParams sIntroScanlineParams16Bit =
 {
@@ -332,7 +364,7 @@ static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 // 10 is ×1.0 TYPE_MUL_NORMAL
 // 05 is ×0.5 TYPE_MUL_NOT_EFFECTIVE
 // 00 is ×0.0 TYPE_MUL_NO_EFFECT
-const u8 gTypeEffectiveness[336] =
+const u8 gTypeEffectiveness[372] =
 {
     TYPE_NORMAL, TYPE_ROCK, TYPE_MUL_NOT_EFFECTIVE,
     TYPE_NORMAL, TYPE_STEEL, TYPE_MUL_NOT_EFFECTIVE,
@@ -442,6 +474,18 @@ const u8 gTypeEffectiveness[336] =
     TYPE_STEEL, TYPE_ICE, TYPE_MUL_SUPER_EFFECTIVE,
     TYPE_STEEL, TYPE_ROCK, TYPE_MUL_SUPER_EFFECTIVE,
     TYPE_STEEL, TYPE_STEEL, TYPE_MUL_NOT_EFFECTIVE,
+    TYPE_FAIRY, TYPE_FIGHTING, TYPE_MUL_SUPER_EFFECTIVE,
+    TYPE_FAIRY, TYPE_DRAGON, TYPE_MUL_SUPER_EFFECTIVE,
+    TYPE_FAIRY, TYPE_DARK, TYPE_MUL_SUPER_EFFECTIVE,
+    TYPE_FAIRY, TYPE_POISON, TYPE_MUL_NOT_EFFECTIVE,
+    TYPE_FAIRY, TYPE_STEEL, TYPE_MUL_NOT_EFFECTIVE,
+    TYPE_FAIRY, TYPE_FIRE, TYPE_MUL_NOT_EFFECTIVE,
+    TYPE_FIGHTING, TYPE_FAIRY, TYPE_MUL_NOT_EFFECTIVE,
+    TYPE_POISON, TYPE_FAIRY, TYPE_MUL_SUPER_EFFECTIVE,
+    TYPE_BUG, TYPE_FAIRY, TYPE_MUL_NOT_EFFECTIVE,
+    TYPE_DRAGON, TYPE_FAIRY, TYPE_MUL_NO_EFFECT,
+    TYPE_DARK, TYPE_FAIRY, TYPE_MUL_NOT_EFFECTIVE,
+    TYPE_STEEL, TYPE_FAIRY, TYPE_MUL_SUPER_EFFECTIVE,
     TYPE_FORESIGHT, TYPE_FORESIGHT, TYPE_MUL_NO_EFFECT,
     TYPE_NORMAL, TYPE_GHOST, TYPE_MUL_NO_EFFECT,
     TYPE_FIGHTING, TYPE_GHOST, TYPE_MUL_NO_EFFECT,
@@ -450,24 +494,25 @@ const u8 gTypeEffectiveness[336] =
 
 const u8 gTypeNames[NUMBER_OF_MON_TYPES][TYPE_NAME_LENGTH + 1] =
 {
-    [TYPE_NORMAL] = _("NORMAL"),
-    [TYPE_FIGHTING] = _("FIGHT"),
-    [TYPE_FLYING] = _("FLYING"),
-    [TYPE_POISON] = _("POISON"),
-    [TYPE_GROUND] = _("GROUND"),
-    [TYPE_ROCK] = _("ROCK"),
-    [TYPE_BUG] = _("BUG"),
-    [TYPE_GHOST] = _("GHOST"),
-    [TYPE_STEEL] = _("STEEL"),
+    [TYPE_NORMAL] = _("Normal"),
+    [TYPE_FIGHTING] = _("Fight"),
+    [TYPE_FLYING] = _("Flying"),
+    [TYPE_POISON] = _("Poison"),
+    [TYPE_GROUND] = _("Ground"),
+    [TYPE_ROCK] = _("Rock"),
+    [TYPE_BUG] = _("Bug"),
+    [TYPE_GHOST] = _("Ghost"),
+    [TYPE_STEEL] = _("Steel"),
     [TYPE_MYSTERY] = _("???"),
-    [TYPE_FIRE] = _("FIRE"),
-    [TYPE_WATER] = _("WATER"),
-    [TYPE_GRASS] = _("GRASS"),
-    [TYPE_ELECTRIC] = _("ELECTR"),
-    [TYPE_PSYCHIC] = _("PSYCHC"),
-    [TYPE_ICE] = _("ICE"),
-    [TYPE_DRAGON] = _("DRAGON"),
-    [TYPE_DARK] = _("DARK"),
+    [TYPE_FIRE] = _("Fire"),
+    [TYPE_WATER] = _("Water"),
+    [TYPE_GRASS] = _("Grass"),
+    [TYPE_ELECTRIC] = _("Electr"),
+    [TYPE_PSYCHIC] = _("Psychc"),
+    [TYPE_ICE] = _("Ice"),
+    [TYPE_DRAGON] = _("Dragon"),
+    [TYPE_DARK] = _("Dark"),
+    [TYPE_FAIRY] = _("Fairy"),
 };
 
 // This is a factor in how much money you get for beating a trainer.
@@ -644,16 +689,19 @@ static void CB2_InitBattleInternal(void)
         gBattle_WIN0V = WIN_RANGE(DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 2 + 1);
         ScanlineEffect_Clear();
 
-        for (i = 0; i < DISPLAY_HEIGHT / 2; i++)
+        i = 0;
+        while (i < 80)
         {
             gScanlineEffectRegBuffers[0][i] = 0xF0;
             gScanlineEffectRegBuffers[1][i] = 0xF0;
+            i++;
         }
 
-        for (; i < DISPLAY_HEIGHT; i++)
+        while (i < 160)
         {
             gScanlineEffectRegBuffers[0][i] = 0xFF10;
             gScanlineEffectRegBuffers[1][i] = 0xFF10;
+            i++;
         }
 
         ScanlineEffect_SetParams(sIntroScanlineParams16Bit);
@@ -758,6 +806,7 @@ static void SetPlayerBerryDataInBattleStruct(void)
 
     if (IsEnigmaBerryValid() == TRUE)
     {
+        #ifndef FREE_ENIGMA_BERRY
         for (i = 0; i < BERRY_NAME_LENGTH; i++)
             battleBerry->name[i] = gSaveBlock1Ptr->enigmaBerry.berry.name[i];
         battleBerry->name[i] = EOS;
@@ -767,6 +816,7 @@ static void SetPlayerBerryDataInBattleStruct(void)
 
         battleBerry->holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
         battleBerry->holdEffectParam = gSaveBlock1Ptr->enigmaBerry.holdEffectParam;
+        #endif
     }
     else
     {
@@ -792,6 +842,7 @@ static void SetAllPlayersBerryData(void)
     {
         if (IsEnigmaBerryValid() == TRUE)
         {
+            #ifndef FREE_ENIGMA_BERRY
             for (i = 0; i < BERRY_NAME_LENGTH; i++)
             {
                 gEnigmaBerries[0].name[i] = gSaveBlock1Ptr->enigmaBerry.berry.name[i];
@@ -810,6 +861,7 @@ static void SetAllPlayersBerryData(void)
             gEnigmaBerries[2].holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
             gEnigmaBerries[0].holdEffectParam = gSaveBlock1Ptr->enigmaBerry.holdEffectParam;
             gEnigmaBerries[2].holdEffectParam = gSaveBlock1Ptr->enigmaBerry.holdEffectParam;
+            #endif
         }
         else
         {
@@ -2065,6 +2117,12 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 break;
             }
             }
+            for (j = 0; gTrainerBallTable[j].classId != 0xFF; j++)
+            {
+                if (gTrainerBallTable[j].classId == gTrainers[trainerNum].trainerClass)
+                    break;
+            }
+            SetMonData(&party[i], MON_DATA_POKEBALL, &gTrainerBallTable[j].Ball);
         }
 
         gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;
@@ -2073,7 +2131,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     return gTrainers[trainerNum].partySize;
 }
 
-static void UNUSED HBlankCB_Battle(void)
+// Unused
+static void HBlankCB_Battle(void)
 {
     if (REG_VCOUNT < DISPLAY_HEIGHT && REG_VCOUNT >= 111)
         SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_SCREENBASE(24) | BGCNT_TXT256x512);
@@ -2709,7 +2768,8 @@ void SpriteCallbackDummy_2(struct Sprite *sprite)
 #define sNumFlickers data[3]
 #define sDelay       data[4]
 
-static void UNUSED SpriteCB_InitFlicker(struct Sprite *sprite)
+// Unused
+static void SpriteCB_InitFlicker(struct Sprite *sprite)
 {
     sprite->sNumFlickers = 6;
     sprite->sDelay = 1;
@@ -2864,7 +2924,8 @@ static void SpriteCB_BattleSpriteSlideLeft(struct Sprite *sprite)
     }
 }
 
-static void UNUSED SetIdleSpriteCallback(struct Sprite *sprite)
+// Unused
+static void SetIdleSpriteCallback(struct Sprite *sprite)
 {
     sprite->callback = SpriteCB_Idle;
 }
@@ -2988,6 +3049,29 @@ void SpriteCB_PlayerMonFromBall(struct Sprite *sprite)
         BattleAnimateBackSprite(sprite, sprite->sSpeciesId);
 }
 
+void SpriteCB_PlayerMonSlideIn(struct Sprite *sprite) {
+    if (sprite->data[3] == 0) {
+        PlaySE(SE_BALL_TRAY_ENTER);
+        sprite->data[3]++;
+    } else if (sprite->data[3] == 1) {
+        if (sprite->animEnded)
+            return;
+        sprite->data[4] = sprite->x;
+        sprite->x = -33;
+        sprite->invisible = FALSE;
+        sprite->data[3]++;
+    } else if (sprite->data[3] < 27) {
+        sprite->x += 4;
+        sprite->data[3]++;
+    } else {
+        sprite->data[3] = 0;
+        sprite->x = sprite->data[4];
+        sprite->data[4] = 0;
+        sprite->callback = SpriteCB_PlayerMonFromBall;
+        PlayCry_ByMode(sprite->sSpeciesId, -25, CRY_MODE_NORMAL);
+    }
+}
+
 static void SpriteCB_TrainerThrowObject_Main(struct Sprite *sprite)
 {
     AnimSetCenterToCornerVecX(sprite);
@@ -3087,6 +3171,8 @@ static void BattleStartClearSetData(void)
         gHitMarker |= HITMARKER_NO_ANIMATIONS;
 
     gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
+    gBattleScripting.monCaught = FALSE;
+    gBattleScripting.expOnCatch = TRUE;
 
     gMultiHitCounter = 0;
     gBattleOutcome = 0;
@@ -3686,7 +3772,8 @@ static void BattleIntroRecordMonsToDex(void)
     }
 }
 
-static void UNUSED BattleIntroSkipRecordMonsToDex(void)
+// Unused
+static void BattleIntroSkipRecordMonsToDex(void)
 {
     if (gBattleControllerExecFlags == 0)
         gBattleMainFunc = BattleIntroPrintPlayerSendsOut;
@@ -3789,7 +3876,8 @@ static void BattleIntroPlayer1SendsOutMonAnimation(void)
     gBattleMainFunc = TryDoEventsBeforeFirstTurn;
 }
 
-static void UNUSED BattleIntroSwitchInPlayerMons(void)
+// Unused
+static void BattleIntroSwitchInPlayerMons(void)
 {
     if (gBattleControllerExecFlags == 0)
     {
@@ -5126,8 +5214,17 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
 {
     if (!gPaletteFade.active)
     {
+        gIsFishingEncounter = FALSE;
+
+        if (gDexnavBattle && (gBattleOutcome == B_OUTCOME_WON || gBattleOutcome == B_OUTCOME_CAUGHT))
+            IncrementDexNavChain();
+        else
+            gSaveBlock1Ptr->dexNavChain = 0;
+        
+        gDexnavBattle = FALSE;
+
         ResetSpriteData();
-        if (gLeveledUpInBattle == 0 || gBattleOutcome != B_OUTCOME_WON)
+        if (gLeveledUpInBattle == 0 || (gBattleOutcome != B_OUTCOME_WON && gBattleOutcome != B_OUTCOME_CAUGHT))
         {
             gBattleMainFunc = ReturnFromBattleToOverworld;
             return;

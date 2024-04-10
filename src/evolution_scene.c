@@ -208,7 +208,7 @@ void BeginEvolutionScene(struct Pokemon *mon, u16 postEvoSpecies, bool8 canStopE
 
 void EvolutionScene(struct Pokemon *mon, u16 postEvoSpecies, bool8 canStopEvo, u8 partyId)
 {
-    u8 name[POKEMON_NAME_BUFFER_SIZE];
+    u8 name[20];
     u16 currSpecies;
     u32 trainerId, personality;
     const struct CompressedSpritePalette* pokePal;
@@ -467,7 +467,7 @@ static void CB2_TradeEvolutionSceneLoadGraphics(void)
 
 void TradeEvolutionScene(struct Pokemon *mon, u16 postEvoSpecies, u8 preEvoSpriteId, u8 partyId)
 {
-    u8 name[POKEMON_NAME_BUFFER_SIZE];
+    u8 name[20];
     u16 currSpecies;
     u32 trainerId, personality;
     const struct CompressedSpritePalette* pokePal;
@@ -775,7 +775,8 @@ static void Task_EvolutionScene(u8 taskId)
             var = MonTryLearningNewMove(mon, gTasks[taskId].tLearnsFirstMove);
             if (var != MOVE_NONE && !gTasks[taskId].tEvoWasStopped)
             {
-                u8 nickname[POKEMON_NAME_BUFFER_SIZE];
+                u8 text[20];
+
                 if (!(gTasks[taskId].tBits & TASK_BIT_LEARN_MOVE))
                 {
                     StopMapMusic();
@@ -785,8 +786,8 @@ static void Task_EvolutionScene(u8 taskId)
                 gTasks[taskId].tBits |= TASK_BIT_LEARN_MOVE;
                 gTasks[taskId].tLearnsFirstMove = FALSE;
                 gTasks[taskId].tLearnMoveState = MVSTATE_INTRO_MSG_1;
-                GetMonData(mon, MON_DATA_NICKNAME, nickname);
-                StringCopy_Nickname(gBattleTextBuff1, nickname);
+                GetMonData(mon, MON_DATA_NICKNAME, text);
+                StringCopy_Nickname(gBattleTextBuff1, text);
 
                 if (var == MON_HAS_MAX_MOVES)
                     gTasks[taskId].tState = EVOSTATE_REPLACE_MOVE;
@@ -974,22 +975,13 @@ static void Task_EvolutionScene(u8 taskId)
                 {
                     // Selected move to forget
                     u16 move = GetMonData(mon, var + MON_DATA_MOVE1);
-                    if (IsHMMove2(move))
-                    {
-                        // Can't forget HMs
-                        BattleStringExpandPlaceholdersToDisplayedString(gBattleStringsTable[STRINGID_HMMOVESCANTBEFORGOTTEN - BATTLESTRINGS_TABLE_START]);
-                        BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MSG);
-                        gTasks[taskId].tLearnMoveState = MVSTATE_RETRY_AFTER_HM;
-                    }
-                    else
-                    {
-                        // Forget move
-                        PREPARE_MOVE_BUFFER(gBattleTextBuff2, move)
 
-                        RemoveMonPPBonus(mon, var);
-                        SetMonMoveSlot(mon, gMoveToLearn, var);
-                        gTasks[taskId].tLearnMoveState++;
-                    }
+                    // Forget move
+                    PREPARE_MOVE_BUFFER(gBattleTextBuff2, move)
+
+                    RemoveMonPPBonus(mon, var);
+                    SetMonMoveSlot(mon, gMoveToLearn, var);
+                    gTasks[taskId].tLearnMoveState++;
                 }
             }
             break;
@@ -1194,12 +1186,13 @@ static void Task_TradeEvolutionScene(u8 taskId)
             var = MonTryLearningNewMove(mon, gTasks[taskId].tLearnsFirstMove);
             if (var != MOVE_NONE && !gTasks[taskId].tEvoWasStopped)
             {
-                u8 nickname[POKEMON_NAME_BUFFER_SIZE];
+                u8 text[20];
+
                 gTasks[taskId].tBits |= TASK_BIT_LEARN_MOVE;
                 gTasks[taskId].tLearnsFirstMove = FALSE;
                 gTasks[taskId].tLearnMoveState = 0;
-                GetMonData(mon, MON_DATA_NICKNAME, nickname);
-                StringCopy_Nickname(gBattleTextBuff1, nickname);
+                GetMonData(mon, MON_DATA_NICKNAME, text);
+                StringCopy_Nickname(gBattleTextBuff1, text);
 
                 if (var == MON_HAS_MAX_MOVES)
                     gTasks[taskId].tState = T_EVOSTATE_REPLACE_MOVE;
@@ -1356,24 +1349,15 @@ static void Task_TradeEvolutionScene(u8 taskId)
                 {
                     // Selected move to forget
                     u16 move = GetMonData(mon, var + MON_DATA_MOVE1);
-                    if (IsHMMove2(move))
-                    {
-                        // Can't forget HMs
-                        BattleStringExpandPlaceholdersToDisplayedString(gBattleStringsTable[STRINGID_HMMOVESCANTBEFORGOTTEN - BATTLESTRINGS_TABLE_START]);
-                        DrawTextOnTradeWindow(0, gDisplayedStringBattle, 1);
-                        gTasks[taskId].tLearnMoveState = T_MVSTATE_RETRY_AFTER_HM;
-                    }
-                    else
-                    {
-                        // Forget move
-                        PREPARE_MOVE_BUFFER(gBattleTextBuff2, move)
+                    
+                    // Forget move
+                    PREPARE_MOVE_BUFFER(gBattleTextBuff2, move)
 
-                        RemoveMonPPBonus(mon, var);
-                        SetMonMoveSlot(mon, gMoveToLearn, var);
-                        BattleStringExpandPlaceholdersToDisplayedString(gBattleStringsTable[STRINGID_123POOF - BATTLESTRINGS_TABLE_START]);
-                        DrawTextOnTradeWindow(0, gDisplayedStringBattle, 1);
-                        gTasks[taskId].tLearnMoveState++;
-                    }
+                    RemoveMonPPBonus(mon, var);
+                    SetMonMoveSlot(mon, gMoveToLearn, var);
+                    BattleStringExpandPlaceholdersToDisplayedString(gBattleStringsTable[STRINGID_123POOF - BATTLESTRINGS_TABLE_START]);
+                    DrawTextOnTradeWindow(0, gDisplayedStringBattle, 1);
+                    gTasks[taskId].tLearnMoveState++;
                 }
             }
             break;
@@ -1634,7 +1618,8 @@ static void StartBgAnimation(bool8 isLink)
     CreateBgAnimTask(isLink);
 }
 
-static void UNUSED PauseBgPaletteAnim(void)
+// Unused
+static void PauseBgPaletteAnim(void)
 {
     u8 taskId = FindTaskIdByFunc(Task_UpdateBgPalette);
 

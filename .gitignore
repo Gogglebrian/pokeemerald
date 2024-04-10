@@ -21,6 +21,7 @@ sound/**/*.bin
 sound/songs/midi/*.s
 tools/agbcc
 *.map
+*.ld
 *.bat
 *.dump
 *.sa*
@@ -34,7 +35,13 @@ prefabs.json
 .vscode/
 *.a
 .fuse_hidden*
+.ccls-cache/*
+.ropeproject/
+/overworld/
+/icons/
 *.sna
 *.diff
 *.sym
 *.js
+agbcc/
+/*.zip
