@@ -679,15 +679,16 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_034] =
+    [ITEM_LINK_CABLE] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("LINK CABLE"),
+        .itemId = ITEM_LINK_CABLE,
         .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .description = sLinkCableDesc,
+		.importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_LinkCable,
     },
 
     [ITEM_035] =

@@ -60,6 +60,7 @@ static void ItemUseOnFieldCB_Itemfinder(u8);
 static void ItemUseOnFieldCB_Berry(u8);
 static void ItemUseOnFieldCB_WailmerPailBerry(u8);
 static void ItemUseOnFieldCB_WailmerPailSudowoodo(u8);
+static void ItemUseOnFieldCB_LinkCable(u8 taskId);
 static bool8 TryToWaterSudowoodo(void);
 static void BootUpSoundTMHM(u8);
 static void Task_ShowTMHMContainedMessage(u8);
@@ -191,6 +192,21 @@ void ItemUseOutOfBattle_Mail(u8 taskId)
 {
     gBagMenu->newScreenCallback = CB2_CheckMail;
     Task_FadeAndCloseBagMenu(taskId);
+}
+
+static void ItemUseOnFieldCB_LinkCable(u8 taskId)
+{    
+	//PlaySE(SE_SELECT);
+    //Task_FadeAndCloseBagMenu(taskId);
+	LockPlayerFieldControls();
+	ScriptContext_SetupScript(Common_EventScript_SelfTrade_V1);
+	DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_LinkCable(u8 taskId)
+{
+	sItemUseOnFieldCB = ItemUseOnFieldCB_LinkCable;
+    SetUpItemUseOnFieldCallback(taskId);
 }
 
 void ItemUseOutOfBattle_Bike(u8 taskId)

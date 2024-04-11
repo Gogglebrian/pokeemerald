@@ -393,6 +393,11 @@ static const u8 sLeafStoneDesc[] = _(
     "Makes certain\n"
     "species of POKéMON\n"
     "evolve.");
+	
+static const u8 sLinkCableDesc[] = _(
+    "Used to trade\n"
+    "POKéMON with\n"
+    "yourself.");
 
 // Valuable items
 static const u8 sTinyMushroomDesc[] = _(

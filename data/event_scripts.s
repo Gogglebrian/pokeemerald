@@ -956,6 +956,32 @@ gText_LegendaryFlewAway::
 	.include "data/text/questionnaire.inc"
 	.include "data/text/abnormal_weather.inc"
 
+@ TheXaman self-trade script
+Common_EventScript_SelfTrade_V1::
+	lock
+	msgbox Common_EventScript_SelfTrade_Text_IllTradeIfYouWant, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq Common_EventScript_SelfTrade_DeclineTrade
+	special ChoosePartyMon
+	waitstate
+	compare VAR_0x8004, 255
+	goto_if_eq Common_EventScript_SelfTrade_DeclineTrade
+	copyvar VAR_0x8005, VAR_0x8004
+	setvar VAR_0x8004, 6
+	special CreateInGameTradePokemon
+	special DoInGameTradeScene
+	waitstate
+	release
+	end
+	
+Common_EventScript_SelfTrade_Text_IllTradeIfYouWant:
+	.string "Use the LINK CABLE to simulate a\n"
+	.string "POKéMON trade?$"
+	
+Common_EventScript_SelfTrade_DeclineTrade::
+	release
+	end
+
 EventScript_SelectWithoutRegisteredItem::
 	msgbox gText_SelectWithoutRegisteredItem, MSGBOX_SIGN
 	end
