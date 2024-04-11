@@ -32,7 +32,7 @@
         .noFlip = FALSE,                                                                \
     }
 
-const struct SpeciesInfo gSpeciesInfo[] =
+const struct BaseStats gBaseStats[] =
 {
     [SPECIES_NONE] = {0},
 

@@ -383,7 +383,7 @@ static void CreateWildMon(u16 species, u8 level)
     ZeroEnemyPartyMons();
     checkCuteCharm = TRUE;
 
-    switch (gSpeciesInfo[species].genderRatio)
+    switch (gBaseStats[species].genderRatio)
     {
     case MON_MALE:
     case MON_FEMALE:
@@ -922,7 +922,7 @@ static bool8 TryGetRandomWildMonIndexByType(const struct WildPokemon *wildMon, u
 
     for (validMonCount = 0, i = 0; i < numMon; i++)
     {
-        if (gSpeciesInfo[wildMon[i].species].types[0] == type || gSpeciesInfo[wildMon[i].species].types[1] == type)
+        if (gBaseStats[wildMon[i].species].types[0] == type || gBaseStats[wildMon[i].species].types[1] == type)
             validIndexes[validMonCount++] = i;
     }
 
@@ -964,4 +964,13 @@ static void ApplyCleanseTagEncounterRateMod(u32 *encRate)
 {
     if (GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM) == ITEM_CLEANSE_TAG)
         *encRate = *encRate * 2 / 3;
+}
+
+bool8 StandardWildEncounter_Debug(void)
+{
+    u16 headerId = GetCurrentMapWildMonHeaderId();
+    if (TryGenerateWildMon(gWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, 0) != TRUE)
+        return FALSE;
+
+    DoStandardWildBattle_Debug();
 }

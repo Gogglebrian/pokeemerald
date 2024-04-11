@@ -4,6 +4,7 @@
 #include "sprite.h"
 
 // Property labels for Get(Box)MonData / Set(Box)MonData
+/* Replaced by flags defined in pokemon.h
 enum {
     MON_DATA_PERSONALITY,
     MON_DATA_OT_ID,
@@ -94,7 +95,8 @@ enum {
     MON_DATA_SPEED2,
     MON_DATA_SPATK2,
     MON_DATA_SPDEF2,
-};
+}; 
+*/
 
 struct PokemonSubstruct0
 {
@@ -295,7 +297,7 @@ struct BattlePokemon
     /*0x54*/ u32 otId;
 };
 
-struct SpeciesInfo
+struct BaseStats
 {
  /* 0x00 */ u8 baseHP;
  /* 0x01 */ u8 baseAttack;
@@ -385,7 +387,7 @@ extern struct SpriteTemplate gMultiuseSpriteTemplate;
 extern const struct BattleMove gBattleMoves[];
 extern const u8 gFacilityClassToPicIndex[];
 extern const u8 gFacilityClassToTrainerClass[];
-extern const struct SpeciesInfo gSpeciesInfo[];
+extern const struct BaseStats gBaseStats[];
 extern const u8 *const gItemEffectTable[];
 extern const u32 gExperienceTables[][MAX_LEVEL + 1];
 extern const u16 *const gLevelUpLearnsets[];
@@ -458,6 +460,7 @@ void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg);
 void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg);
 void CopyMon(void *dest, void *src, size_t size);
 u8 GiveMonToPlayer(struct Pokemon *mon);
+u8 CopyMonToPC(struct Pokemon *mon);
 u8 CalculatePlayerPartyCount(void);
 u8 CalculateEnemyPartyCount(void);
 u8 GetMonsStateToDoubles(void);

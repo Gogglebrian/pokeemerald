@@ -263,7 +263,7 @@ gSpecials::
 	def_special BedroomPC
 	def_special PlayerPC
 	def_special FieldShowRegionMap
-	def_special GetInGameTradeSpeciesInfo
+	def_special GetInGameTradeBaseStats
 	def_special CreateInGameTradePokemon
 	def_special DoInGameTradeScene
 	def_special GetTradeSpecies

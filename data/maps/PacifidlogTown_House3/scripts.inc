@@ -7,7 +7,7 @@ PacifidlogTown_House3_EventScript_Trader::
 	goto_if_set FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED, PacifidlogTown_House3_EventScript_TradeCompleted
 	setvar VAR_0x8008, INGAME_TRADE_HORSEA
 	copyvar VAR_0x8004, VAR_0x8008
-	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+	specialvar VAR_RESULT, GetInGameTradeBaseStats
 	copyvar VAR_0x8009, VAR_RESULT
 	msgbox PacifidlogTown_House3_Text_WillingToTradeIt, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, PacifidlogTown_House3_EventScript_DeclineTrade
