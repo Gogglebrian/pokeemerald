@@ -371,7 +371,68 @@ gBattleAnims_Moves::
 	.4byte Move_WATER_PULSE
 	.4byte Move_DOOM_DESIRE
 	.4byte Move_PSYCHO_BOOST
-	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
+	.4byte Move_SUPERPOWER 	@ placeholder for Move_CLOSE_COMBAT
+	.4byte Move_FLAME_WHEEL @ placeholder for Move_FLARE_BLITZ
+	.4byte Move_TACKLE		@ placeholder for Move_FORCE_PALM
+	.4byte Move_TACKLE 		@ placeholder for Move_AURA_SPHERE
+	.4byte Move_AGILITY 	@ placeholder for Move_ROCK_POLISH
+	.4byte Move_TACKLE	 	@ placeholder for Move_POISON_JAB
+	.4byte Move_TACKLE 		@ placeholder for Move_DARK_PULSE
+	.4byte Move_TACKLE	 	@ placeholder for Move_NIGHT_SLASH
+	.4byte Move_TACKLE	 	@ placeholder for Move_AQUA_TAIL
+	.4byte Move_TACKLE	 	@ placeholder for Move_SEED_BOMB
+	.4byte Move_TACKLE	 	@ placeholder for Move_AIR_SLASH
+	.4byte Move_TACKLE	 	@ placeholder for Move_XSCISSOR
+	.4byte Move_TACKLE	 	@ placeholder for Move_BUG_BUZZ
+	.4byte Move_TACKLE	 	@ placeholder for Move_DRAGON_PULSE
+	.4byte Move_TACKLE	 	@ placeholder for Move_DRAGON_RUSH
+	.4byte Move_TACKLE	 	@ placeholder for Move_POWER_GEM
+	.4byte Move_TACKLE	 	@ placeholder for Move_DRAIN_PUNCH
+	.4byte Move_TACKLE	 	@ placeholder for Move_VACUUM_WAVE
+	.4byte Move_TACKLE	 	@ placeholder for Move_FOCUS_BLAST
+	.4byte Move_TACKLE	 	@ placeholder for Move_ENERGY_BALL
+	.4byte Move_TACKLE	 	@ placeholder for Move_BRAVE_BIRD
+	.4byte Move_TACKLE	 	@ placeholder for Move_EARTH_POWER
+	.4byte Move_TACKLE	 	@ placeholder for Move_GIGA_IMPACT
+	.4byte Move_SWORDS_DANCE @ placeholder for Move_NASTY_PLOT
+	.4byte Move_TACKLE	 	@ placeholder for Move_BULLET_PUNCH
+	.4byte Move_TACKLE	 	@ placeholder for Move_ICE_SHARD
+	.4byte Move_TACKLE	 	@ placeholder for Move_SHADOW_CLAW
+	.4byte Move_TACKLE	 	@ placeholder for Move_THUNDER_FANG
+	.4byte Move_TACKLE	 	@ placeholder for Move_AVALANCHE
+	.4byte Move_TACKLE	 	@ placeholder for Move_ICE_FANG
+	.4byte Move_TACKLE	 	@ placeholder for Move_FIRE_FANG
+	.4byte Move_TACKLE	 	@ placeholder for Move_SHADOW_SNEAK
+	.4byte Move_TACKLE	 	@ placeholder for Move_MUD_BOMB
+	.4byte Move_TACKLE	 	@ placeholder for Move_PSYCHO_CUT
+	.4byte Move_TACKLE	 	@ placeholder for Move_ZEN_HEADBUTT
+	.4byte Move_TACKLE	 	@ placeholder for Move_MIRROR_SHOT
+	.4byte Move_TACKLE	 	@ placeholder for Move_FLASH_CANNON
+	.4byte Move_TACKLE	 	@ placeholder for Move_DRACO_METEOR
+	.4byte Move_TACKLE	 	@ placeholder for Move_DISCHARGE
+	.4byte Move_TACKLE	 	@ placeholder for Move_LAVA_PLUME
+	.4byte Move_TACKLE	 	@ placeholder for Move_LEAF_STORM
+	.4byte Move_TACKLE	 	@ placeholder for Move_POWER_WHIP
+	.4byte Move_TACKLE	 	@ placeholder for Move_CROSS_POISON
+	.4byte Move_TACKLE	 	@ placeholder for Move_GUNK_SHOT
+	.4byte Move_TACKLE	 	@ placeholder for Move_IRON_HEAD
+	.4byte Move_TACKLE	 	@ placeholder for Move_MAGNET_BOMB
+	.4byte Move_TACKLE	 	@ placeholder for Move_STONE_EDGE
+	.4byte Move_TACKLE	 	@ placeholder for Move_GRASS_KNOT
+	.4byte Move_TACKLE	 	@ placeholder for Move_WOOD_HAMMER
+	.4byte Move_TACKLE	 	@ placeholder for Move_AQUA_JET
+	.4byte Move_TACKLE	 	@ placeholder for Move_HEAD_SMASH
+	.4byte Move_TACKLE	 	@ placeholder for Move_DISARMING_VOICE
+	.4byte Move_TACKLE	 	@ placeholder for Move_DRAINING_KISS
+	.4byte Move_TACKLE	 	@ placeholder for Move_PLAY_ROUGH
+	.4byte Move_TACKLE	 	@ placeholder for Move_FAIRY_WIND
+	.4byte Move_TACKLE	 	@ placeholder for Move_MOONBLAST
+	.4byte Move_TACKLE	 	@ placeholder for Move_PLAY_NICE
+	.4byte Move_TACKLE	 	@ placeholder for Move_DAZZLING_GLEAM
+	.4byte Move_TACKLE	 	@ placeholder for Move_BABY_DOLL_EYES
+	.4byte Move_TACKLE	 	@ placeholder for Move_NUZZLE
+	.4byte Move_TACKLE	 	@ placeholder for Move_ACCELEROCK
+	.4byte Move_COUNT @ cannot be reached
 
 	.align 2
 gBattleAnims_StatusConditions::

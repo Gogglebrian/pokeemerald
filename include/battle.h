@@ -514,6 +514,7 @@ struct BattleScripting
     u8 windowsType; // B_WIN_TYPE_*
     u8 multiplayerId;
     u8 specialTrainerBattleType;
+	u16 moveEffect;
 };
 
 struct BattleSpriteInfo

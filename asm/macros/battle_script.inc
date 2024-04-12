@@ -1438,3 +1438,7 @@
 	.macro jumpifnotbattletype flags:req, jumpptr:req
 	jumpifword CMP_NO_COMMON_BITS, gBattleTypeFlags, \flags, \jumpptr
 	.endm
+	
+	.macro argumentstatuseffect
+	various BS_ATTACKER, VARIOUS_ARGUMENT_STATUS_EFFECT
+	.endm

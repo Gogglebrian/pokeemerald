@@ -4,7 +4,7 @@
 #include "sprite.h"
 
 // Property labels for Get(Box)MonData / Set(Box)MonData
-/* Replaced by flags defined in pokemon.h
+/* Replaced by flags defined in constants/pokemon.h
 enum {
     MON_DATA_PERSONALITY,
     MON_DATA_OT_ID,
@@ -343,6 +343,7 @@ struct BattleMove
     s8 priority;
     u8 flags;
 	u8 category;
+	u8 argument;
 };
 
 #define SPINDA_SPOT_WIDTH 16
