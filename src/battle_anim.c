@@ -55,22 +55,22 @@ static void Cmd_waitbgfadein(void);
 static void Cmd_changebg(void);
 static void Cmd_playsewithpan(void);
 static void Cmd_setpan(void);
-static void Cmd_panse(void);
+static void Cmd_panse(void);//panse_1B
 static void Cmd_loopsewithpan(void);
 static void Cmd_waitplaysewithpan(void);
 static void Cmd_setbldcnt(void);
 static void Cmd_createsoundtask(void);
 static void Cmd_waitsound(void);
 static void Cmd_jumpargeq(void);
-static void Cmd_monbg_static(void);
-static void Cmd_clearmonbg_static(void);
+static void Cmd_monbg_static(void);//monbg_22
+static void Cmd_clearmonbg_static(void);//clearmonbg_23
 static void Cmd_jumpifcontest(void);
 static void Cmd_fadetobgfromset(void);
-static void Cmd_panse_adjustnone(void);
-static void Cmd_panse_adjustall(void);
-static void Cmd_splitbgprio(void);
-static void Cmd_splitbgprio_all(void);
-static void Cmd_splitbgprio_foes(void);
+static void Cmd_panse_adjustnone(void);//panse_26
+static void Cmd_panse_adjustall(void);//panse_27
+static void Cmd_splitbgprio(void); //monbgprio_28
+static void Cmd_splitbgprio_all(void); //monbgprio_29
+static void Cmd_splitbgprio_foes(void); //monbgprio_2A
 static void Cmd_invisible(void);
 static void Cmd_visible(void);
 static void Cmd_teamattack_moveback(void);
