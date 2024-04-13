@@ -27,3 +27,15 @@ const struct SpriteTemplate gShadowSneakImpactSpriteTemplate =
     .callback = AnimIceEffectParticle
 };
 
+//fairy wind
+const struct SpriteTemplate gFairyWindCloudTemplate =
+{
+    .tileTag = ANIM_TAG_PINK_CLOUD,
+    .paletteTag = ANIM_TAG_PINK_CLOUD,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gSwiftStarAffineAnimTable,
+    .callback = AnimTranslateLinearSingleSineWave
+};
+

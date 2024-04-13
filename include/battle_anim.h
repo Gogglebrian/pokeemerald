@@ -236,7 +236,9 @@ extern const union AffineAnimCmd *const gAffineAnims_GrowingElectricOrb[];
 void AnimAirWaveCrescent(struct Sprite *sprite);
 extern const union AnimCmd *const gAffineAnims_AirWaveCrescent[];
 
-
+void AnimGrantingStars(struct Sprite* sprite);
+extern const union AffineAnimCmd *const gSwiftStarAffineAnimTable[];
+void AnimTranslateLinearSingleSineWave(struct Sprite* sprite);
 
 // battle_anim_throw.c
 void TryShinyAnimation(u8 battler, struct Pokemon *mon);
