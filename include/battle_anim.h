@@ -221,6 +221,12 @@ void AnimTask_HorizontalShake(u8 taskId);
 void AnimIceEffectParticle(struct Sprite *sprite);
 extern const union AffineAnimCmd *const gAffineAnims_IceCrystalHit[];
 
+//battle_anim_poison.c
+void AnimSludgeBombHitParticle(struct Sprite *);
+
+//battle_anim_electric.c_str
+extern const union AffineAnimCmd *const gAffineAnims_GrowingElectricOrb[];
+
 // battle_anim_throw.c
 void TryShinyAnimation(u8 battler, struct Pokemon *mon);
 u8 ItemIdToBallId(u16 itemId);

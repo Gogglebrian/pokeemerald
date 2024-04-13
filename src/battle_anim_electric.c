@@ -296,7 +296,7 @@ const struct SpriteTemplate gElectricChargingParticlesSpriteTemplate =
     .callback = SpriteCallbackDummy,
 };
 
-static const union AffineAnimCmd sAffineAnim_GrowingElectricOrb_0[] =
+const union AffineAnimCmd sAffineAnim_GrowingElectricOrb_0[] =
 {
     AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 0),
     AFFINEANIMCMD_FRAME(0x4, 0x4, 0, 60),
@@ -331,17 +331,6 @@ static const union AffineAnimCmd *const sAffineAnims_GrowingElectricOrb[] =
     sAffineAnim_GrowingElectricOrb_0,
     sAffineAnim_GrowingElectricOrb_1,
     sAffineAnim_GrowingElectricOrb_2,
-};
-
-const struct SpriteTemplate gGrowingChargeOrbSpriteTemplate =
-{
-    .tileTag = ANIM_TAG_CIRCLE_OF_LIGHT,
-    .paletteTag = ANIM_TAG_CIRCLE_OF_LIGHT,
-    .oam = &gOamData_AffineNormal_ObjBlend_64x64,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = sAffineAnims_GrowingElectricOrb,
-    .callback = AnimGrowingChargeOrb,
 };
 
 static const union AnimCmd sAnim_ElectricPuff[] =
@@ -1327,3 +1316,63 @@ static void AnimShockWaveLightning(struct Sprite *sprite)
         DestroySprite(sprite);
     }
 }
+
+const union AffineAnimCmd *const gAffineAnims_GrowingElectricOrb[] =
+{
+    sAffineAnim_GrowingElectricOrb_0,
+    sAffineAnim_GrowingElectricOrb_1,
+    sAffineAnim_GrowingElectricOrb_2,
+};
+
+static const union AffineAnimCmd sAffineAnim_GrowingElectricOrb_4[] =
+{
+    AFFINEANIMCMD_FRAME(5, 5, 0, 0),
+    AFFINEANIMCMD_FRAME(0x2, 0x2, 0, 20),
+    AFFINEANIMCMD_FRAME(0x3, 0x3, 0, 15),
+    AFFINEANIMCMD_FRAME(0x1, 0x1, 0, 25),
+    AFFINEANIMCMD_FRAME(0xFFFC, 0xFFFC, 0, 5),
+    AFFINEANIMCMD_FRAME(0x3, 0x3, 0, 5),
+    AFFINEANIMCMD_FRAME(0xFFFB, 0xFFFB, 0, 5),
+    AFFINEANIMCMD_FRAME(0x4, 0x4, 0, 5),
+    AFFINEANIMCMD_END
+};
+
+const union AffineAnimCmd *const gAffineAnims_GrowingElectricOrb2[] =
+{
+    sAffineAnim_GrowingElectricOrb_4,
+};
+
+const struct SpriteTemplate gGrowingChargeOrbSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_CIRCLE_OF_LIGHT,
+    .paletteTag = ANIM_TAG_CIRCLE_OF_LIGHT,
+    .oam = &gOamData_AffineNormal_ObjBlend_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gAffineAnims_GrowingElectricOrb,
+    .callback = AnimGrowingChargeOrb,
+};
+
+// For Electro Ball - smaller orb.
+const struct SpriteTemplate gGrowingChargeOrb2SpriteTemplate =
+{
+    .tileTag = ANIM_TAG_CIRCLE_OF_LIGHT,
+    .paletteTag = ANIM_TAG_CIRCLE_OF_LIGHT,
+    .oam = &gOamData_AffineNormal_ObjBlend_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gAffineAnims_GrowingElectricOrb2,
+    .callback = AnimGrowingChargeOrb,
+};
+
+
+const struct SpriteTemplate gFlashCannonGrayChargeTemplate =
+{
+    .tileTag = ANIM_TAG_CIRCLE_OF_LIGHT,
+    .paletteTag = ANIM_TAG_HANDS_AND_FEET,
+    .oam = &gOamData_AffineNormal_ObjBlend_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gAffineAnims_GrowingElectricOrb,
+    .callback = AnimGrowingChargeOrb
+};

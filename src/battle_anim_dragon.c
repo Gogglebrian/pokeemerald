@@ -15,6 +15,8 @@ static void AnimOverheatFlame_Step(struct Sprite *);
 static void AnimTask_DragonDanceWaver_Step(u8);
 static void UpdateDragonDanceScanlineEffect(struct Task *);
 static void AnimDragonRushStep(struct Sprite *sprite);
+static void AnimSpinningDracoMeteor(struct Sprite *sprite);
+static void AnimSpinningDracoMeteorFinish(struct Sprite *sprite);
 
 EWRAM_DATA static u16 sUnusedOverheatData[7] = {0};
 
@@ -516,3 +518,58 @@ const struct SpriteTemplate gDragonRushSpriteTemplate =
     .callback = AnimDragonRushStep,
 };
 
+
+const union AnimCmd gDracoMeteorAnimTable[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+const union AnimCmd *const gDracoMeteorAnimCmd[] =
+{
+    gDracoMeteorAnimTable,
+};
+
+const union AffineAnimCmd gDracoMeteorAffineAnimCmd[] =
+{
+    AFFINEANIMCMD_FRAME(0x100, 0x100, 0, 0),
+    AFFINEANIMCMD_FRAME(0xFFF8, 0xFFF8, 20, 1),
+    AFFINEANIMCMD_JUMP(1),
+};
+
+const union AffineAnimCmd *const gDracoMeteorAffineAnims[] =
+{
+    gDracoMeteorAffineAnimCmd,
+};
+
+
+const struct SpriteTemplate gDracoMetorSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IMPACT,
+    .paletteTag = ANIM_TAG_IMPACT,
+    .oam = &gOamData_AffineDouble_ObjNormal_32x32,
+    .anims = gDracoMeteorAnimCmd,
+    .images = NULL,
+    .affineAnims = gDracoMeteorAffineAnims,
+    .callback = AnimSpinningDracoMeteor,
+};
+
+static void AnimSpinningDracoMeteorFinish(struct Sprite *sprite)
+{
+    StartSpriteAffineAnim(sprite, 0);
+    sprite->affineAnimPaused = 1;
+    sprite->data[0] = 20;
+
+    sprite->callback = WaitAnimForDuration;
+    StoreSpriteCallbackInData6(sprite, DestroyAnimSprite);
+}
+
+static void AnimSpinningDracoMeteor(struct Sprite *sprite)
+{
+    InitSpritePosToAnimTarget(sprite, TRUE);
+    StartSpriteAnim(sprite, gBattleAnimArgs[2]);
+    sprite->data[0] = gBattleAnimArgs[3];
+
+    sprite->callback = WaitAnimForDuration;
+    StoreSpriteCallbackInData6(sprite, AnimSpinningDracoMeteorFinish);
+}

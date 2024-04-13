@@ -1348,3 +1348,14 @@ static void AnimMonMoveCircular_Step(struct Sprite *sprite)
         sprite->callback = DestroySpriteAndMatrix;
     }
 }
+
+const struct SpriteTemplate gFlashCannonBallMovementTemplate =
+{
+    .tileTag = ANIM_TAG_FLASH_CANNON_BALL,
+    .paletteTag = ANIM_TAG_FLASH_CANNON_BALL,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gAffineAnims_ShadowBall,
+    .callback = AnimShadowBall
+};
