@@ -386,11 +386,11 @@ gBattleAnims_Moves::
 	.4byte Move_BUG_BUZZ
 	.4byte Move_DRAGON_PULSE
 	.4byte Move_DRAGON_RUSH
-	.4byte Move_TACKLE	 	@ placeholder for Move_POWER_GEM
-	.4byte Move_TACKLE	 	@ placeholder for Move_DRAIN_PUNCH
-	.4byte Move_TACKLE	 	@ placeholder for Move_VACUUM_WAVE
-	.4byte Move_TACKLE	 	@ placeholder for Move_FOCUS_BLAST
-	.4byte Move_TACKLE	 	@ placeholder for Move_ENERGY_BALL
+	.4byte Move_POWER_GEM	 	
+	.4byte Move_DRAIN_PUNCH	 	
+	.4byte Move_VACUUM_WAVE	 	
+	.4byte Move_FOCUS_BLAST	 	
+	.4byte Move_ENERGY_BALL	 
 	.4byte Move_TACKLE	 	@ placeholder for Move_BRAVE_BIRD
 	.4byte Move_TACKLE	 	@ placeholder for Move_EARTH_POWER
 	.4byte Move_TACKLE	 	@ placeholder for Move_GIGA_IMPACT
@@ -10544,6 +10544,115 @@ Move_DRAGON_RUSH:
 	waitforvisualfinish 
 	clearmonbg ANIM_DEF_PARTNER 
 	blendoff 
+	end
+
+Move_POWER_GEM: @ Copy of Hidden Power with background blackened
+	loadspritegfx ANIM_TAG_POWER_GEM 
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 5, 1, 1, 0, 7, RGB_BLACK
+	waitforvisualfinish 
+	playsewithpan SE_M_TAKE_DOWN, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, ANIM_ATTACKER, 0
+	waitforvisualfinish
+	delay 30
+	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_ATTACKER, RGB_WHITE, 12, 5, 1
+	delay 4
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, ANIM_ATTACKER, 0
+	playsewithpan SE_M_REVERSAL, SOUND_PAN_ATTACKER
+	createsprite gPowerGemOrbSpriteTemplate, ANIM_ATTACKER, 2, 26, 0
+	createsprite gPowerGemOrbSpriteTemplate, ANIM_ATTACKER, 2, 26, 42
+	createsprite gPowerGemOrbSpriteTemplate, ANIM_ATTACKER, 2, 26, 84
+	createsprite gPowerGemOrbSpriteTemplate, ANIM_ATTACKER, 2, 26, 126
+	createsprite gPowerGemOrbSpriteTemplate, ANIM_ATTACKER, 2, 26, 168
+	createsprite gPowerGemOrbSpriteTemplate, ANIM_ATTACKER, 2, 26, 210
+	delay 52
+	setarg 7, -1
+	playsewithpan SE_M_REFLECT, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ScaleMonAndRestore, 5, -7, -7, 11, ANIM_ATTACKER, 0
+	createsprite gPowerGemOrbScatterSpriteTemplate, ANIM_TARGET, 2, 0
+	createsprite gPowerGemOrbScatterSpriteTemplate, ANIM_TARGET, 2, 32
+	createsprite gPowerGemOrbScatterSpriteTemplate, ANIM_TARGET, 2, 64
+	createsprite gPowerGemOrbScatterSpriteTemplate, ANIM_TARGET, 2, 96
+	createsprite gPowerGemOrbScatterSpriteTemplate, ANIM_TARGET, 2, 128
+	createsprite gPowerGemOrbScatterSpriteTemplate, ANIM_TARGET, 2, 160
+	createsprite gPowerGemOrbScatterSpriteTemplate, ANIM_TARGET, 2, 192
+	createsprite gPowerGemOrbScatterSpriteTemplate, ANIM_TARGET, 2, 224 
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 5, 1, 1, 7, 0, RGB_BLACK
+	waitforvisualfinish
+	end
+
+Move_DRAIN_PUNCH:
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_BLUE_STAR
+	loadspritegfx ANIM_TAG_ORBS
+	monbg ANIM_DEF_PARTNER
+	setalpha 12, 8
+	playsewithpan SE_M_VITAL_THROW2, -64
+	createsprite gFistFootSpriteTemplate, ANIM_TARGET, 3, 0, 0, 8, 1, 0
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 2, 0, 0, 1, 1
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 15, 1
+	delay 20
+	call MegaDrainAbsorbEffect
+	waitforvisualfinish
+	delay 15
+	call HealingEffect
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
+
+Move_VACUUM_WAVE:
+	loadspritegfx ANIM_TAG_IMPACT 
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET 
+	loadspritegfx ANIM_TAG_THIN_RING
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 8, -8, 1, 2
+	createsprite gFistFootSpriteTemplate, ANIM_ATTACKER, 3, 8, 0, 8, 1, 0
+	createsprite gUproarRingSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 1, 0, 0x7FFF, 3
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 6, 1
+	playsewithpan SE_M_COMET_PUNCH, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	end
+
+Move_FOCUS_BLAST:
+	loadspritegfx ANIM_TAG_CIRCLE_OF_LIGHT
+	loadspritegfx ANIM_TAG_METEOR
+	loadspritegfx ANIM_TAG_FLAT_ROCK
+	monbg ANIM_TARGET
+	splitbgprio ANIM_TARGET
+	setalpha 12, 8
+	call SetHighSpeedBg
+	createsprite gSuperpowerOrbSpriteTemplate, ANIM_TARGET, 2, 0
+	playsewithpan SE_M_MEGA_KICK, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 8, 0, 16, 1
+	playsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET
+	waitforvisualfinish
+	call UnsetHighSpeedBg
+	clearmonbg ANIM_TARGET
+	blendoff
+	delay 1
+	end
+
+Move_ENERGY_BALL:
+	loadspritegfx ANIM_TAG_ENERGY_BALL
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, 1, 1, 0, 8, RGB_BLACK
+	waitforvisualfinish
+	delay 15
+	createsoundtask SoundTask_LoopSEAdjustPanning, SE_M_MIST, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 5, 5, 0, 5
+	createsprite gEnergyBallSpriteTemplate, ANIM_TARGET, 2, 12, 4, 8
+	waitforvisualfinish
+	playsewithpan SE_M_SAND_ATTACK, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 8, 1
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, 1, 1, 8, 0, RGB_BLACK
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
 	end
 
 Move_COUNT:

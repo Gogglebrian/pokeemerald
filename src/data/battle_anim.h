@@ -1300,6 +1300,7 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     {gBattleAnimSpriteGfx_GoldRing, 0x0100, ANIM_TAG_BLUE_RING_2},
 	{gBattleAnimSpriteGfx_WhiteStreak, 0x0200, ANIM_TAG_WHITE_STREAK},
     {gBattleAnimSpriteGfx_PurpleJab, 0x0100, ANIM_TAG_PURPLE_JAB},
+	{gBattleAnimSpriteGfx_EnergyBall, 0x0200, ANIM_TAG_ENERGY_BALL},
 	{gBattleAnimSpriteGfx_DragonPulse, 0x0100, ANIM_TAG_DRAGON_PULSE},
 	{gBattleAnimSpriteGfx_WoodHammer, 0x0C00, ANIM_TAG_WOOD_HAMMER},
     {gBattleAnimSpriteGfx_PsychoCut, 0x0200, ANIM_TAG_PSYCHO_CUT},
