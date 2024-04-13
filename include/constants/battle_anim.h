@@ -311,6 +311,7 @@
 #define ANIM_TAG_MUD_BOMB                   (ANIM_SPRITES_START + 300)
 #define ANIM_TAG_DRAGON_ASCENT	            (ANIM_SPRITES_START + 301)
 #define ANIM_TAG_DRAGON_ASCENT_FOE			(ANIM_SPRITES_START + 302) //used by avalanche
+#define ANIM_TAG_QUICK_GUARD_HAND			(ANIM_SPRITES_START + 303) //used by shadow sneak 
 
 
 // battlers

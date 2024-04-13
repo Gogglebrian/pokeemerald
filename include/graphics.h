@@ -4758,6 +4758,9 @@ extern const u32 gBattleAnimSpriteGfx_PurpleDrake[];
 extern const u32 gBattleAnimSpritePal_PurpleDrake[];
 extern const u32 gBattleAnimSpritePal_GreenDrake[];
 
+extern const u32 gBattleAnimSpriteGfx_QuickGuard[];
+extern const u32 gBattleAnimSpritePal_QuickGuard[];
+
 
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];

@@ -217,6 +217,10 @@ void LaunchStatusAnimation(u8 battlerId, u8 statusAnimId);
 // battle_anim_ground.c
 void AnimTask_HorizontalShake(u8 taskId);
 
+//battle_anim_ice.c
+void AnimIceEffectParticle(struct Sprite *sprite);
+extern const union AffineAnimCmd *const gAffineAnims_IceCrystalHit[];
+
 // battle_anim_throw.c
 void TryShinyAnimation(u8 battler, struct Pokemon *mon);
 u8 ItemIdToBallId(u16 itemId);

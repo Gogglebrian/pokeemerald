@@ -24,7 +24,6 @@ static void AnimUnusedIceCrystalThrow(struct Sprite *);
 static void AnimUnusedIceCrystalThrow_Step(struct Sprite *);
 static void AnimIcePunchSwirlingParticle(struct Sprite *);
 static void AnimIceBeamParticle(struct Sprite *);
-static void AnimIceEffectParticle(struct Sprite *);
 static void AnimFlickerIceEffectParticle(struct Sprite *);
 static void AnimSwirlingSnowball(struct Sprite *);
 static void AnimSwirlingSnowball_Step1(struct Sprite *);
@@ -292,6 +291,11 @@ static const union AffineAnimCmd sAffineAnim_IceCrystalHit[] =
 };
 
 static const union AffineAnimCmd *const sAffineAnims_IceCrystalHit[] =
+{
+    sAffineAnim_IceCrystalHit,
+};
+
+const union AffineAnimCmd *const gAffineAnims_IceCrystalHit[] =
 {
     sAffineAnim_IceCrystalHit,
 };
@@ -699,7 +703,7 @@ static void AnimIceBeamParticle(struct Sprite *sprite)
 // arg 0: target x offset
 // arg 1: target y offset
 // arg 2: ??? unknown boolean
-static void AnimIceEffectParticle(struct Sprite *sprite)
+void AnimIceEffectParticle(struct Sprite *sprite)
 {
     if (gBattleAnimArgs[2] == 0)
     {
