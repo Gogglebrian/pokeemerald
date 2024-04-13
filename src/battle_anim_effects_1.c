@@ -161,6 +161,10 @@ static void AnimRockPolishStreak(struct Sprite *sprite);
 static void AnimRockPolishSparkle(struct Sprite *sprite);
 static void AnimPoisonJabProjectile(struct Sprite *sprite);
 static void AnimNightSlash(struct Sprite *sprite);
+static void AnimGrassKnotStep(struct Sprite *sprite);
+static void AnimGrassKnot(struct Sprite *sprite);
+static void AnimWoodHammerSmall(struct Sprite *sprite);
+static void AnimWoodHammerBig(struct Sprite *sprite);
 
 const union AnimCmd gPowderParticlesAnimCmds[] =
 {
@@ -5927,4 +5931,171 @@ static void AnimNightSlash(struct Sprite *sprite)
 {
     sprite->callback = AnimSlashSlice;
     sprite->callback(sprite);
+}
+
+
+const union AnimCmd gWoodHammerBigAnimCmd_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+const union AnimCmd gWoodHammerBigAnimCmd_2[] =
+{
+    ANIMCMD_FRAME(16, 1),
+    ANIMCMD_END,
+};
+
+const union AnimCmd *const gWoodHammerBigAnims[] =
+{
+    gWoodHammerBigAnimCmd_1,
+    gWoodHammerBigAnimCmd_2,
+};
+
+const union AffineAnimCmd gWoodHammerBigAffineAnimCmd_1[] =
+{
+    AFFINEANIMCMD_FRAME(0x0, 0x0, -5, 5),
+    AFFINEANIMCMD_JUMP(0),
+};
+
+const union AffineAnimCmd gWoodHammerBigAffineAnimCmd_2[] =
+{
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 5, 5),
+    AFFINEANIMCMD_JUMP(0),
+};
+
+const union AffineAnimCmd *const gWoodHammerBigAffineAnims[] =
+{
+    gWoodHammerBigAffineAnimCmd_1,
+    gWoodHammerBigAffineAnimCmd_2,
+};
+
+const union AnimCmd gWoodHammerSmallAnimCmd_1[] =
+{
+    ANIMCMD_FRAME(32, 1),
+    ANIMCMD_END,
+};
+
+const union AnimCmd gWoodHammerSmallAnimCmd_2[] =
+{
+    ANIMCMD_FRAME(48, 1),
+    ANIMCMD_END,
+};
+
+const union AnimCmd gWoodHammerSmallAnimCmd_3[] =
+{
+    ANIMCMD_FRAME(64, 1),
+    ANIMCMD_END,
+};
+
+const union AnimCmd *const gWoodHammerSmallAnims[] =
+{
+    gWoodHammerSmallAnimCmd_1,
+    gWoodHammerSmallAnimCmd_2,
+    gWoodHammerSmallAnimCmd_3,
+};
+
+const struct SpriteTemplate gGrassKnotSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_RAZOR_LEAF,
+    .paletteTag = ANIM_TAG_RAZOR_LEAF,
+    .oam = &gOamData_AffineOff_ObjNormal_32x16,
+    .anims = gRazorLeafCutterAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimGrassKnot,
+};
+
+const struct SpriteTemplate gWoodHammerBigSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_WOOD_HAMMER,
+    .paletteTag = ANIM_TAG_WOOD_HAMMER,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
+    .anims = gWoodHammerBigAnims,
+    .images = NULL,
+    .affineAnims = gWoodHammerBigAffineAnims,
+    .callback = AnimWoodHammerBig,
+};
+
+const struct SpriteTemplate gWoodHammerSmallSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_WOOD_HAMMER,
+    .paletteTag = ANIM_TAG_WOOD_HAMMER,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = gWoodHammerSmallAnims,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimWoodHammerSmall,
+};
+
+static void AnimGrassKnot(struct Sprite *sprite)
+{
+    if (BATTLE_PARTNER(gBattleAnimAttacker) == gBattleAnimTarget && GetBattlerPosition(gBattleAnimTarget) < B_POSITION_PLAYER_RIGHT)
+        gBattleAnimArgs[0] *= -1;
+
+    InitSpritePosToAnimTarget(sprite, TRUE);
+
+    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        gBattleAnimArgs[2] = -gBattleAnimArgs[2];
+
+    sprite->data[0] = gBattleAnimArgs[3];
+    sprite->data[1] = sprite->x;
+    sprite->data[2] = sprite->x + gBattleAnimArgs[2];
+    sprite->data[3] = sprite->y;
+    sprite->data[4] = sprite->y;
+
+    InitAnimLinearTranslation(sprite);
+
+    sprite->data[5] = gBattleAnimArgs[5];
+    sprite->data[6] = gBattleAnimArgs[4];
+    sprite->data[7] = 0;
+
+    sprite->callback = AnimGrassKnotStep;
+}
+
+static void AnimGrassKnotStep(struct Sprite *sprite)
+{
+    if (!AnimTranslateLinear(sprite))
+    {
+        sprite->y2 += Sin(sprite->data[7] >> 8, sprite->data[5]);
+        sprite->data[7] += sprite->data[6];
+    }
+    else
+    {
+        DestroyAnimSprite(sprite);
+    }
+}
+
+static void AnimWoodHammerBig(struct Sprite *sprite)
+{
+    if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_OPPONENT)
+        StartSpriteAffineAnim(sprite, 1);
+
+    TranslateAnimSpriteToTargetMonLocation(sprite);
+}
+
+static void AnimWoodHammerSmall(struct Sprite *sprite)
+{
+    StartSpriteAnim(sprite, gBattleAnimArgs[5]);
+    AnimateSprite(sprite);
+
+    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        sprite->x -= gBattleAnimArgs[0];
+    else
+        sprite->x += gBattleAnimArgs[0];
+
+    sprite->y += gBattleAnimArgs[1];
+
+    sprite->data[0] = gBattleAnimArgs[4];
+    sprite->data[1] = sprite->x;
+    sprite->data[2] = sprite->x + gBattleAnimArgs[2];
+    sprite->data[3] = sprite->y;
+    sprite->data[4] = sprite->y + gBattleAnimArgs[3];
+
+    InitSpriteDataForLinearTranslation(sprite);
+    sprite->data[3] = 0;
+    sprite->data[4] = 0;
+
+    sprite->callback = TranslateSpriteLinearFixedPoint;
+    StoreSpriteCallbackInData6(sprite, DestroySpriteAndMatrix);
 }
