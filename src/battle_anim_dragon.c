@@ -14,6 +14,7 @@ static void AnimOverheatFlame(struct Sprite *);
 static void AnimOverheatFlame_Step(struct Sprite *);
 static void AnimTask_DragonDanceWaver_Step(u8);
 static void UpdateDragonDanceScanlineEffect(struct Task *);
+static void AnimDragonRushStep(struct Sprite *sprite);
 
 EWRAM_DATA static u16 sUnusedOverheatData[7] = {0};
 
@@ -438,3 +439,80 @@ static void AnimOverheatFlame_Step(struct Sprite *sprite)
     if (++sprite->data[0] > sprite->data[3])
         DestroyAnimSprite(sprite);
 }
+
+const struct SpriteTemplate gDragonPulseSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_DRAGON_PULSE,
+    .paletteTag = ANIM_TAG_DRAGON_PULSE,
+    .oam = &gOamData_AffineOff_ObjNormal_16x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = TranslateAnimSpriteToTargetMonLocation,
+};
+
+const union AnimCmd gDragonRushAnimCmds[] =
+{
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(64, 4),
+    ANIMCMD_END,
+};
+
+const union AnimCmd *const gDragonRushAnimTable[] =
+{
+    gDragonRushAnimCmds,
+};
+
+const union AffineAnimCmd gDragonRushAffineanimCmds1[] =
+{
+    AFFINEANIMCMD_FRAME(0x100, 0x100, 0, 0),
+    AFFINEANIMCMD_FRAME(0, 0, -4, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd gDragonRushAffineanimCmds2[] =
+{
+    AFFINEANIMCMD_FRAME(-0x100, 0x100, 0, 0),
+    AFFINEANIMCMD_FRAME(0, 0, 4, 8),
+    AFFINEANIMCMD_END,
+};
+
+const union AffineAnimCmd *const gDragonRushAffineAnimTable[] =
+{
+    gDragonRushAffineanimCmds1,
+    gDragonRushAffineanimCmds2,
+};
+
+static void AnimDragonRushStep(struct Sprite *sprite)
+{
+    // These two cases are identical.
+    if (GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER)
+    {
+        sprite->data[1] += sprite->data[0];
+        sprite->data[1] &= 0xFF;
+    }
+    else
+    {
+        sprite->data[1] += sprite->data[0];
+        sprite->data[1] &= 0xFF;
+    }
+
+    sprite->x2 = Cos(sprite->data[1], 20);
+    sprite->y2 = Sin(sprite->data[1], 20);
+    if (sprite->animEnded)
+        DestroyAnimSprite(sprite);
+
+    sprite->data[2]++;
+}
+
+const struct SpriteTemplate gDragonRushSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_SLAM_HIT_2,
+    .paletteTag = ANIM_TAG_RED_HEART,
+    .oam = &gOamData_AffineNormal_ObjNormal_64x64,
+    .anims = gDragonRushAnimTable,
+    .images = NULL,
+    .affineAnims = gDragonRushAffineAnimTable,
+    .callback = AnimDragonRushStep,
+};
+

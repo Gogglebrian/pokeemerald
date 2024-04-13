@@ -4711,10 +4711,53 @@ extern const u32 gBattleAnimSpritePal_CrossImpact[];
 extern const u32 gBattleAnimSpritePal_Slash2[];
 extern const u32 gBattleAnimSpritePal_WhipHit[];
 extern const u32 gBattleAnimSpritePal_BlueRing2[];
+
+//new stuff for moves
 extern const u32 gBattleAnimSpriteGfx_WhiteStreak[];
 extern const u32 gBattleAnimSpritePal_WhiteStreak[] ;
+
 extern const u32 gBattleAnimSpriteGfx_PurpleJab[];
 extern const u32 gBattleAnimSpritePal_PurpleJab[];
+
+extern const u32 gBattleAnimSpriteGfx_PoisonJab[];
+extern const u32 gBattleAnimSpritePal_PoisonJab[];
+
+extern const u32 gBattleAnimSpriteGfx_DragonPulse[];
+extern const u32 gBattleAnimSpritePal_DragonPulse[];
+
+extern const u32 gBattleAnimSpriteGfx_DragonPulseRing[];
+extern const u32 gBattleAnimSpritePal_DragonPulseRing[];
+
+extern const u32 gBattleAnimSpriteGfx_AuraSphere[];
+extern const u32 gBattleAnimSpritePal_AuraSphere[];
+
+extern const u32 gBattleAnimSpriteGfx_EnergyBall[];
+extern const u32 gBattleAnimSpritePal_EnergyBall[];
+
+extern const u32 gBattleAnimSpriteGfx_FlashCannonBall[];
+extern const u32 gBattleAnimSpritePal_FlashCannonBall[];
+
+extern const u32 gBattleAnimSpriteGfx_WoodHammer[];
+extern const u32 gBattleAnimSpritePal_WoodHammer[];
+
+extern const u32 gBattleAnimSpriteGfx_PsychoCut[];
+extern const u32 gBattleAnimSpritePal_PsychoCut[];
+
+extern const u32 gBattleAnimSpriteGfx_PowerGem[];
+extern const u32 gBattleAnimSpritePal_PowerGem[];
+
+extern const u32 gBattleAnimSpriteGfx_StoneEdge[];
+extern const u32 gBattleAnimSpritePal_StoneEdge[];
+
+extern const u32 gBattleAnimSpriteGfx_MudBomb[];
+extern const u32 gBattleAnimSpritePal_MudBomb[];
+
+extern const u32 gBattleAnimSpritePal_AvalancheRocks[]; // no unique gfx
+
+extern const u32 gBattleAnimSpriteGfx_PurpleDrake[];
+extern const u32 gBattleAnimSpritePal_PurpleDrake[];
+extern const u32 gBattleAnimSpritePal_GreenDrake[];
+
 
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];

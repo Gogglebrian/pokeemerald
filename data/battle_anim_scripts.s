@@ -384,8 +384,8 @@ gBattleAnims_Moves::
 	.4byte Move_AIR_SLASH
 	.4byte Move_XSCISSOR
 	.4byte Move_BUG_BUZZ
-	.4byte Move_TACKLE	 	@ placeholder for Move_DRAGON_PULSE
-	.4byte Move_TACKLE	 	@ placeholder for Move_DRAGON_RUSH
+	.4byte Move_DRAGON_PULSE
+	.4byte Move_DRAGON_RUSH
 	.4byte Move_TACKLE	 	@ placeholder for Move_POWER_GEM
 	.4byte Move_TACKLE	 	@ placeholder for Move_DRAIN_PUNCH
 	.4byte Move_TACKLE	 	@ placeholder for Move_VACUUM_WAVE
@@ -10484,6 +10484,67 @@ Move_BUG_BUZZ:
 	call UnsetBugBg
 	end
 
+Move_DRAGON_PULSE:
+	loadspritegfx ANIM_TAG_DRAGON_PULSE
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, 1, 1, 0, 7, RGB_BLACK
+	waitforvisualfinish 
+	playsewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER 
+	createsoundtask SoundTask_LoopSEAdjustPanning, SE_M_PSYBEAM2, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 3, 4, 0, 15  
+	call DragonPulseParticle 
+	call DragonPulseParticle 
+	createvisualtask AnimTask_SwayMon, 5, 0, 6, 51200, 4, ANIM_TARGET  
+	createvisualtask AnimTask_BlendColorCycle, 2, 4, 2, 2, 0, 12, RGB(30, 10, 13)  
+	call DragonPulseParticle 
+	call DragonPulseParticle 
+	call DragonPulseParticle 
+	call DragonPulseParticle 
+	call DragonPulseParticle 
+	call DragonPulseParticle 
+	call DragonPulseParticle 
+	call DragonPulseParticle 
+	call DragonPulseParticle 
+	waitforvisualfinish 
+	delay 1 
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, 1, 1, 7, 0, RGB_BLACK  
+	waitforvisualfinish 
+	blendoff
+	clearmonbg ANIM_TARGET  
+	end 
+DragonPulseParticle:
+	createsprite gDragonPulseSpriteTemplate, 130, 6, 16, 0, 0, 0, 13, 0  
+	delay 4 
+	return 
+
+Move_DRAGON_RUSH:
+	loadspritegfx ANIM_TAG_SLAM_HIT_2 
+	loadspritegfx ANIM_TAG_IMPACT 
+	loadspritegfx ANIM_TAG_ROCKS 
+	loadspritegfx ANIM_TAG_RED_HEART 
+	createsprite gHorizontalLungeSpriteTemplate, 2, 2, 4, 6  
+	delay 4 
+	playsewithpan SE_M_VITAL_THROW, SOUND_PAN_TARGET 
+	createsprite gDragonRushSpriteTemplate, 131, 2, -16, -16  
+	delay 8 
+	createsprite gComplexPaletteBlendSpriteTemplate, 2, 7, 31, 5, 1, RGB(31, 31, 31), 10, 0, 0  
+	createsprite gBasicHitSplatSpriteTemplate, 3, 4, 0, 0, 1, 1  
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 5, 1  
+	waitforvisualfinish 
+	playsewithpan 131, SOUND_PAN_TARGET 
+	createsprite gRockFragmentSpriteTemplate, 2, 6, 0, 0, 20, 24, 14, 2  
+	createsprite gRockFragmentSpriteTemplate, 2, 6, 5, 0, -20, 24, 14, 1  
+	createsprite gRockFragmentSpriteTemplate, 2, 6, 0, 5, 20, -24, 14, 2  
+	createsprite gRockFragmentSpriteTemplate, 2, 6, -5, 0, 20, 24, 14, 2  
+	createsprite gRockFragmentSpriteTemplate, 2, 6, 0, -5, 30, 18, 8, 2  
+	createsprite gRockFragmentSpriteTemplate, 2, 6, 0, 0, 30, -18, 8, 2  
+	createsprite gRockFragmentSpriteTemplate, 2, 6, 0, 0, -30, 18, 8, 2  
+	createsprite gRockFragmentSpriteTemplate, 2, 6, 0, 0, -30, -18, 8, 2  
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 7, 1  
+	waitforvisualfinish 
+	clearmonbg ANIM_DEF_PARTNER 
+	blendoff 
+	end
 
 Move_COUNT:
 	loadspritegfx ANIM_TAG_IMPACT
