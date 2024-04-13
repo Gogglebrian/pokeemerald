@@ -373,8 +373,8 @@ gBattleAnims_Moves::
 	.4byte Move_PSYCHO_BOOST
 	.4byte Move_CLOSE_COMBAT @ placeholder for Move_CLOSE_COMBAT
 	.4byte Move_FLARE_BLITZ @ placeholder for Move_FLARE_BLITZ
-	.4byte Move_TACKLE		@ placeholder for Move_FORCE_PALM
-	.4byte Move_TACKLE 		@ placeholder for Move_AURA_SPHERE
+	.4byte Move_FORCE_PALM	@ placeholder for Move_FORCE_PALM
+	.4byte Move_AURA_SPHERE @ placeholder for Move_AURA_SPHERE
 	.4byte Move_AGILITY 	@ placeholder for Move_ROCK_POLISH
 	.4byte Move_TACKLE	 	@ placeholder for Move_POISON_JAB
 	.4byte Move_TACKLE 		@ placeholder for Move_DARK_PULSE
@@ -10113,6 +10113,45 @@ Move_FLARE_BLITZ:
 	delay 2
 	restorebg
 	waitbgfadein
+	end
+
+Move_FORCE_PALM:
+	loadspritegfx ANIM_TAG_SHADOW_BALL 
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET 
+	loadspritegfx ANIM_TAG_IMPACT 
+	monbg ANIM_DEF_PARTNER 
+	splitbgprio ANIM_TARGET  
+	setalpha 12, 8 
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_TARGET 
+	createsprite gKarateChopSpriteTemplate, 2, 8, -16, 0, 0, 0, 10, 1, 3, 0
+	waitforvisualfinish 
+	playsewithpan SE_M_COMET_PUNCH, SOUND_PAN_TARGET 
+	createsprite gForcePalmSpriteTemplate 3, 4, 0, 0, 1, 2
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 4, 0, 6, 1
+	waitforvisualfinish 
+	clearmonbg ANIM_DEF_PARTNER 
+	blendoff 
+	end
+
+Move_AURA_SPHERE:
+	loadspritegfx ANIM_TAG_METEOR
+	loadspritegfx ANIM_TAG_CIRCLE_OF_LIGHT
+	monbg ANIM_ATK_PARTNER
+	splitbgprio ANIM_ATTACKER
+	setalpha 12, 8
+	call SetHighSpeedBg
+	playsewithpan SE_M_SKY_UPPERCUT, 0
+	delay 60
+	createsprite gAuraSphereBlast, ANIM_TARGET, 3, 0
+	playsewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER
+	delay 16
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 8, 0, 16, 1
+	playsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET
+	waitforvisualfinish
+	call UnsetHighSpeedBg
+	clearmonbg ANIM_ATK_PARTNER
+	blendoff
+	delay 1
 	end
 
 Move_COUNT:
