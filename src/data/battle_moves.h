@@ -506,7 +506,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_TAKE_DOWN] =
     {
-        .effect = EFFECT_RECOIL,
+        .effect = EFFECT_RECOIL_25,
         .power = 90,
         .type = TYPE_NORMAL,
         .accuracy = 90,
@@ -534,7 +534,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_DOUBLE_EDGE] =
     {
-        .effect = EFFECT_DOUBLE_EDGE,
+        .effect = EFFECT_RECOIL_33,
         .power = 120,
         .type = TYPE_NORMAL,
         .accuracy = 100,
@@ -926,11 +926,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SUBMISSION] =
     {
-        .effect = EFFECT_RECOIL,
+        .effect = EFFECT_RECOIL_25,
         .power = 80,
         .type = TYPE_FIGHTING,
         .accuracy = 90,
-        .pp = 25,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -2312,7 +2312,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_STRUGGLE] =
     {
-        .effect = EFFECT_RECOIL,
+        .effect = EFFECT_RECOIL_25,
         .power = 50,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -4986,7 +4986,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 	
 	[MOVE_FLARE_BLITZ] =
     {
-        .effect = EFFECT_RECOIL,
+        .effect = EFFECT_RECOIL_33_STATUS,
         .power = 120,
         .type = TYPE_FIRE,
         .accuracy = 100,
@@ -5253,7 +5253,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_BRAVE_BIRD] =
     {
-        .effect = EFFECT_RECOIL,
+        .effect = EFFECT_RECOIL_33,
         .power = 120,
         .type = TYPE_FLYING,
         .accuracy = 100,
@@ -5648,7 +5648,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 	
 	[MOVE_WOOD_HAMMER] =
     {
-        .effect = EFFECT_RECOIL,
+        .effect = EFFECT_RECOIL_25,
         .power = 120,
         .type = TYPE_GRASS,
         .accuracy = 100,
@@ -5676,7 +5676,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 	
 	[MOVE_HEAD_SMASH] =
     {
-        .effect = EFFECT_RECOIL,
+        .effect = EFFECT_RECOIL_50,
         .power = 150,
         .type = TYPE_ROCK,
         .accuracy = 85,

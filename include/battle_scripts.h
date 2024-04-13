@@ -135,6 +135,7 @@ extern const u8 BattleScript_MoveEffectConfusion[];
 extern const u8 BattleScript_MoveEffectRecoil[];
 extern const u8 BattleScript_DoRecoil33[];
 extern const u8 BattleScript_Recoil33End[];
+extern const u8 BattleScript_MoveEffectRecoilWithStatus[];
 extern const u8 BattleScript_ItemSteal[];
 extern const u8 BattleScript_DrizzleActivates[];
 extern const u8 BattleScript_SpeedBoostActivates[];

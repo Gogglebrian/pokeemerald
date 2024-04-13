@@ -487,34 +487,35 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 //       in include/constants/battle_script_commands.h
 struct BattleScripting
 {
-    s32 painSplitHp;
-    s32 bideDmg;
-    u8 multihitString[6];
-    u8 dmgMultiplier;
-    u8 twoTurnsMoveStringId;
-    u8 animArg1;
-    u8 animArg2;
-    u16 tripleKickPower;
-    u8 moveendState;
-    u8 battlerWithAbility;
-    u8 multihitMoveEffect;
-    u8 battler;
-    u8 animTurn;
-    u8 animTargetsHit;
-    u8 statChanger;
-    bool8 statAnimPlayed;
-    u8 getexpState;
-    u8 battleStyle;
-    u8 drawlvlupboxState;
-    u8 learnMoveState;
-    u8 pursuitDoublesAttacker;
-    u8 reshowMainState;
-    u8 reshowHelperState;
-    u8 levelUpHP;
-    u8 windowsType; // B_WIN_TYPE_*
-    u8 multiplayerId;
-    u8 specialTrainerBattleType;
-	u16 moveEffect;
+    s32 painSplitHp; 			//(gBattleScripting + 0x00)
+    s32 bideDmg; 				//(gBattleScripting + 0x04)
+    u8 multihitString[6]; 		//(gBattleScripting + 0x08)
+    u8 dmgMultiplier;			//(gBattleScripting + 0x0E)
+    u8 twoTurnsMoveStringId; 	//(gBattleScripting + 0x0F)
+    u8 animArg1;				//(gBattleScripting + 0x10)
+    u8 animArg2;				//(gBattleScripting + 0x11)
+    u16 tripleKickPower;		//(gBattleScripting + 0x12)
+    u8 moveendState;			//(gBattleScripting + 0x14)
+    u8 battlerWithAbility;		//(gBattleScripting + 0x15)
+    u8 multihitMoveEffect;		//(gBattleScripting + 0x16)
+    u8 battler;					//(gBattleScripting + 0x17)
+    u8 animTurn;				//(gBattleScripting + 0x18)
+    u8 animTargetsHit;			//(gBattleScripting + 0x19)
+    u8 statChanger;				//(gBattleScripting + 0x1A)
+    bool8 statAnimPlayed;		//(gBattleScripting + 0x1B)
+    u8 getexpState;				//(gBattleScripting + 0x1C)
+    u8 battleStyle;				//(gBattleScripting + 0x1D)
+    u8 drawlvlupboxState;		//(gBattleScripting + 0x1E)
+    u8 learnMoveState;			//(gBattleScripting + 0x1F)
+    u8 pursuitDoublesAttacker;	//(gBattleScripting + 0x20)
+    u8 reshowMainState;			//(gBattleScripting + 0x21)
+    u8 reshowHelperState;		//(gBattleScripting + 0x22)
+    u8 levelUpHP;				//(gBattleScripting + 0x23)
+    u8 windowsType; 			//(gBattleScripting + 0x24) // B_WIN_TYPE_*
+    u8 multiplayerId; 			//(gBattleScripting + 0x25)
+    u8 specialTrainerBattleType;//(gBattleScripting + 0x26)
+    s32 savedDmg; 				//(gBattleScripting + 0x28)
+    u16 moveEffect; 			//(gBattleScripting + 0x2E)
 };
 
 struct BattleSpriteInfo

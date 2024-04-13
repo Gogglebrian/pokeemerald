@@ -28,7 +28,10 @@
 #define sLVLUP_HP                    (gBattleScripting + 0x23) // levelUpHP
 #define sWINDOWS_TYPE                (gBattleScripting + 0x24) // windowsType
 #define sMULTIPLAYER_ID              (gBattleScripting + 0x25) // multiplayerId
-#define sSPECIAL_TRAINER_BATTLE_TYPE (gBattleScripting + 0x26) // specialTrainerBattleType
+#define sSPECIAL_TRAINER_BATTLE_TYPE (gBattleScripting + 0x26) // specialTrainerBattleType // 1 byte
+#define sMON_CAUGHT 				 (gBattleScripting + 0x27)
+#define sSAVED_DMG 					 (gBattleScripting + 0x28) // 4 bytes
+#define sMOVE_EFFECT 	 			 (gBattleScripting + 0x2C) // 2 bytes
 
 // Array entries for battle communication
 #define MULTIUSE_STATE          0
