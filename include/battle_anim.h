@@ -217,15 +217,26 @@ void LaunchStatusAnimation(u8 battlerId, u8 statusAnimId);
 // battle_anim_ground.c
 void AnimTask_HorizontalShake(u8 taskId);
 
+//batle_anim_effects_1.c
+void AnimNeedleArmSpike(struct Sprite *);
+extern const union AnimCmd *const gRazorLeafParticleAnimTable[];
+
 //battle_anim_ice.c
 void AnimIceEffectParticle(struct Sprite *sprite);
 extern const union AffineAnimCmd *const gAffineAnims_IceCrystalHit[];
 
 //battle_anim_poison.c
 void AnimSludgeBombHitParticle(struct Sprite *);
+extern const union AffineAnimCmd *const gAffineAnims_PoisonProjectile[];
 
-//battle_anim_electric.c_str
+//battle_anim_electric.c
 extern const union AffineAnimCmd *const gAffineAnims_GrowingElectricOrb[];
+
+//battle_Anim_flying.c
+void AnimAirWaveCrescent(struct Sprite *sprite);
+extern const union AnimCmd *const gAffineAnims_AirWaveCrescent[];
+
+
 
 // battle_anim_throw.c
 void TryShinyAnimation(u8 battler, struct Pokemon *mon);

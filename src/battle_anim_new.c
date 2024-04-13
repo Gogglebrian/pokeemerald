@@ -26,3 +26,4 @@ const struct SpriteTemplate gShadowSneakImpactSpriteTemplate =
     .affineAnims = gAffineAnims_IceCrystalHit,
     .callback = AnimIceEffectParticle
 };
+
