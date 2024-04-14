@@ -72,6 +72,7 @@ static void Task_UseRepel(u8);
 static void Task_CloseCantUseKeyItemMessage(u8);
 static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
+void Cycle_Through_Repels(void);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -875,12 +876,32 @@ static void Task_UseRepel(u8 taskId)
     if (!IsSEPlaying())
     {
         VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(gSpecialVar_ItemId));
-        RemoveUsedItem();
+        VarSet(VAR_REPEL_LAST_USED, gSpecialVar_ItemId);
+		RemoveUsedItem();
         if (!InBattlePyramid())
             DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, gStringVar4, Task_CloseBattlePyramidBagMessage);
     }
+}
+
+void Cycle_Through_Repels(void)
+{//Once the last repel of the chosen type has been depleted, find the next lowest repel class 
+ //and start using it! (Set it as VAR_REPEL_LAST_USED)
+
+    u16 RepelCycle[] = {ITEM_REPEL, ITEM_SUPER_REPEL, ITEM_MAX_REPEL};    
+    u8 i = 0;
+
+    while (gSpecialVar_Result == FALSE){
+        gSpecialVar_Result = CheckBagHasItem(RepelCycle[i],1);
+        if (gSpecialVar_Result == TRUE)
+            VarSet(VAR_REPEL_LAST_USED, RepelCycle[i]);
+        i++;
+        if (i > 2)
+            return;
+    }
+
+    return;
 }
 
 static void Task_UsedBlackWhiteFlute(u8 taskId)
