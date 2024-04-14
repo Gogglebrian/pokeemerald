@@ -3041,4 +3041,6 @@ extern const u8 gText_MoveItemWhere[];
 extern const u8 gText_XsYAnd[];
 extern const u8 gText_XsYWereSwapped[];
 
+extern const u8 gText_Moves_Menu[];
+
 #endif // GUARD_STRINGS_H
