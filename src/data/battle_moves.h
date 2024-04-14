@@ -3321,7 +3321,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_HIDDEN_POWER] =
     {
         .effect = EFFECT_HIDDEN_POWER,
-        .power = 1,
+        .power = 60,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 15,
@@ -4062,15 +4062,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SECRET_POWER] =
     {
-        .effect = EFFECT_SECRET_POWER,
-        .power = 70,
+        .effect = EFFECT_HIDDEN_POWER,
+        .power = 60,
         .type = TYPE_NORMAL,
         .accuracy = 100,
-        .pp = 20,
-        .secondaryEffectChance = 30,
+        .pp = 15,
+        .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .category= MOVE_CATEGORY_PHYSICAL,
     },
 

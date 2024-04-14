@@ -8874,13 +8874,14 @@ static void Cmd_recoverbasedonsunlight(void)
 
 static void Cmd_hiddenpowercalc(void)
 {
+	/* Skip powerbits and just use 60 instead
     u8 powerBits = ((gBattleMons[gBattlerAttacker].hpIV & 2) >> 1)
                  | ((gBattleMons[gBattlerAttacker].attackIV & 2) << 0)
                  | ((gBattleMons[gBattlerAttacker].defenseIV & 2) << 1)
                  | ((gBattleMons[gBattlerAttacker].speedIV & 2) << 2)
                  | ((gBattleMons[gBattlerAttacker].spAttackIV & 2) << 3)
                  | ((gBattleMons[gBattlerAttacker].spDefenseIV & 2) << 4);
-
+	*/
     u8 typeBits  = ((gBattleMons[gBattlerAttacker].hpIV & 1) << 0)
                  | ((gBattleMons[gBattlerAttacker].attackIV & 1) << 1)
                  | ((gBattleMons[gBattlerAttacker].defenseIV & 1) << 2)
@@ -8888,7 +8889,7 @@ static void Cmd_hiddenpowercalc(void)
                  | ((gBattleMons[gBattlerAttacker].spAttackIV & 1) << 4)
                  | ((gBattleMons[gBattlerAttacker].spDefenseIV & 1) << 5);
 
-    gDynamicBasePower = (40 * powerBits) / 63 + 30;
+    gDynamicBasePower = 60;
 
     // Subtract 3 instead of 1 below because 2 types are excluded (TYPE_NORMAL and TYPE_MYSTERY)
     // The final + 1 skips past Normal, and the following conditional skips TYPE_MYSTERY
