@@ -7,11 +7,11 @@ gText_WouldYouLikeToRestYourPkmn::
 
 gText_IllTakeYourPkmn::
 	.string "Welcome! I'll take your POKéMON\n"
-	.string "for a few seconds for healing.${PAUSE_UNTIL_PRESS}"
+	.string "for a few seconds for healing.$"
 
 gText_RestoredPkmnToFullHealth::
 	.string "We've restored your POKéMON to full\n"
-	.string "health. We hope to see you again!${PAUSE_UNTIL_PRESS}"
+	.string "health. We hope to see you again!$"
 
 gText_WeHopeToSeeYouAgain::
 	.string "We hope to see you again!$"
