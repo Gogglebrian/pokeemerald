@@ -55,7 +55,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_BLUE_SHARD] = {gItemIcon_Shard, gItemIconPalette_BlueShard},
     [ITEM_YELLOW_SHARD] = {gItemIcon_Shard, gItemIconPalette_YellowShard},
     [ITEM_GREEN_SHARD] = {gItemIcon_Shard, gItemIconPalette_GreenShard},
-    [ITEM_LINK_CABLE] = {gItemIcon_EscapeRope, gItemIconPalette_XDefend},
+    [ITEM_LINK_CABLE] = {gItemIcon_EscapeRope, gItemIconPalette_LinkCable},
 	// ??????????
     [ITEM_035] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_036] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
@@ -271,7 +271,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_0FA] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_0FB] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_0FC] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_0FD] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_PRISM_SCALE] = {gItemIcon_PrismScale, gItemIconPalette_PrismScale},
     // Contest hold items
     [ITEM_RED_SCARF] = {gItemIcon_Scarf, gItemIconPalette_RedScarf},
     [ITEM_BLUE_SCARF] = {gItemIcon_Scarf, gItemIconPalette_BlueScarf},

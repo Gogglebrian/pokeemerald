@@ -3446,6 +3446,7 @@ extern const u32 gItemIconPalette_RedShard[];
 extern const u32 gItemIconPalette_BlueShard[];
 extern const u32 gItemIconPalette_YellowShard[];
 extern const u32 gItemIconPalette_GreenShard[];
+extern const u32 gItemIconPalette_LinkCable[];
 // Vitamins
 extern const u32 gItemIcon_HPUp[];
 extern const u32 gItemIconPalette_HPUp[];
@@ -3716,6 +3717,8 @@ extern const u32 gItemIcon_ThickClub[];
 extern const u32 gItemIconPalette_ThickClub[];
 extern const u32 gItemIcon_Stick[];
 extern const u32 gItemIconPalette_Stick[];
+extern const u32 gItemIcon_PrismScale[];
+extern const u32 gItemIconPalette_PrismScale[];
 // Contest hold items
 extern const u32 gItemIcon_Scarf[];
 extern const u32 gItemIconPalette_RedScarf[];
