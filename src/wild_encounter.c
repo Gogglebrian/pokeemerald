@@ -30,6 +30,7 @@ extern const u8 EventScript_RepelWoreOff[];
 
 // Number of accessible fishing spots in each section of Route 119
 // Each section is an area of the route between the y coordinates in sRoute119WaterTileData
+//Not actually using these (now inaccurate) values with updated feebas behavior, but leaving for posterity
 #define NUM_FISHING_SPOTS_1 131
 #define NUM_FISHING_SPOTS_2 167
 #define NUM_FISHING_SPOTS_3 149
@@ -69,9 +70,9 @@ static const struct WildPokemon sWildFeebas = {20, 25, SPECIES_FEEBAS};
 static const u16 sRoute119WaterTileData[] =
 {
 //yMin, yMax, numSpots in previous sections
-     0,  45,  0,
-    46,  91,  NUM_FISHING_SPOTS_1,
-    92, 139,  NUM_FISHING_SPOTS_1 + NUM_FISHING_SPOTS_2,
+     0,  28,  0,
+    29,  37,  NUM_FISHING_SPOTS_1,
+    38, 139,  NUM_FISHING_SPOTS_1 + NUM_FISHING_SPOTS_2,
 };
 
 void DisableWildEncounters(bool8 disabled)
@@ -110,13 +111,15 @@ static u16 GetFeebasFishingSpotId(s16 targetX, s16 targetY, u8 section)
     return spotId + 1;
 }
 
+// Feebas is guaranteed in the area under the bridge nearest to the Weather center,
+// and has a small chance to appear elsewhere on the route
 static bool8 CheckFeebas(void)
 {
-    u8 i;
-    u16 feebasSpots[NUM_FEEBAS_SPOTS];
+    //u8 i;
+    //u16 feebasSpots[NUM_FEEBAS_SPOTS];
     s16 x, y;
     u8 route119Section = 0;
-    u16 spotId;
+    //u16 spotId;
 
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE119)
      && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE119))
@@ -125,7 +128,7 @@ static bool8 CheckFeebas(void)
         x -= MAP_OFFSET;
         y -= MAP_OFFSET;
 
-        // Get which third of the map the player is in
+        // Get which area of the map the player is in
         if (y >= sRoute119WaterTileData[3 * 0 + 0] && y <= sRoute119WaterTileData[3 * 0 + 1])
             route119Section = 0;
         if (y >= sRoute119WaterTileData[3 * 1 + 0] && y <= sRoute119WaterTileData[3 * 1 + 1])
@@ -133,10 +136,14 @@ static bool8 CheckFeebas(void)
         if (y >= sRoute119WaterTileData[3 * 2 + 0] && y <= sRoute119WaterTileData[3 * 2 + 1])
             route119Section = 2;
 
-        // 50% chance of encountering Feebas (assuming this is a Feebas spot)
-        if (Random() % 100 > 49)
-            return FALSE;
+		if (route119Section == 1)
+			return TRUE;
+		
+        // 5% chance of encountering Feebas elsewhere
+        if (Random() % 100 > 94)
+            return TRUE;
 
+		/*Disable weird original feebas logic, but we'll leave it for posterity ;)
         FeebasSeedRng(gSaveBlock1Ptr->dewfordTrends[0].rand);
 
         // Assign each Feebas spot to a random fishing spot.
@@ -163,6 +170,7 @@ static bool8 CheckFeebas(void)
             if (spotId == feebasSpots[i])
                 return TRUE;
         }
+		*/
     }
     return FALSE;
 }
