@@ -1569,3 +1569,129 @@ static const u8 sOldSeaMapDesc[] = _(
     "A faded sea chart\n"
     "that shows the way\n"
     "to a certain island.");
+
+//mints
+static const u8 sAdamantMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "ADAMANT.");
+    
+static const u8 sBoldMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "BOLD.");
+    
+static const u8 sBraveMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "BRAVE.");
+    
+static const u8 sCalmMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "CALM.");
+    
+static const u8 sCarefulMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "CAREFUL.");
+    
+static const u8 sGentleMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "GENTLE.");
+    
+static const u8 sHastyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "HASTY.");
+    
+static const u8 sImpishMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "IMPISH.");
+    
+static const u8 sJollyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "JOLLY.");
+    
+static const u8 sLaxMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "LAX.");
+    
+static const u8 sLonelyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "LONELY.");
+    
+static const u8 sMildMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "MILD.");
+    
+static const u8 sModestMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "MODEST.");
+    
+static const u8 sNaiveMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "NAIVE.");
+    
+static const u8 sNaughtyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "NAUGHTY.");
+    
+static const u8 sQuietMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "QUIET.");
+    
+static const u8 sRashMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "RASH.");
+    
+static const u8 sRelaxedMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "RELAXED.");
+    
+static const u8 sSassyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "SASSY.");
+    
+static const u8 sSeriousMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "SERIOUS.");
+    
+static const u8 sTimidMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "TIMID.");
+
+static const u8 sHardyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "HARDY.");
+	
+static const u8 sDocileMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "DOCILE.");
+	
+static const u8 sBashfulMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "BASHFUL.");
+	
+static const u8 sQuirkyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "QUIRKY.");

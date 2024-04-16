@@ -105,7 +105,9 @@ struct PokemonSubstruct0
     u32 experience;
     u8 ppBonuses;
     u8 friendship;
-    u16 filler;
+    u16 hiddenNature:5;  // 25 natures
+    u16 free_sub0:3;
+    u16 free_sub0_b:8;
 };
 
 struct PokemonSubstruct1
@@ -235,12 +237,9 @@ struct Pokemon
 
 struct MonSpritesGfxManager
 {
-    u32 numSprites:4;
-    u32 numSprites2:4; // Never read
-    u32 numFrames:8;
-    u32 active:8;
-    u32 dataSize:4;
-    u32 mode:4; // MON_SPR_GFX_MODE_*
+    u8 numSprites;
+    u8 numFrames;
+    bool16 active;
     void *spriteBuffer;
     u8 **spritePointers;
     struct SpriteTemplate *templates;
@@ -483,7 +482,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 bool8 HealStatusConditions(struct Pokemon *mon, u32 battlePartyId, u32 healMask, u8 battlerId);
 u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit);
 u8 *UseStatIncreaseItem(u16 itemId);
-u8 GetNature(struct Pokemon *mon);
+u8 GetNature(struct Pokemon *mon, bool32 checkHidden);
 u8 GetNatureFromPersonality(u32 personality);
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem);
 u16 HoennPokedexNumToSpecies(u16 hoennNum);
@@ -549,8 +548,8 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality);
 const u8 *GetTrainerClassNameFromId(u16 trainerId);
 const u8 *GetTrainerNameFromId(u16 trainerId);
 bool8 HasTwoFramesAnimation(u16 species);
-struct MonSpritesGfxManager *CreateMonSpritesGfxManager(u8 managerId, u8 mode);
-void DestroyMonSpritesGfxManager(u8 managerId);
-u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum);
+struct MonSpritesGfxManager *CreateMonSpritesGfxManager(void);
+void DestroyMonSpritesGfxManager(void);
+u8 *MonSpritesGfxManager_GetSpritePtr(u8 spriteNum);
 
 #endif // GUARD_POKEMON_H
