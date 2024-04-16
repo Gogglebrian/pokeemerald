@@ -924,6 +924,14 @@ u8 GetBattleOutcome(void)
     return gBattleOutcome;
 }
 
+u8 CanFlyFromHere(void)
+{
+	if (Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 void CableCarWarp(void)
 {
     if (gSpecialVar_0x8004 != 0)
@@ -981,6 +989,16 @@ void FieldShowRegionMap(void)
 #define tFlickerCount data[2]
 #define tTimer        data[3]
 #define tIsScreenOn   data[4]
+
+static void CB2_FieldLoadFlyMap(void)
+{
+    FieldInitRegionMap(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+}
+
+void FieldLoadFlyMap(void)
+{
+    SetMainCallback2(CB2_OpenFlyMap);
+}
 
 // For this special, gSpecialVar_0x8004 is expected to be some PC_LOCATION_* value.
 void DoPCTurnOnEffect(void)

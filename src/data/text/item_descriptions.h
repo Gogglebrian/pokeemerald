@@ -399,6 +399,11 @@ static const u8 sLinkCableDesc[] = _(
     "POKéMON with\n"
     "yourself.");
 
+static const u8 sTaxiPagerDesc[] = _(
+    "Calls a flying\n"
+    "POKéMON to carry\n"
+    "you across HOENN.");
+
 // Valuable items
 static const u8 sTinyMushroomDesc[] = _(
     "A plain mushroom\n"

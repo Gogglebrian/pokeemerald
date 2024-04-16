@@ -702,16 +702,17 @@ const struct Item gItems[] =
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_LinkCable,
     },
-
-    [ITEM_035] =
+	
+	[ITEM_TAXI_PAGER] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("FLIGHT PAGER"),
+        .itemId = ITEM_TAXI_PAGER,
         .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .description = sTaxiPagerDesc,
+		.importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_TaxiPager,
     },
 
     [ITEM_036] =

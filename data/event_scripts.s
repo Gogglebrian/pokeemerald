@@ -655,6 +655,8 @@ EventScript_SetBrineyLocation_Route109::
 	.include "data/scripts/obtain_item.inc"
 	.include "data/scripts/record_mix.inc"
 	.include "data/scripts/pc.inc"
+	.include "data/scripts/flying_taxi.inc"
+
 
 @ scripts/notices.inc? signs.inc? See comment about text/notices.inc
 Common_EventScript_ShowPokemartSign::
@@ -834,6 +836,7 @@ Common_EventScript_PlayerHandedOverTheItem::
 	.include "data/text/pkmn_center_nurse.inc"
 	.include "data/text/mart_clerk.inc"
 	.include "data/text/obtain_item.inc"
+	.include "data/text/flying_taxi.inc"
 
 @ The below and surf.inc could be split into some text/notices.inc
 gText_PokemartSign::
@@ -976,6 +979,26 @@ Common_EventScript_SelfTrade_V1::
 	release
 	end
 	
+@Call Surskittys flying taxi
+Common_EventScript_TaxiPager::
+	playse SE_PC_LOGIN
+	specialvar VAR_RESULT, CanFlyFromHere
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_TaxiPagerCantFly
+	msgbox EventScript_FlyingTaxi_Text_BootingUp, MSGBOX_DEFAULT
+	waitmessage
+	call Common_EventScript_FlyingTaxi
+	end
+	
+Common_EventScript_TaxiPagerCantFly::
+	msgbox Common_EventScript_Text_TaxiPagerCantFly, MSGBOX_DEFAULT
+	waitmessage
+	release
+	end
+	
+Common_EventScript_Text_TaxiPagerCantFly:
+	.string "The FLIGHT PAGER can't get a signal!$"
+
 Common_EventScript_SelfTrade_Text_IllTradeIfYouWant:
 	.string "Use the LINK CABLE to simulate a\n"
 	.string "POKéMON trade?$"
