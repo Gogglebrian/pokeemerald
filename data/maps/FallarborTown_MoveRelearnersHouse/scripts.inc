@@ -30,15 +30,16 @@ FallarborTown_MoveRelearnersHouse_Text_WantYouToHaveLinkCable:
 	.string "Oh, an ambitious young POKéMON\n"
 	.string "TRAINER! What a nice surprise!\p"
 	.string "As a boy, I ventured far and wide,\n"
-	.string "trading POKéMON with everyone I met...\p"
+	.string "trading POKéMON with everyone I met…\p"
 	.string "That's how I became known as\n"
 	.string "the POKéMON TRADING GURU.\p"
 	.string "I like the cut of your jib, kid.\n"
 	.string "Take this USEFUL GIFT!$"
 	
 FallarborTown_MoveRelearnersHouse_Text_ExplainLinkCable:
-	.string "The LINK CABLE can simulate a POKéMON\n"
-	.string "trade. It's fun, and sometimes useful.\p"
+	.string "If you can't find anyone to trade\n"
+	.string "POKéMON, the LINK CABLE will let\l"
+	.string "you trade with… YOURSELF!\p"
 	.string "Try trading KADABRA, MACHOKE, or\n"
 	.string "GRAVELER and see what happens!$"
 	
