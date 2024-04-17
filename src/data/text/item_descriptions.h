@@ -258,28 +258,24 @@ static const u8 sAbilityCapsuleDesc[] = _(
 
 // Vitamins
 static const u8 sHPUpDesc[] = _(
-    "Raises the base HP\n"
-    "of one POKéMON.");
+    "Raises a POKéMON's\n"
+    "HP stat.");
 
 static const u8 sProteinDesc[] = _(
-    "Raises the base\n"
-    "ATTACK stat of one\n"
-    "POKéMON.");
+    "Raises a POKéMON's\n"
+    "ATTACK stat.");
 
 static const u8 sIronDesc[] = _(
-    "Raises the base\n"
-    "DEFENSE stat of\n"
-    "one POKéMON.");
+    "Raises a POKéMON's\n"
+    "DEFENSE stat.");
 
 static const u8 sCarbosDesc[] = _(
-    "Raises the base\n"
-    "SPEED stat of one\n"
-    "POKéMON.");
+    "Raises a POKéMON's\n"
+    "SPEED stat.");
 
 static const u8 sCalciumDesc[] = _(
-    "Raises the base\n"
-    "SP. ATK stat of one\n"
-    "POKéMON.");
+    "Raises a POKéMON's\n"
+    "SP. ATK stat.");
 
 static const u8 sRareCandyDesc[] = _(
     "Raises the level\n"
@@ -292,9 +288,8 @@ static const u8 sPPUpDesc[] = _(
     "move.");
 
 static const u8 sZincDesc[] = _(
-    "Raises the base\n"
-    "SP. DEF stat of one\n"
-    "POKéMON.");
+    "Raises a POKéMON's\n"
+    "SP. DEF stat.");
 
 static const u8 sPPMaxDesc[] = _(
     "Raises the PP of a\n"
@@ -615,32 +610,32 @@ static const u8 sPinapBerryDesc[] = _(
 static const u8 sPomegBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base HP.");
+    "the HP stat.");
 
 static const u8 sKelpsyBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base ATTACK.");
+    "the ATTACK stat.");
 
 static const u8 sQualotBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base DEFENSE.");
+    "the DEFENSE stat.");
 
 static const u8 sHondewBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base SP. ATK.");
+    "the SP. ATK stat.");
 
 static const u8 sGrepaBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base SP. DEF.");
+    "the SP. DEF stat.");
 
 static const u8 sTamatoBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base SPEED.");
+    "the SPEED stat.");
 
 static const u8 sCornnBerryDesc[] = _(
     "{POKEBLOCK} ingredient.\n"
@@ -1755,3 +1750,33 @@ static const u8 sSuperZincDesc[] = _(
 	"Raises a POKéMON's\n"
 	"SP. DEF potential\n"
 	"greatly.");
+	
+static const u8 sAntiHpUpDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the HP\n"
+	"stat.");
+
+static const u8 sAntiProteinDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the\n"
+	"ATTACK stat.");
+
+static const u8 sAntiIronDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the\n"
+	"DEFENSE stat.");
+
+static const u8 sAntiCarbosDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the\n"
+	"SPEED stat.");
+
+static const u8 sAntiCalciumDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the\n"
+	"SP. ATK stat.");
+
+static const u8 sAntiZincDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the\n"
+	"SP. DEF stat.");

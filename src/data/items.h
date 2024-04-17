@@ -4950,4 +4950,70 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_IncreaseIV,
         .secondaryId = STAT_SPDEF,
 	},
+	[ITEM_ANTI_HP_UP] = 
+    {
+        .name = _("ANATHEMA H"),
+        .itemId = ITEM_ANTI_HP_UP,
+        .price = 300,
+        .description = sAntiHpUpDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_ResetEV,
+        .secondaryId = STAT_HP,
+	},
+	[ITEM_ANTI_PROTEIN] = 
+    {
+        .name = _("ANATHEMA A"),
+        .itemId = ITEM_ANTI_PROTEIN,
+        .price = 300,
+        .description = sAntiProteinDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_ResetEV,
+        .secondaryId = STAT_ATK,
+	},
+	[ITEM_ANTI_IRON] = 
+    {
+        .name = _("ANATHEMA D"),
+        .itemId = ITEM_ANTI_IRON,
+        .price = 300,
+        .description = sAntiIronDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_ResetEV,
+        .secondaryId = STAT_DEF,
+	},
+	[ITEM_ANTI_CARBOS] = 
+    {
+        .name = _("ANATHEMA S"),
+        .itemId = ITEM_ANTI_CARBOS,
+        .price = 300,
+        .description = sAntiCarbosDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_ResetEV,
+        .secondaryId = STAT_SPEED,
+	},
+	[ITEM_ANTI_CALCIUM] = 
+    {
+        .name = _("ANATHEMA SA"),
+        .itemId = ITEM_ANTI_CALCIUM,
+        .price = 300,
+        .description = sAntiCalciumDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_ResetEV,
+        .secondaryId = STAT_SPATK,
+	},
+	[ITEM_ANTI_ZINC] = 
+    {
+        .name = _("ANATHEMA SD"),
+        .itemId = ITEM_ANTI_ZINC,
+        .price = 300,
+        .description = sAntiZincDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_ResetEV,
+        .secondaryId = STAT_SPDEF,
+	},
 };

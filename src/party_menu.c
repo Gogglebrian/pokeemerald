@@ -4692,6 +4692,98 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
     }
 }
 
+void ItemUseCB_ResetEV(u8 taskId, TaskFunc task)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 item = gSpecialVar_ItemId;
+    u8 modifier;
+    u8 health = GetMonData(mon, MON_DATA_HP_EV);
+    u8 attack = GetMonData(mon, MON_DATA_ATK_EV);
+    u8 defense = GetMonData(mon, MON_DATA_DEF_EV);
+    u8 speed = GetMonData(mon, MON_DATA_SPEED_EV);
+    u8 spAttack = GetMonData(mon, MON_DATA_SPATK_EV);
+    u8 spDefense = GetMonData(mon, MON_DATA_SPDEF_EV);
+    bool8 didActivate = FALSE;
+
+    switch (ItemId_GetSecondaryId(item))
+    {
+    case STAT_HP:
+        if (health != 0)
+        {
+            modifier = (health >= 255) ? (health - 255) : 0;
+            SetMonData(mon, MON_DATA_HP_EV, &modifier);
+            StringCopy(gStringVar2, gText_HP3);
+            didActivate = TRUE;
+        }
+        break;
+    case STAT_ATK:
+        if (attack != 0)
+        {
+            modifier = (attack >= 255) ? (attack - 255) : 0;
+            SetMonData(mon, MON_DATA_ATK_EV, &modifier);
+            StringCopy(gStringVar2, gText_Attack3);
+            didActivate = TRUE;
+        }
+        break;
+    case STAT_DEF:
+        if (defense != 0)
+        {
+            modifier = (defense >= 255) ? (defense - 255) : 0;
+            SetMonData(mon, MON_DATA_DEF_EV, &modifier);
+            StringCopy(gStringVar2, gText_Defense3);
+            didActivate = TRUE;
+        }
+        break;
+    case STAT_SPEED:
+        if (speed != 0)
+        {
+            modifier = (speed >= 255) ? (speed - 255) : 0;
+            SetMonData(mon, MON_DATA_SPEED_EV, &modifier);
+            StringCopy(gStringVar2, gText_Speed2);
+            didActivate = TRUE;
+        }
+        break;
+    case STAT_SPATK:
+        if (spAttack != 0)
+        {
+            modifier = (spAttack >= 255) ? (spAttack - 255) : 0;
+            SetMonData(mon, MON_DATA_SPATK_EV, &modifier);
+            StringCopy(gStringVar2, gText_SpAtk3);
+            didActivate = TRUE;
+        }
+        break;
+    case STAT_SPDEF:
+        if (spDefense != 0)
+        {
+            modifier = (spDefense >= 255) ? (spDefense - 255) : 0;
+            SetMonData(mon, MON_DATA_SPDEF_EV, &modifier);
+            StringCopy(gStringVar2, gText_SpDef3);
+            didActivate = TRUE;
+        }
+        break;
+    }
+
+    if (didActivate)
+    {
+        gPartyMenuUseExitCallback = TRUE;
+        PlaySE(SE_USE_ITEM);
+        RemoveBagItem(item, 1);
+        GetMonNickname(mon, gStringVar1);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnVar2Reset);
+        DisplayPartyMenuMessage(gStringVar4, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+    else
+    {
+        gPartyMenuUseExitCallback = FALSE;
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+}
+
 static u16 ItemEffectToMonEv(struct Pokemon *mon, u8 effectType)
 {
     switch (effectType)

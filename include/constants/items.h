@@ -449,7 +449,13 @@
 #define ITEM_SUPER_CARBOS		 405
 #define ITEM_SUPER_CALCIUM		 406
 #define ITEM_SUPER_ZINC			 407
-#define ITEMS_COUNT              408
+#define ITEM_ANTI_HP_UP		 	 408
+#define ITEM_ANTI_PROTEIN		 409
+#define ITEM_ANTI_IRON			 410
+#define ITEM_ANTI_CARBOS		 411
+#define ITEM_ANTI_CALCIUM		 412
+#define ITEM_ANTI_ZINC			 413
+#define ITEMS_COUNT              414
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
 // Its icon is defined at ITEMS_COUNT as the "return to field" arrow

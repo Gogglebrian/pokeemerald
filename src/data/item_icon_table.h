@@ -436,6 +436,14 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_SUPER_CARBOS] = {gItemIcon_Vitamin, gItemIconPalette_Carbos},
     [ITEM_SUPER_CALCIUM] = {gItemIcon_Vitamin, gItemIconPalette_Calcium},
     [ITEM_SUPER_ZINC] = {gItemIcon_Vitamin, gItemIconPalette_Zinc},
+	
+	//EV Resetters
+	[ITEM_ANTI_HP_UP] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+    [ITEM_ANTI_PROTEIN] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+    [ITEM_ANTI_IRON] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+    [ITEM_ANTI_CARBOS] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+    [ITEM_ANTI_CALCIUM] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+    [ITEM_ANTI_ZINC] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
 
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},

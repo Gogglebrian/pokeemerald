@@ -495,6 +495,7 @@ extern const u8 gText_PPWasRestored[];
 extern const u8 gText_WontHaveEffect[];
 extern const u8 gText_PkmnSnappedOutOfConfusion[];
 extern const u8 gText_PkmnFriendlyBaseVar2Fell[];
+extern const u8 gText_PkmnVar2Reset[];
 extern const u8 gText_PkmnFriendlyBaseVar2CantFall[];
 extern const u8 gText_PkmnPotentialVar2StatIncreased[];
 extern const u8 gText_PkmnPotentialVar2StatFell[];

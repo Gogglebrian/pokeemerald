@@ -38,6 +38,7 @@ u8 CanUseDigOrEscapeRopeOnCurMap(void);
 u8 CheckIfItemIsTMHMOrEvolutionStone(u16 itemId);
 void ItemUseOutOfBattle_ReduceIV(u8);
 void ItemUseOutOfBattle_IncreaseIV(u8);
+void ItemUseOutOfBattle_ResetEV(u8);
 
 void ItemUseOutOfBattle_PokeBall(u8);
 

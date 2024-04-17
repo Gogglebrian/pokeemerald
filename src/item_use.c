@@ -1215,6 +1215,12 @@ void ItemUseOutOfBattle_IncreaseIV(u8 taskId)
     SetUpItemUseCallback(taskId);
 }
 
+void ItemUseOutOfBattle_ResetEV(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_ResetEV;
+    SetUpItemUseCallback(taskId);
+}
+
 #undef tUsingRegisteredKeyItem
 
 void ItemUseOutOfBattle_PokeBall(u8 taskId)
