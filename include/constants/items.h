@@ -443,8 +443,14 @@
 #define ITEM_DOCILE_MINT         399
 #define ITEM_BASHFUL_MINT        400
 #define ITEM_QUIRKY_MINT         401
+#define ITEM_HP_DOWN 			 402
+#define ITEM_PROTEIN_MINUS		 403
+#define ITEM_IRON_MINUS 		 404
+#define ITEM_CARBOS_MINUS 		 405
+#define ITEM_CALCIUM_MINUS 		 406
+#define ITEM_ZINC_MINUS 		 407
 
-#define ITEMS_COUNT              402
+#define ITEMS_COUNT              408
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
 // Its icon is defined at ITEMS_COUNT as the "return to field" arrow

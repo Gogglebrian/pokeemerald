@@ -1196,9 +1196,22 @@ void ItemUseOutOfBattle_CannotUse(u8 taskId)
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
+
 void ItemUseOutOfBattle_Mints(u8 taskId)
 {
     gItemUseCB = ItemUseCB_Mints;
+	SetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_ReduceIV(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_ReduceIV;
+    SetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_IncreaseIV(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_IncreaseIV;
     SetUpItemUseCallback(taskId);
 }
 
