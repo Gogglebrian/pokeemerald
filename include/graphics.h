@@ -3866,6 +3866,19 @@ extern const u32 gItemIconPalette_LightBlueMint[];
 extern const u32 gItemIconPalette_YellowMint[];
 //anathema uses soda pop icon
 extern const u32 gItemIconPalette_Anathema[];
+//Power items
+extern const u32 gItemIcon_PowerBracer[];
+extern const u32 gItemIconPalette_PowerBracer[];
+extern const u32 gItemIcon_PowerBelt[];
+extern const u32 gItemIconPalette_PowerBelt[];
+extern const u32 gItemIcon_PowerLens[];
+extern const u32 gItemIconPalette_PowerLens[];
+extern const u32 gItemIcon_PowerBand[];
+extern const u32 gItemIconPalette_PowerBand[];
+extern const u32 gItemIcon_PowerAnklet[];
+extern const u32 gItemIconPalette_PowerAnklet[];
+extern const u32 gItemIcon_PowerWeight[];
+extern const u32 gItemIconPalette_PowerWeight[];
 
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];

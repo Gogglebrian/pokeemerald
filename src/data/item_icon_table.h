@@ -445,6 +445,14 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_ANTI_CALCIUM] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
     [ITEM_ANTI_ZINC] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
 
+	//Power items
+	[ITEM_POWER_BRACER] = {gItemIcon_PowerBracer, gItemIconPalette_PowerBracer},
+    [ITEM_POWER_BELT] = {gItemIcon_PowerBelt, gItemIconPalette_PowerBelt},
+    [ITEM_POWER_LENS] = {gItemIcon_PowerLens, gItemIconPalette_PowerLens},
+    [ITEM_POWER_BAND] = {gItemIcon_PowerBand, gItemIconPalette_PowerBand},
+    [ITEM_POWER_ANKLET] = {gItemIcon_PowerAnklet, gItemIconPalette_PowerAnklet},
+    [ITEM_POWER_WEIGHT] = {gItemIcon_PowerWeight, gItemIconPalette_PowerWeight},
+
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

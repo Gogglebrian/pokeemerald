@@ -455,7 +455,15 @@
 #define ITEM_ANTI_CARBOS		 411
 #define ITEM_ANTI_CALCIUM		 412
 #define ITEM_ANTI_ZINC			 413
-#define ITEMS_COUNT              414
+
+#define ITEM_POWER_BRACER    	 414
+#define ITEM_POWER_BELT   		 415
+#define ITEM_POWER_LENS  		 416
+#define ITEM_POWER_BAND  		 417
+#define ITEM_POWER_ANKLET  		 418
+#define ITEM_POWER_WEIGHT  		 419
+
+#define ITEMS_COUNT              420
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
 // Its icon is defined at ITEMS_COUNT as the "return to field" arrow

@@ -5016,4 +5016,87 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_ResetEV,
         .secondaryId = STAT_SPDEF,
 	},
+	[ITEM_POWER_BRACER] =
+    {
+        .name = _("POWER BRACER"),
+        .itemId = ITEM_POWER_BRACER,
+        .price = 19600,
+        .holdEffect = HOLD_EFFECT_POWER_ITEM,
+        .holdEffectParam = 4,
+        .description = sPowerBracerDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = STAT_ATK,
+    },
+
+    [ITEM_POWER_BELT] =
+    {
+        .name = _("POWER BELT"),
+        .itemId = ITEM_POWER_BELT,
+        .price = 19600,
+        .holdEffect = HOLD_EFFECT_POWER_ITEM,
+        .holdEffectParam = 4,
+        .description = sPowerBeltDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = STAT_DEF,
+    },
+
+    [ITEM_POWER_LENS] =
+    {
+        .name = _("POWER LENS"),
+        .itemId = ITEM_POWER_LENS,
+        .price = 19600,
+        .holdEffect = HOLD_EFFECT_POWER_ITEM,
+        .holdEffectParam = 4,
+        .description = sPowerLensDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = STAT_SPATK,
+    },
+
+    [ITEM_POWER_BAND] =
+    {
+        .name = _("POWER BAND"),
+        .itemId = ITEM_POWER_BAND,
+        .price = 19600,
+        .holdEffect = HOLD_EFFECT_POWER_ITEM,
+        .holdEffectParam = 4,
+        .description = sPowerBandDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = STAT_SPDEF,
+    },
+
+    [ITEM_POWER_ANKLET] =
+    {
+        .name = _("POWER ANKLET"),
+        .itemId = ITEM_POWER_ANKLET,
+        .price = 19600,
+        .holdEffect = HOLD_EFFECT_POWER_ITEM,
+        .holdEffectParam = 4,
+        .description = sPowerAnkletDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = STAT_SPEED,
+    },
+
+    [ITEM_POWER_WEIGHT] =
+    {
+        .name = _("POWER WEIGHT"),
+        .itemId = ITEM_POWER_WEIGHT,
+        .price = 19600,
+        .holdEffect = HOLD_EFFECT_POWER_ITEM,
+        .holdEffectParam = 4,
+        .description = sPowerWeightDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = STAT_HP,
+    },
 };

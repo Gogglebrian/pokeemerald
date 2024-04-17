@@ -4660,7 +4660,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         holdEffectParam = ItemId_GetHoldEffectParam(gBattleMons[battler1].item);
     }
 
-    if (holdEffect == HOLD_EFFECT_MACHO_BRACE)
+    if (holdEffect == HOLD_EFFECT_MACHO_BRACE || holdEffect == HOLD_EFFECT_POWER_ITEM)
         speedBattler1 /= 2;
 
     if (gBattleMons[battler1].status1 & STATUS1_PARALYSIS)

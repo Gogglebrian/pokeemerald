@@ -5938,8 +5938,26 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
     u16 heldItem;
     u8 holdEffect;
     int i, multiplier;
+	u8 stat;
+    u8 bonus;
 
-    for (i = 0; i < NUM_STATS; i++)
+	heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
+	if (heldItem == ITEM_ENIGMA_BERRY)
+	{
+		if (gMain.inBattle)
+			holdEffect = gEnigmaBerries[0].holdEffect;
+		else
+			holdEffect = 0;
+	}
+	else
+	{
+		holdEffect = ItemId_GetHoldEffect(heldItem);
+	}
+	
+	stat = ItemId_GetSecondaryId(heldItem);
+    bonus = ItemId_GetHoldEffectParam(heldItem)*5;
+
+	for (i = 0; i < NUM_STATS; i++)
     {
         evs[i] = GetMonData(mon, MON_DATA_HP_EV + i, 0);
         totalEVs += evs[i];
@@ -5955,39 +5973,59 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
         else
             multiplier = 1;
 
+		if(holdEffect == HOLD_EFFECT_POWER_ITEM && i != stat)
+			multiplier = 0;
+
         switch (i)
         {
         case STAT_HP:
-            evIncrease = gBaseStats[defeatedSpecies].evYield_HP * multiplier;
+			if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_HP)
+                evIncrease = bonus * multiplier;
+			else if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat != STAT_HP)
+                evIncrease = 0;
+            else
+				evIncrease = gBaseStats[defeatedSpecies].evYield_HP * multiplier;
             break;
         case STAT_ATK:
-            evIncrease = gBaseStats[defeatedSpecies].evYield_Attack * multiplier;
+            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_ATK)
+                evIncrease = bonus * multiplier;
+			else if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat != STAT_ATK)
+                evIncrease = 0;
+            else
+                evIncrease = gBaseStats[defeatedSpecies].evYield_Attack * multiplier;
             break;
         case STAT_DEF:
-            evIncrease = gBaseStats[defeatedSpecies].evYield_Defense * multiplier;
+            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_DEF)
+                evIncrease = bonus * multiplier;
+			else if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat != STAT_DEF)
+                evIncrease = 0;
+            else
+                evIncrease = gBaseStats[defeatedSpecies].evYield_Defense * multiplier;
             break;
         case STAT_SPEED:
-            evIncrease = gBaseStats[defeatedSpecies].evYield_Speed * multiplier;
+            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPEED)
+                evIncrease = bonus * multiplier;
+			else if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat != STAT_SPEED)
+                evIncrease = 0;
+            else
+                evIncrease = gBaseStats[defeatedSpecies].evYield_Speed * multiplier;
             break;
         case STAT_SPATK:
-            evIncrease = gBaseStats[defeatedSpecies].evYield_SpAttack * multiplier;
+            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPATK)
+                evIncrease = bonus * multiplier;
+			else if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat != STAT_SPATK)
+                evIncrease = 0;
+            else
+                evIncrease = gBaseStats[defeatedSpecies].evYield_SpAttack * multiplier;
             break;
         case STAT_SPDEF:
-            evIncrease = gBaseStats[defeatedSpecies].evYield_SpDefense * multiplier;
-            break;
-        }
-
-        heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
-        if (heldItem == ITEM_ENIGMA_BERRY)
-        {
-            if (gMain.inBattle)
-                holdEffect = gEnigmaBerries[0].holdEffect;
+            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPDEF)
+                evIncrease = bonus * multiplier;
+			else if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat != STAT_SPDEF)
+                evIncrease = 0;
             else
-                holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-        }
-        else
-        {
-            holdEffect = ItemId_GetHoldEffect(heldItem);
+                evIncrease = gBaseStats[defeatedSpecies].evYield_SpDefense * multiplier;
+            break;
         }
 
         if (holdEffect == HOLD_EFFECT_MACHO_BRACE)

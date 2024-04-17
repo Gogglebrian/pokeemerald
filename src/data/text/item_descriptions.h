@@ -1780,3 +1780,33 @@ static const u8 sAntiZincDesc[] = _(
 	"Resets a POKéMON's\n"
 	"efforts in the\n"
 	"SP. DEF stat.");
+	
+static const u8 sPowerBracerDesc[] = _(
+    "A hold item that\n"
+    "promotes ATK gain,\n"
+    "but reduces SPEED.");
+
+static const u8 sPowerBeltDesc[] = _(
+    "A hold item that\n"
+    "promotes DEF gain,\n"
+    "but reduces SPEED.");
+
+static const u8 sPowerLensDesc[] = _(
+    "Hold item that pro-\n"
+    "motes SP. ATK gain,\n"
+    "but reduces SPEED.");
+
+static const u8 sPowerBandDesc[] = _(
+    "Hold item that pro-\n"
+    "motes SP. DEF gain,\n"
+    "but reduces SPEED.");
+
+static const u8 sPowerAnkletDesc[] = _(
+    "A hold item that\n"
+    "promotes SPD gain,\n"
+    "but reduces SPEED.");
+
+static const u8 sPowerWeightDesc[] = _(
+    "A hold item that\n"
+    "promotes HP gain,\n"
+    "but reduces SPEED.");
