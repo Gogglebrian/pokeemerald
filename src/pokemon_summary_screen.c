@@ -181,7 +181,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     u8 secondMoveIndex;
     bool8 lockMovesFlag; // This is used to prevent the player from changing position of moves in a battle or when trading.
     u8 bgDisplayOrder; // Determines the order page backgrounds are loaded while scrolling between them
-    u8 filler40CA;
+    u8 statPage; //Stat, ev, iv, base
     u8 windowIds[8];
     u8 spriteIds[SPRITE_ARR_ID_COUNT];
     bool8 handleDeoxys;
@@ -312,6 +312,9 @@ static void DestroyMoveSelectorSprites(u8);
 static void SetMainMoveSelectorColor(u8);
 static void KeepMoveSelectorVisible(u8);
 static void SummaryScreen_DestroyAnimDelayTask(void);
+static void BufferIvOrEvStats(u8 mode);
+static void BufferStat(u8 *dst, s8 natureMod, u32 stat, u32 strId, u32 n, u8 mode);
+static void NextStatPage(u8 boolGoForward);
 
 // const rom data
 #include "data/text/move_descriptions.h"
@@ -728,6 +731,7 @@ static const u8 sMemoNatureTextColor[] = _("{COLOR LIGHT_RED}{SHADOW GREEN}");
 
 static const u8 sMemoMiscTextColor[] = _("{COLOR WHITE}{SHADOW DARK_GRAY}"); // This is also affected by palettes, apparently
 static const u8 sStatsLeftColumnLayout[] = _("{DYNAMIC 0}/{DYNAMIC 1}\n{DYNAMIC 2}\n{DYNAMIC 3}");
+static const u8 sStatsLeftColumnLayoutIVEV[] = _("{DYNAMIC 0}\n{DYNAMIC 1}\n{DYNAMIC 2}");
 static const u8 sStatsRightColumnLayout[] = _("{DYNAMIC 0}\n{DYNAMIC 1}\n{DYNAMIC 2}");
 static const u8 sMovesPPLayout[] = _("{PP}{DYNAMIC 0}/{DYNAMIC 1}");
 
@@ -1093,6 +1097,7 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
 {
     sMonSummaryScreen = AllocZeroed(sizeof(*sMonSummaryScreen));
     sMonSummaryScreen->mode = mode;
+	sMonSummaryScreen->statPage = 0;
     sMonSummaryScreen->monList.mons = mons;
     sMonSummaryScreen->curMonIndex = monIndex;
     sMonSummaryScreen->maxMonIndex = maxMonIndex;
@@ -1566,7 +1571,54 @@ static void Task_HandleInput(u8 taskId)
             PlaySE(SE_SELECT);
             BeginCloseSummaryScreen(taskId);
         }
+		
+		// show IVs/EVs/stats on button presses
+		else if (gMain.newKeys & R_BUTTON)
+		{
+			if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+			{
+				NextStatPage(TRUE);
+			}
+		}
+		else if (gMain.newKeys & L_BUTTON)
+		{
+			if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+			{
+				NextStatPage(FALSE);
+			}
+		}
+		else if (gMain.newKeys & START_BUTTON)
+		{
+			if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+			{
+				sMonSummaryScreen->statPage = 0;
+				BufferIvOrEvStats(0);
+			}
+		}
     }
+}
+
+static void NextStatPage(u8 boolGoForward)
+{
+	//Press R
+	if (boolGoForward == TRUE) 
+	{
+		sMonSummaryScreen->statPage = sMonSummaryScreen->statPage + 1;
+		if (sMonSummaryScreen->statPage > 3)
+			sMonSummaryScreen->statPage = 0; // loop to front
+		
+		BufferIvOrEvStats(sMonSummaryScreen->statPage);
+	}
+	//Press L
+	else
+	{
+		if (sMonSummaryScreen->statPage == 0)
+			sMonSummaryScreen->statPage = 3; // Loop to back
+		else 
+			sMonSummaryScreen->statPage = sMonSummaryScreen->statPage - 1;
+		
+		BufferIvOrEvStats(sMonSummaryScreen->statPage);
+	}
 }
 
 static void ChangeSummaryPokemon(u8 taskId, s8 delta)
@@ -1750,6 +1802,8 @@ static void ChangePage(u8 taskId, s8 delta)
 {
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     s16 *data = gTasks[taskId].data;
+
+	sMonSummaryScreen->statPage = 0;
 
     if (summary->isEgg)
         return;
@@ -2804,6 +2858,10 @@ static void PrintAOrBButtonIcon(u8 windowId, bool8 bButton, u32 x)
     BlitBitmapToWindow(windowId, button, x, 0, 16, 16);
 }
 
+static const u8 sText_TopBar_Stat[]   	= _("{L_BUTTON}STAT{R_BUTTON}");
+static const u8 sText_TopBar_IV[]   	= _("{L_BUTTON} IV {R_BUTTON}");
+static const u8 sText_TopBar_EV[]   	= _("{L_BUTTON} EV {R_BUTTON}");
+static const u8 sText_TopBar_Base[]   	= _("{L_BUTTON}BASE{R_BUTTON}");
 static void PrintPageNamesAndStats(void)
 {
     int stringXPos;
@@ -2815,6 +2873,7 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
 
+	//Cancel prompt
     stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_Cancel2, 62);
     iconXPos = stringXPos - 16;
     if (iconXPos < 0)
@@ -2822,6 +2881,7 @@ static void PrintPageNamesAndStats(void)
     PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_CANCEL, FALSE, iconXPos);
     PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_CANCEL, gText_Cancel2, stringXPos, 1, 0, 0);
 
+	//Info prompt
     stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_Info, 62);
     iconXPos = stringXPos - 16;
     if (iconXPos < 0)
@@ -2829,6 +2889,7 @@ static void PrintPageNamesAndStats(void)
     PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_INFO, FALSE, iconXPos);
     PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_INFO, gText_Info, stringXPos, 1, 0, 0);
 
+	//Move switch prompt
     stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_Switch, 62);
     iconXPos = stringXPos - 16;
     if (iconXPos < 0)
@@ -3371,6 +3432,96 @@ static void PrintRibbonCount(void)
     PrintTextOnWindow(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_RIBBON_COUNT), text, x, 1, 0, 0);
 }
 
+static void BufferIvOrEvStats(u8 mode)
+{
+    u16 hp, hp2, atk, def, spA, spD, spe;
+	u16 species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES);
+    u8 *currHPString = Alloc(8);
+    const s8 *natureMod = gNatureStatTable[
+      (sMonSummaryScreen->summary.hiddenNature == HIDDEN_NATURE_NONE) ? sMonSummaryScreen->summary.nature : sMonSummaryScreen->summary.hiddenNature];
+
+	//Get stats
+    switch (mode)
+    {
+	case 3: // base stats mode
+        hp = gBaseStats[species].baseHP;
+        atk = gBaseStats[species].baseAttack;
+        def = gBaseStats[species].baseDefense;
+
+        spA = gBaseStats[species].baseSpAttack;
+        spD = gBaseStats[species].baseSpDefense;
+        spe = gBaseStats[species].baseSpeed;
+        break;
+    case 2: // iv mode
+        hp = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_IV);
+        atk = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_IV);
+        def = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_IV);
+
+        spA = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_IV);
+        spD = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_IV);
+        spe = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_IV);
+        break;
+    case 1: // ev mode
+        hp = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV);
+        atk = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV);
+        def = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV);
+
+        spA = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV);
+        spD = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV);
+        spe = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV);
+        break;
+    case 0: // stats mode
+    default:
+        hp = sMonSummaryScreen->summary.currentHP;
+        hp2 = sMonSummaryScreen->summary.maxHP;
+        atk = sMonSummaryScreen->summary.atk;
+        def = sMonSummaryScreen->summary.def;
+
+        spA = sMonSummaryScreen->summary.spatk;
+        spD = sMonSummaryScreen->summary.spdef;
+        spe = sMonSummaryScreen->summary.speed;
+        break;
+    }
+
+    FillWindowPixelBuffer(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_SKILLS_STATS_LEFT], 0);
+    FillWindowPixelBuffer(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_SKILLS_STATS_RIGHT], 0);
+
+    switch (mode)
+    {
+	case 3:
+    case 2:
+    case 1:
+        BufferStat(gStringVar1, 0, hp, 0, 7, mode);
+        BufferStat(gStringVar2, 0, atk, 1, 7, 4);
+        BufferStat(gStringVar3, 0, def, 2, 7, 4);
+        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsLeftColumnLayoutIVEV);
+        PrintLeftColumnStats();
+
+        BufferStat(gStringVar1, 0, spA, 0, 3, 0);
+        BufferStat(gStringVar2, 0, spD, 1, 3, 0);
+        BufferStat(gStringVar3, 0, spe, 2, 3, 0);
+        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsRightColumnLayout);
+        PrintRightColumnStats();
+        break;
+    case 0:
+    default:
+        BufferStat(currHPString, 0, hp, 0, 3, 0);
+        BufferStat(gStringVar1, 0, hp2, 1, 3, 0);
+        BufferStat(gStringVar2, natureMod[STAT_ATK - 1], atk, 2, 7, 0);
+        BufferStat(gStringVar3, natureMod[STAT_DEF - 1], def, 3, 7, 0);
+        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsLeftColumnLayout);
+        PrintLeftColumnStats();
+
+        BufferStat(gStringVar1, natureMod[STAT_SPATK - 1], spA, 0, 3, 0);
+        BufferStat(gStringVar2, natureMod[STAT_SPDEF - 1], spD, 1, 3, 0);
+        BufferStat(gStringVar3, natureMod[STAT_SPEED - 1], spe, 2, 3, 0);
+        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsRightColumnLayout);
+        PrintRightColumnStats();
+        break;
+    }
+    Free(currHPString);
+}
+
 static void BufferLeftColumnStats(void)
 {
     u8 *currentHPString = Alloc(8);
@@ -3443,6 +3594,56 @@ static void PrintExpPointsNextLevel(void)
     ConvertIntToDecimalStringN(gStringVar1, expToNextLevel, STR_CONV_MODE_RIGHT_ALIGN, 6);
     x = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar1, 42) + 2;
     PrintTextOnWindow(windowId, gStringVar1, x, 17, 0, 0);
+}
+
+static void BufferStat(u8 *dst, s8 natureMod, u32 stat, u32 strId, u32 n, u8 mode)
+{
+    static const u8 sTextNatureDown[] 		= _("{COLOR}{08}");
+    static const u8 sTextNatureUp[] 		= _("{COLOR}{05}");
+    static const u8 sTextNatureNeutral[] 	= _("{COLOR}{01}");
+    static const u8 sTextStatSpacer[] 		= _("{COLOR}{01}   ");
+	static const u8 sTextStatBase[] 		= _("{COLOR}{01} BS");
+	static const u8 sTextStatIV[] 			= _("{COLOR}{01} IV");
+	static const u8 sTextStatEV[] 			= _("{COLOR}{01} EV");
+    u8 *txtPtr;
+
+	//mode 0: use n length for the stat string
+	//mode 1: EV label, use fixed length for the stat string
+	//mode 2: IV label, use fixed length for the stat string
+	//mode 3: BS label, use fixed length for the stat string
+	//mode 4: Extra space up front, use fixed length for the stat string
+	switch (mode)
+	{
+	case 4:
+		txtPtr = StringCopy(dst, sTextStatSpacer);
+		break;
+	case 3:
+		txtPtr = StringCopy(dst, sTextStatBase);
+		break;
+	case 2:
+		txtPtr = StringCopy(dst, sTextStatIV);
+		break;
+	case 1:
+		txtPtr = StringCopy(dst, sTextStatEV);
+		break;
+	case 0:
+	default:
+		if (natureMod == 0)
+			txtPtr = StringCopy(dst, sTextNatureNeutral);
+		else if (natureMod > 0)
+			txtPtr = StringCopy(dst, sTextNatureUp);
+		else
+			txtPtr = StringCopy(dst, sTextNatureDown);
+		break;
+	}
+    
+	if (mode == 0)
+		ConvertIntToDecimalStringN(txtPtr, stat, STR_CONV_MODE_RIGHT_ALIGN, n);
+	else if (mode == 4)
+		ConvertIntToDecimalStringN(txtPtr, stat, STR_CONV_MODE_RIGHT_ALIGN, 5);
+	else
+		ConvertIntToDecimalStringN(txtPtr, stat, STR_CONV_MODE_RIGHT_ALIGN, 4);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(strId, dst);
 }
 
 static void PrintBattleMoves(void)
