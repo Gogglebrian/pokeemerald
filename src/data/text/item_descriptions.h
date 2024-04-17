@@ -1696,32 +1696,62 @@ static const u8 sQuirkyMintDesc[] = _(
     "of a POKéMON to\n"
     "QUIRKY.");
 
-static const u8 sHPDownDesc[] = _(
+static const u8 sHPIVDownDesc[] = _(
 	"Lowers a POKéMON's\n"
-	"HP potential by a\n"
+	"HP potential a\n"
 	"tiny bit.");
 
-static const u8 sProteinMinusDesc[] = _(
+static const u8 sAttackIVDownDesc[] = _(
 	"Lowers a POKéMON's\n"
 	"ATTACK potential a\n"
 	"tiny bit.");
 
-static const u8 sIronMinusDesc[] = _(
+static const u8 sDefenseIVDownDesc[] = _(
 	"Lowers a POKéMON's\n"
 	"DEFENSE potential\n"
 	"a tiny bit.");
 
-static const u8 sCarbosMinusDesc[] = _(
+static const u8 sSpeedIVDownDesc[] = _(
 	"Lowers a POKéMON's\n"
 	"SPEED potential a\n"
 	"tiny bit.");
 
-static const u8 sCalciumMinusDesc[] = _(
+static const u8 sSpAttackIVDownDesc[] = _(
 	"Lowers a POKéMON's\n"
 	"SP. ATK potential\n"
 	"a tiny bit.");
 
-static const u8 sZincMinusDesc[] = _(
+static const u8 sSpDefenseIVDownDesc[] = _(
 	"Lowers a POKéMON's\n"
 	"SP. DEF potential\n"
 	"a tiny bit.");
+	
+static const u8 sSuperHpUpDesc[] = _(
+	"Raises a POKéMON's\n"
+	"HP potential\n"
+	"greatly.");
+
+static const u8 sSuperProteinDesc[] = _(
+	"Raises a POKéMON's\n"
+	"ATTACK potential\n"
+	"greatly.");
+
+static const u8 sSuperIronDesc[] = _(
+	"Raises a POKéMON's\n"
+	"DEFENSE potential\n"
+	"greatly.");
+
+static const u8 sSuperCarbosDesc[] = _(
+	"Raises a POKéMON's\n"
+	"SPEED potential\n"
+	"greatly.");
+
+static const u8 sSuperCalciumDesc[] = _(
+	"Raises a POKéMON's\n"
+	"SP. ATK potential\n"
+	"greatly.");
+
+static const u8 sSuperZincDesc[] = _(
+	"Raises a POKéMON's\n"
+	"SP. DEF potential\n"
+	"greatly.");

@@ -428,14 +428,14 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
 	[ITEM_DOCILE_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
 	[ITEM_BASHFUL_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
 	[ITEM_QUIRKY_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
-
-    // Custom
-    [ITEM_HP_DOWN] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_PROTEIN_MINUS] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_IRON_MINUS] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_CARBOS_MINUS] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_CALCIUM_MINUS] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_ZINC_MINUS] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+	
+	//IV Raisers
+	[ITEM_SUPER_HP_UP] = {gItemIcon_HPUp, gItemIconPalette_HPUp},
+    [ITEM_SUPER_PROTEIN] = {gItemIcon_Vitamin, gItemIconPalette_Protein},
+    [ITEM_SUPER_IRON] = {gItemIcon_Vitamin, gItemIconPalette_Iron},
+    [ITEM_SUPER_CARBOS] = {gItemIcon_Vitamin, gItemIconPalette_Carbos},
+    [ITEM_SUPER_CALCIUM] = {gItemIcon_Vitamin, gItemIconPalette_Calcium},
+    [ITEM_SUPER_ZINC] = {gItemIcon_Vitamin, gItemIconPalette_Zinc},
 
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},

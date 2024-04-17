@@ -6973,7 +6973,7 @@ void ItemUseCB_ReduceIV(u8 taskId, TaskFunc task)
         RemoveBagItem(item, 1);
         AdjustFriendship(mon, FRIENDSHIP_EVENT_EFFORT_BERRIES);
         GetMonNickname(mon, gStringVar1);
-        StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2Fell);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnPotentialVar2StatFell);
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
@@ -7066,7 +7066,7 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
         RemoveBagItem(item, 1);
         AdjustFriendship(mon, FRIENDSHIP_EVENT_VITAMIN);
         GetMonNickname(mon, gStringVar1);
-        StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnPotentialVar2StatIncreased);
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
