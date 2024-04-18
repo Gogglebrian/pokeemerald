@@ -144,6 +144,9 @@ Route104_PrettyPetalFlowerShop_Text_LearnAboutBerries:
 	.string "BERRIES?$"
 
 Route104_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries:
+	.string "Hello!\p"
+	.string "This is the PRETTY PETAL flower shop.\n"
+	.string "Spreading flowers all over the world!\p"
 	.string "Your name is?\p"
 	.string "{PLAYER}{KUN}.\n"
 	.string "That's a nice name.\p"
