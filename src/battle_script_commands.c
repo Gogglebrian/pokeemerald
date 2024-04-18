@@ -349,6 +349,7 @@ const double sRelativePartyScaling[27] =
     0.10, 0.05,
 };
 */
+const double sLevelScalingMaxMultiplier = 4.0;
 const double sRelativePartyScaling[15] =
 {
     3.00, 2.75, 2.50, 2.33, 2.25,
@@ -3335,8 +3336,9 @@ double GetPkmnExpMultiplier(u8 level)
 {
     u8 i;
     //double lvlCapMultiplier = 1.0;
-    //u8 levelDiff;
+    s8 levelDiffFromOpponent;
     s8 avgDiff;
+	u8 multiplier = 1.0;
 
     // multiply the usual exp yield by the soft cap multiplier
     for (i = 0; i < NUM_LEVEL_CAPS; i++)
@@ -3354,23 +3356,33 @@ double GetPkmnExpMultiplier(u8 level)
         }
     }
 
-	//If exp scaling enabled, apply relative party scale
+	//If exp scaling enabled, apply relative party scale and opponent-relative party scale
 	if (gSaveBlock2Ptr->optionsExpScaling) 
 	{
-		// multiply the usual exp yield by the party level multiplier
+		// multiply the usual exp yield by the party-relative level multiplier
 		avgDiff = level - GetTeamLevel();
-
 		if (avgDiff >= -1)
 			avgDiff = -1;
 		else if (avgDiff <= -15)
 			avgDiff = -15;
-
 		avgDiff += 15;
-
-		return sRelativePartyScaling[avgDiff];
+		multiplier = multiplier * sRelativePartyScaling[avgDiff];
+		
+		// now multiply by the opponent-relative level multiplier
+		levelDiffFromOpponent = level - gBattleMons[gBattlerFainted].level;
+		if (levelDiffFromOpponent >= -2)
+			levelDiffFromOpponent = -2;
+		else if (levelDiffFromOpponent <= -16)
+			levelDiffFromOpponent = -16;
+		levelDiffFromOpponent += 16;
+		multiplier = multiplier * sRelativePartyScaling[levelDiffFromOpponent];
 	}
-	else
-		return 1.0;
+	
+	if (multiplier > sLevelScalingMaxMultiplier) 
+	{
+		multiplier = sLevelScalingMaxMultiplier;
+	}
+	return multiplier;
 }
 
 static void Cmd_getexp(void)

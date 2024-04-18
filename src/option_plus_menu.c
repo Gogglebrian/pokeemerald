@@ -328,8 +328,8 @@ static const u8 *const sOptionMenuItemDescriptionsMain[MENUITEM_MAIN_COUNT][3] =
 // Custom
 static const u8 sText_Desc_LevelCaps_On[]		= _("Limit your POKÉMON to the level\nof the next GYM LEADER's ace.");
 static const u8 sText_Desc_LevelCaps_Off[]		= _("Allow your POKÉMON to gain levels\nfreely.");
-static const u8 sText_Desc_ExpScaling_On[]		= _("EXP gains scale up for POKÉMON\nunder the party's average level.");
-static const u8 sText_Desc_ExpScaling_Off[]		= _("EXP gains are unaffected by the\nlevels of other party POKÉMON.");
+static const u8 sText_Desc_ExpScaling_On[]		= _("EXP gains scale up for POKÉMON\nweaker than the party or the foe.");
+static const u8 sText_Desc_ExpScaling_Off[]		= _("EXP gains are unaffected by the\nlevels of other POKÉMON.");
 static const u8 sText_Desc_BattleHPBar[]        = _("Choose how fast the HP BAR will get\ndrained in battles.");
 static const u8 sText_Desc_BattleExpBar[]       = _("Choose how fast the EXP BAR will get\nfilled in battles.");
 static const u8 sText_Desc_SurfOff[]            = _("Disables the SURF theme when\nusing SURF.");
