@@ -216,7 +216,7 @@ void CreateRoamerMonInstance(void)
 
 bool8 TryStartRoamerEncounter(void)
 {
-    if (IsRoamerAt(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE && (Random() % 4) == 0)
+    if (IsRoamerAt(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE)
     {
         CreateRoamerMonInstance();
         return TRUE;
@@ -242,16 +242,29 @@ void SetRoamerInactive(void)
 
 void NextRoamer(void)
 {
-    if ((ROAMER->species == SPECIES_LATIAS && GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIOS), FLAG_GET_SEEN))
-    || (ROAMER->species == SPECIES_LATIOS && GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIAS), FLAG_GET_SEEN))){
-        SetRoamerInactive();
-    }
-    else{
-        bool16 createLatios = ROAMER->species == SPECIES_LATIAS;
+	u8 blueCaught = GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIOS), FLAG_GET_CAUGHT);
+	u8 redCaught = GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIAS), FLAG_GET_CAUGHT);
+	bool16 createLatios;
+	
+	if (redCaught && blueCaught) // If both have been caught, then we're done
+	{
+		SetRoamerInactive();
+		return;
+	}
+	else if (redCaught || blueCaught) // If we've caught one but not the other, respawn the one we haven't caught yet
+	{
+		createLatios = redCaught;
         ClearRoamerData();
         ClearRoamerLocationData();
         CreateInitialRoamerMon(createLatios);
-    }
+	}
+	else //If we haven't caught either, then respawn the alt to the one we just defeated
+	{
+		createLatios = ROAMER->species == SPECIES_LATIAS;
+        ClearRoamerData();
+        ClearRoamerLocationData();
+        CreateInitialRoamerMon(createLatios);
+	}
 }
 
 void GetRoamerLocation(u8 *mapGroup, u8 *mapNum)
