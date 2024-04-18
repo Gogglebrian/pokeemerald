@@ -36,11 +36,21 @@ Route109_SeashoreHouse_EventScript_BagFull::
 	end
 
 Route109_SeashoreHouse_EventScript_AlreadyReceivedSodaPop::
-	showmoneybox 0, 0
-	msgbox Route109_SeashoreHouse_Text_WantToBuySodaPop, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, Route109_SeashoreHouse_EventScript_BuySodaPop
-	msgbox Route109_SeashoreHouse_Text_ThatsTooBad, MSGBOX_DEFAULT
-	hidemoneybox
+	msgbox Route109_SeashoreHouse_Text_WantToBuySodaPop
+	waitmessage
+	pokemart Route109_SeashoreHouse_Mart
+	msgbox Route109_SeashoreHouse_Text_ComeBackSoon, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+Route109_SeashoreHouse_Mart:
+	.2byte ITEM_SODA_POP
+	.2byte ITEM_BERRY_JUICE
+	.2byte ITEM_FRESH_WATER
+	.2byte ITEM_LEMONADE
+	.2byte ITEM_MOOMOO_MILK
+	.2byte ITEM_NONE
 	release
 	end
 
@@ -137,6 +147,9 @@ Route109_SeashoreHouse_Text_NotEnoughMoney:
 Route109_SeashoreHouse_Text_ThatsTooBad:
 	.string "No?\n"
 	.string "That's too bad.$"
+	
+Route109_SeashoreHouse_Text_ComeBackSoon:
+	.string "Come back soon!$"
 
 Route109_SeashoreHouse_Text_DwayneIntro:
 	.string "If you're looking for a battle in the\n"

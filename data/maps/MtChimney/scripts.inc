@@ -103,17 +103,17 @@ MtChimney_EventScript_ArchieExitNorth::
 MtChimney_EventScript_LavaCookieLady::
 	lock
 	faceplayer
-	showmoneybox 0, 0
-	msgbox MtChimney_Text_LavaCookiesJust200, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MtChimney_EventScript_DeclineLavaCookie
-	checkmoney 200
-	goto_if_eq VAR_RESULT, FALSE, MtChimney_EventScript_NotEnoughMoney
-	msgbox MtChimney_Text_ThankYouDear, MSGBOX_DEFAULT
-	checkitemspace ITEM_LAVA_COOKIE
-	call_if_eq VAR_RESULT, TRUE, MtChimney_EventScript_RemoveMoney
-	giveitem ITEM_LAVA_COOKIE
-	goto_if_eq VAR_RESULT, FALSE, MtChimney_EventScript_BagIsFull
-	hidemoneybox
+	msgbox MtChimney_Text_LavaCookiesJust200
+	waitmessage
+	pokemart MtChimney_LavaCookie_Mart
+	msgbox MtChimney_Text_TakeCareDear, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+MtChimney_LavaCookie_Mart:
+	.2byte ITEM_LAVA_COOKIE
+	.2byte ITEM_NONE
 	release
 	end
 
@@ -710,6 +710,9 @@ MtChimney_Text_LavaCookiesJust200:
 
 MtChimney_Text_ThankYouDear:
 	.string "Thank you, dear!$"
+	
+MtChimney_Text_TakeCareDear:
+	.string "Take care, dear!$"
 
 MtChimney_Text_YouveNotGotTheMoney:
 	.string "Oh, dear. You can't buy a thing if\n"

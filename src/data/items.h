@@ -601,7 +601,7 @@ const struct Item gItems[] =
     {
         .name = _("BERRY JUICE"),
         .itemId = ITEM_BERRY_JUICE,
-        .price = 100,
+        .price = 200,
         .holdEffect = HOLD_EFFECT_RESTORE_HP,
         .holdEffectParam = 20,
         .description = sBerryJuiceDesc,
