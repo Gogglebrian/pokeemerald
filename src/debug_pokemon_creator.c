@@ -599,7 +599,7 @@ static void DebugPkmCreator_Init_SetDefaults(void)
             sDebugPkmCreatorData.data[i] = DebugPkmCreator_Options[i].initial;
             break;
         case VAL_PID:
-            sDebugPkmCreatorData.data[i] = Random32();
+            sDebugPkmCreatorData.data[i] = Random32(&gPCGRng);
             break;
         case VAL_TID:
             sDebugPkmCreatorData.data[i] = (*(u32*) &gSaveBlock2Ptr->playerTrainerId) & 0xffff;
@@ -667,7 +667,7 @@ static void DebugPkmCreator_Init_SetNewMonData(bool8 setMoves)
         case VAL_SPDEF_IV: // IVs
             if (setMoves)
             {
-                data = Random32();
+                data = Random32(&gPCGRng);
                 SetMonData(mons, MON_DATA_IVS, &data);
                 break;
             }

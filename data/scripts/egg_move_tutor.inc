@@ -1,4 +1,5 @@
 Common_EventScript_EggMoveTutor_Price::
+	showmoneybox 0, 0
 	msgbox Common_EggMoveTutor_Teach_Egg_Moves, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq Common_EventScript_EggMoveTutor_ComeBackAnytime
@@ -44,11 +45,13 @@ Common_EventScript_EggMoveTutor_CantTeachEgg:: @ 8201444
 	
 Common_EventScript_EggMoveTutor_ComeBackAnytime:: @ 8201452
 	msgbox Common_EggMoveTutor_ComeBackAnytime, MSGBOX_DEFAULT
+	hidemoneybox
 	releaseall
 	end
 	
 Common_EggMoveTutor_no_Money::
 	msgbox Common_EggMoveTutor_Text_no_Money, MSGBOX_DEFAULT
+	hidemoneybox
 	release
 	end
 	
@@ -60,10 +63,10 @@ Common_EggMoveTutor_Text_TeachWhichMove: @ 82015C3
 	.string "Which move should it remember?$"	
 
 Common_EggMoveTutor_Teach_Egg_Moves:
-    .string "I can teach special moves that only\n"
+    .string "I can teach cool moves that only\n"
 	.string "specially-bred POKéMON would\l"
 	.string "usually know.\p"
-	.string "It's 8000 a pop, interested?$"
+	.string "It's ¥8000 a pop, interested?$"
 	
 Common_EggMoveTutor_ComeBackAnytime:
     .string "Come back anytime!$"
