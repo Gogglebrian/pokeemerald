@@ -10,6 +10,7 @@
 #include "battle_setup.h"
 #include "battle_tower.h"
 #include "data.h"
+#include "daycare.h"
 #include "event_data.h"
 #include "evolution_scene.h"
 #include "field_specials.h"
@@ -39,6 +40,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_script_commands.h"
+#include "constants/daycare.h"
 #include "constants/hold_effects.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
@@ -6287,6 +6289,75 @@ u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
     }
 }
 
+//Egg Move Tutor --------------------------------------------------
+u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves)
+{
+    u16 learnedMoves[4];
+    u8 numMoves = 0;
+	u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+	u16 firsStage = GetFirstEvolution(species);
+	u16 numEggMoves = GetEggMovesSpecies(firsStage, eggMoveBuffer);
+    int i, j, k;
+	const u8 *learnableMoves;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+        learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+	
+	//for (i = 0; i < numEggMove && learnedMoves[j] != eggMoveBuffer[i]; i++)
+	for (i = 0; i < numEggMoves; i++)
+    {
+        moves[numMoves++] = eggMoveBuffer[i];
+    }
+	
+	/*/for (i = 0; i< TUTOR_MOVE_COUNT; i++)
+    {
+        if (CanLearnTutorMove(formSpeciesId, i))
+        {
+            moves[numMoves] = gTutorMoves[i];
+            numMoves++;
+        }
+    }/*/
+	
+    return numMoves;
+}
+
+u8 GetNumberOfEggMoves(struct Pokemon *mon)
+{
+	u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
+    u16 learnedMoves[MAX_MON_MOVES];
+    u8 numMoves = 0;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+	u16 firsStage = GetFirstEvolution(species);
+	u8 numEggMoves = GetEggMovesSpecies(firsStage, eggMoveBuffer);
+    u16 moves[numEggMoves];
+    u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
+	const u8 *learnableMoves;
+    int i, j, k;
+
+    if (species == SPECIES_EGG)
+        return 0;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+        learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+
+    for (i = 0; i < numEggMoves; i++)
+    {
+        moves[numMoves++] = eggMoveBuffer[i];
+    }
+	
+	/*/for (i = 0; i< TUTOR_MOVE_COUNT; i++)
+    {
+        if (CanLearnTutorMove(formSpeciesId, i))
+        {
+            moves[numMoves] = gTutorMoves[i];
+            numMoves++;
+        }
+    }/*/
+	
+    return numMoves;
+}
+
 static u16 GetPreEvolution(u16 species){
     int i, j;
 
@@ -6301,6 +6372,37 @@ static u16 GetPreEvolution(u16 species){
     return SPECIES_NONE;
 }
 
+u16 GetFirstEvolution(u16 species){
+    int i, j, k;
+    bool8 found;
+
+    // Working backwards up to 5 times seems arbitrary, since the maximum number
+    // of times would only be 3 for 3-stage evolutions.
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        found = FALSE;
+        for (j = 1; j < NUM_SPECIES; j++)
+        {
+            for (k = 0; k < EVOS_PER_MON; k++)
+            {
+                if (gEvolutionTable[j][k].targetSpecies == species)
+                {
+                    species = j;
+                    found = TRUE;
+                    break;
+                }
+            }
+
+            if (found)
+                break;
+        }
+
+        if (j == NUM_SPECIES)
+            break;
+    }
+
+    return species;
+}
 
 u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
 {

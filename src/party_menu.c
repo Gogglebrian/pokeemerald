@@ -40,6 +40,7 @@
 #include "menu_helpers.h"
 #include "menu_specialized.h"
 #include "metatile_behavior.h"
+#include "move_relearner.h"
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -485,6 +486,7 @@ static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
+static void Task_ChooseMonForEggTutor(u8 taskId);
 
 // static const data
 #include "data/pokemon/tutor_learnsets.h"
@@ -6621,6 +6623,36 @@ static void CB2_ChooseMonForMoveRelearner(void)
     gFieldCallback2 = CB2_FadeFromPartyMenu;
     SetMainCallback2(CB2_ReturnToField);
 }
+
+//Egg Move Tutor --------------------------------------------------
+void ChooseMonForEggTutor(void)
+{
+    ScriptContext_Enable();
+    FadeScreen(FADE_TO_BLACK, 0);
+    CreateTask(Task_ChooseMonForEggTutor, 10);
+}
+
+static void CB2_ChooseMonForEggTutor(void)
+{
+    gSpecialVar_0x8004 = GetCursorSelectionMonId();
+    if (gSpecialVar_0x8004 >= PARTY_SIZE)
+        gSpecialVar_0x8004 = 0xFF;
+    else
+        gSpecialVar_0x8005 = GetNumberOfEggMoves(&gPlayerParty[gSpecialVar_0x8004]);
+    gFieldCallback2 = CB2_FadeFromPartyMenu;
+    SetMainCallback2(CB2_ReturnToField);
+}
+
+static void Task_ChooseMonForEggTutor(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        InitPartyMenu(PARTY_MENU_TYPE_MOVE_RELEARNER, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_AND_CLOSE, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ChooseMonForEggTutor);
+        DestroyTask(taskId);
+    }
+}
+
 
 void DoBattlePyramidMonsHaveHeldItem(void)
 {
