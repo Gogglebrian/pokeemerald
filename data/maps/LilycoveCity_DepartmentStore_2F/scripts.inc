@@ -29,13 +29,12 @@ LilycoveCity_DepartmentStore_2F_Pokemart1:
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_ULTRA_BALL
 	.2byte ITEM_ESCAPE_ROPE
-	.2byte ITEM_FULL_HEAL
-	.2byte ITEM_ANTIDOTE
-	.2byte ITEM_PARALYZE_HEAL
-	.2byte ITEM_BURN_HEAL
-	.2byte ITEM_ICE_HEAL
-	.2byte ITEM_AWAKENING
+	.2byte ITEM_REPEL
+	.2byte ITEM_SUPER_REPEL
+	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_FLUFFY_TAIL
+	.2byte ITEM_WAVE_MAIL
+	.2byte ITEM_MECH_MAIL
 	.2byte ITEM_NONE
 	release
 	end
@@ -57,11 +56,19 @@ LilycoveCity_DepartmentStore_2F_Pokemart2:
 	.2byte ITEM_HYPER_POTION
 	.2byte ITEM_MAX_POTION
 	.2byte ITEM_REVIVE
-	.2byte ITEM_REPEL
-	.2byte ITEM_SUPER_REPEL
-	.2byte ITEM_MAX_REPEL
-	.2byte ITEM_WAVE_MAIL
-	.2byte ITEM_MECH_MAIL
+	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_BURN_HEAL
+	.2byte ITEM_ICE_HEAL
+	.2byte ITEM_AWAKENING
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_SPECIAL
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFEND
+	.2byte ITEM_DIRE_HIT
+	.2byte ITEM_GUARD_SPEC
+	.2byte ITEM_X_ACCURACY
 	.2byte ITEM_NONE
 	release
 	end

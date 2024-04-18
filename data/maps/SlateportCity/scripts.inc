@@ -154,6 +154,18 @@ SlateportCity_Pokemart_EnergyGuru:
 	.2byte ITEM_ZINC
 	.2byte ITEM_CALCIUM
 	.2byte ITEM_HP_UP
+	.2byte ITEM_SUPER_PROTEIN
+	.2byte ITEM_SUPER_IRON
+	.2byte ITEM_SUPER_CARBOS
+	.2byte ITEM_SUPER_CALCIUM
+	.2byte ITEM_SUPER_ZINC
+	.2byte ITEM_SUPER_HP_UP
+	.2byte ITEM_ANTI_PROTEIN
+	.2byte ITEM_ANTI_IRON
+	.2byte ITEM_ANTI_CARBOS
+	.2byte ITEM_ANTI_CALCIUM
+	.2byte ITEM_ANTI_ZINC
+	.2byte ITEM_ANTI_HP_UP
 	.2byte ITEM_NONE
 	release
 	end
@@ -189,8 +201,58 @@ SlateportCity_EventScript_MonHasEffortRibbon::
 SlateportCity_EventScript_Cook::
 	lock
 	faceplayer
-	call_if_eq VAR_SLATEPORT_CITY_STATE, 1, SlateportCity_EventScript_CookSternInterview
-	msgbox SlateportCity_Text_SeaweedFullOfLife, MSGBOX_DEFAULT
+	message SlateportCity_Text_SeaweedFullOfLife
+	waitmessage
+	pokemart SlateportCity_Pokemart_Cook
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+	
+	.align 2
+SlateportCity_Pokemart_Cook: @ 81FE4F0
+	.2byte ITEM_ADAMANT_MINT
+	.2byte ITEM_BOLD_MINT
+	.2byte ITEM_BRAVE_MINT
+	.2byte ITEM_CALM_MINT
+	.2byte ITEM_CAREFUL_MINT
+	.2byte ITEM_GENTLE_MINT
+	.2byte ITEM_HASTY_MINT
+	.2byte ITEM_IMPISH_MINT
+	.2byte ITEM_JOLLY_MINT
+	.2byte ITEM_LAX_MINT
+	.2byte ITEM_LONELY_MINT
+	.2byte ITEM_MILD_MINT
+	.2byte ITEM_MODEST_MINT
+	.2byte ITEM_NAIVE_MINT
+	.2byte ITEM_NAUGHTY_MINT
+	.2byte ITEM_QUIET_MINT
+	.2byte ITEM_RASH_MINT
+	.2byte ITEM_RELAXED_MINT
+	.2byte ITEM_SASSY_MINT
+	.2byte ITEM_SERIOUS_MINT
+	.2byte ITEM_TIMID_MINT
+	.2byte ITEM_LUM_BERRY
+	.2byte ITEM_ORAN_BERRY
+	.2byte ITEM_SITRUS_BERRY
+	.2byte ITEM_POMEG_BERRY
+	.2byte ITEM_KELPSY_BERRY
+	.2byte ITEM_QUALOT_BERRY
+	.2byte ITEM_HONDEW_BERRY
+	.2byte ITEM_GREPA_BERRY
+	.2byte ITEM_TAMATO_BERRY
+	.2byte ITEM_FIGY_BERRY
+	.2byte ITEM_WIKI_BERRY
+	.2byte ITEM_MAGO_BERRY
+	.2byte ITEM_AGUAV_BERRY
+	.2byte ITEM_IAPAPA_BERRY
+	.2byte ITEM_LIECHI_BERRY
+	.2byte ITEM_GANLON_BERRY
+	.2byte ITEM_SALAC_BERRY
+	.2byte ITEM_PETAYA_BERRY
+	.2byte ITEM_APICOT_BERRY
+	.2byte ITEM_LANSAT_BERRY
+	.2byte ITEM_STARF_BERRY
+	.2byte ITEM_NONE
 	release
 	end
 
@@ -989,8 +1051,8 @@ SlateportCity_Text_SeaweedFullOfLife:
 	.string "Ooh, look at this!\p"
 	.string "The seaweed you can get around these\n"
 	.string "parts is fresh and full of life.\p"
-	.string "Why, it looks like it can even rear up\n"
-	.string "and attack!$"
+	.string "Oh, not interested in seaweed? Check\n"
+	.string "out these tasty ITEMS instead!$"
 
 SlateportCity_Text_HowTownIsBornAndGrows:
 	.string "Where the water is clean, the fruits\n"
