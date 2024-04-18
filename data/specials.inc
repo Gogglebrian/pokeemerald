@@ -538,3 +538,4 @@ gSpecials::
 	def_special TrySetBattleTowerLinkType
 	def_special BufferUnitSystemText
 	def_special FieldLoadFlyMap
+	def_special ResetDefeatedLegendaries

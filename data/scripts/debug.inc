@@ -43,6 +43,11 @@ Debug_CheatStart::
 	end
 
 Debug_Script_1::
+	call Debug_ResetLegendaries
+	end
+
+Debug_ResetLegendaries::
+	special ResetDefeatedLegendaries
 	end
 
 Debug_Script_2::

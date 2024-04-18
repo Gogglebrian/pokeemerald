@@ -28,6 +28,7 @@
 #include "overworld.h"
 #include "party_menu.h"
 #include "pokeblock.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
 #include "random.h"
@@ -53,6 +54,7 @@
 #include "constants/event_object_movement.h"
 #include "constants/field_effects.h"
 #include "constants/field_specials.h"
+#include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/heal_locations.h"
 #include "constants/map_types.h"
@@ -137,6 +139,7 @@ static u8 DidPlayerGetFirstFans(void);
 static void SetInitialFansOfPlayer(void);
 static u16 PlayerGainRandomTrainerFan(void);
 static void BufferFanClubTrainerName_(struct LinkBattleRecords *, u8, u8);
+void ResetDefeatedLegendaries(void);
 
 void Special_ShowDiploma(void)
 {
@@ -4285,4 +4288,24 @@ void SetPlayerGotFirstFans(void)
 u8 Script_TryGainNewFanFromCounter(void)
 {
     return TryGainNewFanFromCounter(gSpecialVar_0x8004);
+}
+
+void ResetDefeatedLegendaries(void)
+{
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_REGISTEEL), FLAG_GET_CAUGHT) == FALSE && FlagGet(FLAG_DEFEATED_REGISTEEL))
+		FlagClear(FLAG_DEFEATED_REGISTEEL);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_REGIROCK), FLAG_GET_CAUGHT) == FALSE && FlagGet(FLAG_DEFEATED_REGIROCK))
+		FlagClear(FLAG_DEFEATED_REGIROCK);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_REGICE), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_REGICE))
+		FlagClear(FLAG_DEFEATED_REGICE);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_KYOGRE), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_KYOGRE))
+		FlagClear(FLAG_DEFEATED_KYOGRE);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_GROUDON), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_GROUDON))
+		FlagClear(FLAG_DEFEATED_GROUDON);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_RAYQUAZA), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_RAYQUAZA))
+		FlagClear(FLAG_DEFEATED_RAYQUAZA);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_SUDOWOODO), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_SUDOWOODO))
+		FlagClear(FLAG_DEFEATED_SUDOWOODO);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_DEOXYS), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_DEOXYS))
+		FlagClear(FLAG_DEFEATED_DEOXYS);
 }
