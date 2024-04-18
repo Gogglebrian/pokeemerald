@@ -40,6 +40,8 @@ enum
 
 enum
 {
+    MENUITEM_CUSTOM_LEVELCAPS,
+	MENUITEM_CUSTOM_EXPSCALING,
     MENUITEM_CUSTOM_HP_BAR,
     MENUITEM_CUSTOM_EXP_BAR,
     MENUITEM_CUSTOM_FONT,
@@ -165,6 +167,8 @@ static void DrawChoices_UnitSystem(int selection, int y);
 static void DrawChoices_Font(int selection, int y);
 static void DrawChoices_FrameType(int selection, int y);
 static void DrawChoices_MatchCall(int selection, int y);
+static void DrawChoices_LevelCaps(int selection, int y);
+static void DrawChoices_ExpScaling(int selection, int y);
 static void DrawBgWindowFrames(void);
 
 // EWRAM vars
@@ -213,6 +217,8 @@ struct // MENU_CUSTOM
     int (*processInput)(int selection);
 } static const sItemFunctionsCustom[MENUITEM_CUSTOM_COUNT] =
 {
+	[MENUITEM_CUSTOM_LEVELCAPS]    = {DrawChoices_LevelCaps,   ProcessInput_Options_Two}, 
+	[MENUITEM_CUSTOM_EXPSCALING]   = {DrawChoices_ExpScaling,  ProcessInput_Options_Two}, 
     [MENUITEM_CUSTOM_HP_BAR]       = {DrawChoices_BarSpeed,    ProcessInput_Options_Eleven},
     [MENUITEM_CUSTOM_EXP_BAR]      = {DrawChoices_BarSpeed,    ProcessInput_Options_Eleven},
     [MENUITEM_CUSTOM_FONT]         = {DrawChoices_Font,        ProcessInput_Options_Two}, 
@@ -224,6 +230,8 @@ struct // MENU_CUSTOM
 static const u8 sText_HpBar[]       = _("HP BAR");
 static const u8 sText_ExpBar[]      = _("EXP BAR");
 static const u8 sText_UnitSystem[]  = _("UNIT SYSTEM");
+static const u8 sText_LevelCaps[]  	= _("LEVEL CAPS");
+static const u8 sText_ExpScaling[]  = _("EXP SCALING");
 static const u8 *const sOptionMenuItemsNamesMain[MENUITEM_MAIN_COUNT] =
 {
     [MENUITEM_MAIN_TEXTSPEED]   = gText_TextSpeed,
@@ -238,6 +246,8 @@ static const u8 *const sOptionMenuItemsNamesMain[MENUITEM_MAIN_COUNT] =
 
 static const u8 *const sOptionMenuItemsNamesCustom[MENUITEM_CUSTOM_COUNT] =
 {
+	[MENUITEM_CUSTOM_LEVELCAPS]	  = sText_LevelCaps,
+	[MENUITEM_CUSTOM_EXPSCALING]  = sText_ExpScaling,
     [MENUITEM_CUSTOM_HP_BAR]      = sText_HpBar,
     [MENUITEM_CUSTOM_EXP_BAR]     = sText_ExpBar,
     [MENUITEM_CUSTOM_FONT]        = gText_Font,
@@ -275,6 +285,8 @@ static bool8 CheckConditions(int selection)
     case MENU_CUSTOM:
         switch(selection)
         {
+		case MENUITEM_CUSTOM_LEVELCAPS:		  return TRUE;
+		case MENUITEM_CUSTOM_EXPSCALING:	  return TRUE;
         case MENUITEM_CUSTOM_HP_BAR:          return TRUE;
         case MENUITEM_CUSTOM_EXP_BAR:         return TRUE;
         case MENUITEM_CUSTOM_FONT:            return TRUE;
@@ -314,6 +326,10 @@ static const u8 *const sOptionMenuItemDescriptionsMain[MENUITEM_MAIN_COUNT][3] =
 };
 
 // Custom
+static const u8 sText_Desc_LevelCaps_On[]		= _("Limit your POKÉMON to the level\nof the next GYM LEADER's ace.");
+static const u8 sText_Desc_LevelCaps_Off[]		= _("Allow your POKÉMON to gain levels\nfreely.");
+static const u8 sText_Desc_ExpScaling_On[]		= _("EXP gains scale up for POKÉMON\nunder the party's average level.");
+static const u8 sText_Desc_ExpScaling_Off[]		= _("EXP gains are unaffected by the\nlevels of other party POKÉMON.");
 static const u8 sText_Desc_BattleHPBar[]        = _("Choose how fast the HP BAR will get\ndrained in battles.");
 static const u8 sText_Desc_BattleExpBar[]       = _("Choose how fast the EXP BAR will get\nfilled in battles.");
 static const u8 sText_Desc_SurfOff[]            = _("Disables the SURF theme when\nusing SURF.");
@@ -325,7 +341,9 @@ static const u8 sText_Desc_OverworldCallsOn[]   = _("TRAINERs will be able to ca
 static const u8 sText_Desc_OverworldCallsOff[]  = _("You will not receive calls.\nSpecial events will still occur.");
 static const u8 *const sOptionMenuItemDescriptionsCustom[MENUITEM_CUSTOM_COUNT][2] =
 {
-    [MENUITEM_CUSTOM_HP_BAR]      = {sText_Desc_BattleHPBar,        sText_Empty},
+    [MENUITEM_CUSTOM_LEVELCAPS]	  = {sText_Desc_LevelCaps_Off,		sText_Desc_LevelCaps_On},
+	[MENUITEM_CUSTOM_EXPSCALING]  = {sText_Desc_ExpScaling_Off,		sText_Desc_ExpScaling_On},
+	[MENUITEM_CUSTOM_HP_BAR]      = {sText_Desc_BattleHPBar,        sText_Empty},
     [MENUITEM_CUSTOM_EXP_BAR]     = {sText_Desc_BattleExpBar,       sText_Empty},
     [MENUITEM_CUSTOM_FONT]        = {sText_Desc_FontType,           sText_Desc_FontType},
     [MENUITEM_CUSTOM_MATCHCALL]   = {sText_Desc_OverworldCallsOn,   sText_Desc_OverworldCallsOff},
@@ -350,6 +368,8 @@ static const u8 *const sOptionMenuItemDescriptionsDisabledMain[MENUITEM_MAIN_COU
 static const u8 sText_Desc_Disabled_BattleHPBar[]   = _("Only active if xyz.");
 static const u8 *const sOptionMenuItemDescriptionsDisabledCustom[MENUITEM_CUSTOM_COUNT] =
 {
+	[MENUITEM_CUSTOM_LEVELCAPS]   = sText_Empty,
+	[MENUITEM_CUSTOM_EXPSCALING]  = sText_Empty,
     [MENUITEM_CUSTOM_HP_BAR]      = sText_Desc_Disabled_BattleHPBar,
     [MENUITEM_CUSTOM_EXP_BAR]     = sText_Empty,
     [MENUITEM_CUSTOM_FONT]        = sText_Empty,
@@ -595,6 +615,8 @@ void CB2_InitOptionPlusMenu(void)
         sOptions->sel[MENUITEM_MAIN_UNIT_SYSTEM] = gSaveBlock2Ptr->optionsUnitSystem;
         sOptions->sel[MENUITEM_MAIN_FRAMETYPE]   = gSaveBlock2Ptr->optionsWindowFrameType;
         
+		sOptions->sel_custom[MENUITEM_CUSTOM_LEVELCAPS]   = gSaveBlock2Ptr->optionsLevelCaps;
+		sOptions->sel_custom[MENUITEM_CUSTOM_EXPSCALING]  = gSaveBlock2Ptr->optionsExpScaling;
         sOptions->sel_custom[MENUITEM_CUSTOM_HP_BAR]      = gSaveBlock2Ptr->optionsHpBarSpeed;
         sOptions->sel_custom[MENUITEM_CUSTOM_EXP_BAR]     = gSaveBlock2Ptr->optionsExpBarSpeed;
         sOptions->sel_custom[MENUITEM_CUSTOM_FONT]        = gSaveBlock2Ptr->optionsCurrentFont;
@@ -784,6 +806,8 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsUnitSystem       = sOptions->sel[MENUITEM_MAIN_UNIT_SYSTEM];
     gSaveBlock2Ptr->optionsWindowFrameType  = sOptions->sel[MENUITEM_MAIN_FRAMETYPE];
 
+	gSaveBlock2Ptr->optionsLevelCaps     	= sOptions->sel_custom[MENUITEM_CUSTOM_LEVELCAPS];
+	gSaveBlock2Ptr->optionsExpScaling   	= sOptions->sel_custom[MENUITEM_CUSTOM_EXPSCALING];
     gSaveBlock2Ptr->optionsHpBarSpeed       = sOptions->sel_custom[MENUITEM_CUSTOM_HP_BAR];
     gSaveBlock2Ptr->optionsExpBarSpeed      = sOptions->sel_custom[MENUITEM_CUSTOM_EXP_BAR];
     gSaveBlock2Ptr->optionsCurrentFont      = sOptions->sel_custom[MENUITEM_CUSTOM_FONT];
@@ -1013,6 +1037,8 @@ static void ReDrawAll(void)
 // Process Input functions ****SPECIFIC****
 static const u8 sText_Faster[] = _("FASTER");
 static const u8 sText_Instant[] = _("INSTANT");
+static const u8 sText_GenericOn[] = _("ON");
+static const u8 sText_GenericOff[] = _("OFF");
 static const u8 *const sTextSpeedStrings[] = {gText_TextSpeedSlow, gText_TextSpeedMid, gText_TextSpeedFast, sText_Faster};
 static void DrawChoices_TextSpeed(int selection, int y)
 {
@@ -1119,6 +1145,27 @@ static void DrawChoices_FrameType(int selection, int y)
 
     DrawOptionMenuChoice(gText_FrameType, 104, y, 0, active);
     DrawOptionMenuChoice(text, 128, y, 1, active);
+}
+
+
+static void DrawChoices_LevelCaps(int selection, int y)
+{
+    bool8 active = CheckConditions(MENUITEM_CUSTOM_LEVELCAPS);
+    u8 styles[2] = {0};
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(sText_GenericOff, 104, y, styles[0], active);
+    DrawOptionMenuChoice(sText_GenericOn, GetStringRightAlignXOffset(FONT_NORMAL, sText_GenericOn, 198), y, styles[1], active);
+}
+
+static void DrawChoices_ExpScaling(int selection, int y)
+{
+    bool8 active = CheckConditions(MENUITEM_CUSTOM_EXPSCALING);
+    u8 styles[2] = {0};
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(sText_GenericOff, 104, y, styles[0], active);
+    DrawOptionMenuChoice(sText_GenericOn, GetStringRightAlignXOffset(FONT_NORMAL, sText_GenericOn, 198), y, styles[1], active);
 }
 
 static void DrawChoices_Font(int selection, int y)
