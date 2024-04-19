@@ -570,36 +570,36 @@ Route110_TrickHousePuzzle1_EventScript_ItemFairyFeather::
 	finditem ITEM_FAIRY_FEATHER
 	end
 
-Route110_TrickHousePuzzle2_EventScript_ItemHarborMail::
-	finditem ITEM_HARBOR_MAIL
+Route110_TrickHousePuzzle2_EventScript_ItemSilverPowder::
+	finditem ITEM_SILVER_POWDER
 	end
 
-Route110_TrickHousePuzzle2_EventScript_ItemWaveMail::
-	finditem ITEM_WAVE_MAIL
+Route110_TrickHousePuzzle2_EventScript_ItemSharpBeak::
+	finditem ITEM_SHARP_BEAK
 	end
 
-Route110_TrickHousePuzzle3_EventScript_ItemShadowMail::
-	finditem ITEM_SHADOW_MAIL
+Route110_TrickHousePuzzle3_EventScript_ItemBlackBelt::
+	finditem ITEM_BLACK_BELT
 	end
 
-Route110_TrickHousePuzzle3_EventScript_ItemWoodMail::
-	finditem ITEM_WOOD_MAIL
+Route110_TrickHousePuzzle3_EventScript_ItemPoisonBarb::
+	finditem ITEM_POISON_BARB
 	end
 
-Route110_TrickHousePuzzle4_EventScript_ItemMechMail::
-	finditem ITEM_MECH_MAIL
+Route110_TrickHousePuzzle4_EventScript_ItemMetalCoat::
+	finditem ITEM_METAL_COAT
 	end
 
-Route110_TrickHousePuzzle6_EventScript_ItemGlitterMail::
-	finditem ITEM_GLITTER_MAIL
+Route110_TrickHousePuzzle6_EventScript_ItemSpellTag::
+	finditem ITEM_SPELL_TAG
 	end
 
-Route110_TrickHousePuzzle7_EventScript_ItemTropicMail::
-	finditem ITEM_TROPIC_MAIL
+Route110_TrickHousePuzzle7_EventScript_ItemTwistedSpoon::
+	finditem ITEM_TWISTED_SPOON
 	end
 
-Route110_TrickHousePuzzle8_EventScript_ItemBeadMail::
-	finditem ITEM_BEAD_MAIL
+Route110_TrickHousePuzzle8_EventScript_ItemDragonFang::
+	finditem ITEM_DRAGON_FANG
 	end
 
 VictoryRoad_1F_EventScript_ItemMaxElixir::

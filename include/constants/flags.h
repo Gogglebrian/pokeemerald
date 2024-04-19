@@ -1107,16 +1107,16 @@
 #define FLAG_ITEM_ROUTE_104_POKE_BALL                               0x421
 #define FLAG_ITEM_PETALBURG_WOODS_ETHER                             0x422
 #define FLAG_ITEM_MAGMA_HIDEOUT_3F_3R_ECAPE_ROPE                    0x423
-#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_1_FAIRY_FEATHER                0x424
-#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_2_HARBOR_MAIL                  0x425
-#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_2_WAVE_MAIL                    0x426
-#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_SHADOW_MAIL                  0x427
-#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_WOOD_MAIL                    0x428
-#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_4_MECH_MAIL                    0x429
+#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_1_FAIRY_FEATHER                0x424 // was Orange Mail
+#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_2_SILVER_POWDER                0x425 // was Harbor Mail
+#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_2_SHARP_BEAK                   0x426 // was Wave Mail
+#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_BLACK_BELT	                0x427 // was Shadow Mail
+#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_3_POISON_BARB                  0x428 // was Wood Mail
+#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_4_METAL_COAT                   0x429 // was Mech Mail
 #define FLAG_ITEM_ROUTE_124_YELLOW_SHARD                            0x42A
-#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_6_GLITTER_MAIL                 0x42B
-#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_7_TROPIC_MAIL                  0x42C
-#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_8_BEAD_MAIL                    0x42D
+#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_6_SPELL_TAG                 	0x42B // was Glitter Mail
+#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_7_TWISTED_SPOON                0x42C // was Tropic Mail
+#define FLAG_ITEM_TRICK_HOUSE_PUZZLE_8_DRAGON_FANG                  0x42D // was Bead Mail
 #define FLAG_ITEM_JAGGED_PASS_BURN_HEAL                             0x42E
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_MAX_ELIXIR                       0x42F
 #define FLAG_ITEM_AQUA_HIDEOUT_B2F_NEST_BALL                        0x430
