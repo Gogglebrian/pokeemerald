@@ -319,8 +319,8 @@
               },
               {
                 "min_level": 3,
-                "max_level": 3,
-                "species": "SPECIES_POOCHYENA"
+                "max_level": 4,
+                "species": "SPECIES_PSYDUCK"
               },
               {
                 "min_level": 3,
@@ -905,13 +905,13 @@
               },
               {
                 "min_level": 19,
-                "max_level": 19,
+                "max_level": 21,
                 "species": "SPECIES_BALTOY"
               },
               {
-                "min_level": 21,
+                "min_level": 19,
                 "max_level": 21,
-                "species": "SPECIES_BALTOY"
+                "species": "SPECIES_RHYHORN"
               },
               {
                 "min_level": 19,
@@ -1985,9 +1985,9 @@
                 "species": "SPECIES_WHISMUR"
               },
               {
-                "min_level": 8,
+                "min_level": 6,
                 "max_level": 8,
-                "species": "SPECIES_WHISMUR"
+                "species": "SPECIES_SNORUNT"
               },
               {
                 "min_level": 5,
@@ -2835,8 +2835,8 @@
               },
               {
                 "min_level": 20,
-                "max_level": 20,
-                "species": "SPECIES_NUMEL"
+                "max_level": 22,
+                "species": "SPECIES_RHYHORN"
               },
               {
                 "min_level": 20,
