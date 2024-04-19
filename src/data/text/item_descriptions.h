@@ -962,6 +962,11 @@ static const u8 sPrismScaleDesc[] = _(
     "that causes certain\n"
     "POKéMON to evolve.");
 
+static const u8 sFairyFeatherDesc[] = _(
+    "A hold item that\n"
+    "raises the power of\n"
+    "FAIRY-type moves.");
+
 static const u8 sRedScarfDesc[] = _(
     "A hold item that\n"
     "raises COOL in\n"

@@ -566,8 +566,8 @@ SeafloorCavern_Room9_EventScript_ItemTMEarthquake::
 	finditem ITEM_TM_EARTHQUAKE
 	end
 
-Route110_TrickHousePuzzle1_EventScript_ItemOrangeMail::
-	finditem ITEM_ORANGE_MAIL
+Route110_TrickHousePuzzle1_EventScript_ItemFairyFeather::
+	finditem ITEM_FAIRY_FEATHER
 	end
 
 Route110_TrickHousePuzzle2_EventScript_ItemHarborMail::
