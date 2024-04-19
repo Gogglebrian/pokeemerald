@@ -628,7 +628,6 @@ static u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves)
 
     return numEggMoves;
 }
-
 u8 GetEggMovesSpecies(u16 species, u16 *eggMoves)
 {
     u16 eggMoveIdx;
