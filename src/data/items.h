@@ -2794,16 +2794,20 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_0E2] =
+    [ITEM_EVIOLITE] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
+        .name = _("EVIOLITE"),
+        .itemId = ITEM_EVIOLITE,
+        .price = 200,
+        .holdEffect = HOLD_EFFECT_EVIOLITE,
+        .holdEffectParam = 50,
+        .description = sEvioliteDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
+        .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 0,
     },
+
 
     [ITEM_0E3] =
     {

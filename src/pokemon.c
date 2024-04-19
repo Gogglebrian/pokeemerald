@@ -3187,6 +3187,11 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         defense *= 2;
     if (attackerHoldEffect == HOLD_EFFECT_THICK_CLUB && (attacker->species == SPECIES_CUBONE || attacker->species == SPECIES_MAROWAK))
         attack *= 2;
+	if (defenderHoldEffect == HOLD_EFFECT_EVIOLITE && (gBaseStats[defender->species].flags & F_WORKS_WITH_EVIOLITE))
+	{
+		spDefense *= (150 * spDefense) / 100;
+		defense *= (150 * defense) / 100;
+	}
 
     // Apply abilities / field sports
     if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
@@ -5480,7 +5485,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem)
         holdEffect = ItemId_GetHoldEffect(heldItem);
 
     // Prevent evolution with Everstone, unless we're just viewing the party menu with an evolution item
-    if (holdEffect == HOLD_EFFECT_PREVENT_EVOLVE && mode != EVO_MODE_ITEM_CHECK)
+    if ((holdEffect == HOLD_EFFECT_PREVENT_EVOLVE && mode != EVO_MODE_ITEM_CHECK) || (heldItem == ITEM_EVIOLITE  && mode != EVO_MODE_ITEM_CHECK))
         return SPECIES_NONE;
 
     switch (mode)
