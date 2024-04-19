@@ -104,8 +104,8 @@
               },
               {
                 "min_level": 3,
-                "max_level": 3,
-                "species": "SPECIES_POOCHYENA"
+                "max_level": 4,
+                "species": "SPECIES_PICHU"
               },
               {
                 "min_level": 3,
@@ -1046,9 +1046,9 @@
                 "species": "SPECIES_NUMEL"
               },
               {
-                "min_level": 15,
+                "min_level": 14,
                 "max_level": 15,
-                "species": "SPECIES_NUMEL"
+                "species": "SPECIES_PHANPY"
               },
               {
                 "min_level": 15,
@@ -1067,8 +1067,8 @@
               },
               {
                 "min_level": 14,
-                "max_level": 14,
-                "species": "SPECIES_MARILL"
+                "max_level": 16,
+                "species": "SPECIES_VULPIX"
               },
               {
                 "min_level": 16,
@@ -1587,8 +1587,8 @@
             "mons": [
               {
                 "min_level": 24,
-                "max_level": 24,
-                "species": "SPECIES_ZIGZAGOON"
+                "max_level": 27,
+                "species": "SPECIES_NATU"
               },
               {
                 "min_level": 24,
@@ -2763,8 +2763,8 @@
               },
               {
                 "min_level": 21,
-                "max_level": 21,
-                "species": "SPECIES_NUMEL"
+                "max_level": 22,
+                "species": "SPECIES_VULPIX"
               },
               {
                 "min_level": 21,
@@ -3998,17 +3998,17 @@
               {
                 "min_level": 26,
                 "max_level": 26,
-                "species": "SPECIES_WINGULL"
+                "species": "SPECIES_NATU"
               },
               {
                 "min_level": 27,
                 "max_level": 27,
-                "species": "SPECIES_WINGULL"
+                "species": "SPECIES_NATU"
               },
               {
                 "min_level": 28,
                 "max_level": 28,
-                "species": "SPECIES_WINGULL"
+                "species": "SPECIES_XATU"
               },
               {
                 "min_level": 25,
