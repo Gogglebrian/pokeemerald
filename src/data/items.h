@@ -469,7 +469,7 @@ const struct Item gItems[] =
     {
         .name = _("ETHER"),
         .itemId = ITEM_ETHER,
-        .price = 1200,
+        .price = 750,
         .holdEffectParam = 10,
         .description = sEtherDesc,
         .pocket = POCKET_ITEMS,
@@ -483,7 +483,7 @@ const struct Item gItems[] =
     {
         .name = _("MAX ETHER"),
         .itemId = ITEM_MAX_ETHER,
-        .price = 2000,
+        .price = 1500,
         .holdEffectParam = 255,
         .description = sMaxEtherDesc,
         .pocket = POCKET_ITEMS,

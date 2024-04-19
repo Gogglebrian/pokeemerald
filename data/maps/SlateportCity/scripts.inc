@@ -154,6 +154,7 @@ SlateportCity_Pokemart_EnergyGuru:
 	.2byte ITEM_ZINC
 	.2byte ITEM_CALCIUM
 	.2byte ITEM_HP_UP
+	.2byte ITEM_PP_UP
 	.2byte ITEM_SUPER_PROTEIN
 	.2byte ITEM_SUPER_IRON
 	.2byte ITEM_SUPER_CARBOS

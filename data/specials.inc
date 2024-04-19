@@ -541,3 +541,4 @@ gSpecials::
 	def_special ResetDefeatedLegendaries
 	def_special ChooseMonForEggTutor
 	def_special TeachEggTutorMove
+

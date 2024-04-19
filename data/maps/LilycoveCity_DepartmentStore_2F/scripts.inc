@@ -62,6 +62,8 @@ LilycoveCity_DepartmentStore_2F_Pokemart2:
 	.2byte ITEM_BURN_HEAL
 	.2byte ITEM_ICE_HEAL
 	.2byte ITEM_AWAKENING
+	.2byte ITEM_ETHER
+	.2byte ITEM_ELIXIR
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_SPECIAL
 	.2byte ITEM_X_ATTACK

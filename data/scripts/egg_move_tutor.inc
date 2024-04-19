@@ -82,3 +82,4 @@ Common_EggMoveTutor_Text_DontHaveMoveToTeachPokemon: @ 82015DE
 Common_EggMoveTutor_Text_ThatIsMerelyAnEgg:
 	.string "What?\n"
 	.string "No Egg should know any moves.$"
+
