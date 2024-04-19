@@ -1435,7 +1435,7 @@ static const u8 sAURA_SPHEREDescription[] = _(
 
 static const u8 sROCK_POLISHDescription[] = _(
 	"Polishes the body to\n"
-	"sharply raise Speed.");
+	"sharply raise SPEED.");
 
 static const u8 sPOISON_JABDescription[] = _(
 	"A stabbing attack that\n"
@@ -1467,7 +1467,7 @@ static const u8 sX_SCISSORDescription[] = _(
 
 static const u8 sBUG_BUZZDescription[] = _(
 	"A damaging sound wave that\n"
-	"may lower Sp. Def.");
+	"may lower SP. DEF.");
 
 static const u8 sDRAGON_PULSEDescription[] = _(
 	"Generates a shock wave to\n"
@@ -1487,11 +1487,11 @@ static const u8 sVACUUM_WAVEDescription[] = _(
 
 static const u8 sFOCUS_BLASTDescription[] = _(
 	"Attacks at full power.\n"
-	"May lower Sp. Def.");
+	"May lower SP. DEF.");
 
 static const u8 sENERGY_BALLDescription[] = _(
 	"Draws power from nature to\n"
-	"attack. May lower Sp. Def.");
+	"attack. May lower SP. DEF.");
 
 static const u8 sBRAVE_BIRDDescription[] = _(
 	"A low altitude charge that\n"
@@ -1499,11 +1499,11 @@ static const u8 sBRAVE_BIRDDescription[] = _(
 
 static const u8 sEARTH_POWERDescription[] = _(
 	"Makes the ground erupt with\n"
-	"power. May lower Sp. Def.");
+	"power. May lower SP. DEF.");
 
 static const u8 sNASTY_PLOTDescription[] = _(
 	"Thinks bad thoughts to\n"
-	"sharply boost Sp. Atk.");
+	"sharply boost SP. ATK.");
 
 static const u8 sBULLET_PUNCHDescription[] = _(
 	"Punches as fast as a bul-\n"
@@ -1551,11 +1551,11 @@ static const u8 sMIRROR_SHOTDescription[] = _(
 
 static const u8 sFLASH_CANNONDescription[] = _(
 	"Releases a blast of light\n"
-	"that may lower Sp. Def.");
+	"that may lower SP. DEF.");
 	
 	static const u8 sDRACO_METEORDescription[] = _(
 	"Casts comets onto the foe.\n"
-	"Harshly lowers the Sp. Atk.");
+	"Harshly lowers the SP. ATK.");
 
 static const u8 sDISCHARGEDescription[] = _(
 	"Zaps the foes with electri-\n"
@@ -1611,7 +1611,7 @@ static const u8 sDRAINING_KISSDescription[] = _(
 
 static const u8 sPLAY_ROUGHDescription[] = _(
 	"Plays rough with the foe.\n"
-	"May lower Attack.");
+	"May lower ATTACK.");
 
 static const u8 sFAIRY_WINDDescription[] = _(
 	"Stirs up a fairy wind to\n"
@@ -1619,18 +1619,18 @@ static const u8 sFAIRY_WINDDescription[] = _(
 
 static const u8 sMOONBLASTDescription[] = _(
 	"Attacks with the power of\n"
-	"the moon. May lower Sp. Atk.");
+	"the moon. May lower SP. ATK.");
 
 static const u8 sPLAY_NICEDescription[] = _(
 	"Befriend the foe, lowering\n"
-	"its Attack without fail.");
+	"its ATTACK without fail.");
 
 static const u8 sDAZZLING_GLEAMDescription[] = _(
 	"Damages foes by emitting\n"
 	"a bright flash.");
 
 static const u8 sBABYDOLL_EYESDescription[] = _(
-	"Lowers the foe's Attack\n"
+	"Lowers the foe's ATTACK\n"
 	"before it can move.");
 
 static const u8 sNUZZLEDescription[] = _(
@@ -1643,7 +1643,7 @@ static const u8 sLAVA_PLUMEDescription[] = _(
 
 static const u8 sLEAF_STORMDescription[] = _(
 	"Whips up a storm of leaves.\n"
-	"Harshly lowers the Sp. Atk.");
+	"Harshly lowers the SP. ATK.");
 
 static const u8 sACCELEROCKDescription[] = _(
 	"Hits with a high-speed\n"
@@ -2062,6 +2062,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
 	[MOVE_PLAY_ROUGH - 1] = sPLAY_ROUGHDescription,
     [MOVE_FAIRY_WIND - 1] = sFAIRY_WINDDescription,
     [MOVE_MOONBLAST - 1] = sMOONBLASTDescription,
+	[MOVE_PLAY_NICE - 1] = sPLAY_NICEDescription,
 	[MOVE_DAZZLING_GLEAM - 1] = sDAZZLING_GLEAMDescription,
 	[MOVE_BABY_DOLL_EYES - 1] = sBABYDOLL_EYESDescription,
     [MOVE_NUZZLE - 1] = sNUZZLEDescription,

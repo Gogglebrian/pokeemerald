@@ -1132,8 +1132,9 @@ static bool8 AccuracyCalcHelper(u16 move)
 static void Cmd_accuracycheck(void)
 {
     u16 move = T2_READ_16(gBattlescriptCurrInstr + 5);
+	u8 moveAcc = gBattleMoves[move].accuracy;
 
-    if (move == NO_ACC_CALC || move == NO_ACC_CALC_CHECK_LOCK_ON)
+    if (move == NO_ACC_CALC || move == NO_ACC_CALC_CHECK_LOCK_ON || moveAcc < 0.5)
     {
         if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && move == NO_ACC_CALC_CHECK_LOCK_ON && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
             gBattlescriptCurrInstr += 7;
@@ -1144,7 +1145,7 @@ static void Cmd_accuracycheck(void)
     }
     else
     {
-        u8 type, moveAcc, holdEffect, param;
+        u8 type, holdEffect, param;
         s8 buff;
         u16 calc;
 
@@ -1174,7 +1175,6 @@ static void Cmd_accuracycheck(void)
         if (buff > MAX_STAT_STAGE)
             buff = MAX_STAT_STAGE;
 
-        moveAcc = gBattleMoves[move].accuracy;
         // check Thunder on sunny weather
         if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SUN && gBattleMoves[move].effect == EFFECT_THUNDER)
             moveAcc = 50;
@@ -7088,7 +7088,11 @@ static void Cmd_stockpiletohpheal(void)
 
 static void Cmd_negativedamage(void)
 {
-    gBattleMoveDamage = -(gHpDealt / 2);
+	if (gBattleMoves[gCurrentMove].argument == 75)
+		gBattleMoveDamage = -(gHpDealt / 2) * 1.5;
+	else
+		gBattleMoveDamage = -(gHpDealt / 2);
+    
     if (gBattleMoveDamage == 0)
         gBattleMoveDamage = -1;
 
