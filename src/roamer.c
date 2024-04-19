@@ -3,6 +3,7 @@
 #include "pokemon.h"
 #include "random.h"
 #include "roamer.h"
+#include "pokedex.h"
 
 // Despite having a variable to track it, the roamer is
 // hard-coded to only ever be in map group 0
@@ -215,7 +216,7 @@ void CreateRoamerMonInstance(void)
 
 bool8 TryStartRoamerEncounter(void)
 {
-    if (IsRoamerAt(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE && (Random() % 4) == 0)
+    if (IsRoamerAt(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE)
     {
         CreateRoamerMonInstance();
         return TRUE;
@@ -237,6 +238,33 @@ void UpdateRoamerHPStatus(struct Pokemon *mon)
 void SetRoamerInactive(void)
 {
     ROAMER->active = FALSE;
+}
+
+void NextRoamer(void)
+{
+	u8 blueCaught = GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIOS), FLAG_GET_CAUGHT);
+	u8 redCaught = GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIAS), FLAG_GET_CAUGHT);
+	bool16 createLatios;
+	
+	if (redCaught && blueCaught) // If both have been caught, then we're done
+	{
+		SetRoamerInactive();
+		return;
+	}
+	else if (redCaught || blueCaught) // If we've caught one but not the other, respawn the one we haven't caught yet
+	{
+		createLatios = redCaught;
+        ClearRoamerData();
+        ClearRoamerLocationData();
+        CreateInitialRoamerMon(createLatios);
+	}
+	else //If we haven't caught either, then respawn the alt to the one we just defeated
+	{
+		createLatios = ROAMER->species == SPECIES_LATIAS;
+        ClearRoamerData();
+        ClearRoamerLocationData();
+        CreateInitialRoamerMon(createLatios);
+	}
 }
 
 void GetRoamerLocation(u8 *mapGroup, u8 *mapNum)

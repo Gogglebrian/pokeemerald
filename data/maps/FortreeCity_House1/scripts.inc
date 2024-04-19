@@ -7,7 +7,7 @@ FortreeCity_House1_EventScript_Trader::
 	goto_if_set FLAG_FORTREE_NPC_TRADE_COMPLETED, FortreeCity_House1_EventScript_TradeCompleted
 	setvar VAR_0x8008, INGAME_TRADE_PLUSLE
 	copyvar VAR_0x8004, VAR_0x8008
-	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+	specialvar VAR_RESULT, GetInGameTradeBaseStats
 	copyvar VAR_0x8009, VAR_RESULT
 	msgbox FortreeCity_House1_Text_YouWillTradeWontYou, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, FortreeCity_House1_EventScript_DeclineTrade

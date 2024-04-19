@@ -63,8 +63,8 @@
 #define ITEM_BLUE_SHARD 49
 #define ITEM_YELLOW_SHARD 50
 #define ITEM_GREEN_SHARD 51
-#define ITEM_034 52
-#define ITEM_035 53
+#define ITEM_LINK_CABLE 52
+#define ITEM_TAXI_PAGER 53
 #define ITEM_036 54
 #define ITEM_037 55
 #define ITEM_038 56
@@ -73,7 +73,7 @@
 #define ITEM_03B 59
 #define ITEM_03C 60
 #define ITEM_03D 61
-#define ITEM_03E 62
+#define ITEM_ABILITY_CAPSULE 62
 #define ITEM_HP_UP 63
 #define ITEM_PROTEIN 64
 #define ITEM_IRON 65
@@ -280,7 +280,7 @@
 #define ITEM_0FA 250
 #define ITEM_0FB 251
 #define ITEM_0FC 252
-#define ITEM_0FD 253
+#define ITEM_PRISM_SCALE 253
 
 // Contest held items
 #define ITEM_RED_SCARF 254
@@ -417,7 +417,53 @@
 #define ITEM_MAGMA_EMBLEM 375
 #define ITEM_OLD_SEA_MAP 376
 
-#define ITEMS_COUNT 377
+// Mints
+#define ITEM_ADAMANT_MINT        377
+#define ITEM_BOLD_MINT           378
+#define ITEM_BRAVE_MINT          379
+#define ITEM_CALM_MINT           380
+#define ITEM_CAREFUL_MINT        381
+#define ITEM_GENTLE_MINT         382
+#define ITEM_HASTY_MINT          383
+#define ITEM_IMPISH_MINT         384
+#define ITEM_JOLLY_MINT          385
+#define ITEM_LAX_MINT            386
+#define ITEM_LONELY_MINT         387
+#define ITEM_MILD_MINT           388
+#define ITEM_MODEST_MINT         389
+#define ITEM_NAIVE_MINT          390
+#define ITEM_NAUGHTY_MINT        391
+#define ITEM_QUIET_MINT          392
+#define ITEM_RASH_MINT           393
+#define ITEM_RELAXED_MINT        394
+#define ITEM_SASSY_MINT          395
+#define ITEM_SERIOUS_MINT        396
+#define ITEM_TIMID_MINT          397
+#define ITEM_HARDY_MINT          398
+#define ITEM_DOCILE_MINT         399
+#define ITEM_BASHFUL_MINT        400
+#define ITEM_QUIRKY_MINT         401
+#define ITEM_SUPER_HP_UP		 402
+#define ITEM_SUPER_PROTEIN		 403
+#define ITEM_SUPER_IRON			 404
+#define ITEM_SUPER_CARBOS		 405
+#define ITEM_SUPER_CALCIUM		 406
+#define ITEM_SUPER_ZINC			 407
+#define ITEM_ANTI_HP_UP		 	 408
+#define ITEM_ANTI_PROTEIN		 409
+#define ITEM_ANTI_IRON			 410
+#define ITEM_ANTI_CARBOS		 411
+#define ITEM_ANTI_CALCIUM		 412
+#define ITEM_ANTI_ZINC			 413
+
+#define ITEM_POWER_BRACER    	 414
+#define ITEM_POWER_BELT   		 415
+#define ITEM_POWER_LENS  		 416
+#define ITEM_POWER_BAND  		 417
+#define ITEM_POWER_ANKLET  		 418
+#define ITEM_POWER_WEIGHT  		 419
+
+#define ITEMS_COUNT              420
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
 // Its icon is defined at ITEMS_COUNT as the "return to field" arrow

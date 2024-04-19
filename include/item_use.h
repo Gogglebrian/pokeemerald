@@ -11,6 +11,7 @@ void ItemUseOutOfBattle_PowderJar(u8);
 void ItemUseOutOfBattle_SSTicket(u8);
 void ItemUseOutOfBattle_WailmerPail(u8);
 void ItemUseOutOfBattle_Medicine(u8);
+void ItemUseOutOfBattle_AbilityCapsule(u8);
 void ItemUseOutOfBattle_ReduceEV(u8);
 void ItemUseOutOfBattle_SacredAsh(u8);
 void ItemUseOutOfBattle_PPRecovery(u8);
@@ -24,6 +25,8 @@ void ItemUseOutOfBattle_EvolutionStone(u8);
 void ItemUseOutOfBattle_Berry(u8);
 void ItemUseOutOfBattle_EnigmaBerry(u8);
 void ItemUseOutOfBattle_CannotUse(u8);
+void ItemUseOutOfBattle_LinkCable(u8);
+void ItemUseOutOfBattle_TaxiPager(u8);
 void ItemUseInBattle_PokeBall(u8);
 void ItemUseInBattle_StatIncrease(u8);
 void ItemUseInBattle_Medicine(u8);
@@ -33,5 +36,13 @@ void ItemUseInBattle_EnigmaBerry(u8);
 void Task_UseDigEscapeRopeOnField(u8 taskId);
 u8 CanUseDigOrEscapeRopeOnCurMap(void);
 u8 CheckIfItemIsTMHMOrEvolutionStone(u16 itemId);
+void ItemUseOutOfBattle_ReduceIV(u8);
+void ItemUseOutOfBattle_IncreaseIV(u8);
+void ItemUseOutOfBattle_ResetEV(u8);
+
+void ItemUseOutOfBattle_PokeBall(u8);
+
+void ItemUseOutOfBattle_Mints(u8 taskId);
+
 
 #endif // GUARD_ITEM_USE_H

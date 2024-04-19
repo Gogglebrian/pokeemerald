@@ -296,6 +296,23 @@
 #define ANIM_TAG_SLASH_2                    (ANIM_SPRITES_START + 286)
 #define ANIM_TAG_WHIP_HIT                   (ANIM_SPRITES_START + 287)
 #define ANIM_TAG_BLUE_RING_2                (ANIM_SPRITES_START + 288)
+//new particles
+#define ANIM_TAG_WHITE_STREAK               (ANIM_SPRITES_START + 289)
+#define ANIM_TAG_PURPLE_JAB                 (ANIM_SPRITES_START + 290)
+#define ANIM_TAG_ENERGY_BALL				(ANIM_SPRITES_START + 291)
+#define ANIM_TAG_DRAGON_PULSE				(ANIM_SPRITES_START + 292)
+#define ANIM_TAG_DRAGON_PULSE_RING          (ANIM_SPRITES_START + 293)
+#define ANIM_TAG_WOOD_HAMMER                (ANIM_SPRITES_START + 294)
+#define ANIM_TAG_PSYCHO_CUT                 (ANIM_SPRITES_START + 295)
+#define ANIM_TAG_POWER_GEM                  (ANIM_SPRITES_START + 296)
+#define ANIM_TAG_STONE_EDGE                 (ANIM_SPRITES_START + 297)
+#define ANIM_TAG_POISON_JAB                 (ANIM_SPRITES_START + 298)
+#define ANIM_TAG_FLASH_CANNON_BALL          (ANIM_SPRITES_START + 299)
+#define ANIM_TAG_MUD_BOMB                   (ANIM_SPRITES_START + 300)
+#define ANIM_TAG_DRAGON_ASCENT	            (ANIM_SPRITES_START + 301)
+#define ANIM_TAG_DRAGON_ASCENT_FOE			(ANIM_SPRITES_START + 302) //used by avalanche
+#define ANIM_TAG_QUICK_GUARD_HAND			(ANIM_SPRITES_START + 303) //used by shadow sneak 
+
 
 // battlers
 #define ANIM_ATTACKER         0

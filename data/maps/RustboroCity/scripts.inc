@@ -201,6 +201,10 @@ RustboroCity_EventScript_TunnelSign::
 RustboroCity_EventScript_DevonCorpSign::
 	msgbox RustboroCity_Text_DevonCorpSign, MSGBOX_SIGN
 	end
+	
+RustboroCity_EventScript_EggTutorSign::
+	msgbox RustboroCity_Text_EggMoveTutor, MSGBOX_SIGN
+	end
 
 RustboroCity_EventScript_GymSign::
 	msgbox RustboroCity_Text_GymSign, MSGBOX_SIGN
@@ -1238,6 +1242,10 @@ RustboroCity_Text_DevonCorpSign:
 	.string "DEVON CORPORATION\p"
 	.string "“For all your living needs, we make\n"
 	.string "it all.”$"
+
+RustboroCity_Text_EggMoveTutor:
+	.string "EGG MOVE TUTOR\p"
+	.string "“I sit on a couch and teach cool moves!”$"
 
 RustboroCity_Text_GymSign:
 	.string "RUSTBORO CITY POKéMON GYM\n"

@@ -134,7 +134,7 @@ static const u16 sPoints_MoveEffect[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_RECOIL_IF_MISS] = 1,
     [EFFECT_MIST] = 5,
     [EFFECT_FOCUS_ENERGY] = 1,
-    [EFFECT_RECOIL] = 2,
+    [EFFECT_RECOIL_25] = 2,
     [EFFECT_CONFUSE] = 4,
     [EFFECT_ATTACK_UP_2] = 1,
     [EFFECT_DEFENSE_UP_2] = 1,
@@ -284,7 +284,7 @@ static const u16 sPoints_MoveEffect[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_SNATCH] = 1,
     [EFFECT_LOW_KICK] = 1,
     [EFFECT_SECRET_POWER] = 1,
-    [EFFECT_DOUBLE_EDGE] = 2,
+    [EFFECT_RECOIL_33] = 2,
     [EFFECT_TEETER_DANCE] = 6,
     [EFFECT_BLAZE_KICK] = 1,
     [EFFECT_MUD_SPORT] = 4,
@@ -299,7 +299,11 @@ static const u16 sPoints_MoveEffect[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_WATER_SPORT] = 4,
     [EFFECT_CALM_MIND] = 1,
     [EFFECT_DRAGON_DANCE] = 1,
-    [EFFECT_CAMOUFLAGE] = 3
+    [EFFECT_CAMOUFLAGE] = 3,
+	[EFFECT_CLOSE_COMBAT] = 2,
+	[EFFECT_FLINCH_STATUS] = 1,
+	[EFFECT_RECOIL_33_STATUS] = 2,
+	[EFFECT_RECOIL_50] = 2,
 };
 
 static const u16 sPoints_Effectiveness[] =
@@ -1246,7 +1250,7 @@ static void AddMovePoints(u8 caseId, u16 arg1, u8 arg2, u8 arg3)
         break;
     case PTS_REFLECT:
         // If hit Reflect with damaging physical move
-        if (IS_TYPE_PHYSICAL(type) && power != 0 && tvPtr->side[defSide].reflectMonId != 0)
+        if (IS_MOVE_PHYSICAL(gCurrentMove) && power != 0 && tvPtr->side[defSide].reflectMonId != 0)
         {
             u32 id = (tvPtr->side[defSide].reflectMonId - 1) * 4;
             movePoints->points[defSide][id + tvPtr->side[defSide].reflectMoveSlot] += sPointsArray[caseId][0];
@@ -1254,7 +1258,7 @@ static void AddMovePoints(u8 caseId, u16 arg1, u8 arg2, u8 arg3)
         break;
     case PTS_LIGHT_SCREEN:
         // If hit Light Screen with damaging special move
-        if (!IS_TYPE_PHYSICAL(type) && power != 0 && tvPtr->side[defSide].lightScreenMonId != 0)
+        if (IS_MOVE_SPECIAL(gCurrentMove) && power != 0 && tvPtr->side[defSide].lightScreenMonId != 0)
         {
             u32 id = (tvPtr->side[defSide].lightScreenMonId - 1) * 4;
             movePoints->points[defSide][id + tvPtr->side[defSide].lightScreenMoveSlot] += sPointsArray[caseId][0];

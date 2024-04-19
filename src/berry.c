@@ -91,6 +91,8 @@ static const u8 sBerryDescriptionPart1_Pamtre[] = _("Drifts on the sea from some
 static const u8 sBerryDescriptionPart2_Pamtre[] = _("It is thought to grow elsewhere.");
 static const u8 sBerryDescriptionPart1_Watmel[] = _("A huge BERRY, with some over 20");
 static const u8 sBerryDescriptionPart2_Watmel[] = _("inches discovered. Exceedingly sweet.");
+const u8 sBerryDescriptionPart1_WatmelMetric[] = _("A huge Berry, with some over half a");
+const u8 sBerryDescriptionPart2_WatmelMetric[] = _("meter discovered. Exceedingly sweet.");
 static const u8 sBerryDescriptionPart1_Durin[] = _("Bitter to even look at. It is so");
 static const u8 sBerryDescriptionPart2_Durin[] = _("bitter, no one has ever eaten it as is.");
 static const u8 sBerryDescriptionPart1_Belue[] = _("It is glossy and looks delicious, but");
@@ -1059,16 +1061,6 @@ static bool32 BerryTreeGrow(struct BerryTree *tree)
     case BERRY_STAGE_TALLER:
         tree->stage++;
         break;
-    case BERRY_STAGE_BERRIES:
-        tree->watered1 = 0;
-        tree->watered2 = 0;
-        tree->watered3 = 0;
-        tree->watered4 = 0;
-        tree->berryYield = 0;
-        tree->stage = BERRY_STAGE_SPROUTED;
-        if (++tree->regrowthCount == 10)
-            *tree = gBlankBerryTree;
-        break;
     }
     return TRUE;
 }
@@ -1082,31 +1074,24 @@ void BerryTreeTimeUpdate(s32 minutes)
     {
         tree = &gSaveBlock1Ptr->berryTrees[i];
 
-        if (tree->berry && tree->stage && !tree->stopGrowth)
+        if (tree->berry && tree->stage && (tree->stage != BERRY_STAGE_BERRIES))
         {
-            if (minutes >= GetStageDurationByBerryType(tree->berry) * 71)
-            {
-                *tree = gBlankBerryTree;
-            }
-            else
-            {
-                s32 time = minutes;
+			s32 time = minutes;
 
-                while (time != 0)
-                {
-                    if (tree->minutesUntilNextStage > time)
-                    {
-                        tree->minutesUntilNextStage -= time;
-                        break;
-                    }
-                    time -= tree->minutesUntilNextStage;
-                    tree->minutesUntilNextStage = GetStageDurationByBerryType(tree->berry);
-                    if (!BerryTreeGrow(tree))
-                        break;
-                    if (tree->stage == BERRY_STAGE_BERRIES)
-                        tree->minutesUntilNextStage *= 4;
-                }
-            }
+			while (time != 0)
+			{
+				if (tree->minutesUntilNextStage > time)
+				{
+					tree->minutesUntilNextStage -= time;
+					break;
+				}
+				time -= tree->minutesUntilNextStage;
+				tree->minutesUntilNextStage = GetStageDurationByBerryType(tree->berry);
+				if (!BerryTreeGrow(tree))
+					break;
+				if (tree->stage == BERRY_STAGE_BERRIES)
+					tree->minutesUntilNextStage *= 4;
+			} 
         }
     }
 }

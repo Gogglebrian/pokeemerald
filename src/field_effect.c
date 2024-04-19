@@ -1,5 +1,6 @@
 #include "global.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "event_object_movement.h"
 #include "field_camera.h"
 #include "field_control_avatar.h"
@@ -27,10 +28,12 @@
 #include "trig.h"
 #include "util.h"
 #include "constants/field_effects.h"
+#include "constants/field_specials.h"
 #include "constants/event_object_movement.h"
 #include "constants/metatile_behaviors.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "pokemon_storage_system.h"
 
 #define subsprite_table(ptr) {.subsprites = ptr, .subspriteCount = (sizeof ptr) / (sizeof(struct Subsprite))}
 
@@ -201,12 +204,16 @@ static void FlyOutFieldEffect_ShowMon(struct Task *);
 static void FlyOutFieldEffect_BirdLeaveBall(struct Task *);
 static void FlyOutFieldEffect_WaitBirdLeave(struct Task *);
 static void FlyOutFieldEffect_BirdSwoopDown(struct Task *);
+static void FlyOutFieldEffect_TaxiBirdSwoopDown(struct Task *);
 static void FlyOutFieldEffect_JumpOnBird(struct Task *);
 static void FlyOutFieldEffect_FlyOffWithBird(struct Task *);
 static void FlyOutFieldEffect_WaitFlyOff(struct Task *);
 static void FlyOutFieldEffect_End(struct Task *);
+static void FlyingTaxiInFieldEffect_FixPlayer(struct Task *);
+static void FlyingTaxiFieldEffect_FlyNoises(struct Task *);
 
 static u8 CreateFlyBirdSprite(void);
+static u8 CreateFlyingTaxiSprite(void);
 static u8 GetFlyBirdAnimCompleted(u8);
 static void StartFlyBirdSwoopDown(u8);
 static void SetFlyBirdPlayerSpriteId(u8, u8);
@@ -1012,7 +1019,7 @@ bool8 FldEff_PokecenterHeal(void)
     u8 nPokemon;
     struct Task *task;
 
-    nPokemon = CalculatePlayerPartyCount();
+    nPokemon = CountPartyNonEggMons();
     task = &gTasks[CreateTask(Task_PokecenterHeal, 0xff)];
     task->tNumMons = nPokemon;
     task->tFirstBallX = 93;
@@ -3144,6 +3151,7 @@ static void SpriteCB_NPCFlyOut(struct Sprite *sprite)
         FieldEffectStop(sprite, FLDEFF_NPCFLY_OUT);
 }
 
+
 // Task data for Task_FlyOut/FlyIn
 #define tState          data[0]
 #define tMonId          data[1]
@@ -3174,9 +3182,38 @@ static void (*const sFlyOutFieldEffectFuncs[])(struct Task *) = {
     FlyOutFieldEffect_End,
 };
 
+void (*const sFlyingTaxiFieldEffectFuncs[])(struct Task *) = {
+	//FlyOutFieldEffect_FieldMovePose,
+    //FlyOutFieldEffect_ShowMon,
+    //FlyOutFieldEffect_BirdLeaveBall,
+    FlyOutFieldEffect_TaxiBirdSwoopDown,
+    FlyOutFieldEffect_JumpOnBird,
+    FlyOutFieldEffect_FlyOffWithBird,
+    FlyOutFieldEffect_WaitFlyOff,
+    FlyOutFieldEffect_End,
+};
+
+/*
+static void FlyingTaxiFieldEffect_FlyNoises(struct Task *task)
+{
+    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    if ((task->tTimer == 0 || (--task->tTimer) == 0) && ObjectEventClearHeldMovementIfFinished(objectEvent))
+    {
+        task->tState++;
+        task->tTimer = 2;
+        PlaySE(SE_M_FLY);
+        StartFlyBirdSwoopDown(task->tBirdSpriteId);
+    }
+}
+*/
+
+
 static void Task_FlyOut(u8 taskId)
 {
-    sFlyOutFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId]);
+    if (VarGet(VAR_0x800A) == LAST_TALKED_TO_FLYING_TAXI)
+        sFlyingTaxiFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId]);
+    else
+        sFlyOutFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId]);
 }
 
 static void FlyOutFieldEffect_FieldMovePose(struct Task *task)
@@ -3223,6 +3260,7 @@ static void FlyOutFieldEffect_WaitBirdLeave(struct Task *task)
 {
     if (GetFlyBirdAnimCompleted(task->tBirdSpriteId))
     {
+		
         task->tState++;
         task->tTimer = 16;
         SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
@@ -3239,6 +3277,14 @@ static void FlyOutFieldEffect_BirdSwoopDown(struct Task *task)
         PlaySE(SE_M_FLY);
         StartFlyBirdSwoopDown(task->tBirdSpriteId);
     }
+}
+
+static void FlyOutFieldEffect_TaxiBirdSwoopDown(struct Task *task)
+{
+	task->tBirdSpriteId = CreateFlyingTaxiSprite();
+	task->tState++;
+	PlaySE(SE_M_FLY);
+	StartFlyBirdSwoopDown(task->tBirdSpriteId);
 }
 
 static void FlyOutFieldEffect_JumpOnBird(struct Task *task)
@@ -3300,6 +3346,19 @@ static u8 CreateFlyBirdSprite(void)
     sprite->oam.paletteNum = 0;
     sprite->oam.priority = 1;
     sprite->callback = SpriteCB_FlyBirdLeaveBall;
+    return spriteId;
+}
+
+static u8 CreateFlyingTaxiSprite(void)
+{
+    u8 spriteId;
+    struct Sprite *sprite;
+	
+	//LoadFieldEffectPalette(FLDEFFOBJ_ALTARIA);
+    spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_BIRD], 0xff, 0xb4, 0x1);
+    sprite = &gSprites[spriteId];
+	sprite->oam.paletteNum = 0;
+    sprite->oam.priority = 1;
     return spriteId;
 }
 
@@ -3462,9 +3521,40 @@ static void (*const sFlyInFieldEffectFuncs[])(struct Task *) = {
     FlyInFieldEffect_End,
 };
 
+static void (*const sFlyingTaxiInFieldEffectFuncs[])(struct Task *) = {
+    FlyInFieldEffect_BirdSwoopDown,
+    FlyInFieldEffect_FlyInWithBird,
+    FlyInFieldEffect_JumpOffBird,
+	FlyingTaxiInFieldEffect_FixPlayer,
+	FlyInFieldEffect_WaitBirdReturn,
+    FlyInFieldEffect_End,
+};
+
+static void FlyingTaxiInFieldEffect_FixPlayer(struct Task *task)
+{
+    struct ObjectEvent *objectEvent;
+    struct Sprite *sprite;
+    if (GetFlyBirdAnimCompleted(task->tBirdSpriteId))
+    {
+        objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+        sprite = &gSprites[objectEvent->spriteId];
+        objectEvent->inanimate = FALSE;
+        MoveObjectEventToMapCoords(objectEvent, objectEvent->currentCoords.x, objectEvent->currentCoords.y);
+        sprite->x2 = 0;
+        sprite->y2 = 0;
+        sprite->coordOffsetEnabled = TRUE;
+        //SetPlayerAvatarFieldMove();
+        //ObjectEventSetHeldMovement(objectEvent, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
+        task->tState++;
+    }
+}
+
 static void Task_FlyIn(u8 taskId)
 {
-    sFlyInFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId]);
+	if (VarGet(VAR_0x800A) == LAST_TALKED_TO_FLYING_TAXI)
+		sFlyingTaxiInFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId]);
+	else
+		sFlyInFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId]);
 }
 
 static void FlyInFieldEffect_BirdSwoopDown(struct Task *task)

@@ -21,7 +21,7 @@ FortreeCity_Gym_EventScript_Winona::
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, FortreeCity_Gym_EventScript_WinonaRematch
 	goto_if_unset FLAG_RECEIVED_TM_AERIAL_ACE, FortreeCity_Gym_EventScript_GiveAerialAce2
-	msgbox FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT
+	msgbox FortreeCity_Gym_Text_ExplainTaxiPagerPost, MSGBOX_DEFAULT
 	release
 	end
 
@@ -42,6 +42,9 @@ FortreeCity_Gym_EventScript_WinonaDefeated::
 	waitfanfare
 	closemessage
 	delay 30
+	msgbox FortreeCity_Gym_Text_ExplainTaxiPagerTakeThis, MSGBOX_DEFAULT
+	giveitem ITEM_TAXI_PAGER
+	msgbox FortreeCity_Gym_Text_ExplainTaxiPagerPost, MSGBOX_DEFAULT
 	setflag FLAG_ENABLE_WINONA_MATCH_CALL
 	setvar VAR_SCOTT_FORTREE_CALL_STEP_COUNTER, 0
 	setflag FLAG_SCOTT_CALL_FORTREE_GYM
@@ -270,6 +273,29 @@ FortreeCity_Gym_Text_ExplainAerialAce:
 FortreeCity_Gym_Text_RegisteredWinona:
 	.string "Registered GYM LEADER WINONA\n"
 	.string "in the POKéNAV.$"
+
+FortreeCity_Gym_Text_ExplainTaxiPagerTakeThis:
+	.string "One more thing… I have a small request.\p"
+	.string "As a lover of BIRD POKéMON, I've\n"
+	.string "dreamed of sharing the joy of soaring\l"
+	.string "the skies with one and all.\p"
+	.string "Now, with the help of my friends\n"
+	.string "LANETTE and WATTSON, that dream\l"
+	.string "can finally become a reality.\p"
+	.string "We're starting a new service, HOENN AIR,\n"
+	.string "offering convenient flights on\l"
+	.string "stalwart FLYING-type POKéMON.\p"
+	.string "The preparations are nearly complete.\n"
+	.string "The final step is for real travelers\l"
+	.string "to test our FLIGHT PAGER devices.\p"
+	.string "Please, take this FLIGHT PAGER.$"
+	
+FortreeCity_Gym_Text_ExplainTaxiPagerPost:
+	.string "The FLIGHT PAGER will call one of our\n"
+	.string "flying ferry POKéMON to your location.\p"
+	.string "Don't hesitate to use it whenever you\n"
+	.string "need. The usage data will help us\l"
+	.string "make HOENN AIR even better.$"
 
 FortreeCity_Gym_Text_WinonaPostBattle:
 	.string "Though I fell to you, I will remain\n"

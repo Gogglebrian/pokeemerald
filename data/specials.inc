@@ -192,6 +192,7 @@ gSpecials::
 	def_special GabbyAndTyGetLastBattleTrivia
 	def_special GetGabbyAndTyLocalIds
 	def_special GetBattleOutcome
+	def_special CanFlyFromHere
 	def_special GetDaycareMonNicknames
 	def_special GetDaycareState
 	def_special RejectEggFromDayCare
@@ -263,7 +264,7 @@ gSpecials::
 	def_special BedroomPC
 	def_special PlayerPC
 	def_special FieldShowRegionMap
-	def_special GetInGameTradeSpeciesInfo
+	def_special GetInGameTradeBaseStats
 	def_special CreateInGameTradePokemon
 	def_special DoInGameTradeScene
 	def_special GetTradeSpecies
@@ -535,3 +536,9 @@ gSpecials::
 	def_special RemoveRecordsWindow
 	def_special CloseDeptStoreElevatorWindow
 	def_special TrySetBattleTowerLinkType
+	def_special BufferUnitSystemText
+	def_special FieldLoadFlyMap
+	def_special ResetDefeatedLegendaries
+	def_special ChooseMonForEggTutor
+	def_special TeachEggTutorMove
+

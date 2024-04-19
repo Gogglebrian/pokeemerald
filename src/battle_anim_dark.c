@@ -989,3 +989,4 @@ void GetIsDoomDesireHitTurn(u8 taskId)
 
     DestroyAnimVisualTask(taskId);
 }
+

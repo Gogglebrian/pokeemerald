@@ -1,5 +1,6 @@
 const struct SpritePalette gSpritePalette_GeneralFieldEffect0 = {gFieldEffectObjectPalette0, FLDEFF_PAL_TAG_GENERAL_0};
 const struct SpritePalette gSpritePalette_GeneralFieldEffect1 = {gFieldEffectObjectPalette1, FLDEFF_PAL_TAG_GENERAL_1};
+const struct SpritePalette gSpritePalette_Altaria = {gFieldEffectObjectPal_Altaria, FLDEFF_PAL_TAG_ALTARIA};
 
 static const union AnimCmd sAnim_Shadow[] =
 {
@@ -1051,6 +1052,10 @@ static const struct SpriteFrameImage sPicTable_Bird[] = {
     obj_frame_tiles(gFieldEffectObjectPic_Bird),
 };
 
+static const struct SpriteFrameImage sPicTable_AltariaTaxi[] = {
+    obj_frame_tiles(gFieldEffectObjectPic_Altaria),
+};
+
 static const union AnimCmd sAnim_Bird[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -1068,6 +1073,16 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_Bird = {
     .oam = &gObjectEventBaseOam_32x32,
     .anims = sAnimTable_Bird,
     .images = sPicTable_Bird,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+const struct SpriteTemplate gFieldEffectObjectTemplate_AltariaTaxi = {
+    .tileTag = TAG_NONE,
+    .paletteTag = FLDEFF_PAL_TAG_ALTARIA,
+    .oam = &gObjectEventBaseOam_32x32,
+    .anims = sAnimTable_Bird,
+    .images = sPicTable_AltariaTaxi,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy,
 };

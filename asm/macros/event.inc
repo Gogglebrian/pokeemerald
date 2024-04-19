@@ -1729,6 +1729,13 @@
 	.2byte \quantity
 	.endm
 
+@ Checks if the player has enough space in their PC to hold quantity more of the specified item. Sets VAR_RESULT to
+	@ TRUE if there is room, or FALSE is there is no room.
+	.macro checkpcspace itemId:req, quantity=1
+	.byte 0xe3
+	.2byte \itemId
+	.2byte \quantity
+	.endm
 
 @ Supplementary
 
@@ -1938,4 +1945,15 @@
 	setvar VAR_0x8005, \level
 	setvar VAR_0x8006, \item
 	special CreateEnemyEventMon
+	.endm
+
+	@ Adds unit system string to the respective stringvar.
+	@ texttype values:
+	@ UNIT_TEXT_LENGTH_SMALL_SINGLE,  UNIT_TEXT_LENGTH_SMALL_PLURAL,  UNIT_TEXT_LENGTH_SMALL_SYMBOL.
+	@ UNIT_TEXT_LENGTH_MEDIUM_SINGLE, UNIT_TEXT_LENGTH_MEDIUM_PLURAL, UNIT_TEXT_LENGTH_MEDIUM_SYMBOL.
+	@ UNIT_TEXT_WEIGHT_SINGLE,        UNIT_TEXT_WEIGHT_PLURAL,        UNIT_TEXT_WEIGHT_SYMBOL.
+	.macro bufferunitsystemtext texttype:req, stringvarnumber=1
+	setvar VAR_0x8000, \texttype
+	setvar VAR_0x8001, \stringvarnumber
+	special BufferUnitSystemText
 	.endm

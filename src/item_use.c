@@ -8,6 +8,7 @@
 #include "bike.h"
 #include "coins.h"
 #include "data.h"
+#include "debug.h"
 #include "event_data.h"
 #include "event_object_lock.h"
 #include "event_object_movement.h"
@@ -60,6 +61,8 @@ static void ItemUseOnFieldCB_Itemfinder(u8);
 static void ItemUseOnFieldCB_Berry(u8);
 static void ItemUseOnFieldCB_WailmerPailBerry(u8);
 static void ItemUseOnFieldCB_WailmerPailSudowoodo(u8);
+static void ItemUseOnFieldCB_LinkCable(u8 taskId);
+static void ItemUseOnFieldCB_TaxiPager(u8 taskId);
 static bool8 TryToWaterSudowoodo(void);
 static void BootUpSoundTMHM(u8);
 static void Task_ShowTMHMContainedMessage(u8);
@@ -70,6 +73,7 @@ static void Task_UseRepel(u8);
 static void Task_CloseCantUseKeyItemMessage(u8);
 static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
+void Cycle_Through_Repels(void);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -192,6 +196,37 @@ void ItemUseOutOfBattle_Mail(u8 taskId)
     gBagMenu->newScreenCallback = CB2_CheckMail;
     Task_FadeAndCloseBagMenu(taskId);
 }
+
+static void ItemUseOnFieldCB_LinkCable(u8 taskId)
+{    
+	//PlaySE(SE_SELECT);
+    //Task_FadeAndCloseBagMenu(taskId);
+	LockPlayerFieldControls();
+	ScriptContext_SetupScript(Common_EventScript_SelfTrade_V1);
+	DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_LinkCable(u8 taskId)
+{
+	sItemUseOnFieldCB = ItemUseOnFieldCB_LinkCable;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void ItemUseOnFieldCB_TaxiPager(u8 taskId)
+{    
+	//PlaySE(SE_SELECT);
+    //Task_FadeAndCloseBagMenu(taskId);
+	LockPlayerFieldControls();
+	ScriptContext_SetupScript(Common_EventScript_TaxiPager);
+	DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_TaxiPager(u8 taskId)
+{
+	sItemUseOnFieldCB = ItemUseOnFieldCB_TaxiPager;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
 
 void ItemUseOutOfBattle_Bike(u8 taskId)
 {
@@ -749,6 +784,12 @@ void ItemUseOutOfBattle_Medicine(u8 taskId)
     SetUpItemUseCallback(taskId);
 }
 
+void ItemUseOutOfBattle_AbilityCapsule(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_AbilityCapsule;
+    SetUpItemUseCallback(taskId);
+}
+
 void ItemUseOutOfBattle_ReduceEV(u8 taskId)
 {
     gItemUseCB = ItemUseCB_ReduceEV;
@@ -858,12 +899,32 @@ static void Task_UseRepel(u8 taskId)
     if (!IsSEPlaying())
     {
         VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(gSpecialVar_ItemId));
-        RemoveUsedItem();
+        VarSet(VAR_REPEL_LAST_USED, gSpecialVar_ItemId);
+		RemoveUsedItem();
         if (!InBattlePyramid())
             DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
         else
             DisplayItemMessageInBattlePyramid(taskId, gStringVar4, Task_CloseBattlePyramidBagMessage);
     }
+}
+
+void Cycle_Through_Repels(void)
+{//Once the last repel of the chosen type has been depleted, find the next lowest repel class 
+ //and start using it! (Set it as VAR_REPEL_LAST_USED)
+
+    u16 RepelCycle[] = {ITEM_REPEL, ITEM_SUPER_REPEL, ITEM_MAX_REPEL};    
+    u8 i = 0;
+
+    while (gSpecialVar_Result == FALSE){
+        gSpecialVar_Result = CheckBagHasItem(RepelCycle[i],1);
+        if (gSpecialVar_Result == TRUE)
+            VarSet(VAR_REPEL_LAST_USED, RepelCycle[i]);
+        i++;
+        if (i > 2)
+            return;
+    }
+
+    return;
 }
 
 static void Task_UsedBlackWhiteFlute(u8 taskId)
@@ -941,6 +1002,14 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 
 void ItemUseInBattle_PokeBall(u8 taskId)
 {
+#if TX_DEBUG_SYSTEM_ENABLE == TRUE
+    if (FlagGet(FLAG_SYS_NO_CATCHING)){
+        static const u8 sText_BallsCannotBeUsed[] = _("Poké Balls cannot be used\nright now!\p");
+        DisplayItemMessage(taskId, 1, sText_BallsCannotBeUsed, CloseItemMessage);
+        return;
+    }
+#endif
+
     if (IsPlayerPartyAndPokemonStorageFull() == FALSE) // have room for mon?
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);
@@ -1127,4 +1196,36 @@ void ItemUseOutOfBattle_CannotUse(u8 taskId)
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
+
+void ItemUseOutOfBattle_Mints(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_Mints;
+	SetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_ReduceIV(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_ReduceIV;
+    SetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_IncreaseIV(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_IncreaseIV;
+    SetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_ResetEV(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_ResetEV;
+    SetUpItemUseCallback(taskId);
+}
+
 #undef tUsingRegisteredKeyItem
+
+void ItemUseOutOfBattle_PokeBall(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_PokeBall;
+    gBagMenu->newScreenCallback = CB2_ShowPartyMenuForItemUse;
+    Task_FadeAndCloseBagMenu(taskId);
+}

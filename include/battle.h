@@ -425,7 +425,7 @@ struct BattleStruct
     u16 castformPalette[NUM_CASTFORM_FORMS][16];
     union {
         struct LinkBattlerHeader linkBattlerHeader;
-        u32 battleVideo[2];
+        u32 battleVideo[4];
     } multiBuffer;
     u8 wishPerishSongState;
     u8 wishPerishSongBattlerId;
@@ -433,7 +433,7 @@ struct BattleStruct
     u8 atkCancellerTracker;
     struct BattleTvMovePoints tvMovePoints;
     struct BattleTv tv;
-    u8 unused_7[0x28];
+    u8 unused_7[0x20];
     u8 AI_monToSwitchIntoId[MAX_BATTLERS_COUNT];
     s8 arenaMindPoints[2];
     s8 arenaSkillPoints[2];
@@ -460,8 +460,10 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
         typeArg = gBattleMoves[move].type;                            \
 }
 
-#define IS_TYPE_PHYSICAL(moveType)(moveType < TYPE_MYSTERY)
-#define IS_TYPE_SPECIAL(moveType)(moveType > TYPE_MYSTERY)
+//Physical-special split ;)
+#define IS_MOVE_PHYSICAL(move)(gBattleMoves[move].category == MOVE_CATEGORY_PHYSICAL)
+#define IS_MOVE_SPECIAL(move)(gBattleMoves[move].category == MOVE_CATEGORY_SPECIAL)
+#define IS_MOVE_STATUS(move)(gBattleMoves[move].category == MOVE_CATEGORY_STATUS)
 
 #define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0))
 
@@ -485,33 +487,35 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 //       in include/constants/battle_script_commands.h
 struct BattleScripting
 {
-    s32 painSplitHp;
-    s32 bideDmg;
-    u8 multihitString[6];
-    u8 dmgMultiplier;
-    u8 twoTurnsMoveStringId;
-    u8 animArg1;
-    u8 animArg2;
-    u16 tripleKickPower;
-    u8 moveendState;
-    u8 battlerWithAbility;
-    u8 multihitMoveEffect;
-    u8 battler;
-    u8 animTurn;
-    u8 animTargetsHit;
-    u8 statChanger;
-    bool8 statAnimPlayed;
-    u8 getexpState;
-    u8 battleStyle;
-    u8 drawlvlupboxState;
-    u8 learnMoveState;
-    u8 pursuitDoublesAttacker;
-    u8 reshowMainState;
-    u8 reshowHelperState;
-    u8 levelUpHP;
-    u8 windowsType; // B_WIN_TYPE_*
-    u8 multiplayerId;
-    u8 specialTrainerBattleType;
+    s32 painSplitHp; 			//(gBattleScripting + 0x00)
+    s32 bideDmg; 				//(gBattleScripting + 0x04)
+    u8 multihitString[6]; 		//(gBattleScripting + 0x08)
+    u8 dmgMultiplier;			//(gBattleScripting + 0x0E)
+    u8 twoTurnsMoveStringId; 	//(gBattleScripting + 0x0F)
+    u8 animArg1;				//(gBattleScripting + 0x10)
+    u8 animArg2;				//(gBattleScripting + 0x11)
+    u16 tripleKickPower;		//(gBattleScripting + 0x12)
+    u8 moveendState;			//(gBattleScripting + 0x14)
+    u8 battlerWithAbility;		//(gBattleScripting + 0x15)
+    u8 multihitMoveEffect;		//(gBattleScripting + 0x16)
+    u8 battler;					//(gBattleScripting + 0x17)
+    u8 animTurn;				//(gBattleScripting + 0x18)
+    u8 animTargetsHit;			//(gBattleScripting + 0x19)
+    u8 statChanger;				//(gBattleScripting + 0x1A)
+    bool8 statAnimPlayed;		//(gBattleScripting + 0x1B)
+    u8 getexpState;				//(gBattleScripting + 0x1C)
+    u8 battleStyle;				//(gBattleScripting + 0x1D)
+    u8 drawlvlupboxState;		//(gBattleScripting + 0x1E)
+    u8 learnMoveState;			//(gBattleScripting + 0x1F)
+    u8 pursuitDoublesAttacker;	//(gBattleScripting + 0x20)
+    u8 reshowMainState;			//(gBattleScripting + 0x21)
+    u8 reshowHelperState;		//(gBattleScripting + 0x22)
+    u8 levelUpHP;				//(gBattleScripting + 0x23)
+    u8 windowsType; 			//(gBattleScripting + 0x24) // B_WIN_TYPE_*
+    u8 multiplayerId; 			//(gBattleScripting + 0x25)
+    u8 specialTrainerBattleType;//(gBattleScripting + 0x26)
+    s32 savedDmg; 				//(gBattleScripting + 0x28)
+    u16 moveEffect; 			//(gBattleScripting + 0x2E)
 };
 
 struct BattleSpriteInfo
@@ -577,6 +581,7 @@ struct BattleHealthboxInfo
 struct BattleBarInfo
 {
     u8 healthboxSpriteId;
+    u8 oddFrame; // For more speed control in moving hp bar down.
     s32 maxValue;
     s32 oldValue;
     s32 receivedValue;

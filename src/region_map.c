@@ -2017,11 +2017,58 @@ static void CB_ExitFlyMap(void)
             }
             else
             {
-                SetMainCallback2(CB2_ReturnToPartyMenuFromFlyMap);
+                if (VarGet(VAR_0x800A) == LAST_TALKED_TO_FLYING_TAXI)
+                    SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+                else
+                    SetMainCallback2(CB2_ReturnToPartyMenuFromFlyMap);
             }
+
             TRY_FREE_AND_SET_NULL(sFlyMap);
+			/*Surskitty's flying taxis added this and I'm PRETTY SURE it does the same thing as TRY_FREE_AND_SET_NULL
+			// but Ima leave it here just in case! -- Gogglebrian
+            if (sFlyMap != NULL)
+            {
+                free(sFlyMap);
+                sFlyMap = NULL;
+            }
+			*/
             FreeAllWindowBuffers();
         }
         break;
+    }
+}
+
+// added 7/23/21, luma~
+u8* GetMapName_HandleVersion(u8* dest, u16 mapsec, u8 version) {
+	switch (version)
+    {
+	default:
+		if ((mapsec & 255) == METLOC_SPECIAL_EGG) {
+			return StringCopy(dest, gRegionMapEntries[214].name);
+		}
+		else if ((mapsec & 255) == METLOC_IN_GAME_TRADE) {
+			return StringCopy(dest, gRegionMapEntries[215].name);
+		}
+		else if ((mapsec & 255) == METLOC_FATEFUL_ENCOUNTER) {
+			return StringCopy(dest, gRegionMapEntries[216].name);
+		}
+		else {
+			return GetMapNameGeneric(dest, mapsec & 255);
+		}
+		// TODO: expand R/S Aqua Hideout placeholder
+	case 1 ... 6: // R/S/E/FR/LG/WB
+		if (mapsec == 253) {
+			return StringCopy(dest, gRegionMapEntries[214].name);
+		}
+		else if (mapsec == 254) {
+			return StringCopy(dest, gRegionMapEntries[215].name);
+		}
+		else if (mapsec == 255) {
+			return StringCopy(dest, gRegionMapEntries[216].name);
+		}
+		else if (mapsec < 213) {
+			return StringCopy(dest, gRegionMapEntries[mapsec].name);
+		}
+		// TODO: expand R/S Aqua Hideout placeholder
     }
 }

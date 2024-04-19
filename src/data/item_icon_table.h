@@ -55,9 +55,9 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_BLUE_SHARD] = {gItemIcon_Shard, gItemIconPalette_BlueShard},
     [ITEM_YELLOW_SHARD] = {gItemIcon_Shard, gItemIconPalette_YellowShard},
     [ITEM_GREEN_SHARD] = {gItemIcon_Shard, gItemIconPalette_GreenShard},
-    // ????????
-    [ITEM_034] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_035] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_LINK_CABLE] = {gItemIcon_EscapeRope, gItemIconPalette_LinkCable},
+	[ITEM_TAXI_PAGER] = {gItemIcon_VSSeeker, gItemIconPalette_VSSeeker},
+	// ??????????
     [ITEM_036] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_037] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_038] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
@@ -66,7 +66,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_03B] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_03C] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_03D] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_03E] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_ABILITY_CAPSULE] = {gItemIcon_AbilityCapsule, gItemIconPalette_AbilityCapsule},
     // Vitamins
     [ITEM_HP_UP] = {gItemIcon_HPUp, gItemIconPalette_HPUp},
     [ITEM_PROTEIN] = {gItemIcon_Vitamin, gItemIconPalette_Protein},
@@ -110,8 +110,8 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_THUNDER_STONE] = {gItemIcon_ThunderStone, gItemIconPalette_ThunderStone},
     [ITEM_WATER_STONE] = {gItemIcon_WaterStone, gItemIconPalette_WaterStone},
     [ITEM_LEAF_STONE] = {gItemIcon_LeafStone, gItemIconPalette_LeafStone},
-    // ????????
-    [ITEM_063] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+	// ????????
+	[ITEM_063] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_064] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_065] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_066] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
@@ -271,7 +271,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_0FA] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_0FB] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_0FC] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_0FD] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_PRISM_SCALE] = {gItemIcon_PrismScale, gItemIconPalette_PrismScale},
     // Contest hold items
     [ITEM_RED_SCARF] = {gItemIcon_Scarf, gItemIconPalette_RedScarf},
     [ITEM_BLUE_SCARF] = {gItemIcon_Scarf, gItemIconPalette_BlueScarf},
@@ -401,6 +401,58 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     // Emerald-only key items
     [ITEM_MAGMA_EMBLEM] = {gItemIcon_MagmaEmblem, gItemIconPalette_MagmaEmblem},
     [ITEM_OLD_SEA_MAP] = {gItemIcon_OldSeaMap, gItemIconPalette_OldSeaMap},
+
+    // mints
+    [ITEM_ADAMANT_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_BOLD_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_BRAVE_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_CALM_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_CAREFUL_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_GENTLE_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_HASTY_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_IMPISH_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_JOLLY_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_LAX_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_LONELY_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_MILD_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+    [ITEM_MODEST_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+    [ITEM_NAIVE_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_NAUGHTY_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_QUIET_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+    [ITEM_RASH_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+    [ITEM_RELAXED_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_SASSY_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_SERIOUS_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+    [ITEM_TIMID_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+	[ITEM_HARDY_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+	[ITEM_DOCILE_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+	[ITEM_BASHFUL_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+	[ITEM_QUIRKY_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+	
+	//IV Raisers
+	[ITEM_SUPER_HP_UP] = {gItemIcon_HPUp, gItemIconPalette_HPUp},
+    [ITEM_SUPER_PROTEIN] = {gItemIcon_Vitamin, gItemIconPalette_Protein},
+    [ITEM_SUPER_IRON] = {gItemIcon_Vitamin, gItemIconPalette_Iron},
+    [ITEM_SUPER_CARBOS] = {gItemIcon_Vitamin, gItemIconPalette_Carbos},
+    [ITEM_SUPER_CALCIUM] = {gItemIcon_Vitamin, gItemIconPalette_Calcium},
+    [ITEM_SUPER_ZINC] = {gItemIcon_Vitamin, gItemIconPalette_Zinc},
+	
+	//EV Resetters
+	[ITEM_ANTI_HP_UP] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+    [ITEM_ANTI_PROTEIN] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+    [ITEM_ANTI_IRON] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+    [ITEM_ANTI_CARBOS] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+    [ITEM_ANTI_CALCIUM] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+    [ITEM_ANTI_ZINC] = {gItemIcon_SodaPop, gItemIconPalette_Anathema},
+
+	//Power items
+	[ITEM_POWER_BRACER] = {gItemIcon_PowerBracer, gItemIconPalette_PowerBracer},
+    [ITEM_POWER_BELT] = {gItemIcon_PowerBelt, gItemIconPalette_PowerBelt},
+    [ITEM_POWER_LENS] = {gItemIcon_PowerLens, gItemIconPalette_PowerLens},
+    [ITEM_POWER_BAND] = {gItemIcon_PowerBand, gItemIconPalette_PowerBand},
+    [ITEM_POWER_ANKLET] = {gItemIcon_PowerAnklet, gItemIconPalette_PowerAnklet},
+    [ITEM_POWER_WEIGHT] = {gItemIcon_PowerWeight, gItemIconPalette_PowerWeight},
+
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

@@ -251,30 +251,31 @@ static const u8 sGreenShardDesc[] = _(
     "ancient item. Can\n"
     "be sold cheaply.");
 
+static const u8 sAbilityCapsuleDesc[] = _(
+    "Switches the\n"
+    "ABILITY of one\n"
+	"POKéMON.");
+
 // Vitamins
 static const u8 sHPUpDesc[] = _(
-    "Raises the base HP\n"
-    "of one POKéMON.");
+    "Raises a POKéMON's\n"
+    "HP stat.");
 
 static const u8 sProteinDesc[] = _(
-    "Raises the base\n"
-    "ATTACK stat of one\n"
-    "POKéMON.");
+    "Raises a POKéMON's\n"
+    "ATTACK stat.");
 
 static const u8 sIronDesc[] = _(
-    "Raises the base\n"
-    "DEFENSE stat of\n"
-    "one POKéMON.");
+    "Raises a POKéMON's\n"
+    "DEFENSE stat.");
 
 static const u8 sCarbosDesc[] = _(
-    "Raises the base\n"
-    "SPEED stat of one\n"
-    "POKéMON.");
+    "Raises a POKéMON's\n"
+    "SPEED stat.");
 
 static const u8 sCalciumDesc[] = _(
-    "Raises the base\n"
-    "SP. ATK stat of one\n"
-    "POKéMON.");
+    "Raises a POKéMON's\n"
+    "SP. ATK stat.");
 
 static const u8 sRareCandyDesc[] = _(
     "Raises the level\n"
@@ -287,9 +288,8 @@ static const u8 sPPUpDesc[] = _(
     "move.");
 
 static const u8 sZincDesc[] = _(
-    "Raises the base\n"
-    "SP. DEF stat of one\n"
-    "POKéMON.");
+    "Raises a POKéMON's\n"
+    "SP. DEF stat.");
 
 static const u8 sPPMaxDesc[] = _(
     "Raises the PP of a\n"
@@ -393,6 +393,16 @@ static const u8 sLeafStoneDesc[] = _(
     "Makes certain\n"
     "species of POKéMON\n"
     "evolve.");
+	
+static const u8 sLinkCableDesc[] = _(
+    "Used to trade\n"
+    "POKéMON with\n"
+    "yourself.");
+
+static const u8 sTaxiPagerDesc[] = _(
+    "Calls a flying\n"
+    "POKéMON to carry\n"
+    "you across HOENN.");
 
 // Valuable items
 static const u8 sTinyMushroomDesc[] = _(
@@ -544,8 +554,8 @@ static const u8 sLumBerryDesc[] = _(
 
 static const u8 sSitrusBerryDesc[] = _(
     "A hold item that\n"
-    "restores 30 HP in\n"
-    "battle.");
+    "restores 25% of the\n"
+    "user's HP in battle.");
 
 static const u8 sFigyBerryDesc[] = _(
     "A hold item that\n"
@@ -600,32 +610,32 @@ static const u8 sPinapBerryDesc[] = _(
 static const u8 sPomegBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base HP.");
+    "the HP stat.");
 
 static const u8 sKelpsyBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base ATTACK.");
+    "the ATTACK stat.");
 
 static const u8 sQualotBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base DEFENSE.");
+    "the DEFENSE stat.");
 
 static const u8 sHondewBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base SP. ATK.");
+    "the SP. ATK stat.");
 
 static const u8 sGrepaBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base SP. DEF.");
+    "the SP. DEF stat.");
 
 static const u8 sTamatoBerryDesc[] = _(
     "Makes a POKéMON\n"
     "friendly but lowers\n"
-    "base SPEED.");
+    "the SPEED stat.");
 
 static const u8 sCornnBerryDesc[] = _(
     "{POKEBLOCK} ingredient.\n"
@@ -946,6 +956,11 @@ static const u8 sStickDesc[] = _(
     "A hold item that\n"
     "raises FARFETCH'D's\n"
     "critical-hit ratio.");
+
+static const u8 sPrismScaleDesc[] = _(
+    "A mysterious scale\n"
+    "that causes certain\n"
+    "POKéMON to evolve.");
 
 static const u8 sRedScarfDesc[] = _(
     "A hold item that\n"
@@ -1549,3 +1564,249 @@ static const u8 sOldSeaMapDesc[] = _(
     "A faded sea chart\n"
     "that shows the way\n"
     "to a certain island.");
+
+//mints
+static const u8 sAdamantMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "ADAMANT.");
+    
+static const u8 sBoldMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "BOLD.");
+    
+static const u8 sBraveMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "BRAVE.");
+    
+static const u8 sCalmMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "CALM.");
+    
+static const u8 sCarefulMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "CAREFUL.");
+    
+static const u8 sGentleMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "GENTLE.");
+    
+static const u8 sHastyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "HASTY.");
+    
+static const u8 sImpishMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "IMPISH.");
+    
+static const u8 sJollyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "JOLLY.");
+    
+static const u8 sLaxMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "LAX.");
+    
+static const u8 sLonelyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "LONELY.");
+    
+static const u8 sMildMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "MILD.");
+    
+static const u8 sModestMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "MODEST.");
+    
+static const u8 sNaiveMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "NAIVE.");
+    
+static const u8 sNaughtyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "NAUGHTY.");
+    
+static const u8 sQuietMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "QUIET.");
+    
+static const u8 sRashMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "RASH.");
+    
+static const u8 sRelaxedMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "RELAXED.");
+    
+static const u8 sSassyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "SASSY.");
+    
+static const u8 sSeriousMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "SERIOUS.");
+    
+static const u8 sTimidMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "TIMID.");
+
+static const u8 sHardyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "HARDY.");
+	
+static const u8 sDocileMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "DOCILE.");
+	
+static const u8 sBashfulMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "BASHFUL.");
+	
+static const u8 sQuirkyMintDesc[] = _(
+    "Changes the NATURE\n"
+    "of a POKéMON to\n"
+    "QUIRKY.");
+
+static const u8 sHPIVDownDesc[] = _(
+	"Lowers a POKéMON's\n"
+	"HP potential a\n"
+	"tiny bit.");
+
+static const u8 sAttackIVDownDesc[] = _(
+	"Lowers a POKéMON's\n"
+	"ATTACK potential a\n"
+	"tiny bit.");
+
+static const u8 sDefenseIVDownDesc[] = _(
+	"Lowers a POKéMON's\n"
+	"DEFENSE potential\n"
+	"a tiny bit.");
+
+static const u8 sSpeedIVDownDesc[] = _(
+	"Lowers a POKéMON's\n"
+	"SPEED potential a\n"
+	"tiny bit.");
+
+static const u8 sSpAttackIVDownDesc[] = _(
+	"Lowers a POKéMON's\n"
+	"SP. ATK potential\n"
+	"a tiny bit.");
+
+static const u8 sSpDefenseIVDownDesc[] = _(
+	"Lowers a POKéMON's\n"
+	"SP. DEF potential\n"
+	"a tiny bit.");
+	
+static const u8 sSuperHpUpDesc[] = _(
+	"Raises a POKéMON's\n"
+	"HP potential\n"
+	"greatly.");
+
+static const u8 sSuperProteinDesc[] = _(
+	"Raises a POKéMON's\n"
+	"ATTACK potential\n"
+	"greatly.");
+
+static const u8 sSuperIronDesc[] = _(
+	"Raises a POKéMON's\n"
+	"DEFENSE potential\n"
+	"greatly.");
+
+static const u8 sSuperCarbosDesc[] = _(
+	"Raises a POKéMON's\n"
+	"SPEED potential\n"
+	"greatly.");
+
+static const u8 sSuperCalciumDesc[] = _(
+	"Raises a POKéMON's\n"
+	"SP. ATK potential\n"
+	"greatly.");
+
+static const u8 sSuperZincDesc[] = _(
+	"Raises a POKéMON's\n"
+	"SP. DEF potential\n"
+	"greatly.");
+	
+static const u8 sAntiHpUpDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the HP\n"
+	"stat.");
+
+static const u8 sAntiProteinDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the\n"
+	"ATTACK stat.");
+
+static const u8 sAntiIronDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the\n"
+	"DEFENSE stat.");
+
+static const u8 sAntiCarbosDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the\n"
+	"SPEED stat.");
+
+static const u8 sAntiCalciumDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the\n"
+	"SP. ATK stat.");
+
+static const u8 sAntiZincDesc[] = _(
+	"Resets a POKéMON's\n"
+	"efforts in the\n"
+	"SP. DEF stat.");
+	
+static const u8 sPowerBracerDesc[] = _(
+    "A hold item that\n"
+    "promotes ATK gain,\n"
+    "but reduces SPEED.");
+
+static const u8 sPowerBeltDesc[] = _(
+    "A hold item that\n"
+    "promotes DEF gain,\n"
+    "but reduces SPEED.");
+
+static const u8 sPowerLensDesc[] = _(
+    "Hold item that pro-\n"
+    "motes SP. ATK gain,\n"
+    "but reduces SPEED.");
+
+static const u8 sPowerBandDesc[] = _(
+    "Hold item that pro-\n"
+    "motes SP. DEF gain,\n"
+    "but reduces SPEED.");
+
+static const u8 sPowerAnkletDesc[] = _(
+    "A hold item that\n"
+    "promotes SPD gain,\n"
+    "but reduces SPEED.");
+
+static const u8 sPowerWeightDesc[] = _(
+    "A hold item that\n"
+    "promotes HP gain,\n"
+    "but reduces SPEED.");

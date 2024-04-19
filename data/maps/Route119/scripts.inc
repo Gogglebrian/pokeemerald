@@ -479,6 +479,75 @@ Route119_EventScript_ScottWonAtFortreeGymCall::
 	releaseall
 	end
 
+Route119_EventScript_PrismScaleNPC::
+	lock
+	faceplayer
+	goto_if_set FLAG_DAILY_PRISM_SCALE, Route119_EventScript_IllKeepLooking
+	msgbox Route119_Text_PrismScaleIntro, MSGBOX_NPC
+	showmoneybox 0, 0
+	msgbox Route119_Text_PrismScaleOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route119_EventScript_DeclinePrismScale
+	checkmoney 10000
+	goto_if_eq VAR_RESULT, FALSE, Route119_EventScript_NotEnoughMoney
+	msgbox Route119_Text_Deal, MSGBOX_DEFAULT
+	checkitemspace ITEM_PRISM_SCALE
+	goto_if_eq VAR_RESULT, FALSE, Route119_EventScript_BagIsFull
+	call_if_eq VAR_RESULT, TRUE, Route119_EventScript_RemoveMoney
+	giveitem ITEM_PRISM_SCALE
+	setflag FLAG_DAILY_PRISM_SCALE
+	hidemoneybox
+	msgbox Route119_Text_IllKeepLooking, MSGBOX_DEFAULT
+	release
+	end
+
+Route119_EventScript_BagIsFull::
+	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+
+Route119_EventScript_RemoveMoney::
+	removemoney 10000
+	updatemoneybox
+	return
+
+Route119_EventScript_DeclinePrismScale::
+	msgbox Route119_Text_OhFineThen, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+
+Route119_EventScript_NotEnoughMoney::
+	msgbox Route119_Text_YouveNotGotTheMoney, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+	
+Route119_EventScript_IllKeepLooking::
+	msgbox Route119_Text_IllKeepLooking, MSGBOX_DEFAULT
+	release
+	end
+	
+Route119_Text_PrismScaleIntro:
+	.string "I found this beautiful SCALE on the\n"
+	.string "riverside! What luck!$"
+Route119_Text_PrismScaleOffer:
+	.string "Oh, you want it? I guess I could sell it\n"
+	.string "to you. How's ¥10000 sound?$"
+
+Route119_Text_Deal:
+	.string "Deal! Here you go.$"
+
+Route119_Text_IllKeepLooking:
+	.string "I'll keep looking for more SCALES.$"
+
+Route119_Text_YouveNotGotTheMoney:
+	.string "Oh, can't afford it?\n"
+	.string "Well, no worries.$"
+
+Route119_Text_OhFineThen:
+	.string "Alright then.$"
+
 Route119_Text_MayIntro:
 	.string "MAY: {PLAYER}{KUN}!\n"
 	.string "Where were you? I was looking for you!\p"
@@ -612,3 +681,4 @@ Route119_Text_TrainerTipsDecoration:
 	.string "Pick your favorite items and create\n"
 	.string "your very own SECRET BASE exactly the\l"
 	.string "way you want.$"
+

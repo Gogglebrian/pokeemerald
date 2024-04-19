@@ -3302,6 +3302,40 @@ extern const u32 gPokedexSearchMenu_Gfx[];
 extern const u32 gPokedexSearchMenuHoenn_Tilemap[];
 extern const u32 gPokedexSearchMenuNational_Tilemap[];
 extern const u16 gPokedexSearchMenu_Pal[];
+// pokedex HGSS
+extern const u16 gPokedexPlusHGSS_Default_Pal[];
+extern const u16 gPokedexPlusHGSS_National_Pal[];
+extern const u16 gPokedexPlusHGSS_MenuSearch_Pal[];
+extern const u16 gPokedexPlusHGSS_SearchResults_Pal[];
+extern const u16 gPokedexPlusHGSS_Default_dark_Pal[];
+extern const u16 gPokedexPlusHGSS_National_dark_Pal[];
+extern const u16 gPokedexPlusHGSS_MenuSearch_dark_Pal[];
+extern const u16 gPokedexPlusHGSS_SearchResults_dark_Pal[];
+extern const u32 gPokedexPlusHGSS_MenuList_Gfx[];
+extern const u32 gPokedexPlusHGSS_MenuList_DECA_Gfx[];
+extern const u32 gPokedexPlusHGSS_Interface_Gfx[];
+extern const u32 gPokedexPlusHGSS_Interface_DECA_Gfx[];
+extern const u32 gPokedexPlusHGSS_Menu_1_Gfx[];
+extern const u32 gPokedexPlusHGSS_Menu_2_Gfx[];
+extern const u32 gPokedexPlusHGSS_Menu_3_Gfx[];
+extern const u32 gPokedexPlusHGSS_MenuSearch_Gfx[];
+extern const u32 gPokedexPlusHGSS_MenuSearch_DECA_Gfx[];
+extern const u32 gPokedexPlusHGSS_StartMenuMain_Tilemap[];
+extern const u32 gPokedexPlusHGSS_StartMenuSearchResults_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap_Clear[];
+extern const u32 gPokedexPlusHGSS_ScreenList_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenListUnderlay_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenInfo_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenStats_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenEvolution_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenEvolution_Tilemap_PE[];
+extern const u32 gPokedexPlusHGSS_ScreenForms_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenCry_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenSize_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenSearchHoenn_Tilemap[];
+extern const u32 gPokedexPlusHGSS_ScreenSearchNational_Tilemap[];
+
 
 // berry tag screen
 extern const u32 gBerryCheck_Gfx[];
@@ -3446,6 +3480,9 @@ extern const u32 gItemIconPalette_RedShard[];
 extern const u32 gItemIconPalette_BlueShard[];
 extern const u32 gItemIconPalette_YellowShard[];
 extern const u32 gItemIconPalette_GreenShard[];
+extern const u32 gItemIconPalette_LinkCable[];
+extern const u32 gItemIcon_AbilityCapsule[];
+extern const u32 gItemIconPalette_AbilityCapsule[];
 // Vitamins
 extern const u32 gItemIcon_HPUp[];
 extern const u32 gItemIconPalette_HPUp[];
@@ -3716,6 +3753,8 @@ extern const u32 gItemIcon_ThickClub[];
 extern const u32 gItemIconPalette_ThickClub[];
 extern const u32 gItemIcon_Stick[];
 extern const u32 gItemIconPalette_Stick[];
+extern const u32 gItemIcon_PrismScale[];
+extern const u32 gItemIconPalette_PrismScale[];
 // Contest hold items
 extern const u32 gItemIcon_Scarf[];
 extern const u32 gItemIconPalette_RedScarf[];
@@ -3793,6 +3832,7 @@ extern const u32 gItemIconPalette_GroundTMHM[];
 extern const u32 gItemIconPalette_GhostTMHM[];
 extern const u32 gItemIconPalette_RockTMHM[];
 extern const u32 gItemIconPalette_FlyingTMHM[];
+extern const u32 gItemIconPalette_FairyTMHM[];
 extern const u32 gItemIcon_HM[];
 // FireRed/LeafGreen key items
 extern const u32 gItemIcon_OaksParcel[];
@@ -3850,6 +3890,29 @@ extern const u32 gItemIcon_MagmaEmblem[];
 extern const u32 gItemIconPalette_MagmaEmblem[];
 extern const u32 gItemIcon_OldSeaMap[];
 extern const u32 gItemIconPalette_OldSeaMap[];
+// Mints
+extern const u32 gItemIcon_Mint[];
+extern const u32 gItemIconPalette_RedMint[];
+extern const u32 gItemIconPalette_BlueMint[];
+extern const u32 gItemIconPalette_PinkMint[];
+extern const u32 gItemIconPalette_GreenMint[];
+extern const u32 gItemIconPalette_LightBlueMint[];
+extern const u32 gItemIconPalette_YellowMint[];
+//anathema uses soda pop icon
+extern const u32 gItemIconPalette_Anathema[];
+//Power items
+extern const u32 gItemIcon_PowerBracer[];
+extern const u32 gItemIconPalette_PowerBracer[];
+extern const u32 gItemIcon_PowerBelt[];
+extern const u32 gItemIconPalette_PowerBelt[];
+extern const u32 gItemIcon_PowerLens[];
+extern const u32 gItemIconPalette_PowerLens[];
+extern const u32 gItemIcon_PowerBand[];
+extern const u32 gItemIconPalette_PowerBand[];
+extern const u32 gItemIcon_PowerAnklet[];
+extern const u32 gItemIconPalette_PowerAnklet[];
+extern const u32 gItemIcon_PowerWeight[];
+extern const u32 gItemIconPalette_PowerWeight[];
 
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];
@@ -4710,6 +4773,56 @@ extern const u32 gBattleAnimSpritePal_CrossImpact[];
 extern const u32 gBattleAnimSpritePal_Slash2[];
 extern const u32 gBattleAnimSpritePal_WhipHit[];
 extern const u32 gBattleAnimSpritePal_BlueRing2[];
+
+//new stuff for moves
+extern const u32 gBattleAnimSpriteGfx_WhiteStreak[];
+extern const u32 gBattleAnimSpritePal_WhiteStreak[] ;
+
+extern const u32 gBattleAnimSpriteGfx_PurpleJab[];
+extern const u32 gBattleAnimSpritePal_PurpleJab[];
+
+extern const u32 gBattleAnimSpriteGfx_PoisonJab[];
+extern const u32 gBattleAnimSpritePal_PoisonJab[];
+
+extern const u32 gBattleAnimSpriteGfx_DragonPulse[];
+extern const u32 gBattleAnimSpritePal_DragonPulse[];
+
+extern const u32 gBattleAnimSpriteGfx_DragonPulseRing[];
+extern const u32 gBattleAnimSpritePal_DragonPulseRing[];
+
+extern const u32 gBattleAnimSpriteGfx_AuraSphere[];
+extern const u32 gBattleAnimSpritePal_AuraSphere[];
+
+extern const u32 gBattleAnimSpriteGfx_EnergyBall[];
+extern const u32 gBattleAnimSpritePal_EnergyBall[];
+
+extern const u32 gBattleAnimSpriteGfx_FlashCannonBall[];
+extern const u32 gBattleAnimSpritePal_FlashCannonBall[];
+
+extern const u32 gBattleAnimSpriteGfx_WoodHammer[];
+extern const u32 gBattleAnimSpritePal_WoodHammer[];
+
+extern const u32 gBattleAnimSpriteGfx_PsychoCut[];
+extern const u32 gBattleAnimSpritePal_PsychoCut[];
+
+extern const u32 gBattleAnimSpriteGfx_PowerGem[];
+extern const u32 gBattleAnimSpritePal_PowerGem[];
+
+extern const u32 gBattleAnimSpriteGfx_StoneEdge[];
+extern const u32 gBattleAnimSpritePal_StoneEdge[];
+
+extern const u32 gBattleAnimSpriteGfx_MudBomb[];
+extern const u32 gBattleAnimSpritePal_MudBomb[];
+
+extern const u32 gBattleAnimSpritePal_AvalancheRocks[]; // no unique gfx
+
+extern const u32 gBattleAnimSpriteGfx_PurpleDrake[];
+extern const u32 gBattleAnimSpritePal_PurpleDrake[];
+extern const u32 gBattleAnimSpritePal_GreenDrake[];
+
+extern const u32 gBattleAnimSpriteGfx_QuickGuard[];
+extern const u32 gBattleAnimSpritePal_QuickGuard[];
+
 
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];

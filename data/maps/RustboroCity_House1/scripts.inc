@@ -7,7 +7,7 @@ RustboroCity_House1_EventScript_Trader::
 	goto_if_set FLAG_RUSTBORO_NPC_TRADE_COMPLETED, RustboroCity_House1_EventScript_TradeCompleted
 	setvar VAR_0x8008, INGAME_TRADE_SEEDOT
 	copyvar VAR_0x8004, VAR_0x8008
-	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+	specialvar VAR_RESULT, GetInGameTradeBaseStats
 	copyvar VAR_0x8009, VAR_RESULT
 	msgbox RustboroCity_House1_Text_IllTradeIfYouWant, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, RustboroCity_House1_EventScript_DeclineTrade
@@ -46,7 +46,7 @@ RustboroCity_House1_EventScript_TradeCompleted::
 	end
 
 RustboroCity_House1_EventScript_Hiker::
-	msgbox RustboroCity_House1_Text_AllSortsOfPlaces, MSGBOX_NPC
+	call Common_EventScript_EggMoveTutor_Price
 	end
 
 RustboroCity_House1_Text_IllTradeIfYouWant:
@@ -72,10 +72,4 @@ RustboroCity_House1_Text_YouDontWantToThatsOkay:
 RustboroCity_House1_Text_AnyPokemonCanBeCute:
 	.string "Any POKéMON can be cute if you raise\n"
 	.string "it with care and kindness.$"
-
-RustboroCity_House1_Text_AllSortsOfPlaces:
-	.string "In all sorts of places, there are all\n"
-	.string "sorts of POKéMON and people.\p"
-	.string "I find that fascinating, so I go to all\n"
-	.string "sorts of places.$"
 

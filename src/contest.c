@@ -358,7 +358,7 @@ EWRAM_DATA bool8 gCurContestWinnerIsForArtist = 0;
 EWRAM_DATA u8 gCurContestWinnerSaveIdx = 0;
 
 // IWRAM common vars.
-u32 gContestRngValue;
+struct PCG32 gContestRngValue;
 
 extern const u8 gText_LinkStandby4[];
 extern const u8 gText_BDot[];
@@ -1295,7 +1295,7 @@ static void Task_ReadyStartLinkContest(u8 taskId)
         GetMultiplayerId();  // unused return value
         DestroyTask(taskId);
         gTasks[eContest.mainTaskId].func = Task_WaitToRaiseCurtainAtStart;
-        gRngValue = gContestRngValue;
+        gPCGRng = gContestRngValue;
     }
 }
 
@@ -1710,7 +1710,7 @@ static void Task_AppealSetup(u8 taskId)
     if (++gTasks[taskId].data[0] > 19)
     {
         eContest.turnNumber = 0;
-        eContest.unusedRng = gRngValue;
+        eContest.unusedRng = 0; // was gRngValue
         if ((gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK) && IsPlayerLinkLeader())
         {
             s32 i;
@@ -2675,7 +2675,7 @@ static void Task_EndAppeals(u8 taskId)
         SetConestLiveUpdateTVData();
         ContestDebugPrintBitStrings();
     }
-    gContestRngValue = gRngValue;
+    gContestRngValue = gPCGRng;
     StringExpandPlaceholders(gStringVar4, gText_AllOutOfAppealTime);
     Contest_StartTextPrinter(gStringVar4, TRUE);
     gTasks[taskId].data[2] = 0;
@@ -5314,7 +5314,7 @@ static void SetMoveSpecificAnimData(u8 contestant)
     switch (move)
     {
     case MOVE_CURSE:
-        if (gSpeciesInfo[species].types[0] == TYPE_GHOST || gSpeciesInfo[species].types[1] == TYPE_GHOST)
+        if (gBaseStats[species].types[0] == TYPE_GHOST || gBaseStats[species].types[1] == TYPE_GHOST)
             gAnimMoveTurn = 0;
         else
             gAnimMoveTurn = 1;

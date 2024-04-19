@@ -28,6 +28,7 @@
 #include "overworld.h"
 #include "party_menu.h"
 #include "pokeblock.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
 #include "random.h"
@@ -53,6 +54,7 @@
 #include "constants/event_object_movement.h"
 #include "constants/field_effects.h"
 #include "constants/field_specials.h"
+#include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/heal_locations.h"
 #include "constants/map_types.h"
@@ -137,6 +139,7 @@ static u8 DidPlayerGetFirstFans(void);
 static void SetInitialFansOfPlayer(void);
 static u16 PlayerGainRandomTrainerFan(void);
 static void BufferFanClubTrainerName_(struct LinkBattleRecords *, u8, u8);
+void ResetDefeatedLegendaries(void);
 
 void Special_ShowDiploma(void)
 {
@@ -924,6 +927,14 @@ u8 GetBattleOutcome(void)
     return gBattleOutcome;
 }
 
+u8 CanFlyFromHere(void)
+{
+	if (Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 void CableCarWarp(void)
 {
     if (gSpecialVar_0x8004 != 0)
@@ -981,6 +992,16 @@ void FieldShowRegionMap(void)
 #define tFlickerCount data[2]
 #define tTimer        data[3]
 #define tIsScreenOn   data[4]
+
+static void CB2_FieldLoadFlyMap(void)
+{
+    FieldInitRegionMap(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+}
+
+void FieldLoadFlyMap(void)
+{
+    SetMainCallback2(CB2_OpenFlyMap);
+}
 
 // For this special, gSpecialVar_0x8004 is expected to be some PC_LOCATION_* value.
 void DoPCTurnOnEffect(void)
@@ -1238,7 +1259,7 @@ void IsGrassTypeInParty(void)
         if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(pokemon, MON_DATA_IS_EGG))
         {
             species = GetMonData(pokemon, MON_DATA_SPECIES);
-            if (gSpeciesInfo[species].types[0] == TYPE_GRASS || gSpeciesInfo[species].types[1] == TYPE_GRASS)
+            if (gBaseStats[species].types[0] == TYPE_GRASS || gBaseStats[species].types[1] == TYPE_GRASS)
             {
                 gSpecialVar_Result = TRUE;
                 return;
@@ -1268,7 +1289,7 @@ void RemoveCameraObject(void)
 
 u8 GetPokeblockNameByMonNature(void)
 {
-    return CopyMonFavoritePokeblockName(GetNature(&gPlayerParty[GetLeadMonIndex()]), gStringVar1);
+    return CopyMonFavoritePokeblockName(GetNature(&gPlayerParty[GetLeadMonIndex()], FALSE), gStringVar1);
 }
 
 void GetSecretBaseNearbyMapName(void)
@@ -2810,7 +2831,7 @@ void ShowNatureGirlMessage(void)
     if (gSpecialVar_0x8004 >= PARTY_SIZE)
         gSpecialVar_0x8004 = 0;
 
-    nature = GetNature(&gPlayerParty[gSpecialVar_0x8004]);
+    nature = GetNature(&gPlayerParty[gSpecialVar_0x8004], FALSE);
     ShowFieldMessage(sNatureGirlMessages[nature]);
 }
 
@@ -4267,4 +4288,24 @@ void SetPlayerGotFirstFans(void)
 u8 Script_TryGainNewFanFromCounter(void)
 {
     return TryGainNewFanFromCounter(gSpecialVar_0x8004);
+}
+
+void ResetDefeatedLegendaries(void)
+{
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_REGISTEEL), FLAG_GET_CAUGHT) == FALSE && FlagGet(FLAG_DEFEATED_REGISTEEL))
+		FlagClear(FLAG_DEFEATED_REGISTEEL);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_REGIROCK), FLAG_GET_CAUGHT) == FALSE && FlagGet(FLAG_DEFEATED_REGIROCK))
+		FlagClear(FLAG_DEFEATED_REGIROCK);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_REGICE), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_REGICE))
+		FlagClear(FLAG_DEFEATED_REGICE);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_KYOGRE), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_KYOGRE))
+		FlagClear(FLAG_DEFEATED_KYOGRE);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_GROUDON), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_GROUDON))
+		FlagClear(FLAG_DEFEATED_GROUDON);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_RAYQUAZA), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_RAYQUAZA))
+		FlagClear(FLAG_DEFEATED_RAYQUAZA);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_SUDOWOODO), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_SUDOWOODO))
+		FlagClear(FLAG_DEFEATED_SUDOWOODO);
+	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_DEOXYS), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_DEOXYS))
+		FlagClear(FLAG_DEFEATED_DEOXYS);
 }

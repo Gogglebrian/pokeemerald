@@ -20,6 +20,55 @@ const u32 gSmokescreenImpactPalette[] = INCBIN_U32("graphics/battle_anims/sprite
 
 const u32 gBlankGfxCompressed[] = INCBIN_U32("graphics/interface/blank.4bpp.lz");
 
+// New Battle anims assets
+const u32 gBattleAnimSpriteGfx_WhiteStreak[] = INCBIN_U32("graphics/battle_anims/sprites/white_streak.4bpp.lz");
+const u32 gBattleAnimSpritePal_WhiteStreak[] = INCBIN_U32("graphics/battle_anims/sprites/white_streak.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_PurpleJab[] = INCBIN_U32("graphics/battle_anims/sprites/purple_jab.4bpp.lz");
+const u32 gBattleAnimSpritePal_PurpleJab[] = INCBIN_U32("graphics/battle_anims/sprites/purple_jab.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_PoisonJab[] = INCBIN_U32("graphics/battle_anims/sprites/poison_jab.4bpp.lz");
+const u32 gBattleAnimSpritePal_PoisonJab[] = INCBIN_U32("graphics/battle_anims/sprites/poison_jab.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_DragonPulse[] = INCBIN_U32("graphics/battle_anims/sprites/dragon_pulse.4bpp.lz");
+const u32 gBattleAnimSpritePal_DragonPulse[] = INCBIN_U32("graphics/battle_anims/sprites/dragon_pulse.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_DragonPulseRing[] = INCBIN_U32("graphics/battle_anims/sprites/new/dragon_pulse_ring.4bpp.lz");
+const u32 gBattleAnimSpritePal_DragonPulseRing[] = INCBIN_U32("graphics/battle_anims/sprites/new/dragon_pulse_ring.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_WoodHammer[] = INCBIN_U32("graphics/battle_anims/sprites/wood_hammer.4bpp.lz");
+const u32 gBattleAnimSpritePal_WoodHammer[] = INCBIN_U32("graphics/battle_anims/sprites/wood_hammer.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_PsychoCut[] = INCBIN_U32("graphics/battle_anims/sprites/psycho_cut.4bpp.lz");
+const u32 gBattleAnimSpritePal_PsychoCut[] = INCBIN_U32("graphics/battle_anims/sprites/psycho_cut.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_PowerGem[] = INCBIN_U32("graphics/battle_anims/sprites/power_gem.4bpp.lz");
+const u32 gBattleAnimSpritePal_PowerGem[] = INCBIN_U32("graphics/battle_anims/sprites/power_gem.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_StoneEdge[] = INCBIN_U32("graphics/battle_anims/sprites/stone_edge.4bpp.lz");
+const u32 gBattleAnimSpritePal_StoneEdge[] = INCBIN_U32("graphics/battle_anims/sprites/stone_edge.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_MudBomb[] = INCBIN_U32("graphics/battle_anims/sprites/new/mud_bomb.4bpp.lz");
+const u32 gBattleAnimSpritePal_MudBomb[] = INCBIN_U32("graphics/battle_anims/sprites/new/mud_bomb.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_AuraSphere[] = INCBIN_U32("graphics/battle_anims/sprites/new/aura_sphere.4bpp.lz");
+const u32 gBattleAnimSpritePal_AuraSphere[] = INCBIN_U32("graphics/battle_anims/sprites/new/aura_sphere.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_EnergyBall[] = INCBIN_U32("graphics/battle_anims/sprites/new/energy_ball.4bpp.lz");
+const u32 gBattleAnimSpritePal_EnergyBall[] = INCBIN_U32("graphics/battle_anims/sprites/new/energy_ball.gbapal.lz");
+
+//dragon ascent and avalanche share apparently
+const u32 gBattleAnimSpriteGfx_PurpleDrake[] = INCBIN_U32("graphics/battle_anims/sprites/new/purple_drake.4bpp.lz");
+const u32 gBattleAnimSpritePal_PurpleDrake[] = INCBIN_U32("graphics/battle_anims/sprites/new/purple_drake.gbapal.lz");
+const u32 gBattleAnimSpritePal_AvalancheRocks[] = INCBIN_U32("graphics/battle_anims/sprites/new/avalanche_rocks.gbapal.lz");
+const u32 gBattleAnimSpritePal_GreenDrake[] = INCBIN_U32("graphics/battle_anims/sprites/new/green_drake.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_FlashCannonBall[] = INCBIN_U32("graphics/battle_anims/sprites/flash_cannon_ball.4bpp.lz");
+const u32 gBattleAnimSpritePal_FlashCannonBall[] = INCBIN_U32("graphics/battle_anims/sprites/flash_cannon_ball.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_QuickGuard[] = INCBIN_U32("graphics/battle_anims/sprites/quick_guard.4bpp.lz");
+const u32 gBattleAnimSpritePal_QuickGuard[] = INCBIN_U32("graphics/battle_anims/sprites/quick_guard.gbapal.lz");
+
 // Battle anims
 const u32 gBattleAnimSpriteGfx_Bubble[] = INCBIN_U32("graphics/battle_anims/sprites/bubble.4bpp.lz");
 const u32 gBattleAnimSpriteGfx_Bone[] = INCBIN_U32("graphics/battle_anims/sprites/bone.4bpp.lz");
@@ -500,6 +549,8 @@ const u32 gBattleAnimSpritePal_BrownOrb[] = INCBIN_U32("graphics/battle_anims/sp
 
 const u32 gBattleAnimSpriteGfx_MudSand[] = INCBIN_U32("graphics/battle_anims/sprites/mud_sand.4bpp.lz");
 const u32 gBattleAnimSpritePal_MudSand[] = INCBIN_U32("graphics/battle_anims/sprites/mud_sand.gbapal.lz");
+
+
 
 const u32 gBattleAnimSpriteGfx_PoisonBubble[] = INCBIN_U32("graphics/battle_anims/sprites/poison_bubble.4bpp.lz");
 const u32 gBattleAnimSpritePal_PoisonBubble[] = INCBIN_U32("graphics/battle_anims/sprites/poison_bubble.gbapal.lz");
@@ -1249,6 +1300,41 @@ const u16 gPokedexSearchMenu_Pal[] = INCBIN_U16("graphics/pokedex/search_menu.gb
 const u32 gPokedexSearchMenu_Gfx[] = INCBIN_U32("graphics/pokedex/search_menu.4bpp.lz");
 const u32 gPokedexSearchMenuNational_Tilemap[] = INCBIN_U32("graphics/pokedex/search_menu_national.bin.lz");
 const u32 gPokedexSearchMenuHoenn_Tilemap[] = INCBIN_U32("graphics/pokedex/search_menu_hoenn.bin.lz");
+// Pokedex HGSS
+const u16 gPokedexPlusHGSS_Default_Pal[]             = INCBIN_U16("graphics/pokedex/hgss/HGSS_palette_default.gbapal");
+const u16 gPokedexPlusHGSS_National_Pal[]            = INCBIN_U16("graphics/pokedex/hgss/HGSS_palette_national.gbapal");
+const u16 gPokedexPlusHGSS_MenuSearch_Pal[]          = INCBIN_U16("graphics/pokedex/hgss/HGSS_palette_search_menu.gbapal");
+const u16 gPokedexPlusHGSS_SearchResults_Pal[]       = INCBIN_U16("graphics/pokedex/hgss/HGSS_palette_search_results.gbapal");
+const u16 gPokedexPlusHGSS_Default_dark_Pal[]             = INCBIN_U16("graphics/pokedex/hgss/HGSS_palette_default_dark.gbapal");
+const u16 gPokedexPlusHGSS_National_dark_Pal[]            = INCBIN_U16("graphics/pokedex/hgss/HGSS_palette_national_dark.gbapal");
+const u16 gPokedexPlusHGSS_MenuSearch_dark_Pal[]          = INCBIN_U16("graphics/pokedex/hgss/HGSS_palette_search_menu_dark.gbapal");
+const u16 gPokedexPlusHGSS_SearchResults_dark_Pal[]       = INCBIN_U16("graphics/pokedex/hgss/HGSS_palette_search_results_dark.gbapal");
+const u32 gPokedexPlusHGSS_MenuList_Gfx[]        = INCBIN_U32("graphics/pokedex/hgss/HGSS_tileset_menu_list.4bpp.lz");
+const u32 gPokedexPlusHGSS_MenuList_DECA_Gfx[]   = INCBIN_U32("graphics/pokedex/hgss/HGSS_tileset_menu_list_DECA.4bpp.lz");
+const u32 gPokedexPlusHGSS_Interface_Gfx[]       = INCBIN_U32("graphics/pokedex/hgss/HGSS_tileset_interface.4bpp.lz");
+const u32 gPokedexPlusHGSS_Interface_DECA_Gfx[]  = INCBIN_U32("graphics/pokedex/hgss/HGSS_tileset_interface_DECA.4bpp.lz");
+const u32 gPokedexPlusHGSS_Menu_1_Gfx[]      = INCBIN_U32("graphics/pokedex/hgss/HGSS_tileset_menu1.4bpp.lz");
+const u32 gPokedexPlusHGSS_Menu_2_Gfx[]      = INCBIN_U32("graphics/pokedex/hgss/HGSS_tileset_menu2.4bpp.lz");
+const u32 gPokedexPlusHGSS_Menu_3_Gfx[]      = INCBIN_U32("graphics/pokedex/hgss/HGSS_tileset_menu3.4bpp.lz");
+const u32 gPokedexPlusHGSS_MenuSearch_Gfx[]          = INCBIN_U32("graphics/pokedex/hgss/HGSS_tileset_menu_search.4bpp.lz");
+const u32 gPokedexPlusHGSS_MenuSearch_DECA_Gfx[]     = INCBIN_U32("graphics/pokedex/hgss/HGSS_tileset_menu_search_DECA.4bpp.lz");
+const u32 gPokedexPlusHGSS_StartMenuMain_Tilemap[]           = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_start_menu.bin.lz");
+const u32 gPokedexPlusHGSS_StartMenuSearchResults_Tilemap[]  = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_start_menu_search_results.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap[]          = INCBIN_U32("graphics/pokedex/hgss/HGSS_SelectBar.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap_Clear[]    = INCBIN_U32("graphics/pokedex/hgss/HGSS_SelectBar_clear.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenList_Tilemap[]          = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_list_screen.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenListUnderlay_Tilemap[]  = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_list_screen_underlay.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenInfo_Tilemap[]          = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_info_screen.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenStats_Tilemap[]         = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_stats_screen.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenEvolution_Tilemap[]     = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_evo_screen.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenEvolution_Tilemap_PE[]  = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_evo_screen_PE.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenForms_Tilemap[]         = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_forms_screen.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenCry_Tilemap[]           = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_cry_screen.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenSize_Tilemap[]          = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_size_screen.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenSearchHoenn_Tilemap[]   = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_search_screen_hoenn.bin.lz");
+const u32 gPokedexPlusHGSS_ScreenSearchNational_Tilemap[] = INCBIN_U32("graphics/pokedex/hgss/HGSS_tilemap_search_screen_national.bin.lz");
+
+
 
 const u16 gSummaryScreen_MoveEffect_Battle_Tilemap[] = INCBIN_U16("graphics/summary_screen/effect_battle.bin");
 const u16 gSummaryScreen_MoveEffect_Contest_Tilemap[] = INCBIN_U16("graphics/summary_screen/effect_contest.bin");
