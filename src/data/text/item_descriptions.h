@@ -1810,3 +1810,8 @@ static const u8 sPowerWeightDesc[] = _(
     "A hold item that\n"
     "promotes HP gain,\n"
     "but reduces SPEED.");
+	
+static const u8 sEvioliteDesc[] = _(
+    "Raises the DEF and\n"
+    "SP. DEF of Pokémon\n"
+    "that can evolve.");
