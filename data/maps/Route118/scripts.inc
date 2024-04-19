@@ -95,6 +95,8 @@ Route118_EventScript_StevenTrigger::
 	waitmovement 0
 	delay 30
 	msgbox Route118_Text_StevenQuestions, MSGBOX_DEFAULT
+	giveitem ITEM_EVIOLITE
+	msgbox Route118_Text_EvioliteExplanation, MSGBOX_DEFAULT
 	closemessage
 	call_if_eq VAR_0x8008, 0, Route118_EventScript_StevenExit0
 	call_if_eq VAR_0x8008, 1, Route118_EventScript_StevenExit1
@@ -259,8 +261,18 @@ Route118_Text_StevenQuestions:
 	.string "As a TRAINER of POKéMON,\n"
 	.string "what do you think?\p"
 	.string "Of course, it's not any of my business.\p"
-	.string "It would be nice if we were to meet\n"
-	.string "again somewhere.$"
+	.string "Anyways, I have something that you\n"
+	.string "may find useful going forward.\p"
+	.string "It's a rare stone known as an EVIOLITE.\n"
+	.string "Please take it.$"
+	
+Route118_Text_EvioliteExplanation:
+	.string "If one of your POKéMON can evolve but\n"
+	.string "hasn't yet, let it hold the EVIOLITE.\l"
+	.string "Its DEFENSE and SP. DEF stats will be\l" 
+	.string "boosted significantly in battle.\p"
+	.string "With that, I'm off! It would be nice if\n"
+	.string "we were to meet again somewhere.$"
 
 Route118_Text_YouAgreeGoodRodIsGood:
 	.string "Hmm!\n"
