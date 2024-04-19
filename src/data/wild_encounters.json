@@ -44,7 +44,7 @@
         {
           "type": "fishing_mons",
           "encounter_rates": [
-            30,
+            60,
             30,
             20,
             40,
@@ -54,7 +54,7 @@
             15,
             4,
             1,
-            40
+            10
           ],
           "groups": {
             "old_rod": [
@@ -251,7 +251,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_CORPHISH"
+                "species": "SPECIES_MAGIKARP"
               },
               {
                 "min_level": 5,
@@ -301,7 +301,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_CORPHISH"
               }
             ]
           }
@@ -410,7 +410,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_HORSEA"
+                "species": "SPECIES_MAGIKARP"
               },
               {
                 "min_level": 5,
@@ -460,7 +460,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_HORSEA"
               }
             ]
           }
@@ -1061,7 +1061,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_BARBOACH"
               }
             ]
           }
@@ -1388,7 +1388,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_BARBOACH"
               }
             ]
           }
@@ -1616,7 +1616,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_CORPHISH"
               }
             ]
           }
@@ -1725,7 +1725,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_CARVANHA"
+                "species": "SPECIES_MAGIKARP"
               },
               {
                 "min_level": 5,
@@ -1775,7 +1775,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_CARVANHA"
               }
             ]
           }
@@ -2920,7 +2920,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_CLAMPERL"
+                "species": "SPECIES_MAGIKARP"
               },
               {
                 "min_level": 5,
@@ -2970,7 +2970,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_CLAMPERL"
               }
             ]
           }
@@ -3014,7 +3014,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_CORSOLA"
+                "species": "SPECIES_MAGIKARP"
               },
               {
                 "min_level": 5,
@@ -3064,7 +3064,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_CORSOLA"
               }
             ]
           }
@@ -3108,7 +3108,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_LUVDISC"
+                "species": "SPECIES_MAGIKARP"
               },
               {
                 "min_level": 5,
@@ -3158,7 +3158,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_LUVDISC"
               }
             ]
           }
@@ -3202,7 +3202,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_CHINCHOU"
+                "species": "SPECIES_MAGIKARP"
               },
               {
                 "min_level": 5,
@@ -3252,7 +3252,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_CHINCHOU"
               }
             ]
           }
@@ -3411,7 +3411,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_WAILMER"
               }
             ]
           }
@@ -3639,7 +3639,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_CARVANHA"
               }
             ]
           }
@@ -3798,7 +3798,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_BARBOACH"
               }
             ]
           }
@@ -9317,7 +9317,7 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_BARBOACH"
+                "species": "SPECIES_MAGIKARP"
               },
               {
                 "min_level": 5,
@@ -9366,8 +9366,8 @@
               },
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_CORPHISH"
+                "max_level": 10,
+                "species": "SPECIES_BARBOACH"
               }
             ]
           }
