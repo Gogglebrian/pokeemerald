@@ -46,6 +46,8 @@ RustboroCity_House1_EventScript_TradeCompleted::
 	end
 
 RustboroCity_House1_EventScript_Hiker::
+	lock
+	faceplayer
 	call Common_EventScript_EggMoveTutor_Price
 	end
 

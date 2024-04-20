@@ -487,6 +487,8 @@ static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
 static void Task_ChooseMonForEggTutor(u8 taskId);
+static void Task_ChooseMonForMoveTutor(u8);
+static void CB2_ChooseMonForMoveTutor(void);;
 
 // static const data
 #include "data/pokemon/tutor_learnsets.h"
@@ -6653,6 +6655,34 @@ static void Task_ChooseMonForEggTutor(u8 taskId)
     }
 }
 
+void ChooseMonForNewMoveTutor(void)
+{
+    ScriptContext_Enable();
+    FadeScreen(FADE_TO_BLACK, 0);
+    CreateTask(Task_ChooseMonForMoveTutor, 10);
+}
+
+
+static void CB2_ChooseMonForMoveTutor(void)
+{
+    gSpecialVar_0x8004 = GetCursorSelectionMonId();
+    if (gSpecialVar_0x8004 >= PARTY_SIZE)
+        gSpecialVar_0x8004 = 0xFF;
+    else
+        gSpecialVar_0x8005 = GetNumberOfTutorMoves(&gPlayerParty[gSpecialVar_0x8004]);
+    gFieldCallback2 = CB2_FadeFromPartyMenu;
+    SetMainCallback2(CB2_ReturnToField);
+}
+
+static void Task_ChooseMonForMoveTutor(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        InitPartyMenu(PARTY_MENU_TYPE_MOVE_RELEARNER, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_AND_CLOSE, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ChooseMonForMoveTutor);
+        DestroyTask(taskId);
+    }
+}
 
 void DoBattlePyramidMonsHaveHeldItem(void)
 {
