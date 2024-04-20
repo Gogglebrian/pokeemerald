@@ -247,6 +247,7 @@ gStdScripts_End::
 	.include "data/maps/RustboroCity_Flat1_1F/scripts.inc"
 	.include "data/maps/RustboroCity_Flat1_2F/scripts.inc"
 	.include "data/scripts/egg_move_tutor.inc"
+	.include "data/scripts/move_tutor.inc"
 	.include "data/maps/RustboroCity_House1/scripts.inc"
 	.include "data/maps/RustboroCity_CuttersHouse/scripts.inc"
 	.include "data/maps/RustboroCity_House2/scripts.inc"

@@ -148,6 +148,10 @@ LilycoveCity_EventScript_Woman1::
 LilycoveCity_EventScript_CitySign::
 	msgbox LilycoveCity_Text_CitySign, MSGBOX_SIGN
 	end
+	
+LilycoveCity_EventScript_TutorSign::
+	msgbox LilycoveCity_Text_TutorSign, MSGBOX_SIGN
+	end
 
 LilycoveCity_EventScript_ContestHallSign::
 	msgbox LilycoveCity_Text_ContestHallSign, MSGBOX_SIGN
@@ -674,6 +678,10 @@ LilycoveCity_Text_CitySign:
 LilycoveCity_Text_ContestHallSign:
 	.string "POKéMON CONTEST HALL\n"
 	.string "“The gathering place for TRAINERS!”$"
+
+LilycoveCity_Text_TutorSign:
+	.string "MOVE TUTOR\n"
+	.string "“Rare moves taught here!”$"
 
 LilycoveCity_Text_MotelSign:
 	.string "COVE LILY MOTEL\p"

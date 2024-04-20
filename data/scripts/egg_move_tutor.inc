@@ -56,7 +56,7 @@ Common_EggMoveTutor_no_Money::
 	end
 	
 Common_EggMoveTutor_Text_TutorWhichMon: @ 82015A5
-	.string "Which Pokémon should I have\n"
+	.string "Which POKéMON should I have\n"
 	.string "remember a move?$"
 
 Common_EggMoveTutor_Text_TeachWhichMove: @ 82015C3
@@ -76,10 +76,10 @@ Common_EggMoveTutor_Text_no_Money:
 	.string "money!$"
 	
 Common_EggMoveTutor_Text_DontHaveMoveToTeachPokemon: @ 82015DE
-	.string "It doesn't seem like that Pokémon has\n"
+	.string "It doesn't seem like that POKéMON has\n"
 	.string "any moves that it can remember.$"
 
 Common_EggMoveTutor_Text_ThatIsMerelyAnEgg:
 	.string "What?\n"
-	.string "No Egg should know any moves.$"
+	.string "No EGG should know any moves.$"
 

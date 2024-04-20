@@ -46,6 +46,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/moves.h"
+#include "constants/party_menu.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "constants/union_room.h"
@@ -6360,6 +6361,75 @@ u8 GetNumberOfEggMoves(struct Pokemon *mon)
             numMoves++;
         }
     }/*/
+	
+    return numMoves;
+}
+
+//Normal Move Tutor --------------------------------------------------
+u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves)
+{
+    u16 learnedMoves[4];
+    u8 numMoves = 0;
+	u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+	u16 firsStage = GetFirstEvolution(species);
+	u16 numEggMoves = GetEggMovesSpecies(firsStage, eggMoveBuffer);
+    int i, j, k;
+	const u8 *learnableMoves;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+        learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+	
+	/*/for (i = 0; i < numEggMove && learnedMoves[j] != eggMoveBuffer[i]; i++)
+	for (i = 0; i < numEggMoves; i++)
+    {
+        moves[numMoves++] = eggMoveBuffer[i];
+    }/*/
+	
+	for (i = 0; i< TUTOR_MOVE_COUNT; i++)
+    {
+        if (CanLearnTutorMove(species, i))
+        {
+            moves[numMoves] = gTutorMoves[i];
+            numMoves++;
+        }
+    }
+	
+    return numMoves;
+}
+
+u8 GetNumberOfTutorMoves(struct Pokemon *mon)
+{
+	u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
+    u16 learnedMoves[MAX_MON_MOVES];
+    u8 numMoves = 0;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+	u16 firsStage = GetFirstEvolution(species);
+	u8 numEggMoves = GetEggMovesSpecies(firsStage, eggMoveBuffer);
+    u16 moves[numEggMoves + TUTOR_MOVE_COUNT];
+    u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
+	const u8 *learnableMoves;
+    int i, j, k;
+
+    if (species == SPECIES_EGG)
+        return 0;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+        learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+
+    /*/for (i = 0; i < numEggMoves; i++)
+    {
+        moves[numMoves++] = eggMoveBuffer[i];
+    }/*/
+	
+	for (i = 0; i< TUTOR_MOVE_COUNT; i++)
+    {
+        if (CanLearnTutorMove(species, i))
+        {
+            moves[numMoves] = gTutorMoves[i];
+            numMoves++;
+        }
+    }
 	
     return numMoves;
 }

@@ -555,4 +555,8 @@ struct MonSpritesGfxManager *CreateMonSpritesGfxManager(void);
 void DestroyMonSpritesGfxManager(void);
 u8 *MonSpritesGfxManager_GetSpritePtr(u8 spriteNum);
 
+//Normal Move Tutor --------------------------------------------------
+u8 GetNumberOfTutorMoves(struct Pokemon *mon);
+u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves);
+
 #endif // GUARD_POKEMON_H
