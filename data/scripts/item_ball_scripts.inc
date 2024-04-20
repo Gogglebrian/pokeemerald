@@ -189,6 +189,10 @@ Route119_EventScript_ItemHyperPotion2::
 Route119_EventScript_ItemElixir2::
 	finditem ITEM_ELIXIR
 	end
+	
+Route119_EventScript_ItemSoulDew::
+	finditem ITEM_SOUL_DEW
+	end
 
 Route120_EventScript_ItemNugget::
 	finditem ITEM_NUGGET
@@ -416,6 +420,10 @@ NewMauville_Inside_EventScript_ItemFullHeal::
 
 NewMauville_Inside_EventScript_ItemParalyzeHeal::
 	finditem ITEM_PARALYZE_HEAL
+	end
+	
+NewMauville_Inside_EventScript_ItemLightBall::
+	finditem ITEM_LIGHT_BALL
 	end
 
 AbandonedShip_Rooms_1F_EventScript_ItemHarborMail::
