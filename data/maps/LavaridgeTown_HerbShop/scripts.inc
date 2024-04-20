@@ -13,10 +13,13 @@ LavaridgeTown_HerbShop_EventScript_Clerk::
 
 	.align 2
 LavaridgeTown_HerbShop_Pokemart:
+	.2byte ITEM_BRIGHT_POWDER
 	.2byte ITEM_ENERGY_POWDER
 	.2byte ITEM_ENERGY_ROOT
 	.2byte ITEM_HEAL_POWDER
 	.2byte ITEM_REVIVAL_HERB
+	.2byte ITEM_WHITE_HERB
+	.2byte ITEM_MENTAL_HERB
 	.2byte ITEM_ADAMANT_MINT
 	.2byte ITEM_BOLD_MINT
 	.2byte ITEM_BRAVE_MINT
