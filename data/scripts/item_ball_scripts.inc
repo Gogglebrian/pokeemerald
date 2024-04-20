@@ -629,6 +629,14 @@ VictoryRoad_B1F_EventScript_ItemFullRestore::
 VictoryRoad_B2F_EventScript_ItemFullHeal::
 	finditem ITEM_FULL_HEAL
 	end
+	
+VictoryRoad_B2F_EventScript_ItemScopeLens::
+	finditem ITEM_SCOPE_LENS
+	end
+	
+VictoryRoad_B1F_EventScript_ItemChoiceBand::
+	finditem ITEM_CHOICE_BAND
+	end
 
 ArtisanCave_B1F_EventScript_ItemHPUp::
 	finditem ITEM_HP_UP
