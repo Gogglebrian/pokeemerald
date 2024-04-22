@@ -37,7 +37,7 @@ static void AnimCurseNail_Step2(struct Sprite *);
 static void AnimCurseNail_End(struct Sprite *);
 static void AnimGhostStatusSprite(struct Sprite *);
 static void AnimGhostStatusSprite_Step(struct Sprite *);
-static void AnimTask_GrudgeFlames_Step(u8 taskId);
+
 static void AnimGrudgeFlame(struct Sprite *);
 static void AnimMonMoveCircular(struct Sprite *);
 static void AnimMonMoveCircular_Step(struct Sprite *);
@@ -222,7 +222,7 @@ static const union AnimCmd sAnim_GrudgeFlame[] =
     ANIMCMD_JUMP(0),
 };
 
-static const union AnimCmd *const sAnims_GrudgeFlame[] =
+const union AnimCmd *const sAnims_GrudgeFlame[] =
 {
     sAnim_GrudgeFlame,
 };
@@ -1224,7 +1224,7 @@ void AnimTask_GrudgeFlames(u8 taskId)
     task->func = AnimTask_GrudgeFlames_Step;
 }
 
-static void AnimTask_GrudgeFlames_Step(u8 taskId)
+void AnimTask_GrudgeFlames_Step(u8 taskId)
 {
     u16 i;
     u8 spriteId;

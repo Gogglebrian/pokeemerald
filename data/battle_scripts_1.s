@@ -79,7 +79,7 @@ gBattleScriptsForMoveEffects::						 @ defaults to Effect_Hit for unimplemented 
 	.4byte BattleScript_EffectAttackDown2            @ EFFECT_ATTACK_DOWN_2
 	.4byte BattleScript_EffectDefenseDown2           @ EFFECT_DEFENSE_DOWN_2
 	.4byte BattleScript_EffectSpeedDown2             @ EFFECT_SPEED_DOWN_2
-	.4byte BattleScript_EffectHit                    @ EFFECT_SPECIAL_ATTACK_DOWN_2
+	.4byte BattleScript_EffectSpecialAttackDown2     @ EFFECT_SPECIAL_ATTACK_DOWN_2
 	.4byte BattleScript_EffectSpecialDefenseDown2    @ EFFECT_SPECIAL_DEFENSE_DOWN_2
 	.4byte BattleScript_EffectHit                    @ EFFECT_ACCURACY_DOWN_2
 	.4byte BattleScript_EffectHit                    @ EFFECT_EVASION_DOWN_2
@@ -236,7 +236,10 @@ gBattleScriptsForMoveEffects::						 @ defaults to Effect_Hit for unimplemented 
 	.4byte BattleScript_EffectFlinchWithStatus		 @ EFFECT_FLINCH_STATUS
 	.4byte BattleScript_EffectRecoil33WithStatus	 @ EFFECT_RECOIL_33_STATUS
 	.4byte BattleScript_EffectRecoil50				 @ EFFECT_RECOIL_50
-
+	.4byte BattleScript_EffectHammerArm				 @ EFFECT_HAMMER_ARM
+	.4byte BattleScript_EffectStatusDamageMultHit	 @ EFFECT_VENOSHOCK
+	.4byte BattleScript_EffectStatusDamageMultHit	 @ EFFECT_HEX
+	.4byte BattleScript_EffectHurricane				 @ EFFECT_HURRICANE
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -272,6 +275,17 @@ BattleScript_HitFromAtkAnimation::
 BattleScript_MoveEnd::
 	moveendall
 	end
+
+BattleScript_EffectStatusDamageMultHit::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	critcalc
+	statusmultdamagecalc
+	typecalc
+	adjustnormaldamage
+	goto BattleScript_HitFromAtkAnimation
 
 BattleScript_MakeMoveMissed::
 	orbyte gMoveResultFlags, MOVE_RESULT_MISSED
@@ -1009,6 +1023,10 @@ BattleScript_EffectSpeedDown2::
 
 BattleScript_EffectSpecialDefenseDown2::
 	setstatchanger STAT_SPDEF, 2, TRUE
+	goto BattleScript_EffectStatDown
+
+BattleScript_EffectSpecialAttackDown2:
+	setstatchanger STAT_SPATK, 2, TRUE
 	goto BattleScript_EffectStatDown
 
 BattleScript_EffectReflect::
@@ -2695,6 +2713,14 @@ BattleScript_EffectWeatherBall::
 
 BattleScript_EffectOverheat::
 	setmoveeffect MOVE_EFFECT_SP_ATK_TWO_DOWN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+	goto BattleScript_EffectHit
+
+BattleScript_EffectHammerArm::
+	setmoveeffect MOVE_EFFECT_SPD_MINUS_1 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+	goto BattleScript_EffectHit
+
+BattleScript_EffectHurricane:
+	setmoveeffect MOVE_EFFECT_CONFUSION
 	goto BattleScript_EffectHit
 
 BattleScript_EffectTickle::

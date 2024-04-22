@@ -4879,6 +4879,9 @@ extern const u32 gBattleAnimBgTilemap_Cosmic[];
 extern const u32 gBattleAnimBgTilemap_InAir[];
 extern const u32 gBattleAnimBgTilemap_Aurora[];
 extern const u32 gBattleAnimBgTilemap_Fissure[];
+extern const u32 gBattleAnimBgImage_Hurricane[];
+extern const u32 gBattleAnimBgPalette_Hurricane[];
+extern const u32 gBattleAnimBgTilemap_Hurricane[];
 
 extern const u32 gMetalShineGfx[];
 extern const u32 gMetalShinePalette[];
