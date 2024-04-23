@@ -13,12 +13,6 @@ LilycoveCity_House2_EventScript_FatMan::
 	release
 	end
 
-LilycoveCity_House2_EventScript_MoveTutor::
-	lock
-	faceplayer
-	call Common_EventScript_MoveTutor_Price
-	end
-
 LilycoveCity_House2_EventScript_ReceivedRest::
 	msgbox LilycoveCity_House2_Text_SleepIsEssential, MSGBOX_DEFAULT
 	release

@@ -4,6 +4,13 @@ LilycoveCity_MoveDeletersHouse_MapScripts::
 	.byte 0
 
 LilycoveCity_MoveDeletersHouse_EventScript_MoveDeleter::
+	lock
+	faceplayer
+	call Common_EventScript_MoveTutor_Price
+	end
+
+
+LilycoveCity_MoveDeletersHouse_EventScript_MoveDeleterOld::
 	lockall
 	applymovement LOCALID_MOVE_DELETER, Common_Movement_FacePlayer
 	waitmovement 0
