@@ -260,6 +260,8 @@ static void DisplayPartyPokemonDataForMultiBattle(u8);
 static void LoadPartyBoxPalette(struct PartyMenuBox *, u8);
 static void DrawEmptySlot(u8 windowId);
 static void DisplayPartyPokemonDataForRelearner(u8);
+static void DisplayPartyPokemonDataForTutor(u8);
+static void DisplayPartyPokemonDataForEggTutor(u8);
 static void DisplayPartyPokemonDataForContest(u8);
 static void DisplayPartyPokemonDataForChooseHalf(u8);
 static void DisplayPartyPokemonDataForWirelessMinigame(u8);
@@ -854,6 +856,10 @@ static void RenderPartyMenuBox(u8 slot)
         {
             if (gPartyMenu.menuType == PARTY_MENU_TYPE_MOVE_RELEARNER)
                 DisplayPartyPokemonDataForRelearner(slot);
+			else if (gPartyMenu.menuType == PARTY_MENU_TYPE_MOVE_TUTOR)
+				DisplayPartyPokemonDataForTutor(slot);
+			else if (gPartyMenu.menuType == PARTY_MENU_TYPE_EGG_MOVE_TUTOR)
+				DisplayPartyPokemonDataForEggTutor(slot);
             else if (gPartyMenu.menuType == PARTY_MENU_TYPE_CONTEST)
                 DisplayPartyPokemonDataForContest(slot);
             else if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF)
@@ -954,6 +960,22 @@ static void DisplayPartyPokemonDataForContest(u8 slot)
 static void DisplayPartyPokemonDataForRelearner(u8 slot)
 {
     if (GetNumberOfRelearnableMoves(&gPlayerParty[slot]) == 0)
+        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
+    else
+        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
+}
+
+static void DisplayPartyPokemonDataForTutor(u8 slot)
+{
+    if (GetNumberOfTutorMoves(&gPlayerParty[slot]) == 0)
+        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
+    else
+        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
+}
+
+static void DisplayPartyPokemonDataForEggTutor(u8 slot)
+{
+    if (GetNumberOfEggMoves(&gPlayerParty[slot]) == 0)
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
     else
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
@@ -6657,7 +6679,7 @@ static void Task_ChooseMonForEggTutor(u8 taskId)
     if (!gPaletteFade.active)
     {
         CleanupOverworldWindowsAndTilemaps();
-        InitPartyMenu(PARTY_MENU_TYPE_MOVE_RELEARNER, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_AND_CLOSE, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ChooseMonForEggTutor);
+        InitPartyMenu(PARTY_MENU_TYPE_EGG_MOVE_TUTOR, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_AND_CLOSE, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ChooseMonForEggTutor);
         DestroyTask(taskId);
     }
 }
@@ -6686,7 +6708,7 @@ static void Task_ChooseMonForMoveTutor(u8 taskId)
     if (!gPaletteFade.active)
     {
         CleanupOverworldWindowsAndTilemaps();
-        InitPartyMenu(PARTY_MENU_TYPE_MOVE_RELEARNER, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_AND_CLOSE, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ChooseMonForMoveTutor);
+        InitPartyMenu(PARTY_MENU_TYPE_MOVE_TUTOR, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_AND_CLOSE, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ChooseMonForMoveTutor);
         DestroyTask(taskId);
     }
 }

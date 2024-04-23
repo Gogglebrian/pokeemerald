@@ -9833,7 +9833,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Andres1[] = {
     {
     .iv = 50,
     .lvl = 25,
-    .species = SPECIES_ANORTIH,
+    .species = SPECIES_ANORITH,
     }
 };
 
@@ -11676,7 +11676,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Andres2[] = {
     {
     .iv = 10,
     .lvl = 31,
-    .species = SPECIES_ANORTIH,
+    .species = SPECIES_ANORITH,
     }
 };
 
@@ -11694,7 +11694,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Andres3[] = {
     {
     .iv = 20,
     .lvl = 33,
-    .species = SPECIES_ANORTIH,
+    .species = SPECIES_ANORITH,
     }
 };
 
@@ -11712,7 +11712,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Andres4[] = {
     {
     .iv = 30,
     .lvl = 35,
-    .species = SPECIES_ANORTIH,
+    .species = SPECIES_ANORITH,
     }
 };
 
@@ -11985,7 +11985,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Cristin4[] = {
     {
     .iv = 100,
     .lvl = 39,
-    .species = SPECIES_SLAK,
+    .species = SPECIES_SLAKING,
     }
 };
 
