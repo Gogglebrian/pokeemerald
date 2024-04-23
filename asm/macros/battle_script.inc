@@ -947,6 +947,10 @@
 	.macro furycuttercalc
 	.byte 0xb5
 	.endm
+	
+	.macro statusmultdamagecalc
+	.byte 0xf9
+	.endm
 
 	.macro friendshiptodamagecalculation
 	.byte 0xb6

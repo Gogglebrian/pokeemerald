@@ -1417,9 +1417,25 @@ static const u8 sPsychoBoostDescription[] = _(
     "Allows a full-power attack,\n"
     "but sharply lowers SP. ATK.");
 	
+static const u8 sROOSTDescription[] = _(
+    "Restores the user's HP by\n"
+    "half of its max HP.");
+
+static const u8 sHAMMER_ARMDescription[] = _(
+	"A swinging fist attack\n"
+	"that also lowers SPEED.");
+
 static const u8 sCLOSE_COMBATDescription[] = _(
 	"A strong attack but lowers\n"
 	"the defensive stats.");
+
+static const u8 sPAYBACKDescription[] = _(
+	"An attack that gains power\n"
+	"if the user moves last.");
+
+static const u8 sSUCKER_PUNCHDescription[] = _(
+	"Strikes first if the foe\n"
+	"is preparing an attack.");
 
 static const u8 sFLARE_BLITZDescription[] = _(
 	"A charge that may burn the\n"
@@ -1585,6 +1601,10 @@ static const u8 sSTONE_EDGEDescription[] = _(
 	"Stabs the foe with stones.\n"
 	"High critical-hit ratio.");
 
+static const u8 sCAPTIVATEDescription[] = _(
+	"Makes the opposite gender\n"
+	"sharply reduce its SP. ATK.");
+
 static const u8 sGRASS_KNOTDescription[] = _(
 	"A snare attack that does\n"
 	"more damage to heavier foes.");
@@ -1600,6 +1620,22 @@ static const u8 sAQUA_JETDescription[] = _(
 static const u8 sHEAD_SMASHDescription[] = _(
 	"A life-risking headbutt that\n"
 	"seriously hurts the user.");
+
+static const u8 sVENOSHOCKDescription[] = _(
+	"Does double damage if the\n"
+	"foe is poisoned.");
+
+static const u8 sHEXDescription[] = _(
+	"Does double damage if the\n"
+	"foe has a status problem.");
+
+static const u8 sBULLDOZEDescription[] = _(
+	"Stomps down on the ground.\n"
+	"Lowers SPEED.");
+
+static const u8 sHURRICANEDescription[] = _(
+	"Traps the foe in a fierce\n"
+	"wind. May cause confusion.");
 
 static const u8 sDISARMING_VOICEDescription[] = _(
 	"Lets out a charming cry\n"
@@ -2006,7 +2042,11 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_WATER_PULSE - 1] = sWaterPulseDescription,
     [MOVE_DOOM_DESIRE - 1] = sDoomDesireDescription,
     [MOVE_PSYCHO_BOOST - 1] = sPsychoBoostDescription,
+	[MOVE_ROOST - 1] = sROOSTDescription,
+	[MOVE_HAMMER_ARM - 1] = sHAMMER_ARMDescription,
 	[MOVE_CLOSE_COMBAT - 1] = sCLOSE_COMBATDescription,
+	[MOVE_PAYBACK - 1] = sPAYBACKDescription,
+	[MOVE_SUCKER_PUNCH - 1] = sSUCKER_PUNCHDescription,
 	[MOVE_FLARE_BLITZ - 1] = sFLARE_BLITZDescription,
     [MOVE_FORCE_PALM - 1] = sFORCE_PALMDescription,
     [MOVE_AURA_SPHERE - 1] = sAURA_SPHEREDescription,
@@ -2053,10 +2093,15 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_IRON_HEAD - 1] = sIRON_HEADDescription,
     [MOVE_MAGNET_BOMB - 1] = sMAGNET_BOMBDescription,
     [MOVE_STONE_EDGE - 1] = sSTONE_EDGEDescription,
+	[MOVE_CAPTIVATE - 1] = sCAPTIVATEDescription,
 	[MOVE_GRASS_KNOT - 1] = sGRASS_KNOTDescription,
 	[MOVE_WOOD_HAMMER - 1] = sWOOD_HAMMERDescription,
     [MOVE_AQUA_JET - 1] = sAQUA_JETDescription,
 	[MOVE_HEAD_SMASH - 1] = sHEAD_SMASHDescription,
+	[MOVE_VENOSHOCK - 1] = sVENOSHOCKDescription,
+	[MOVE_HEX - 1] = sHEXDescription,
+	[MOVE_BULLDOZE - 1] = sBULLDOZEDescription,
+	[MOVE_HURRICANE - 1] = sHURRICANEDescription,
 	[MOVE_DISARMING_VOICE - 1] = sDISARMING_VOICEDescription,
 	[MOVE_DRAINING_KISS - 1] = sDRAINING_KISSDescription,
 	[MOVE_PLAY_ROUGH - 1] = sPLAY_ROUGHDescription,

@@ -196,7 +196,8 @@ LilycoveCity_EventScript_DepartmentStoreSign::
 	end
 
 LilycoveCity_EventScript_MoveDeletersHouseSign::
-	msgbox LilycoveCity_Text_MoveDeletersHouseSign, MSGBOX_SIGN
+	goto LilycoveCity_EventScript_TutorSign
+	@ msgbox LilycoveCity_Text_MoveDeletersHouseSign, MSGBOX_SIGN
 	end
 
 LilycoveCity_EventScript_WailmerTrainerGrunt::

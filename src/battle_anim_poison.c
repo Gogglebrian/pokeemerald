@@ -14,8 +14,8 @@ static void AnimBubbleEffect_Step(struct Sprite *);
 static void AnimGunkShotParticlesStep(struct Sprite *sprite);
 static void AnimGunkShotParticles(struct Sprite *sprite);
 static void AnimGunkShotImpact(struct Sprite *sprite);
-
-
+static void AnimSuckerPunchStep(struct Sprite *sprite);
+static void AnimSuckerPunch(struct Sprite *sprite);
 
 static const union AnimCmd sAnim_ToxicBubble[] =
 {
@@ -74,6 +74,44 @@ static const union AnimCmd *const sAnims_SludgeBombHit[] =
 {
     sAnim_SludgeBombHit,
 };
+
+static void AnimSuckerPunch(struct Sprite *sprite)
+{
+    if (BATTLE_PARTNER(gBattleAnimAttacker) == gBattleAnimTarget && GetBattlerPosition(gBattleAnimTarget) < B_POSITION_PLAYER_RIGHT)
+        gBattleAnimArgs[0] *= -1;
+
+    InitSpritePosToAnimTarget(sprite, TRUE);
+
+    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        gBattleAnimArgs[2] = -gBattleAnimArgs[2];
+
+    sprite->data[0] = gBattleAnimArgs[3];
+    sprite->data[1] = sprite->x;
+    sprite->data[2] = sprite->x + gBattleAnimArgs[2];
+    sprite->data[3] = sprite->y;
+    sprite->data[4] = sprite->y;
+
+    InitAnimLinearTranslation(sprite);
+
+    sprite->data[5] = gBattleAnimArgs[5];
+    sprite->data[6] = gBattleAnimArgs[4];
+    sprite->data[7] = 0;
+
+    sprite->callback = AnimSuckerPunchStep;
+}
+
+static void AnimSuckerPunchStep(struct Sprite *sprite)
+{
+    if (!AnimTranslateLinear(sprite))
+    {
+        sprite->y2 += Sin(sprite->data[7] >> 8, sprite->data[5]);
+        sprite->data[7] += sprite->data[6];
+    }
+    else
+    {
+        DestroyAnimSprite(sprite);
+    }
+}
 
 static const union AffineAnimCmd sAffineAnim_PoisonProjectile[] =
 {
@@ -327,7 +365,30 @@ static void AnimBubbleEffect_Step(struct Sprite *sprite)
         DestroyAnimSprite(sprite);
 }
 
+const union AnimCmd gSuckerPunchAnimCmd[] =
+{
+    ANIMCMD_FRAME(0, 3),
+    ANIMCMD_FRAME(0, 3, .hFlip = TRUE),
+    ANIMCMD_FRAME(0, 3, .vFlip = TRUE, .hFlip = TRUE),
+    ANIMCMD_FRAME(0, 3, .vFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
 
+const union AnimCmd *const gSuckerPunchAnim[] =
+{
+    gSuckerPunchAnimCmd,
+};
+
+const struct SpriteTemplate gSuckerPunchSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_POISON_JAB,
+    .paletteTag = ANIM_TAG_POISON_JAB,
+    .oam = &gOamData_AffineNormal_ObjNormal_16x16,
+    .anims = gSuckerPunchAnim,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimSuckerPunch,
+};
 
 const union AnimCmd gGunkShotParticlesAnimCmd[] =
 {

@@ -84,6 +84,7 @@ static void Cmd_attackstring(void);
 static void Cmd_ppreduce(void);
 static void Cmd_critcalc(void);
 static void Cmd_damagecalc(void);
+static void Cmd_statusmultdamagecalc(void);
 static void Cmd_typecalc(void);
 static void Cmd_adjustnormaldamage(void);
 static void Cmd_adjustnormaldamage2(void);
@@ -607,7 +608,8 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_removeattackerstatus1,                   //0xF5
     Cmd_finishaction,                            //0xF6
     Cmd_finishturn,                              //0xF7
-    Cmd_trainerslideout                          //0xF8
+    Cmd_trainerslideout,                         //0xF8
+	Cmd_statusmultdamagecalc,					 //0xF9
 };
 
 struct StatFractions
@@ -1119,8 +1121,12 @@ static bool8 AccuracyCalcHelper(u16 move)
 
     gHitMarker &= ~HITMARKER_IGNORE_UNDERWATER;
 
-    if ((WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN) && gBattleMoves[move].effect == EFFECT_THUNDER)
-     || (gBattleMoves[move].effect == EFFECT_ALWAYS_HIT || gBattleMoves[move].effect == EFFECT_VITAL_THROW))
+	if (
+		(WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN) && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
+	 || (WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_HAIL) && move == MOVE_BLIZZARD)
+     || (gBattleMoves[move].effect == EFFECT_ALWAYS_HIT || gBattleMoves[move].effect == EFFECT_VITAL_THROW)
+	 || (gBattleMoves[move].accuracy == 0)
+	 )
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
@@ -1132,9 +1138,8 @@ static bool8 AccuracyCalcHelper(u16 move)
 static void Cmd_accuracycheck(void)
 {
     u16 move = T2_READ_16(gBattlescriptCurrInstr + 5);
-	u8 moveAcc = gBattleMoves[move].accuracy;
 
-    if (move == NO_ACC_CALC || move == NO_ACC_CALC_CHECK_LOCK_ON || moveAcc < 0.5)
+    if (move == NO_ACC_CALC || move == NO_ACC_CALC_CHECK_LOCK_ON)
     {
         if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && move == NO_ACC_CALC_CHECK_LOCK_ON && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
             gBattlescriptCurrInstr += 7;
@@ -1145,7 +1150,7 @@ static void Cmd_accuracycheck(void)
     }
     else
     {
-        u8 type, holdEffect, param;
+        u8 type, moveAcc, holdEffect, param;
         s8 buff;
         u16 calc;
 
@@ -1175,6 +1180,7 @@ static void Cmd_accuracycheck(void)
         if (buff > MAX_STAT_STAGE)
             buff = MAX_STAT_STAGE;
 
+		moveAcc = gBattleMoves[move].accuracy;
         // check Thunder on sunny weather
         if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SUN && gBattleMoves[move].effect == EFFECT_THUNDER)
             moveAcc = 50;
@@ -1323,6 +1329,30 @@ static void Cmd_critcalc(void)
 static void Cmd_damagecalc(void)
 {
     u16 sideStatus = gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)];
+	
+    gBattleMoveDamage = CalculateBaseDamage(&gBattleMons[gBattlerAttacker], &gBattleMons[gBattlerTarget], gCurrentMove,
+                                            sideStatus, gDynamicBasePower,
+                                            gBattleStruct->dynamicMoveType, gBattlerAttacker, gBattlerTarget);
+    gBattleMoveDamage = gBattleMoveDamage * gCritMultiplier * gBattleScripting.dmgMultiplier;
+
+    if (gStatuses3[gBattlerAttacker] & STATUS3_CHARGED_UP && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
+        gBattleMoveDamage *= 2;
+    if (gProtectStructs[gBattlerAttacker].helpingHand)
+        gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
+
+    gBattlescriptCurrInstr++;
+}
+
+static void Cmd_statusmultdamagecalc(void)
+{
+    u16 sideStatus = gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)];
+	
+	gDynamicBasePower = gBattleMoves[gCurrentMove].power;
+	if (   ((gCurrentMove == MOVE_HEX) 		 && (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_SLEEP | STATUS1_FREEZE | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON)))
+		|| ((gCurrentMove == MOVE_VENOSHOCK) && (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON)))
+	)
+		gDynamicBasePower *= 2;
+
     gBattleMoveDamage = CalculateBaseDamage(&gBattleMons[gBattlerAttacker], &gBattleMons[gBattlerTarget], gCurrentMove,
                                             sideStatus, gDynamicBasePower,
                                             gBattleStruct->dynamicMoveType, gBattlerAttacker, gBattlerTarget);
