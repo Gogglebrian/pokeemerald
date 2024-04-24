@@ -1525,8 +1525,8 @@ const u8 gGrovylePokedexText[] = _(
 const u8 gSceptilePokedexText[] = _(
     "In the jungle, its power is without equal.\n"
     "This POKéMON carefully grows trees and\n"
-    "plants. It regulates its body temperature\n"
-    "by basking in sunlight.");
+    "plants, and protects them from storms by\n"
+	"redirecting lightning strikes to itself.");
 
 const u8 gTorchicPokedexText[] = _(
     "If attacked, it strikes back by spitting\n"
@@ -1574,7 +1574,7 @@ const u8 gMightyenaPokedexText[] = _(
     "In the wild, MIGHTYENA live in a pack.\n"
     "They never defy their leader's orders.\n"
     "They defeat foes with perfectly\n"
-    "coordinated teamwork.");
+    "coordinated teamwork and toxic bites.");
 
 const u8 gZigzagoonPokedexText[] = _(
     "Rubbing its nose against the ground, it\n"
@@ -1584,9 +1584,9 @@ const u8 gZigzagoonPokedexText[] = _(
 
 const u8 gLinoonePokedexText[] = _(
     "It is exceedingly fast if it only has to run\n"
-    "in a straight line. When it spots pond-\n"
-    "dwelling prey underwater, it quickly leaps\n"
-    "in and catches it with its sharp claws.");
+    "in a straight line. When it senses under-\n"
+    "ground prey, it quickly digs down and\n"
+    "catches it with its sharp claws.");
 
 const u8 gWurmplePokedexText[] = _(
     "It sticks to tree branches and eats\n"
