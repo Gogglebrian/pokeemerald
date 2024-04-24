@@ -20,6 +20,17 @@ Route123_EventScript_GigaDrainGirl::
 	msgbox Route123_Text_CheckTreesWithMyGrassMon, MSGBOX_DEFAULT
 	release
 	end
+	
+Route123_EventScript_EnvioliteLady::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_ENVIOLITE, Route123_EventScript_ReceivedEnviolite
+	msgbox Route123_Text_GiveEnviolite, MSGBOX_DEFAULT
+	giveitem ITEM_ENVIOLITE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_ENVIOLITE
+	release
+	end
 
 Route123_EventScript_NoGrassMons::
 	release
@@ -27,6 +38,11 @@ Route123_EventScript_NoGrassMons::
 
 Route123_EventScript_ReceivedGigaDrain::
 	msgbox Route123_Text_CheckTreesWithMyGrassMon, MSGBOX_DEFAULT
+	release
+	end
+	
+Route123_EventScript_ReceivedEnviolite::
+	msgbox Route123_Text_AlreadyGotEnviolite, MSGBOX_DEFAULT
 	release
 	end
 
@@ -195,4 +211,26 @@ Route123_Text_RouteSignMtPyre:
 
 Route123_Text_BerryMastersHouse:
 	.string "BERRY MASTER'S HOUSE$"
+
+Route123_Text_GiveEnviolite:
+	.string "Did you see that white-haired guy pass\n"
+	.string "by a while ago?\p"
+	.string "He gave me this weird stone. I think\n"
+	.string "it's called an ENVYOLITE.\p"
+	.string "Apparently if held by a weak POKéMON\n"
+	.string "that can't evolve or is fully-evolved,\l"
+	.string "all its stats will be boosted.\p"
+	.string "Problem is, I'm not even a POKéMON\n"
+	.string "TRAINER! He must've mistaken me for\l"
+	.string "someone else. How embarrassing!\p"
+	.string "Well, you look like a TRAINER. Maybe\n"
+	.string "you'll find a use for this ENVYOLITE.\l"
+	.string "Please take it!$"
+	
+Route123_Text_AlreadyGotEnviolite:
+	.string "The ENVYOLITE is a hold item that\n"
+	.string "boosts the stats of weaker POKéMON\l"
+	.string "that can't evolve or are fully-evolved.\p"
+	.string "…That's what that white-haired guy\n"
+	.string "said, anyways. What a character!$"
 

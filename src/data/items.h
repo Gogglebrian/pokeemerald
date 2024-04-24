@@ -2823,7 +2823,7 @@ const struct Item gItems[] =
 
    [ITEM_ENVIOLITE] =
     {
-        .name = _("ENVIOLITE"),
+        .name = _("ENVYOLITE"),
         .itemId = ITEM_ENVIOLITE,
         .price = 200,
         .holdEffect = HOLD_EFFECT_ENVIOLITE,

@@ -1390,6 +1390,41 @@ bool8 FoundAbandonedShipRoom6Key(void)
     return TRUE;
 }
 
+u8 GetLeadMonEnvioliteLevel(void)
+{
+	u16 species = GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_SPECIES, NULL);
+	if (species == SPECIES_EGG)
+		return 255;
+	
+	switch(enviolitePercentBonus[species])
+	{
+		case 100:
+			return 0;
+		case 105:
+			return 1;
+		case 110:
+			return 2;
+		case 115:
+			return 3;
+		case 120:
+			return 4;
+		case 125:
+			return 5;
+		case 130:
+			return 6;
+		case 135:
+			return 7;
+		case 140:
+			return 8;
+		case 145:
+			return 9;
+		case 150:
+			return 10;
+		default:
+			return 0;
+	}
+}
+
 bool8 LeadMonHasEffortRibbon(void)
 {
     return GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_EFFORT_RIBBON, NULL);
