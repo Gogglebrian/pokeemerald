@@ -3191,8 +3191,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack *= 2;
 	if (defenderHoldEffect == HOLD_EFFECT_EVIOLITE && (gBaseStats[defender->species].flags & F_WORKS_WITH_EVIOLITE))
 	{
-		spDefense *= (150 * spDefense) / 100;
-		defense *= (150 * defense) / 100;
+		spDefense = (150 * spDefense) / 100;
+		defense = (150 * defense) / 100;
 	}
 
     // Apply abilities / field sports
