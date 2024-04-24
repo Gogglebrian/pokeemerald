@@ -1818,5 +1818,10 @@ static const u8 sPowerWeightDesc[] = _(
 	
 static const u8 sEvioliteDesc[] = _(
     "Raises the DEF and\n"
-    "SP. DEF of Pokémon\n"
+    "SP. DEF of POKÉMON\n"
     "that can evolve.");
+	
+static const u8 sEnvioliteDesc[] = _(
+    "Raises the stats of\n"
+    "weaker POKÉMON\n"
+    "that can't evolve.");

@@ -555,6 +555,9 @@ struct MonSpritesGfxManager *CreateMonSpritesGfxManager(void);
 void DestroyMonSpritesGfxManager(void);
 u8 *MonSpritesGfxManager_GetSpritePtr(u8 spriteNum);
 
+#include "constants/species.h"
+extern const u32 enviolitePercentBonus[NUM_SPECIES];
+
 //Normal Move Tutor --------------------------------------------------
 u8 GetNumberOfTutorMoves(struct Pokemon *mon);
 u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves);

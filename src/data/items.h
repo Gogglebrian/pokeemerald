@@ -2821,15 +2821,18 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_0E4] =
+   [ITEM_ENVIOLITE] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
+        .name = _("ENVIOLITE"),
+        .itemId = ITEM_ENVIOLITE,
+        .price = 200,
+        .holdEffect = HOLD_EFFECT_ENVIOLITE,
+        .holdEffectParam = 50,
+        .description = sEnvioliteDesc,
+        .pocket = POCKET_BATTLE_ITEMS,
+        .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 0,
     },
 
     [ITEM_0E5] =

@@ -245,8 +245,8 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_STICK] = {gItemIcon_Stick, gItemIconPalette_Stick},
     [ITEM_EVIOLITE] = {gItemIcon_Eviolite, gItemIconPalette_Eviolite},
     [ITEM_FAIRY_FEATHER] = {gItemIcon_FairyFeather, gItemIconPalette_FairyFeather},
+	[ITEM_ENVIOLITE] = {gItemIcon_Enviolite, gItemIconPalette_Enviolite},
 	//?????
-    [ITEM_0E4] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_0E5] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_0E6] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_0E7] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},

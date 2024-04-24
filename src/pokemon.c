@@ -3105,6 +3105,8 @@ void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)
     (var) /= (gStatStageRatios)[(mon)->statStages[(statIndex)]][1];                 \
 }
 
+#include "data/pokemon/enviolite.h"
+
 s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *defender, u32 move, u16 sideStatus, u16 powerOverride, u8 typeOverride, u8 battlerIdAtk, u8 battlerIdDef)
 {
     u32 i;
@@ -3191,8 +3193,18 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack *= 2;
 	if (defenderHoldEffect == HOLD_EFFECT_EVIOLITE && (gBaseStats[defender->species].flags & F_WORKS_WITH_EVIOLITE))
 	{
-		spDefense *= (150 * spDefense) / 100;
-		defense *= (150 * defense) / 100;
+		spDefense = (150 * spDefense) / 100;
+		defense = (150 * defense) / 100;
+	}
+	if (defenderHoldEffect == HOLD_EFFECT_ENVIOLITE && (gBaseStats[defender->species].flags & F_WORKS_WITH_ENVIOLITE))
+	{
+		defense = enviolitePercentBonus[defender->species] * defense / 100;
+		spDefense = enviolitePercentBonus[defender->species] * spDefense / 100;
+	}
+	if (attackerHoldEffect == HOLD_EFFECT_ENVIOLITE && (gBaseStats[attacker->species].flags & F_WORKS_WITH_ENVIOLITE))
+	{
+		attack = enviolitePercentBonus[attacker->species] * attack / 100;
+		spAttack = enviolitePercentBonus[attacker->species] * spAttack / 100;
 	}
 
     // Apply abilities / field sports

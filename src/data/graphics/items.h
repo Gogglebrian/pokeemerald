@@ -532,6 +532,9 @@ const u32 gItemIconPalette_Stick[] = INCBIN_U32("graphics/items/icon_palettes/st
 const u32 gItemIcon_Eviolite[] = INCBIN_U32("graphics/items/icons/eviolite.4bpp.lz");
 const u32 gItemIconPalette_Eviolite[] = INCBIN_U32("graphics/items/icon_palettes/eviolite.gbapal.lz");
 
+const u32 gItemIcon_Enviolite[] = INCBIN_U32("graphics/items/icons/adamant_orb.4bpp.lz");
+const u32 gItemIconPalette_Enviolite[] = INCBIN_U32("graphics/items/icon_palettes/adamant_orb.gbapal.lz");
+
 const u32 gItemIcon_PrismScale[] = INCBIN_U32("graphics/items/icons/prism_scale.4bpp.lz");
 const u32 gItemIconPalette_PrismScale[] = INCBIN_U32("graphics/items/icon_palettes/prism_scale.gbapal.lz");
 
