@@ -6074,6 +6074,7 @@ static const u8 sBeautiflyTutorLearnset[] =
     TUTOR(MOVE_ROOST),
     TUTOR(MOVE_ENERGY_BALL),
     TUTOR(MOVE_GIGA_IMPACT),
+    TUTOR(MOVE_DAZZLING_GLEAM),
     0xFF,
 };
 
@@ -6096,6 +6097,7 @@ static const u8 sDustoxTutorLearnset[] =
     TUTOR(MOVE_ROOST),
     TUTOR(MOVE_ENERGY_BALL),
     TUTOR(MOVE_GIGA_IMPACT),
+	TUTOR(MOVE_DARK_PULSE),
     0xFF,
 };
 
