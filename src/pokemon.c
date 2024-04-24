@@ -3231,9 +3231,9 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
 	{	
 		damageHelper = (attacker->maxHP / 3);
 		if (attacker->hp <= damageHelper)
-			gBattleMovePower = (150 * gBattleMovePower) / 100;
-		else if (attacker->hp < (2*damageHelper))
 			gBattleMovePower = (130 * gBattleMovePower) / 100;
+		else if (attacker->hp < (2*damageHelper))
+			gBattleMovePower = (120 * gBattleMovePower) / 100;
 		else
 			gBattleMovePower = (110 * gBattleMovePower) / 100;
 	}
