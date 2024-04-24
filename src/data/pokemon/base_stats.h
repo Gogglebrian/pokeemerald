@@ -8379,10 +8379,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_SWELLOW] =
     {
         .baseHP        = 60,
-        .baseAttack    = 85,
+        .baseAttack    = 95,
         .baseDefense   = 60,
-        .baseSpeed     = 125,
-        .baseSpAttack  = 75,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 40,
         .baseSpDefense = 50,
         .types = { TYPE_NORMAL, TYPE_FLYING },
         .catchRate = 45,
