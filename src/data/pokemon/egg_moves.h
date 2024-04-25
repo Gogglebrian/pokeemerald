@@ -1400,6 +1400,9 @@ const u16 gEggMoves[] = {
 			  MOVE_SEED_BOMB,
 			  MOVE_NASTY_PLOT,
 			  MOVE_DISABLE,
+			  MOVE_HEAT_WAVE,
+			  MOVE_DRAIN_PUNCH,
+			  MOVE_GIGA_DRAIN,
 			  MOVE_BLOCK),
 
     egg_moves(SNORUNT,
