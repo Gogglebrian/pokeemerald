@@ -7468,6 +7468,7 @@ static const u8 sTorkoalTutorLearnset[] =
     TUTOR(MOVE_GIGA_IMPACT),
     TUTOR(MOVE_STONE_EDGE),
     TUTOR(MOVE_BULLDOZE),
+	TUTOR(MOVE_PAYBACK),
     TUTOR(MOVE_NATURE_POWER),
     0xFF,
 };

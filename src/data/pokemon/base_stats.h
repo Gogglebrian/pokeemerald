@@ -8857,10 +8857,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_TORKOAL] =
     {
         .baseHP        = 70,
-        .baseAttack    = 85,
+        .baseAttack    = 80,
         .baseDefense   = 140,
         .baseSpeed     = 20,
-        .baseSpAttack  = 85,
+        .baseSpAttack  = 90,
         .baseSpDefense = 70,
         .types = { TYPE_FIRE, TYPE_FIRE },
         .catchRate = 90,
