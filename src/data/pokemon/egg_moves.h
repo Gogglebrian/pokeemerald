@@ -1314,6 +1314,7 @@ const u16 gEggMoves[] = {
               MOVE_THRASH,
 			  MOVE_ANCIENT_POWER,
 			  MOVE_SWIFT,
+			  MOVE_DRAGON_RUSH,
 			  MOVE_DESTINY_BOND),
 
     egg_moves(TRAPINCH,
