@@ -10049,11 +10049,11 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_DUSKULL] =
     {
-        .baseHP        = 20,
-        .baseAttack    = 40,
+        .baseHP        = 35,
+        .baseAttack    = 60,
         .baseDefense   = 90,
         .baseSpeed     = 25,
-        .baseSpAttack  = 30,
+        .baseSpAttack  = 50,
         .baseSpDefense = 90,
         .types = { TYPE_GHOST, TYPE_GHOST },
         .catchRate = 190,
@@ -10080,10 +10080,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_DUSCLOPS] =
     {
         .baseHP        = 40,
-        .baseAttack    = 70,
+        .baseAttack    = 80,
         .baseDefense   = 130,
         .baseSpeed     = 25,
-        .baseSpAttack  = 60,
+        .baseSpAttack  = 50,
         .baseSpDefense = 130,
         .types = { TYPE_GHOST, TYPE_GHOST },
         .catchRate = 90,
