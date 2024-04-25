@@ -6435,8 +6435,8 @@ static const u16 sNumelLevelUpLearnset[] = {
 };
 
 static const u16 sCameruptLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_FISSURE),
-    LEVEL_UP_MOVE( 1, MOVE_ERUPTION),
+    //LEVEL_UP_MOVE( 1, MOVE_FISSURE),
+    //LEVEL_UP_MOVE( 1, MOVE_ERUPTION),
     LEVEL_UP_MOVE( 1, MOVE_GROWL),
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 1, MOVE_EMBER),

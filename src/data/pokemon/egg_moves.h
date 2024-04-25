@@ -1369,6 +1369,7 @@ const u16 gEggMoves[] = {
 			  MOVE_SPIT_UP,
 			  MOVE_ENDURE,
 			  MOVE_IRON_HEAD,
+			  MOVE_FIRE_FANG,
 			  MOVE_GROWTH),
 
     egg_moves(SPHEAL,
