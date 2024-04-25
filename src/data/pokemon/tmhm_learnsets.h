@@ -8173,7 +8173,10 @@ const union {
     [SPECIES_MANECTRIC] = { .learnset = {
         .ROAR = TRUE,
         .TOXIC = TRUE,
+		.HAIL = TRUE,
         .HIDDEN_POWER = TRUE,
+		.ICE_BEAM = TRUE,
+		.BLIZZARD = TRUE,
         .HYPER_BEAM = TRUE,
         .PROTECT = TRUE,
         .RAIN_DANCE = TRUE,

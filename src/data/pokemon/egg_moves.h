@@ -1348,8 +1348,9 @@ const u16 gEggMoves[] = {
               MOVE_SWIFT,
 			  MOVE_DISCHARGE,
 			  MOVE_ICE_FANG,
-			  MOVE_FIRE_FANG,
 			  MOVE_THUNDER_FANG,
+			  MOVE_ICE_SHARD,
+			  MOVE_ICY_WIND,
 			  MOVE_SHOCK_WAVE),
 
     egg_moves(NUMEL,

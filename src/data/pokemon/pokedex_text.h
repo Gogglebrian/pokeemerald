@@ -1862,7 +1862,7 @@ const u8 gManectricPokedexText[] = _(
     "Because lightning falls in their vicinities,\n"
     "MANECTRIC were thought to have been born\n"
     "from lightning. In battle, they create\n"
-    "thunderclouds.");
+    "thunderclouds and chill the surrounding air.");
 
 const u8 gPluslePokedexText[] = _(
     "It has the trait of cheering on its fellow\n"
