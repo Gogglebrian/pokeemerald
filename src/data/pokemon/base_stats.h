@@ -9036,13 +9036,13 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_CRAWDAUNT] =
     {
-        .baseHP        = 63,
+        .baseHP        = 73,
         .baseAttack    = 120,
-        .baseDefense   = 85,
+        .baseDefense   = 95,
         .baseSpeed     = 55,
-        .baseSpAttack  = 90,
-        .baseSpDefense = 55,
-        .types = { TYPE_WATER, TYPE_DARK },
+        .baseSpAttack  = 60,
+        .baseSpDefense = 65,
+        .types = { TYPE_WATER, TYPE_STEEL },
         .catchRate = 155,
         .expYield = 161,
         .evYield_HP        = 0,

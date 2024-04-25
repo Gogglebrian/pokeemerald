@@ -1288,9 +1288,9 @@ const u16 gEggMoves[] = {
               MOVE_ANCIENT_POWER,
 			  MOVE_KNOCK_OFF,
 			  MOVE_SUPERPOWER,
-			  MOVE_METAL_CLAW,
 			  MOVE_DRAGON_DANCE,
 			  MOVE_DOUBLE_EDGE,
+			  MOVE_BULLET_PUNCH,
 			  MOVE_AQUA_JET),
 
     egg_moves(FEEBAS,
