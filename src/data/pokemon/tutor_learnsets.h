@@ -6892,6 +6892,7 @@ static const u8 sDelcattyTutorLearnset[] =
     TUTOR(MOVE_PAYBACK),
     TUTOR(MOVE_GIGA_IMPACT),
     TUTOR(MOVE_GRASS_KNOT),
+	TUTOR(MOVE_DAZZLING_GLEAM),
     0xFF,
 };
 

@@ -1214,6 +1214,7 @@ const u16 gEggMoves[] = {
 			  MOVE_ZEN_HEADBUTT,
 			  MOVE_SUCKER_PUNCH,
 			  MOVE_MUD_BOMB,
+			  MOVE_ZEN_HEADBUTT,
 			  MOVE_CAPTIVATE),
 
     egg_moves(KECLEON,
