@@ -6450,6 +6450,7 @@ static const u8 sMasquerainTutorLearnset[] =
     TUTOR(MOVE_ROOST),
     TUTOR(MOVE_ENERGY_BALL),
     TUTOR(MOVE_GIGA_IMPACT),
+	TUTOR(MOVE_NATURE_POWER),
     0xFF,
 };
 

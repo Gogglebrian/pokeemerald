@@ -8589,9 +8589,9 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_MASQUERAIN] =
     {
         .baseHP        = 70,
-        .baseAttack    = 60,
+        .baseAttack    = 50,
         .baseDefense   = 62,
-        .baseSpeed     = 80,
+        .baseSpeed     = 90,
         .baseSpAttack  = 100,
         .baseSpDefense = 82,
         .types = { TYPE_BUG, TYPE_WATER },
