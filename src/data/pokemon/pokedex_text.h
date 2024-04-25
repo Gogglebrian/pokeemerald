@@ -1898,13 +1898,13 @@ const u8 gGulpinPokedexText[] = _(
     "This POKéMON's stomach fluid can even\n"
     "digest scrap iron. In one gulp, it can\n"
     "swallow something that is as large as\n"
-    "itself.");
+    "itself. Even so, it is a popular housepet.");
 
 const u8 gSwalotPokedexText[] = _(
     "Its powerful stomach acid is capable of\n"
-    "digesting almost anything. The one thing\n"
-    "in the whole world a SWALOT can't digest is\n"
-    "its own stomach.");
+    "digesting almost anything. It often uses\n"
+    "this strange talent to entertain and amaze\n"
+    "people and POKéMON alike.");
 
 const u8 gCarvanhaPokedexText[] = _(
     "CARVANHA attack ships in swarms, making\n"
