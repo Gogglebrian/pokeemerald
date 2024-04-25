@@ -10109,12 +10109,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_ROSELIA] =
     {
-        .baseHP        = 50,
-        .baseAttack    = 60,
-        .baseDefense   = 45,
-        .baseSpeed     = 65,
-        .baseSpAttack  = 100,
-        .baseSpDefense = 80,
+        .baseHP        = 60,
+        .baseAttack    = 30,
+        .baseDefense   = 65,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 115,
+        .baseSpDefense = 85,
         .types = { TYPE_GRASS, TYPE_POISON },
         .catchRate = 150,
         .expYield = 152,
