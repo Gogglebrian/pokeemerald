@@ -8405,6 +8405,7 @@ const union {
         .FRUSTRATION = TRUE,
         .EARTHQUAKE = TRUE,
         .RETURN = TRUE,
+		.PSYCHIC = TRUE,
         .SHADOW_BALL = TRUE,
         .DOUBLE_TEAM = TRUE,
         .TORMENT = TRUE,

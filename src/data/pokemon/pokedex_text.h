@@ -2173,8 +2173,8 @@ const u8 gSnoruntPokedexText[] = _(
 const u8 gGlaliePokedexText[] = _(
     "A GLALIE has the power to instantaneously\n"
     "freeze moisture in the atmosphere.\n"
-    "A dazzling cloud of diamondlike ice\n"
-    "crystals forms around its body.");
+    "It uses this power to freeze its foes\n"
+    "and gradually feed upon their souls.");
 
 const u8 gSphealPokedexText[] = _(
     "It is completely covered with plushy fur.\n"
