@@ -1429,7 +1429,8 @@ const u16 gEggMoves[] = {
 			  MOVE_CAMOUFLAGE),
 			  
     egg_moves(SPOINK,
-              MOVE_FUTURE_SIGHT,
+              MOVE_HEADBUTT,
+			  MOVE_FUTURE_SIGHT,
               MOVE_EXTRASENSORY,
               MOVE_SUBSTITUTE,
               MOVE_TRICK,
@@ -1438,6 +1439,7 @@ const u16 gEggMoves[] = {
 			  MOVE_MIRROR_COAT,
 			  MOVE_SKILL_SWAP,
 			  MOVE_WHIRLWIND,
+			  MOVE_SMELLING_SALT,
 			  MOVE_ENDURE),
 
     egg_moves(PLUSLE,

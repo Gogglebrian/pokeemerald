@@ -9752,12 +9752,12 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_SPOINK] =
     {
         .baseHP        = 60,
-        .baseAttack    = 25,
-        .baseDefense   = 35,
+        .baseAttack    = 55,
+        .baseDefense   = 50,
         .baseSpeed     = 60,
-        .baseSpAttack  = 70,
+        .baseSpAttack  = 75,
         .baseSpDefense = 80,
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
+        .types = { TYPE_PSYCHIC, TYPE_NORMAL },
         .catchRate = 255,
         .expYield = 89,
         .evYield_HP        = 0,
@@ -9781,13 +9781,13 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_GRUMPIG] =
     {
-        .baseHP        = 80,
-        .baseAttack    = 45,
-        .baseDefense   = 65,
+        .baseHP        = 90,
+        .baseAttack    = 80,
+        .baseDefense   = 70,
         .baseSpeed     = 80,
-        .baseSpAttack  = 90,
+        .baseSpAttack  = 100,
         .baseSpDefense = 110,
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
+        .types = { TYPE_PSYCHIC, TYPE_NORMAL },
         .catchRate = 60,
         .expYield = 164,
         .evYield_HP        = 0,
