@@ -1704,9 +1704,9 @@ const u8 gSurskitPokedexText[] = _(
 
 const u8 gMasquerainPokedexText[] = _(
     "It intimidates foes with the large eyelike\n"
-    "patterns on its antennae. Because it can't\n"
-    "fly if its wings get wet, it shelters itself\n"
-    "from rain under large trees and eaves.");
+    "patterns on its antennae. Unlike most BUGS,\n"
+    "its strong waterproof wings allow it to fly\n"
+    "comfortably through wind and rain.");
 
 const u8 gShroomishPokedexText[] = _(
     "It loves to eat damp, composted soil in\n"

@@ -21,6 +21,7 @@ static const u8 sShieldDustDescription[] = _("Prevents added effects.");
 static const u8 sOwnTempoDescription[] = _("Prevents confusion.");
 static const u8 sSuctionCupsDescription[] = _("Firmly anchors the body.");
 static const u8 sIntimidateDescription[] = _("Lowers the foe's ATTACK.");
+static const u8 sTerriflyingDescription[] = _("Lowers the foe's ATTACK.");
 static const u8 sShadowTagDescription[] = _("Prevents the foe's escape.");
 static const u8 sRoughSkinDescription[] = _("Hurts to touch.");
 static const u8 sWonderGuardDescription[] = _("“Super effective” hits.");
@@ -157,6 +158,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SHELL_ARMOR] = _("SHELL ARMOR"),
     [ABILITY_CACOPHONY] = _("CACOPHONY"),
     [ABILITY_AIR_LOCK] = _("AIR LOCK"),
+	[ABILITY_TERRIFLYING] = _("TERRIFLYING"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -239,4 +241,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SHELL_ARMOR] = sShellArmorDescription,
     [ABILITY_CACOPHONY] = sCacophonyDescription,
     [ABILITY_AIR_LOCK] = sAirLockDescription,
+    [ABILITY_TERRIFLYING] = sTerriflyingDescription,
 };

@@ -2547,6 +2547,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     gSpecialStatuses[battler].intimidatedMon = 1;
                 }
                 break;
+			case ABILITY_TERRIFLYING:
+                if (!(gSpecialStatuses[battler].intimidatedMon))
+                {
+                    gStatuses3[battler] |= STATUS3_INTIMIDATE_POKES;
+                    gSpecialStatuses[battler].intimidatedMon = 1;
+                }
+                break;
             case ABILITY_FORECAST:
                 effect = CastformDataTypeChange(battler);
                 if (effect != 0)
@@ -2996,6 +3003,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     effect++;
                     break;
                 }
+				else if (gBattleMons[i].ability == ABILITY_TERRIFLYING && gStatuses3[i] & STATUS3_INTIMIDATE_POKES)
+                {
+                    gLastUsedAbility = ABILITY_TERRIFLYING;
+                    gStatuses3[i] &= ~STATUS3_INTIMIDATE_POKES;
+                    BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatesEnd3);
+                    gBattleStruct->intimidateBattler = i;
+                    effect++;
+                    break;
+                }
             }
             break;
         case ABILITYEFFECT_TRACE: // 11
@@ -3061,6 +3077,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 if (gBattleMons[i].ability == ABILITY_INTIMIDATE && (gStatuses3[i] & STATUS3_INTIMIDATE_POKES))
                 {
                     gLastUsedAbility = ABILITY_INTIMIDATE;
+                    gStatuses3[i] &= ~STATUS3_INTIMIDATE_POKES;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_IntimidateActivates;
+                    gBattleStruct->intimidateBattler = i;
+                    effect++;
+                    break;
+                }
+				else if (gBattleMons[i].ability == ABILITY_TERRIFLYING && (gStatuses3[i] & STATUS3_INTIMIDATE_POKES))
+                {
+                    gLastUsedAbility = ABILITY_TERRIFLYING;
                     gStatuses3[i] &= ~STATUS3_INTIMIDATE_POKES;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_IntimidateActivates;

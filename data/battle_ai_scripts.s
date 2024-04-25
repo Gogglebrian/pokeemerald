@@ -64,6 +64,7 @@ AI_CBM_CheckIfNegatesType:
 	if_equal ABILITY_FLASH_FIRE, CheckIfFlashFireCancelsFire
 	if_equal ABILITY_WONDER_GUARD, CheckIfWonderGuardCancelsMove
 	if_equal ABILITY_LEVITATE, CheckIfLevitateCancelsGroundMove
+	if_equal ABILITY_TERRIFLYING, CheckIfLevitateCancelsGroundMove
 	goto AI_CheckBadMove_CheckSoundproof_
 
 CheckIfVoltAbsorbCancelsElectric:
@@ -367,6 +368,7 @@ AI_CBM_OneHitKO:
 AI_CBM_Magnitude:
 	get_ability AI_TARGET
 	if_equal ABILITY_LEVITATE, Score_Minus10
+	if_equal ABILITY_TERRIFLYING, Score_Minus10
 AI_CBM_HighRiskForDamage:
 	if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
 	get_ability AI_TARGET
@@ -2804,6 +2806,7 @@ AI_DoubleBattleCheckUserStatus2:
 
 AI_DoubleBattleAllHittingGroundMove:
 	if_ability AI_USER_PARTNER, ABILITY_LEVITATE, Score_Plus2
+	if_ability AI_USER_PARTNER, ABILITY_TERRIFLYING, Score_Plus2
 	if_type AI_USER_PARTNER, TYPE_FLYING, Score_Plus2
 	if_type AI_USER_PARTNER, TYPE_FIRE, Score_Minus10
 	if_type AI_USER_PARTNER, TYPE_ELECTRIC, Score_Minus10
@@ -2863,8 +2866,10 @@ AI_TrySkillSwapOnAlly:
 	if_equal ABILITY_TRUANT, Score_Plus10
 	get_ability AI_USER
 	if_not_equal ABILITY_LEVITATE, AI_TrySkillSwapOnAlly2
+	if_not_equal ABILITY_TERRIFLYING, AI_TrySkillSwapOnAlly2
 	get_ability AI_TARGET
 	if_equal ABILITY_LEVITATE, Score_Minus30_
+	if_equal ABILITY_TERRIFLYING, Score_Minus30_
 	get_target_type1
 	if_not_equal TYPE_ELECTRIC, AI_TrySkillSwapOnAlly2
 	score +1
@@ -3195,6 +3200,7 @@ AI_Roaming:
 	if_equal ABILITY_SHADOW_TAG, AI_Roaming_End
 	get_ability AI_USER
 	if_equal ABILITY_LEVITATE, AI_Roaming_Flee
+	if_equal ABILITY_TERRIFLYING, AI_Roaming_Flee
 	get_ability AI_TARGET
 	if_equal ABILITY_ARENA_TRAP, AI_Roaming_End
 AI_Roaming_Flee:
