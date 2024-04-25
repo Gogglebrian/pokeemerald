@@ -1542,12 +1542,14 @@ const u16 gEggMoves[] = {
 
     egg_moves(GULPIN,
               MOVE_DREAM_EATER,
+			  MOVE_BABY_DOLL_EYES,
               MOVE_ACID_ARMOR,
               MOVE_SMOG,
               MOVE_PAIN_SPLIT,
 			  MOVE_CURSE,
 			  MOVE_DESTINY_BOND,
 			  MOVE_MUD_SLAP,
+			  MOVE_GIGA_DRAIN,
 			  MOVE_GUNK_SHOT),
 
     egg_moves(TROPIUS,

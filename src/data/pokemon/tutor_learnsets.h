@@ -7334,6 +7334,7 @@ static const u8 sSwalotTutorLearnset[] =
     TUTOR(MOVE_GIGA_IMPACT),
     TUTOR(MOVE_BULLDOZE),
     TUTOR(MOVE_POISON_JAB),
+    TUTOR(MOVE_DAZZLING_GLEAM),
     0xFF,
 };
 
