@@ -1257,6 +1257,7 @@ const u16 gEggMoves[] = {
 			  MOVE_SUCKER_PUNCH,
 			  MOVE_TRICK,
 			  MOVE_CAPTIVATE,
+			  MOVE_ZEN_HEADBUTT,
 			  MOVE_MEAN_LOOK,
 			  MOVE_IMPRISON),
 

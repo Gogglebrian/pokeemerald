@@ -6931,6 +6931,7 @@ static const u8 sSableyeTutorLearnset[] =
     TUTOR(MOVE_POISON_JAB),
     TUTOR(MOVE_DARK_PULSE),
     TUTOR(MOVE_DAZZLING_GLEAM),
+    TUTOR(MOVE_FLASH_CANNON),
     0xFF,
 };
 
