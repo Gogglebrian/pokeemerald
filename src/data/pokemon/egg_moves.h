@@ -1449,6 +1449,7 @@ const u16 gEggMoves[] = {
 			  MOVE_SWEET_KISS,
 			  MOVE_DISCHARGE,
 			  MOVE_CHARM,
+			  MOVE_ENCORE,
 			  MOVE_FAKE_TEARS),
 
     egg_moves(MINUN,
@@ -1458,6 +1459,7 @@ const u16 gEggMoves[] = {
 			  MOVE_SWEET_KISS,
 			  MOVE_DISCHARGE,
 			  MOVE_CHARM,
+			  MOVE_ENCORE,
 			  MOVE_FAKE_TEARS),
 
     egg_moves(MAWILE,
