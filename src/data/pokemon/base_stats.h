@@ -9365,7 +9365,7 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_MANECTRIC] =
     {
         .baseHP        = 70,
-        .baseAttack    = 75,
+        .baseAttack    = 85,
         .baseDefense   = 60,
         .baseSpeed     = 105,
         .baseSpAttack  = 105,
