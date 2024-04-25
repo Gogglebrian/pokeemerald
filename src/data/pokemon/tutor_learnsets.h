@@ -6844,6 +6844,7 @@ static const u8 sNosepassTutorLearnset[] =
     TUTOR(MOVE_ROCK_POLISH),
     TUTOR(MOVE_STONE_EDGE),
     TUTOR(MOVE_BULLDOZE),
+    TUTOR(MOVE_FLASH_CANNON),
     TUTOR(MOVE_DAZZLING_GLEAM),
     0xFF,
 };
