@@ -8095,6 +8095,7 @@ static const u8 sMiloticTutorLearnset[] =
     TUTOR(MOVE_SWIFT),
     TUTOR(MOVE_GIGA_IMPACT),
     TUTOR(MOVE_BULLDOZE),
+    TUTOR(MOVE_DAZZLING_GLEAM),
     0xFF,
 };
 

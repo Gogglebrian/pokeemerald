@@ -9097,10 +9097,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_MILOTIC] =
     {
         .baseHP        = 95,
-        .baseAttack    = 60,
+        .baseAttack    = 55,
         .baseDefense   = 79,
         .baseSpeed     = 81,
-        .baseSpAttack  = 100,
+        .baseSpAttack  = 105,
         .baseSpDefense = 125,
         .types = { TYPE_WATER, TYPE_WATER },
         .catchRate = 60,

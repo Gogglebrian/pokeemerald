@@ -7957,6 +7957,7 @@ const union {
         .FRUSTRATION = TRUE,
         .IRON_TAIL = TRUE,
         .RETURN = TRUE,
+		.PSYCHIC = TRUE,
         .DOUBLE_TEAM = TRUE,
         .FACADE = TRUE,
         .SECRET_POWER = TRUE,

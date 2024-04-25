@@ -1299,6 +1299,7 @@ const u16 gEggMoves[] = {
               MOVE_MUD_SPORT,
               MOVE_HYPNOSIS,
               MOVE_LIGHT_SCREEN,
+			  MOVE_DRAINING_KISS,
               MOVE_CONFUSE_RAY,
 			  MOVE_MIST,
 			  MOVE_HAZE,
