@@ -9871,12 +9871,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_MAWILE] =
     {
-        .baseHP        = 50,
-        .baseAttack    = 85,
+        .baseHP        = 55,
+        .baseAttack    = 95,
         .baseDefense   = 85,
         .baseSpeed     = 50,
-        .baseSpAttack  = 55,
-        .baseSpDefense = 55,
+        .baseSpAttack  = 30,
+        .baseSpDefense = 65,
         .types = { TYPE_STEEL, TYPE_FAIRY },
         .catchRate = 45,
         .expYield = 98,
