@@ -7818,6 +7818,7 @@ static const u8 sLunatoneTutorLearnset[] =
     TUTOR(MOVE_ROCK_POLISH),
     TUTOR(MOVE_STONE_EDGE),
     TUTOR(MOVE_BULLDOZE),
+    TUTOR(MOVE_ENERGY_BALL),
     TUTOR(MOVE_GRASS_KNOT),
     0xFF,
 };
@@ -7845,6 +7846,7 @@ static const u8 sSolrockTutorLearnset[] =
     TUTOR(MOVE_ROCK_POLISH),
     TUTOR(MOVE_STONE_EDGE),
     TUTOR(MOVE_BULLDOZE),
+	TUTOR(MOVE_ENERGY_BALL),
     TUTOR(MOVE_GRASS_KNOT),
     0xFF,
 };

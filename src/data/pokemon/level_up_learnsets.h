@@ -6745,7 +6745,7 @@ static const u16 sSeviperLevelUpLearnset[] = {
 };
 
 static const u16 sLunatoneLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_MOONBLAST),
+    //LEVEL_UP_MOVE( 1, MOVE_MOONBLAST),
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 1, MOVE_HARDEN),
     LEVEL_UP_MOVE( 1, MOVE_CONFUSION),

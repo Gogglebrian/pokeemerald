@@ -8439,6 +8439,7 @@ const union {
         .SECRET_POWER = TRUE,
         .REST = TRUE,
         .SKILL_SWAP = TRUE,
+		.SURF = TRUE,
         .FLASH = TRUE,
     } },
 

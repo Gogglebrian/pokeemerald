@@ -9692,10 +9692,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_SOLROCK] =
     {
         .baseHP        = 90,
-        .baseAttack    = 95,
+        .baseAttack    = 55,
         .baseDefense   = 85,
         .baseSpeed     = 70,
-        .baseSpAttack  = 55,
+        .baseSpAttack  = 95,
         .baseSpDefense = 65,
         .types = { TYPE_ROCK, TYPE_PSYCHIC },
         .catchRate = 45,
