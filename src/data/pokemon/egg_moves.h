@@ -1227,6 +1227,7 @@ const u16 gEggMoves[] = {
 			  MOVE_RECOVER,
 			  MOVE_SKILL_SWAP,
 			  MOVE_SNATCH,
+			  MOVE_ZEN_HEADBUTT,
 			  MOVE_CAMOUFLAGE),
 
     egg_moves(NOSEPASS,

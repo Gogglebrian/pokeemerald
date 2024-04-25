@@ -8797,11 +8797,11 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_CLAYDOL] =
     {
-        .baseHP        = 60,
+        .baseHP        = 65,
         .baseAttack    = 70,
         .baseDefense   = 105,
         .baseSpeed     = 75,
-        .baseSpAttack  = 70,
+        .baseSpAttack  = 95,
         .baseSpDefense = 120,
         .types = { TYPE_GROUND, TYPE_PSYCHIC },
         .catchRate = 90,

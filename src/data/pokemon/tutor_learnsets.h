@@ -7968,6 +7968,8 @@ static const u8 sClaydolTutorLearnset[] =
     TUTOR(MOVE_BULLDOZE),
     TUTOR(MOVE_GRASS_KNOT),
     TUTOR(MOVE_DAZZLING_GLEAM),
+	TUTOR(MOVE_DARK_PULSE),
+	TUTOR(MOVE_FLASH_CANNON),
     0xFF,
 };
 
@@ -8142,6 +8144,8 @@ static const u8 sKecleonTutorLearnset[] =
     TUTOR(MOVE_FURY_CUTTER),
     TUTOR(MOVE_SHADOW_CLAW),
     TUTOR(MOVE_GRASS_KNOT),
+	TUTOR(MOVE_PAYBACK),
+	TUTOR(MOVE_DARK_PULSE),
     0xFF,
 };
 
