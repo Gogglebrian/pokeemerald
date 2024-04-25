@@ -9246,10 +9246,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_FLYGON] =
     {
         .baseHP        = 80,
-        .baseAttack    = 100,
+        .baseAttack    = 120,
         .baseDefense   = 80,
         .baseSpeed     = 100,
-        .baseSpAttack  = 80,
+        .baseSpAttack  = 85,
         .baseSpDefense = 80,
         .types = { TYPE_GROUND, TYPE_DRAGON },
         .catchRate = 45,

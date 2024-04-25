@@ -2051,10 +2051,10 @@ const u8 gCorphishPokedexText[] = _(
     "in any environment.");
 
 const u8 gCrawdauntPokedexText[] = _(
-    "A brutish POKéMON that loves to battle.\n"
-    "A veteran CRAWDAUNT that has prevailed in\n"
-    "hundreds of battles has giant pincers\n"
-    "marked with countless scars.");
+    "A sturdy POKéMON that battles to sharpen\n"
+    "its pincers. A veteran CRAWDAUNT that has\n"
+    "prevailed in hundreds of battles has\n"
+    "pincers sharp enough to cut a diamond.");
 
 const u8 gBaltoyPokedexText[] = _(
     "A BALTOY moves by spinning on its single\n"
