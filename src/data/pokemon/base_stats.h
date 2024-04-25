@@ -8976,13 +8976,13 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_LUVDISC] =
     {
-        .baseHP        = 43,
-        .baseAttack    = 30,
+        .baseHP        = 53,
+        .baseAttack    = 20,
         .baseDefense   = 55,
         .baseSpeed     = 97,
-        .baseSpAttack  = 40,
+        .baseSpAttack  = 65,
         .baseSpDefense = 65,
-        .types = { TYPE_WATER, TYPE_WATER },
+        .types = { TYPE_WATER, TYPE_FAIRY },
         .catchRate = 225,
         .expYield = 110,
         .evYield_HP        = 0,
@@ -8998,7 +8998,7 @@ const struct BaseStats gBaseStats[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
-        .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE},
+        .abilities = {ABILITY_CUTE_CHARM, ABILITY_NONE},
         .flags = F_WORKS_WITH_ENVIOLITE,
 		.bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,

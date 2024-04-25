@@ -8508,6 +8508,7 @@ static const u8 sLuvdiscTutorLearnset[] =
     TUTOR(MOVE_ENDURE),
     TUTOR(MOVE_SWAGGER),
     TUTOR(MOVE_SLEEP_TALK),
+    TUTOR(MOVE_DAZZLING_GLEAM),
     TUTOR(MOVE_SWIFT),
     0xFF,
 };
