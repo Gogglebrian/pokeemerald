@@ -1382,6 +1382,7 @@ const u16 gEggMoves[] = {
               MOVE_CURSE,
               MOVE_FISSURE,
 			  MOVE_SIGNAL_BEAM,
+			  MOVE_ICE_SHARD,
 			  MOVE_ROLLOUT,
 			  MOVE_SLEEP_TALK,
 			  MOVE_WATER_PULSE,

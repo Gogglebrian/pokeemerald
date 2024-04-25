@@ -8429,6 +8429,7 @@ static const u8 sWalreinTutorLearnset[] =
     TUTOR(MOVE_FURY_CUTTER),
     TUTOR(MOVE_GIGA_IMPACT),
     TUTOR(MOVE_BULLDOZE),
+    TUTOR(MOVE_PAYBACK),
     0xFF,
 };
 
