@@ -1577,7 +1577,7 @@ const u16 gEggMoves[] = {
 			  MOVE_ENDEAVOR,
 			  MOVE_HAMMER_ARM,
 			  MOVE_FAKE_TEARS,
-			  MOVE_DISARMING_VOICE,
+			  MOVE_PLAY_ROUGH,
 			  MOVE_WHIRLWIND),
 
     egg_moves(CLAMPERL,
