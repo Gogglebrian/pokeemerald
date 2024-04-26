@@ -8966,7 +8966,9 @@ const union {
     } },
 
     [SPECIES_TROPIUS] = { .learnset = {
-        .ROAR = TRUE,
+        .DRAGON_CLAW = TRUE,
+		.CALM_MIND = TRUE,
+		.ROAR = TRUE,
         .TOXIC = TRUE,
         .BULLET_SEED = TRUE,
         .HIDDEN_POWER = TRUE,
@@ -8988,9 +8990,11 @@ const union {
         .STEEL_WING = TRUE,
         .CUT = TRUE,
         .FLY = TRUE,
+		.SURF = TRUE,
         .STRENGTH = TRUE,
         .FLASH = TRUE,
         .ROCK_SMASH = TRUE,
+		.WATERFALL = TRUE,
     } },
 
     [SPECIES_WHISMUR] = { .learnset = {

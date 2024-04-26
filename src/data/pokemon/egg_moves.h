@@ -1563,6 +1563,8 @@ const u16 gEggMoves[] = {
 			  MOVE_CURSE,
 			  MOVE_LEAF_BLADE,
 			  MOVE_DRAGON_DANCE,
+			  MOVE_DRAGON_RUSH,
+			  MOVE_DRAGON_BREATH,
 			  MOVE_BULLET_SEED),
 
     egg_moves(WHISMUR,
