@@ -2119,14 +2119,14 @@ const u8 gKecleonPokedexText[] = _(
 const u8 gShuppetPokedexText[] = _(
     "This POKéMON roams about deep in the\n"
     "night seeking such negative emotions as\n"
-    "grudges and envy. It retreats to its nest\n"
-    "when the sun begins to rise.");
+    "grudges and envy. After feeding, its\n"
+    "targets wake refreshed and uplifted.");
 
 const u8 gBanettePokedexText[] = _(
     "An abandoned plush doll became this\n"
-    "POKéMON. They are said to live in garbage\n"
-    "dumps and wander about in search of the\n"
-    "children that threw them away.");
+    "POKéMON. They are said to wander cities\n"
+    "at night, menacing those who would mistreat\n"
+    "or endanger innocent children.");
 
 const u8 gDuskullPokedexText[] = _(
     "A glare from its single scarlet eye makes\n"
