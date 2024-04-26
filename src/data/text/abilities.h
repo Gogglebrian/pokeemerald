@@ -77,6 +77,7 @@ static const u8 sPurePowerDescription[] = _("Raises ATTACK.");
 static const u8 sShellArmorDescription[] = _("Blocks critical hits.");
 static const u8 sCacophonyDescription[] = _("Avoids sound-based moves.");
 static const u8 sAirLockDescription[] = _("Negates weather effects.");
+static const u8 sSuperLuckDescription[] = _("Ups critical-hit rate.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -159,6 +160,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_CACOPHONY] = _("CACOPHONY"),
     [ABILITY_AIR_LOCK] = _("AIR LOCK"),
 	[ABILITY_TERRIFLYING] = _("TERRIFLYING"),
+	[ABILITY_SUPER_LUCK] = _("SUPER LUCK"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -242,4 +244,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_CACOPHONY] = sCacophonyDescription,
     [ABILITY_AIR_LOCK] = sAirLockDescription,
     [ABILITY_TERRIFLYING] = sTerriflyingDescription,
+    [ABILITY_SUPER_LUCK] = sSuperLuckDescription,
 };
