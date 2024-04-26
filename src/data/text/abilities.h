@@ -159,8 +159,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SHELL_ARMOR] = _("SHELL ARMOR"),
     [ABILITY_CACOPHONY] = _("CACOPHONY"),
     [ABILITY_AIR_LOCK] = _("AIR LOCK"),
-	[ABILITY_TERRIFLYING] = _("TERRIFLYING"),
 	[ABILITY_SUPER_LUCK] = _("SUPER LUCK"),
+	[ABILITY_TERRIFLYING] = _("TERRIFLYING"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -243,6 +243,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SHELL_ARMOR] = sShellArmorDescription,
     [ABILITY_CACOPHONY] = sCacophonyDescription,
     [ABILITY_AIR_LOCK] = sAirLockDescription,
-    [ABILITY_TERRIFLYING] = sTerriflyingDescription,
     [ABILITY_SUPER_LUCK] = sSuperLuckDescription,
+	[ABILITY_TERRIFLYING] = sTerriflyingDescription,
 };
