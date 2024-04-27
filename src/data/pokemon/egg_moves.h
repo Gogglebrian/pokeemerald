@@ -222,6 +222,7 @@ const u16 gEggMoves[] = {
               MOVE_FIRE_PUNCH,
               MOVE_THUNDER_PUNCH,
               MOVE_ICE_PUNCH,
+              MOVE_HEX,
 			  MOVE_SKILL_SWAP),
 
     egg_moves(MACHOP,
