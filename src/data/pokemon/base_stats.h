@@ -10584,11 +10584,11 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_SEVIPER] =
     {
-        .baseHP        = 73,
+        .baseHP        = 81,
         .baseAttack    = 100,
         .baseDefense   = 60,
-        .baseSpeed     = 65,
-        .baseSpAttack  = 100,
+        .baseSpeed     = 72,
+        .baseSpAttack  = 85,
         .baseSpDefense = 60,
         .types = { TYPE_POISON, TYPE_POISON },
         .catchRate = 90,
@@ -10614,11 +10614,11 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_ZANGOOSE] =
     {
-        .baseHP        = 73,
+        .baseHP        = 81,
         .baseAttack    = 115,
         .baseDefense   = 60,
         .baseSpeed     = 90,
-        .baseSpAttack  = 60,
+        .baseSpAttack  = 52,
         .baseSpDefense = 60,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .catchRate = 90,
