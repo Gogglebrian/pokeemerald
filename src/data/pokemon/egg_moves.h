@@ -1665,7 +1665,6 @@ const u16 gEggMoves[] = {
 			  MOVE_SCREECH,
 			  MOVE_DRAGON_RUSH,
 			  MOVE_BULLDOZE,
-			  MOVE_SUPERPOWER,
 			  MOVE_REVERSAL),
 
     egg_moves(CASTFORM,
