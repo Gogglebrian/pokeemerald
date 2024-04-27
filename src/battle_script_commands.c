@@ -4747,6 +4747,14 @@ static void Cmd_typecalc2(void)
         }
     }
 
+	if (gBattleMons[gBattlerTarget].ability == ABILITY_SOLID_ROCK && AttacksThisTurn(gBattlerAttacker, gCurrentMove) == 2
+		&& (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
+		&& gBattleMoves[gCurrentMove].power)
+		{
+			gBattleMoveDamage = gBattleMoveDamage * 75 / 100;
+		}
+
+
     if (gBattleMons[gBattlerTarget].ability == ABILITY_WONDER_GUARD
         && !(flags & MOVE_RESULT_NO_EFFECT)
         && AttacksThisTurn(gBattlerAttacker, gCurrentMove) == 2
