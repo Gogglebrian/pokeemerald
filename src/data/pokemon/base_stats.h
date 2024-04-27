@@ -10851,11 +10851,11 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_LILEEP] =
     {
-        .baseHP        = 66,
-        .baseAttack    = 41,
+        .baseHP        = 76,
+        .baseAttack    = 51,
         .baseDefense   = 77,
         .baseSpeed     = 23,
-        .baseSpAttack  = 61,
+        .baseSpAttack  = 91,
         .baseSpDefense = 87,
         .types = { TYPE_ROCK, TYPE_GRASS },
         .catchRate = 45,
@@ -10910,12 +10910,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_ANORITH] =
     {
-        .baseHP        = 45,
+        .baseHP        = 55,
         .baseAttack    = 95,
-        .baseDefense   = 50,
+        .baseDefense   = 80,
         .baseSpeed     = 75,
         .baseSpAttack  = 40,
-        .baseSpDefense = 50,
+        .baseSpDefense = 60,
         .types = { TYPE_ROCK, TYPE_BUG },
         .catchRate = 45,
         .expYield = 119,
@@ -10940,11 +10940,11 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_ARMALDO] =
     {
-        .baseHP        = 75,
+        .baseHP        = 95,
         .baseAttack    = 125,
-        .baseDefense   = 100,
-        .baseSpeed     = 45,
-        .baseSpAttack  = 70,
+        .baseDefense   = 110,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 50,
         .baseSpDefense = 80,
         .types = { TYPE_ROCK, TYPE_BUG },
         .catchRate = 45,

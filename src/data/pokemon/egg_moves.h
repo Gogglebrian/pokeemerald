@@ -1720,9 +1720,9 @@ const u16 gEggMoves[] = {
 			  MOVE_SAND_ATTACK,
 			  MOVE_CROSS_POISON,
 			  MOVE_CURSE,
+			  MOVE_ROCK_POLISH,
 			  MOVE_IRON_DEFENSE,
-			  MOVE_WATER_PULSE,
-			  MOVE_AQUA_JET),
+			  MOVE_WATER_PULSE),
 
     egg_moves(RALTS,
               MOVE_DISABLE,
