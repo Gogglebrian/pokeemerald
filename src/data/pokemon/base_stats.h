@@ -11147,10 +11147,10 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_BELDUM] =
     {
-        .baseHP        = 40,
+        .baseHP        = 50,
         .baseAttack    = 55,
         .baseDefense   = 80,
-        .baseSpeed     = 30,
+        .baseSpeed     = 40,
         .baseSpAttack  = 35,
         .baseSpDefense = 60,
         .types = { TYPE_STEEL, TYPE_PSYCHIC },
@@ -11180,8 +11180,8 @@ const struct BaseStats gBaseStats[] =
         .baseHP        = 60,
         .baseAttack    = 75,
         .baseDefense   = 100,
-        .baseSpeed     = 50,
-        .baseSpAttack  = 55,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 65,
         .baseSpDefense = 80,
         .types = { TYPE_STEEL, TYPE_PSYCHIC },
         .catchRate = 3,

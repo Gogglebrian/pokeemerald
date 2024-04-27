@@ -8651,6 +8651,7 @@ static const u8 sMetagrossTutorLearnset[] =
     TUTOR(MOVE_BULLDOZE),
     TUTOR(MOVE_GRASS_KNOT),
     TUTOR(MOVE_FLASH_CANNON),
+    TUTOR(MOVE_DARK_PULSE),
     0xFF,
 };
 
