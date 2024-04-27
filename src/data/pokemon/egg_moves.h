@@ -1650,11 +1650,11 @@ const u16 gEggMoves[] = {
               MOVE_AMNESIA,
               MOVE_SLEEP_TALK,
               MOVE_ROCK_SLIDE,
-			  MOVE_AQUA_TAIL,
 			  MOVE_SNORE,
 			  MOVE_MUD_SLAP,
 			  MOVE_MUDDY_WATER,
 			  MOVE_MUD_SHOT,
+			  MOVE_ACCELEROCK,
 			  MOVE_ZEN_HEADBUTT),
 
     egg_moves(ARON,
