@@ -7253,6 +7253,7 @@ static const u8 sIllumiseTutorLearnset[] =
     TUTOR(MOVE_THUNDER_PUNCH),
     TUTOR(MOVE_ROOST),
     TUTOR(MOVE_DAZZLING_GLEAM),
+	TUTOR(MOVE_DARK_PULSE),
     0xFF,
 };
 
