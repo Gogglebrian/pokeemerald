@@ -1672,6 +1672,8 @@ const u16 gEggMoves[] = {
               MOVE_PSYCH_UP,
 			  MOVE_DISABLE,
 			  MOVE_AMNESIA,
+			  MOVE_SYNTHESIS,
+			  MOVE_HEAT_WAVE,
 			  MOVE_HEX,
 			  MOVE_COSMIC_POWER),
 
