@@ -1729,6 +1729,8 @@ const u16 gEggMoves[] = {
               MOVE_WILL_O_WISP,
               MOVE_MEAN_LOOK,
               MOVE_MEMENTO,
+              MOVE_HEX,
+              MOVE_PSYBEAM,
               MOVE_DESTINY_BOND,
 			  MOVE_GRUDGE,
 			  MOVE_SHADOW_SNEAK,

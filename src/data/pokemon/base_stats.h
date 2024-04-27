@@ -10969,12 +10969,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_RALTS] =
     {
-        .baseHP        = 28,
+        .baseHP        = 50,
         .baseAttack    = 25,
-        .baseDefense   = 25,
-        .baseSpeed     = 40,
-        .baseSpAttack  = 45,
-        .baseSpDefense = 35,
+        .baseDefense   = 35,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 65,
         .types = { TYPE_PSYCHIC, TYPE_FAIRY },
         .catchRate = 235,
         .expYield = 70,
@@ -10999,12 +10999,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_KIRLIA] =
     {
-        .baseHP        = 38,
+        .baseHP        = 60,
         .baseAttack    = 35,
-        .baseDefense   = 35,
-        .baseSpeed     = 50,
-        .baseSpAttack  = 65,
-        .baseSpDefense = 55,
+        .baseDefense   = 55,
+        .baseSpeed     = 70,
+        .baseSpAttack  = 95,
+        .baseSpDefense = 85,
         .types = { TYPE_PSYCHIC, TYPE_FAIRY },
         .catchRate = 120,
         .expYield = 140,
@@ -11029,7 +11029,7 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_GARDEVOIR] =
     {
-        .baseHP        = 68,
+        .baseHP        = 75,
         .baseAttack    = 65,
         .baseDefense   = 65,
         .baseSpeed     = 80,
