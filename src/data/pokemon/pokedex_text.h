@@ -2147,10 +2147,10 @@ const u8 gTropiusPokedexText[] = _(
     "it scatters pollen from its neck.");
 
 const u8 gChimechoPokedexText[] = _(
-    "They fly about very actively when the hot\n"
-    "season arrives. They communicate among\n"
-    "themselves using seven different and\n"
-    "distinguishing cries.");
+    "CHIMECHO makes its cries echo inside its\n"
+    "hollow body. When unleashed, the ultrasonic\n"
+    "waves knock foes flying while bringing peace\n"
+    "to the restless dead.");
 
 const u8 gAbsolPokedexText[] = _(
     "It sharply senses even subtle changes in\n"

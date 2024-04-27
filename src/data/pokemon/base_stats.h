@@ -11526,13 +11526,13 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_CHIMECHO] =
     {
-        .baseHP        = 75,
+        .baseHP        = 85,
         .baseAttack    = 50,
-        .baseDefense   = 80,
+        .baseDefense   = 90,
         .baseSpeed     = 65,
-        .baseSpAttack  = 95,
-        .baseSpDefense = 90,
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
+        .baseSpAttack  = 115,
+        .baseSpDefense = 110,
+        .types = { TYPE_PSYCHIC, TYPE_GHOST },
         .catchRate = 45,
         .expYield = 147,
         .evYield_HP        = 0,

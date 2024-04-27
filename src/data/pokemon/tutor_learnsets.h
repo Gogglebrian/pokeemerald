@@ -8888,6 +8888,7 @@ static const u8 sRayquazaTutorLearnset[] =
     TUTOR(MOVE_SHADOW_CLAW),
     TUTOR(MOVE_GIGA_IMPACT),
     TUTOR(MOVE_STONE_EDGE),
+    TUTOR(MOVE_DARK_PULSE),
     TUTOR(MOVE_BULLDOZE),
     0xFF,
 };
