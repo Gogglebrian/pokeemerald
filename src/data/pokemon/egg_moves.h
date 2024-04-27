@@ -1744,7 +1744,6 @@ const u16 gEggMoves[] = {
               MOVE_TWISTER,
               MOVE_DRAGON_DANCE,
 			  MOVE_FIRE_FANG,
-			  MOVE_DRAGON_RUSH,
 			  MOVE_DRAGON_PULSE,
 			  MOVE_ENDURE,
 			  MOVE_DEFENSE_CURL),
