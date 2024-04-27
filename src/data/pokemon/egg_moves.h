@@ -1659,14 +1659,12 @@ const u16 gEggMoves[] = {
 
     egg_moves(ARON,
               MOVE_ENDEAVOR,
-              MOVE_BODY_SLAM,
               MOVE_STOMP,
               MOVE_SMELLING_SALT,
 			  MOVE_CURSE,
 			  MOVE_SCREECH,
-			  MOVE_IRON_HEAD,
 			  MOVE_DRAGON_RUSH,
-			  MOVE_HEAD_SMASH,
+			  MOVE_BULLDOZE,
 			  MOVE_SUPERPOWER,
 			  MOVE_REVERSAL),
 

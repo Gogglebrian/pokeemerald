@@ -10673,12 +10673,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_ARON] =
     {
-        .baseHP        = 50,
+        .baseHP        = 55,
         .baseAttack    = 70,
         .baseDefense   = 100,
-        .baseSpeed     = 30,
-        .baseSpAttack  = 40,
-        .baseSpDefense = 40,
+        .baseSpeed     = 35,
+        .baseSpAttack  = 20,
+        .baseSpDefense = 50,
         .types = { TYPE_STEEL, TYPE_ROCK },
         .catchRate = 180,
         .expYield = 96,
@@ -10703,12 +10703,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_LAIRON] =
     {
-        .baseHP        = 60,
+        .baseHP        = 65,
         .baseAttack    = 90,
         .baseDefense   = 140,
-        .baseSpeed     = 40,
-        .baseSpAttack  = 50,
-        .baseSpDefense = 50,
+        .baseSpeed     = 45,
+        .baseSpAttack  = 30,
+        .baseSpDefense = 60,
         .types = { TYPE_STEEL, TYPE_ROCK },
         .catchRate = 90,
         .expYield = 152,
@@ -10733,12 +10733,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_AGGRON] =
     {
-        .baseHP        = 70,
-        .baseAttack    = 110,
+        .baseHP        = 80,
+        .baseAttack    = 120,
         .baseDefense   = 180,
         .baseSpeed     = 50,
-        .baseSpAttack  = 60,
-        .baseSpDefense = 60,
+        .baseSpAttack  = 35,
+        .baseSpDefense = 75,
         .types = { TYPE_STEEL, TYPE_ROCK },
         .catchRate = 45,
         .expYield = 205,
