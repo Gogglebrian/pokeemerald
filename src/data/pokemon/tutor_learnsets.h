@@ -8028,6 +8028,7 @@ static const u8 sCradilyTutorLearnset[] =
     TUTOR(MOVE_ROCK_POLISH),
     TUTOR(MOVE_STONE_EDGE),
     TUTOR(MOVE_BULLDOZE),
+    TUTOR(MOVE_PAYBACK),
     TUTOR(MOVE_GRASS_KNOT),
     0xFF,
 };

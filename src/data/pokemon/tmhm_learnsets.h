@@ -9547,6 +9547,7 @@ const union {
         .SOLAR_BEAM = TRUE,
         .EARTHQUAKE = TRUE,
         .RETURN = TRUE,
+		.SHADOW_BALL = TRUE,
         .DOUBLE_TEAM = TRUE,
         .SLUDGE_BOMB = TRUE,
         .SANDSTORM = TRUE,
