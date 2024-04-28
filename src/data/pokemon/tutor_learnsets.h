@@ -1691,6 +1691,7 @@ static const u8 sTentacruelTutorLearnset[] =
     TUTOR(MOVE_GIGA_IMPACT),
     TUTOR(MOVE_POISON_JAB),
     TUTOR(MOVE_DAZZLING_GLEAM),
+    TUTOR(MOVE_DARK_PULSE),
     0xFF,
 };
 
