@@ -2742,7 +2742,6 @@ static const u8 sGoldeenTutorLearnset[] =
 static const u8 sSeakingTutorLearnset[] =
 {
     TUTOR(MOVE_SWORDS_DANCE),
-    TUTOR(MOVE_BODY_SLAM),
     TUTOR(MOVE_DOUBLE_EDGE),
     TUTOR(MOVE_MIMIC),
     TUTOR(MOVE_SUBSTITUTE),
@@ -2755,6 +2754,8 @@ static const u8 sSeakingTutorLearnset[] =
     TUTOR(MOVE_SWIFT),
     TUTOR(MOVE_FURY_CUTTER),
     TUTOR(MOVE_GIGA_IMPACT),
+    TUTOR(MOVE_PAYBACK),
+    TUTOR(MOVE_BULLDOZE),
     TUTOR(MOVE_POISON_JAB),
     0xFF,
 };

@@ -480,7 +480,12 @@ const u16 gEggMoves[] = {
 			  MOVE_MUD_SLAP,
 			  MOVE_AQUA_TAIL,
 			  MOVE_BODY_SLAM,
+			  MOVE_ZEN_HEADBUTT,
+			  MOVE_REVENGE,
 			  MOVE_MUD_SHOT,
+			  MOVE_SNORE,
+			  MOVE_CURSE,
+			  MOVE_BELLY_DRUM,
 			  MOVE_SKULL_BASH,
 			  MOVE_SIGNAL_BEAM),
 
