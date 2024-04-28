@@ -264,12 +264,14 @@ const u16 gEggMoves[] = {
 
     egg_moves(GEODUDE,
               MOVE_MEGA_PUNCH,
+              MOVE_KARATE_CHOP,
               MOVE_ROCK_SLIDE,
               MOVE_BLOCK,
 			  MOVE_HAMMER_ARM,
 			  MOVE_FLAIL,
 			  MOVE_CURSE,
 			  MOVE_FOCUS_PUNCH,
+			  MOVE_HEAD_SMASH,
 			  MOVE_ENDURE),
 
     egg_moves(PONYTA,
