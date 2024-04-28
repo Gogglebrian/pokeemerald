@@ -2448,7 +2448,7 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_MAGNETON] =
     {
-        .baseHP        = 50,
+        .baseHP        = 70,
         .baseAttack    = 60,
         .baseDefense   = 95,
         .baseSpeed     = 70,
