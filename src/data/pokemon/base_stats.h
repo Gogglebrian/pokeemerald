@@ -5028,10 +5028,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_CROBAT] =
     {
         .baseHP        = 85,
-        .baseAttack    = 90,
+        .baseAttack    = 95,
         .baseDefense   = 80,
         .baseSpeed     = 130,
-        .baseSpAttack  = 70,
+        .baseSpAttack  = 75,
         .baseSpDefense = 80,
         .types = { TYPE_POISON, TYPE_FLYING },
         .catchRate = 90,
