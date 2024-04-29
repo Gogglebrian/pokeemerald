@@ -533,10 +533,10 @@ const u8 gGrimerPokedexText[] = _(
     "factories.");
 
 const u8 gMukPokedexText[] = _(
-    "It prefers warm and humid habitats.\n"
-    "In the summertime, the toxic substances\n"
-    "in its body intensify, making MUK reek like\n"
-    "putrid kitchen garbage.");
+    "From its body seeps a foul fluid that gives\n" 
+	"off a nose-bendingly horrible odor. MUK\n"
+    "relishes the misery this stench brings to\n"
+	"humans or POKéMON it dislikes.");
 
 const u8 gShellderPokedexText[] = _(
     "At night, it burrows a hole in the seafloor\n"
@@ -659,10 +659,10 @@ const u8 gKoffingPokedexText[] = _(
     "blows up at the slightest stimulation.");
 
 const u8 gWeezingPokedexText[] = _(
-    "By diluting its toxic gases with a special\n"
-    "process, the highest grade of perfume can\n"
-    "be extracted. To WEEZING, gases emanating\n"
-    "from garbage are the ultimate feast.");
+    "WEEZING alternately shrinks and inflates\n"
+	"its twin bodies to mix together toxic gases\n"
+	"inside. The more the gases are mixed, the\n"
+	"more virulent and volatile they become.");
 
 const u8 gRhyhornPokedexText[] = _(
     "Once it starts running, it doesn't stop.\n"
