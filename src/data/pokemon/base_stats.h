@@ -3252,13 +3252,13 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_KOFFING] =
     {
-        .baseHP        = 40,
+        .baseHP        = 45,
         .baseAttack    = 65,
         .baseDefense   = 95,
         .baseSpeed     = 35,
-        .baseSpAttack  = 60,
-        .baseSpDefense = 45,
-        .types = { TYPE_POISON, TYPE_POISON },
+        .baseSpAttack  = 80,
+        .baseSpDefense = 65,
+        .types = { TYPE_POISON, TYPE_FIRE },
         .catchRate = 190,
         .expYield = 114,
         .evYield_HP        = 0,
@@ -3282,13 +3282,13 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_WEEZING] =
     {
-        .baseHP        = 65,
-        .baseAttack    = 90,
+        .baseHP        = 70,
+        .baseAttack    = 95,
         .baseDefense   = 120,
-        .baseSpeed     = 60,
-        .baseSpAttack  = 85,
-        .baseSpDefense = 70,
-        .types = { TYPE_POISON, TYPE_POISON },
+        .baseSpeed     = 62,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 83,
+        .types = { TYPE_POISON, TYPE_FIRE },
         .catchRate = 60,
         .expYield = 173,
         .evYield_HP        = 0,
