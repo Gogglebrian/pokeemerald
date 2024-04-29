@@ -894,6 +894,8 @@ const u16 gEggMoves[] = {
 			  MOVE_CURSE,
 			  MOVE_SMOKESCREEN,
 			  MOVE_MEMENTO,
+			  MOVE_HEX,
+			  MOVE_SNORE,
 			  MOVE_STOCKPILE,
 			  MOVE_SPIT_UP,
 			  MOVE_SWALLOW,

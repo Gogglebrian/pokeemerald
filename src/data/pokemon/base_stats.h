@@ -6486,12 +6486,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_SLUGMA] =
     {
-        .baseHP        = 40,
-        .baseAttack    = 40,
-        .baseDefense   = 40,
+        .baseHP        = 60,
+        .baseAttack    = 50,
+        .baseDefense   = 60,
         .baseSpeed     = 20,
-        .baseSpAttack  = 70,
-        .baseSpDefense = 40,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 80,
         .types = { TYPE_FIRE, TYPE_FIRE },
         .catchRate = 190,
         .expYield = 78,
@@ -6516,12 +6516,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_MAGCARGO] =
     {
-        .baseHP        = 60,
-        .baseAttack    = 50,
+        .baseHP        = 90,
+        .baseAttack    = 70,
         .baseDefense   = 120,
         .baseSpeed     = 30,
-        .baseSpAttack  = 90,
-        .baseSpDefense = 80,
+        .baseSpAttack  = 130,
+        .baseSpDefense = 90,
         .types = { TYPE_FIRE, TYPE_ROCK },
         .catchRate = 75,
         .expYield = 154,
@@ -6538,7 +6538,7 @@ const struct BaseStats gBaseStats[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-        .abilities = {ABILITY_MAGMA_ARMOR, ABILITY_FLAME_BODY},
+        .abilities = {ABILITY_SOLID_ROCK, ABILITY_FLAME_BODY},
         .flags = F_WORKS_WITH_ENVIOLITE,
 		.bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
