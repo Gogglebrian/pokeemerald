@@ -5905,14 +5905,17 @@ const union {
     } },
 
     [SPECIES_SKARMORY] = { .learnset = {
-        .ROAR = TRUE,
+        .DRAGON_CLAW = TRUE,
+		.ROAR = TRUE,
         .TOXIC = TRUE,
         .HIDDEN_POWER = TRUE,
         .SUNNY_DAY = TRUE,
         .TAUNT = TRUE,
         .PROTECT = TRUE,
         .FRUSTRATION = TRUE,
+		.EARTHQUAKE = TRUE,
         .RETURN = TRUE,
+		.BRICK_BREAK = TRUE,
         .DOUBLE_TEAM = TRUE,
         .SANDSTORM = TRUE,
         .AERIAL_ACE = TRUE,

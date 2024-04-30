@@ -6755,10 +6755,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_SKARMORY] =
     {
         .baseHP        = 65,
-        .baseAttack    = 80,
+        .baseAttack    = 90,
         .baseDefense   = 140,
         .baseSpeed     = 70,
-        .baseSpAttack  = 40,
+        .baseSpAttack  = 30,
         .baseSpDefense = 70,
         .types = { TYPE_STEEL, TYPE_FLYING },
         .catchRate = 25,
