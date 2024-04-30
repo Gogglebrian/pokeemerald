@@ -547,6 +547,7 @@ const union {
     [SPECIES_RAICHU] = { .learnset = {
         .FOCUS_PUNCH = TRUE,
         .TOXIC = TRUE,
+		.BULK_UP = TRUE,
         .HIDDEN_POWER = TRUE,
         .HYPER_BEAM = TRUE,
         .LIGHT_SCREEN = TRUE,
