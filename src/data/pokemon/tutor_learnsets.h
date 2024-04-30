@@ -1257,6 +1257,8 @@ static const u8 sGolduckTutorLearnset[] =
     TUTOR(MOVE_SHADOW_CLAW),
     TUTOR(MOVE_GIGA_IMPACT),
     TUTOR(MOVE_GRASS_KNOT),
+    TUTOR(MOVE_DAZZLING_GLEAM),
+    TUTOR(MOVE_FLASH_CANNON),
     0xFF,
 };
 
