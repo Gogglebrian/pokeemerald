@@ -978,6 +978,8 @@ const union {
         .FOCUS_PUNCH = TRUE,
         .WATER_PULSE = TRUE,
         .TOXIC = TRUE,
+		.BULK_UP = TRUE,
+		.BULLET_SEED = TRUE,
         .HIDDEN_POWER = TRUE,
         .SUNNY_DAY = TRUE,
         .ICE_BEAM = TRUE,
@@ -1005,9 +1007,12 @@ const union {
         .SECRET_POWER = TRUE,
         .REST = TRUE,
         .ATTRACT = TRUE,
+		.THIEF = TRUE,
         .SNATCH = TRUE,
+		.SURF = TRUE,
         .STRENGTH = TRUE,
         .FLASH = TRUE,
+		.ROCK_SMASH = TRUE,
     } },
 
     [SPECIES_ZUBAT] = { .learnset = {

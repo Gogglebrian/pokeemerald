@@ -698,7 +698,10 @@ const u16 gEggMoves[] = {
               MOVE_FAINT_ATTACK,
               MOVE_WISH,
               MOVE_FAKE_TEARS,
+			  MOVE_BELLY_DRUM,
+			  MOVE_SNORE,
 			  MOVE_COVET,
+			  MOVE_FAIRY_WIND,
 			  MOVE_SLEEP_TALK,
 			  MOVE_CAPTIVATE),
 
