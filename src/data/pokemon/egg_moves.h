@@ -77,6 +77,8 @@ const u16 gEggMoves[] = {
               MOVE_CRUSH_CLAW,
 			  MOVE_NIGHT_SLASH,
 			  MOVE_MUD_SHOT,
+			  MOVE_ACCELEROCK,
+			  MOVE_REVENGE,
 			  MOVE_ENDURE),
 
     egg_moves(NIDORAN_F,
