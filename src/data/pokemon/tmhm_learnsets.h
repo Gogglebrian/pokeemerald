@@ -3285,8 +3285,10 @@ const union {
 
     [SPECIES_PINSIR] = { .learnset = {
         .FOCUS_PUNCH = TRUE,
+		.DRAGON_CLAW = TRUE,
         .TOXIC = TRUE,
         .BULK_UP = TRUE,
+		.BULLET_SEED = TRUE,
         .HIDDEN_POWER = TRUE,
         .SUNNY_DAY = TRUE,
         .HYPER_BEAM = TRUE,
@@ -3299,6 +3301,8 @@ const union {
         .BRICK_BREAK = TRUE,
         .DOUBLE_TEAM = TRUE,
         .ROCK_TOMB = TRUE,
+		.AERIAL_ACE = TRUE,
+		.TORMENT = TRUE,
         .FACADE = TRUE,
         .SECRET_POWER = TRUE,
         .REST = TRUE,

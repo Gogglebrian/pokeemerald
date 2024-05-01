@@ -2964,6 +2964,8 @@ static const u8 sPinsirTutorLearnset[] =
     TUTOR(MOVE_STONE_EDGE),
     TUTOR(MOVE_BULLDOZE),
     TUTOR(MOVE_X_SCISSOR),
+	TUTOR(MOVE_POISON_JAB),
+	TUTOR(MOVE_SHADOW_CLAW),
     0xFF,
 };
 

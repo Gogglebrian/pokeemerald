@@ -536,6 +536,8 @@ const u16 gEggMoves[] = {
     egg_moves(PINSIR,
               MOVE_FURY_ATTACK,
               MOVE_FLAIL,
+			  MOVE_LEECH_LIFE,
+			  MOVE_SUCKER_PUNCH,
               MOVE_FALSE_SWIPE,
               MOVE_FAINT_ATTACK,
 			  MOVE_QUICK_ATTACK,

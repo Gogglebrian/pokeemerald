@@ -3788,13 +3788,13 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_PINSIR] =
     {
-        .baseHP        = 65,
+        .baseHP        = 70,
         .baseAttack    = 125,
         .baseDefense   = 100,
-        .baseSpeed     = 85,
-        .baseSpAttack  = 55,
-        .baseSpDefense = 70,
-        .types = { TYPE_BUG, TYPE_BUG },
+        .baseSpeed     = 90,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 75,
+        .types = { TYPE_BUG, TYPE_DARK },
         .catchRate = 45,
         .expYield = 200,
         .evYield_HP        = 0,
@@ -3810,7 +3810,7 @@ const struct BaseStats gBaseStats[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-        .abilities = {ABILITY_HYPER_CUTTER, ABILITY_NONE},
+        .abilities = {ABILITY_HYPER_CUTTER, ABILITY_BATTLE_ARMOR},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
