@@ -3460,12 +3460,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_HORSEA] =
     {
-        .baseHP        = 30,
+        .baseHP        = 40,
         .baseAttack    = 40,
         .baseDefense   = 70,
-        .baseSpeed     = 60,
-        .baseSpAttack  = 70,
-        .baseSpDefense = 25,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 35,
         .types = { TYPE_WATER, TYPE_WATER },
         .catchRate = 225,
         .expYield = 83,
@@ -3482,7 +3482,7 @@ const struct BaseStats gBaseStats[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_DRAGON },
-        .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE},
+        .abilities = {ABILITY_SWIFT_SWIM, ABILITY_TORRENT},
         .flags = F_WORKS_WITH_EVIOLITE,
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
@@ -3512,7 +3512,7 @@ const struct BaseStats gBaseStats[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_DRAGON },
-        .abilities = {ABILITY_POISON_POINT, ABILITY_NONE},
+        .abilities = {ABILITY_POISON_POINT, ABILITY_TORRENT},
         .flags = F_WORKS_WITH_EVIOLITE,
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
@@ -6843,7 +6843,7 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_KINGDRA] =
     {
-        .baseHP        = 75,
+        .baseHP        = 85,
         .baseAttack    = 95,
         .baseDefense   = 95,
         .baseSpeed     = 85,
@@ -6865,7 +6865,7 @@ const struct BaseStats gBaseStats[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_DRAGON },
-        .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE},
+        .abilities = {ABILITY_SWIFT_SWIM, ABILITY_TORRENT},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },

@@ -2726,6 +2726,7 @@ static const u8 sSeadraTutorLearnset[] =
     TUTOR(MOVE_SWIFT),
     TUTOR(MOVE_GIGA_IMPACT),
     TUTOR(MOVE_FLASH_CANNON),
+	TUTOR(MOVE_DARK_PULSE),
     0xFF,
 };
 
@@ -5260,6 +5261,7 @@ static const u8 sKingdraTutorLearnset[] =
     TUTOR(MOVE_SWIFT),
     TUTOR(MOVE_GIGA_IMPACT),
     TUTOR(MOVE_FLASH_CANNON),
+	TUTOR(MOVE_DARK_PULSE),
     0xFF,
 };
 
