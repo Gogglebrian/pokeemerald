@@ -6050,6 +6050,7 @@ const union {
     [SPECIES_DONPHAN] = { .learnset = {
         .ROAR = TRUE,
         .TOXIC = TRUE,
+		.BULK_UP = TRUE,
         .HIDDEN_POWER = TRUE,
         .SUNNY_DAY = TRUE,
         .HYPER_BEAM = TRUE,
@@ -6058,6 +6059,7 @@ const union {
         .IRON_TAIL = TRUE,
         .EARTHQUAKE = TRUE,
         .RETURN = TRUE,
+		.BRICK_BREAK = TRUE,
         .DOUBLE_TEAM = TRUE,
         .SANDSTORM = TRUE,
         .ROCK_TOMB = TRUE,
