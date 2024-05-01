@@ -5809,6 +5809,7 @@ const union {
         .LIGHT_SCREEN = TRUE,
         .PROTECT = TRUE,
         .RAIN_DANCE = TRUE,
+		.GIGA_DRAIN = TRUE,
         .SAFEGUARD = TRUE,
         .FRUSTRATION = TRUE,
         .EARTHQUAKE = TRUE,
@@ -5827,6 +5828,7 @@ const union {
         .SURF = TRUE,
         .STRENGTH = TRUE,
         .ROCK_SMASH = TRUE,
+		.DIVE = TRUE,
     } },
 
     [SPECIES_REMORAID] = { .learnset = {
