@@ -540,7 +540,9 @@ const u16 gEggMoves[] = {
 			  MOVE_SUCKER_PUNCH,
               MOVE_FALSE_SWIPE,
               MOVE_FAINT_ATTACK,
+              MOVE_POISON_FANG,
 			  MOVE_QUICK_ATTACK,
+			  MOVE_METAL_CLAW,
 			  MOVE_CLOSE_COMBAT,
 			  MOVE_SUPERPOWER),
 
@@ -892,8 +894,11 @@ const u16 gEggMoves[] = {
 			  MOVE_REVENGE,
 			  MOVE_PURSUIT,
 			  MOVE_DOUBLE_EDGE,
+			  MOVE_ZEN_HEADBUTT,
 			  MOVE_SEISMIC_TOSS,
 			  MOVE_FOCUS_PUNCH,
+			  MOVE_NIGHT_SLASH,
+			  MOVE_METAL_CLAW,
 			  MOVE_MEGAHORN,
 			  MOVE_ROCK_BLAST),
 

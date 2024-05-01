@@ -5581,6 +5581,7 @@ const union {
 
     [SPECIES_HERACROSS] = { .learnset = {
         .FOCUS_PUNCH = TRUE,
+		.DRAGON_CLAW = TRUE,
         .TOXIC = TRUE,
         .BULK_UP = TRUE,
         .HIDDEN_POWER = TRUE,
@@ -5595,12 +5596,14 @@ const union {
         .BRICK_BREAK = TRUE,
         .DOUBLE_TEAM = TRUE,
         .ROCK_TOMB = TRUE,
+		.AERIAL_ACE = TRUE,
         .FACADE = TRUE,
         .SECRET_POWER = TRUE,
         .REST = TRUE,
         .ATTRACT = TRUE,
         .THIEF = TRUE,
         .CUT = TRUE,
+		.FLY = TRUE,
         .STRENGTH = TRUE,
         .ROCK_SMASH = TRUE,
     } },
