@@ -4463,6 +4463,7 @@ const union {
 
     [SPECIES_CHINCHOU] = { .learnset = {
         .WATER_PULSE = TRUE,
+		.CALM_MIND = TRUE,
         .TOXIC = TRUE,
         .HAIL = TRUE,
         .HIDDEN_POWER = TRUE,
@@ -4488,6 +4489,7 @@ const union {
 
     [SPECIES_LANTURN] = { .learnset = {
         .WATER_PULSE = TRUE,
+		.CALM_MIND = TRUE,
         .TOXIC = TRUE,
         .HAIL = TRUE,
         .HIDDEN_POWER = TRUE,

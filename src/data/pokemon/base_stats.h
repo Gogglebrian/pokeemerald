@@ -5057,10 +5057,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_CHINCHOU] =
     {
         .baseHP        = 75,
-        .baseAttack    = 38,
+        .baseAttack    = 28,
         .baseDefense   = 38,
         .baseSpeed     = 67,
-        .baseSpAttack  = 56,
+        .baseSpAttack  = 66,
         .baseSpDefense = 56,
         .types = { TYPE_WATER, TYPE_ELECTRIC },
         .catchRate = 190,
@@ -5087,10 +5087,10 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_LANTURN] =
     {
         .baseHP        = 125,
-        .baseAttack    = 58,
-        .baseDefense   = 58,
+        .baseAttack    = 38,
+        .baseDefense   = 68,
         .baseSpeed     = 67,
-        .baseSpAttack  = 76,
+        .baseSpAttack  = 86,
         .baseSpDefense = 76,
         .types = { TYPE_WATER, TYPE_ELECTRIC },
         .catchRate = 75,
