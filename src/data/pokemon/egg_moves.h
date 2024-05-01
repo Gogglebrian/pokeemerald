@@ -442,11 +442,11 @@ const u16 gEggMoves[] = {
 			  MOVE_SPIT_UP),
 
     egg_moves(RHYHORN,
-              MOVE_CRUNCH,
               MOVE_REVERSAL,
               MOVE_ROCK_SLIDE,
               MOVE_COUNTER,
               MOVE_MAGNITUDE,
+			  MOVE_SLAM,
               MOVE_SWORDS_DANCE,
               MOVE_CURSE,
               MOVE_CRUSH_CLAW,
@@ -455,6 +455,7 @@ const u16 gEggMoves[] = {
 			  MOVE_FIRE_FANG,
 			  MOVE_THUNDER_FANG,
 			  MOVE_SKULL_BASH,
+			  MOVE_ACCELEROCK,
 			  MOVE_IRON_TAIL),
 
     egg_moves(CHANSEY,
