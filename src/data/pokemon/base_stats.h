@@ -6539,7 +6539,6 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
         .abilities = {ABILITY_SOLID_ROCK, ABILITY_FLAME_BODY},
-        .flags = F_WORKS_WITH_ENVIOLITE,
 		.bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
     },
@@ -9803,7 +9802,6 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
         .abilities = {ABILITY_THICK_FAT, ABILITY_OWN_TEMPO},
-        .flags = F_WORKS_WITH_ENVIOLITE,
 		.bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
@@ -11548,7 +11546,6 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,
         .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
-        .flags = F_WORKS_WITH_ENVIOLITE,
 		.bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     }
