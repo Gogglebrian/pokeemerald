@@ -274,12 +274,12 @@
 #define ITEM_0F4 244
 #define ITEM_0F5 245
 #define ITEM_0F6 246
-#define ITEM_0F7 247
-#define ITEM_0F8 248
-#define ITEM_0F9 249
-#define ITEM_0FA 250
-#define ITEM_0FB 251
-#define ITEM_0FC 252
+#define ITEM_OAKS_PARCEL 247
+#define ITEM_POKE_FLUTE 248
+#define ITEM_SECRET_KEY 249
+#define ITEM_BIKE_VOUCHER 250
+#define ITEM_GOLD_TEETH 251
+#define ITEM_OLD_AMBER 252
 #define ITEM_PRISM_SCALE 253
 
 // Contest held items
@@ -372,26 +372,26 @@
 #define ITEM_TM48 336
 #define ITEM_TM49 337
 #define ITEM_TM50 338
-#define ITEM_HM01 339
-#define ITEM_HM02 340
-#define ITEM_HM03 341
-#define ITEM_HM04 342
-#define ITEM_HM05 343
-#define ITEM_HM06 344
-#define ITEM_HM07 345
-#define ITEM_HM08 346
+#define ITEM_TM51 339
+#define ITEM_TM52 340
+#define ITEM_TM53 341
+#define ITEM_TM54 342
+#define ITEM_TM55 343
+#define ITEM_TM56 344
+#define ITEM_HM01 345
+#define ITEM_HM02 346
+#define ITEM_HM03 347
+#define ITEM_HM04 348
+#define ITEM_HM05 349
+#define ITEM_HM06 350
+#define ITEM_HM07 351
+#define ITEM_HM08 352
 
 // Unknown
-#define ITEM_15B 347
-#define ITEM_15C 348
+#define ITEM_15B 353
+#define ITEM_15C 354
 
 // FireRed/LeafGreen
-#define ITEM_OAKS_PARCEL 349
-#define ITEM_POKE_FLUTE 350
-#define ITEM_SECRET_KEY 351
-#define ITEM_BIKE_VOUCHER 352
-#define ITEM_GOLD_TEETH 353
-#define ITEM_OLD_AMBER 354
 #define ITEM_CARD_KEY 355
 #define ITEM_LIFT_KEY 356
 #define ITEM_HELIX_FOSSIL 357
