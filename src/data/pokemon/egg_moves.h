@@ -1275,6 +1275,8 @@ const u16 gEggMoves[] = {
               MOVE_SWAGGER,
               MOVE_SNORE,
               MOVE_SLEEP_TALK,
+			  MOVE_MILK_DRINK,
+			  MOVE_ICY_WIND,
               MOVE_CURSE,
               MOVE_FISSURE,
               MOVE_TICKLE,
