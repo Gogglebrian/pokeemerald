@@ -13,6 +13,8 @@ LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft::
 
 	.align 2
 LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins:
+	.2byte ITEM_EVIOLITE
+	.2byte ITEM_ENVIOLITE
 	.2byte ITEM_POWER_BRACER
 	.2byte ITEM_POWER_BELT
 	.2byte ITEM_POWER_ANKLET

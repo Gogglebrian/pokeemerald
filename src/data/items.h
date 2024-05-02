@@ -2798,7 +2798,7 @@ const struct Item gItems[] =
     {
         .name = _("EVIOLITE"),
         .itemId = ITEM_EVIOLITE,
-        .price = 200,
+        .price = 15000,
         .holdEffect = HOLD_EFFECT_EVIOLITE,
         .holdEffectParam = 50,
         .description = sEvioliteDesc,
@@ -2825,7 +2825,7 @@ const struct Item gItems[] =
     {
         .name = _("ENVYOLITE"),
         .itemId = ITEM_ENVIOLITE,
-        .price = 200,
+        .price = 15000,
         .holdEffect = HOLD_EFFECT_ENVIOLITE,
         .holdEffectParam = 50,
         .description = sEnvioliteDesc,
