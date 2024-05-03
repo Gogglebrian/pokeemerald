@@ -5666,6 +5666,7 @@ static const u16 sGardevoirLevelUpLearnset[] = {
    // LEVEL_UP_MOVE( 1, MOVE_STORED_POWER),
     //LEVEL_UP_MOVE( 1, MOVE_MISTY_TERRAIN),
     //LEVEL_UP_MOVE( 1, MOVE_HEALING_WISH),
+    LEVEL_UP_MOVE( 1, MOVE_AURA_SPHERE),
     LEVEL_UP_MOVE( 1, MOVE_GROWL),
     LEVEL_UP_MOVE( 1, MOVE_CONFUSION),
     LEVEL_UP_MOVE( 1, MOVE_DOUBLE_TEAM),
@@ -6189,7 +6190,7 @@ static const u16 sMedititeLevelUpLearnset[] = {
 };
 
 static const u16 sMedichamLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_AURA_SPHERE),
+    //LEVEL_UP_MOVE( 1, MOVE_AURA_SPHERE),
     LEVEL_UP_MOVE( 1, MOVE_ZEN_HEADBUTT),
     LEVEL_UP_MOVE( 1, MOVE_FIRE_PUNCH),
     LEVEL_UP_MOVE( 1, MOVE_THUNDER_PUNCH),
