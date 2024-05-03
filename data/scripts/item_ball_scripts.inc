@@ -90,6 +90,10 @@ Route113_EventScript_ItemHyperPotion::
 	finditem ITEM_HYPER_POTION
 	end
 
+Route113_EventScript_ItemTMShadowClaw::
+	finditem ITEM_TM_SHADOW_CLAW
+	end
+
 Route114_EventScript_ItemRareCandy::
 	finditem ITEM_RARE_CANDY
 	end
@@ -100,6 +104,10 @@ Route114_EventScript_ItemProtein::
 
 Route114_EventScript_ItemEnergyPowder::
 	finditem ITEM_ENERGY_POWDER
+	end
+	
+Route114_EventScript_ItemTMPoisonJab::
+	finditem ITEM_TM_POISON_JAB
 	end
 
 Route115_EventScript_ItemSuperPotion::
@@ -124,6 +132,10 @@ Route115_EventScript_ItemHealPowder::
 
 Route115_EventScript_ItemPPUp::
 	finditem ITEM_PP_UP
+	end
+	
+Route115_EventScript_ItemTMDazzlingGleam::
+	finditem ITEM_TM_DAZZLING_GLEAM
 	end
 
 Route116_EventScript_ItemXSpecial::
@@ -188,6 +200,10 @@ Route119_EventScript_ItemHyperPotion2::
 
 Route119_EventScript_ItemElixir2::
 	finditem ITEM_ELIXIR
+	end
+	
+Route119_EventScript_ItemTMXScissor::
+	finditem ITEM_TM_X_SCISSOR
 	end
 
 Route120_EventScript_ItemNugget::
@@ -417,6 +433,10 @@ NewMauville_Inside_EventScript_ItemFullHeal::
 NewMauville_Inside_EventScript_ItemParalyzeHeal::
 	finditem ITEM_PARALYZE_HEAL
 	end
+	
+NewMauville_Inside_EventScript_ItemTMFlashCannon::
+	finditem ITEM_TM_FLASH_CANNON
+	end
 
 AbandonedShip_Rooms_1F_EventScript_ItemHarborMail::
 	finditem ITEM_HARBOR_MAIL
@@ -520,6 +540,10 @@ AquaHideout_B1F_EventScript_ItemNugget::
 
 AquaHideout_B1F_EventScript_ItemMaxElixir::
 	finditem ITEM_MAX_ELIXIR
+	end
+	
+AquaHideout_B1F_EventScript_ItemTMDarkPulse::
+	finditem ITEM_TM_DARK_PULSE
 	end
 
 AquaHideout_B2F_EventScript_ItemNestBall::
