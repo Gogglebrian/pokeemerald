@@ -1825,3 +1825,33 @@ static const u8 sEnvioliteDesc[] = _(
     "Raises the stats of\n"
     "weaker POKÉMON\n"
     "that can't evolve.");
+	
+static const u8 sTM51Desc[] = _(
+    "A shadowy slash\n"
+    "that has a high\n"
+    "critical-hit ratio.");
+	
+static const u8 sTM52Desc[] = _(
+    "Releases a horrible\n"
+    "aura that may make\n"
+    "the foe flinch.");
+
+static const u8 sTM53Desc[] = _(
+    "Slashes with two\n"
+    "scythes or claws\n"
+    "like scissors.");
+
+static const u8 sTM54Desc[] = _(
+    "Stabs with an arm\n"
+	"steeped in poison.\n"
+    "May poison the foe.");
+
+static const u8 sTM55Desc[] = _(
+    "Releases a powerful\n"
+    "blast of light. May\n"
+    "lower SP. DEF.");
+
+static const u8 sTM56Desc[] = _(
+    "Emits a powerful\n"
+    "flash against all\n"
+    "opponents.");
