@@ -1183,16 +1183,16 @@
 #define FLAG_ITEM_MOSSDEEP_STEVENS_HOUSE_HM08                       0x46D // Unused Flag, leftover from R/S. HM08 is given to the player directly in Emerald
 #define FLAG_ITEM_ROUTE_119_NUGGET                                  0x46E
 #define FLAG_ITEM_ROUTE_104_POTION                                  0x46F
-#define FLAG_UNUSED_0x470                                           0x470 // Unused Flag
+#define FLAG_ITEM_ROUTE_113_TM_SHADOW_CLAW                          0x470 // Formerly Unused Flag
 #define FLAG_ITEM_ROUTE_103_PP_UP                                   0x471
-#define FLAG_UNUSED_0x472                                           0x472 // Unused Flag
+#define FLAG_ITEM_ROUTE_114_TM_POISON_JAB                           0x472 // Formerly Unused Flag
 #define FLAG_ITEM_ROUTE_108_STAR_PIECE                              0x473
 #define FLAG_ITEM_ROUTE_109_POTION                                  0x474
 #define FLAG_ITEM_ROUTE_110_ELIXIR                                  0x475
 #define FLAG_ITEM_ROUTE_111_ELIXIR                                  0x476
 #define FLAG_ITEM_ROUTE_113_HYPER_POTION                            0x477
 #define FLAG_ITEM_ROUTE_115_HEAL_POWDER                             0x478
-#define FLAG_UNUSED_0x479                                           0x479 // Unused Flag
+#define FLAG_ITEM_ROUTE_115_TM_DAZZLING_GLEAM                       0x479 // Formerly Unused Flag
 #define FLAG_ITEM_ROUTE_116_POTION                                  0x47A
 #define FLAG_ITEM_ROUTE_119_ELIXIR_2                                0x47B
 #define FLAG_ITEM_ROUTE_120_REVIVE                                  0x47C
@@ -1219,13 +1219,14 @@
 #define FLAG_ITEM_SAFARI_ZONE_NORTH_EAST_NUGGET                     0x491
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
 
-#define FLAG_ITEM_ROUTE_119_SOUL_DEW                                0x493
-#define FLAG_ITEM_NEW_MAUVILLE_LIGHT_BALL                           0x494
-#define FLAG_ITEM_VICTORY_ROAD_CHOICE_BAND                          0x495
-#define FLAG_ITEM_VICTORY_ROAD_SCOPE_LENS                           0x496
-#define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
-#define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
-#define FLAG_UNUSED_0x499                                           0x499 // Unused Flag
+#define FLAG_ITEM_AQUA_HIDEOUT_TM_DARK_PULSE                        0x493
+#define FLAG_ITEM_ROUTE_119_TM_X_SCISSOR                            0x494 
+#define FLAG_ITEM_NEW_MAUVILLE_TM_FLASH_CANNON                      0x495 
+#define FLAG_ITEM_ROUTE_119_SOUL_DEW                                0x496
+#define FLAG_ITEM_NEW_MAUVILLE_LIGHT_BALL                           0x497
+#define FLAG_ITEM_VICTORY_ROAD_CHOICE_BAND                          0x498
+#define FLAG_ITEM_VICTORY_ROAD_SCOPE_LENS                           0x499
+
 #define FLAG_UNUSED_0x49A                                           0x49A // Unused Flag
 #define FLAG_UNUSED_0x49B                                           0x49B // Unused Flag
 #define FLAG_UNUSED_0x49C                                           0x49C // Unused Flag

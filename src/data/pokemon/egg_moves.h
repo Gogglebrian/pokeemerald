@@ -1592,7 +1592,6 @@ const u16 gEggMoves[] = {
               MOVE_GRUDGE,
               MOVE_MEMENTO,
               MOVE_FAINT_ATTACK,
-			  MOVE_DARK_PULSE,
 			  MOVE_SKILL_SWAP,
 			  MOVE_HAZE),
 

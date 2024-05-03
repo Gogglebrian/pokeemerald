@@ -3033,71 +3033,82 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_0F7] =
+//A few FireRed/LeafGreen items that I moved down here to make room for contiguous TMs.
+//Other FRLG items pick back up with ITEM_CARD_KEY
+
+    [ITEM_OAKS_PARCEL] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("OAK'S PARCEL"),
+        .itemId = ITEM_OAKS_PARCEL,
         .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
+        .description = sOaksParcelDesc,
+        .importance = 2,
+        .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_0F8] =
+    [ITEM_POKE_FLUTE] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("POKé FLUTE"),
+        .itemId = ITEM_POKE_FLUTE,
         .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
+        .description = sPokeFluteDesc,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_0F9] =
+    [ITEM_SECRET_KEY] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("SECRET KEY"),
+        .itemId = ITEM_SECRET_KEY,
         .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
+        .description = sSecretKeyDesc,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_0FA] =
+    [ITEM_BIKE_VOUCHER] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("BIKE VOUCHER"),
+        .itemId = ITEM_BIKE_VOUCHER,
         .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
+        .description = sBikeVoucherDesc,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_0FB] =
+    [ITEM_GOLD_TEETH] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("GOLD TEETH"),
+        .itemId = ITEM_GOLD_TEETH,
         .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
+        .description = sGoldTeethDesc,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_0FC] =
+    [ITEM_OLD_AMBER] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("OLD AMBER"),
+        .itemId = ITEM_OLD_AMBER,
         .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
+        .description = sOldAmberDesc,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
+
+//FRLG items end here but pick back up with ITEM_CARD_KEY
 
     [ITEM_PRISM_SCALE] =
     {
@@ -4141,6 +4152,78 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
+	[ITEM_TM_SHADOW_CLAW] =
+    {
+        .name = _("TM51"),
+        .itemId = ITEM_TM51,
+        .price = 3000,
+        .description = sTM51Desc,
+		.importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+    },
+	
+	[ITEM_TM_DARK_PULSE] =
+    {
+        .name = _("TM52"),
+        .itemId = ITEM_TM52,
+        .price = 3000,
+        .description = sTM52Desc,
+		.importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+    },
+	
+	[ITEM_TM_X_SCISSOR] =
+    {
+        .name = _("TM53"),
+        .itemId = ITEM_TM53,
+        .price = 3000,
+        .description = sTM53Desc,
+		.importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+    },
+	
+	[ITEM_TM_POISON_JAB] =
+    {
+        .name = _("TM54"),
+        .itemId = ITEM_TM54,
+        .price = 3000,
+        .description = sTM54Desc,
+		.importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+    },
+	
+	[ITEM_TM_FLASH_CANNON] =
+    {
+        .name = _("TM55"),
+        .itemId = ITEM_TM55,
+        .price = 3000,
+        .description = sTM55Desc,
+		.importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+    },
+	
+	[ITEM_TM_DAZZLING_GLEAM] =
+    {
+        .name = _("TM56"),
+        .itemId = ITEM_TM56,
+        .price = 3000,
+        .description = sTM56Desc,
+		.importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+    },
+
     [ITEM_HM_CUT] =
     {
         .name = _("HM01"),
@@ -4259,79 +4342,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-// FireRed/LeafGreen key items
-
-    [ITEM_OAKS_PARCEL] =
-    {
-        .name = _("OAK'S PARCEL"),
-        .itemId = ITEM_OAKS_PARCEL,
-        .price = 0,
-        .description = sOaksParcelDesc,
-        .importance = 2,
-        .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_POKE_FLUTE] =
-    {
-        .name = _("POKé FLUTE"),
-        .itemId = ITEM_POKE_FLUTE,
-        .price = 0,
-        .description = sPokeFluteDesc,
-        .importance = 1,
-        .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_SECRET_KEY] =
-    {
-        .name = _("SECRET KEY"),
-        .itemId = ITEM_SECRET_KEY,
-        .price = 0,
-        .description = sSecretKeyDesc,
-        .importance = 1,
-        .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_BIKE_VOUCHER] =
-    {
-        .name = _("BIKE VOUCHER"),
-        .itemId = ITEM_BIKE_VOUCHER,
-        .price = 0,
-        .description = sBikeVoucherDesc,
-        .importance = 1,
-        .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_GOLD_TEETH] =
-    {
-        .name = _("GOLD TEETH"),
-        .itemId = ITEM_GOLD_TEETH,
-        .price = 0,
-        .description = sGoldTeethDesc,
-        .importance = 1,
-        .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_OLD_AMBER] =
-    {
-        .name = _("OLD AMBER"),
-        .itemId = ITEM_OLD_AMBER,
-        .price = 0,
-        .description = sOldAmberDesc,
-        .importance = 1,
-        .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
+// FireRed/LeafGreen key items -- there are a few earlier starting with ITEM_OAKS_PARCEL
 
     [ITEM_CARD_KEY] =
     {
