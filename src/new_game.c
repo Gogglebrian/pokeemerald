@@ -105,6 +105,7 @@ static void SetDefaultOptions(void)
 	gSaveBlock2Ptr->optionsLCBonusMoney = 1;
 	gSaveBlock2Ptr->optionsExpScaling = 1;
 	gSaveBlock2Ptr->optionsEggMoveCaps = 1;
+	gSaveBlock2Ptr->optionsTrainerScaling = 0;
 }
 
 static void ClearPokedexFlags(void)

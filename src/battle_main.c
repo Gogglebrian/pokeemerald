@@ -9,6 +9,7 @@
 #include "battle_message.h"
 #include "battle_pyramid.h"
 #include "battle_scripts.h"
+#include "battle_script_commands.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
 #include "battle_util.h"
@@ -1990,6 +1991,42 @@ static void SpriteCB_UnusedBattleInit_Main(struct Sprite *sprite)
     }
 }
 
+//Values controlling the trainer team level scaling
+static const u8 maxLevelGapFromPlayerAvg = 20; // max level gap from player avg, if the player avg is 100
+static const u8 minLevelGapFromPlayerAvg = 5;
+
+static u8 GetNPCMonLevel(u8 playerTeamLevel, u8 defaultLevel)
+{
+	double playerTeamLvlPercentage = ((double)playerTeamLevel/100.0); 
+	u8 x;// helper, we'll use this for various calculations
+	u8 maxValue = GetCurrentLevelCap() - 2; // offset the level cap so that gym leaders still have advantage
+	u8 minValue = defaultLevel;
+	u8 maxGapFromPlayer = maxLevelGapFromPlayerAvg * playerTeamLvlPercentage + 3;
+	u8 minGapFromPlayer = minLevelGapFromPlayerAvg * playerTeamLvlPercentage + 1;
+	
+	if (gSaveBlock2Ptr->optionsTrainerScaling == 0)
+		return defaultLevel;
+	
+	//For our max bracketing value, get the minimum of the level cap and the player's average level (offset to provide a comfy gap)
+	x = playerTeamLevel - minGapFromPlayer;
+	if (defaultLevel >= x)
+		return defaultLevel;
+	if (x < maxValue)
+		maxValue = x;
+	
+	//For our min bracketing value, get the maximum of the default level for this mon, and the lowest level we'll possibly boost him to
+	x = playerTeamLevel - maxGapFromPlayer;
+	if (x > minValue)
+		minValue = x;
+	
+	if (maxValue <= minValue)
+		return defaultLevel;
+	
+	//Get the range between our max and min
+	x = maxValue - minValue;
+	return (Random() % (x+1)) + minValue;
+}
+
 static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 firstTrainer)
 {
     u32 nameHash = 0;
@@ -1997,6 +2034,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 fixedIV;
     s32 i, j;
     u8 monsCount;
+	u8 level;
+	u8 playerTeamLevel = GetTeamLevel();
 
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
@@ -2044,7 +2083,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, GetNPCMonLevel(playerTeamLevel,partyData[i].lvl), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
@@ -2056,7 +2095,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, GetNPCMonLevel(playerTeamLevel,partyData[i].lvl), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
@@ -2074,7 +2113,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, GetNPCMonLevel(playerTeamLevel,partyData[i].lvl), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                 break;
@@ -2088,7 +2127,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, GetNPCMonLevel(playerTeamLevel,partyData[i].lvl), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 

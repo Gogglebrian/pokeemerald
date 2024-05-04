@@ -42,6 +42,7 @@ enum
 {
     MENUITEM_CUSTOM_LEVELCAPS,
 	MENUITEM_CUSTOM_LCBONUSMONEY,
+	MENUITEM_CUSTOM_TRAINERSCALING,
 	MENUITEM_CUSTOM_EXPSCALING,
 	MENUITEM_CUSTOM_EGGMOVECAPS,
     MENUITEM_CUSTOM_HP_BAR,
@@ -172,6 +173,7 @@ static void DrawChoices_MatchCall(int selection, int y);
 static void DrawChoices_LevelCaps(int selection, int y);
 static void DrawChoices_LCBonusMoney(int selection, int y);
 static void DrawChoices_ExpScaling(int selection, int y);
+static void DrawChoices_TrainerScaling(int selection, int y);
 static void DrawChoices_EggMoveCaps(int selection, int y);
 static void DrawBgWindowFrames(void);
 
@@ -223,6 +225,7 @@ struct // MENU_CUSTOM
 {
 	[MENUITEM_CUSTOM_LEVELCAPS]    = {DrawChoices_LevelCaps,   ProcessInput_Options_Two}, 
 	[MENUITEM_CUSTOM_LCBONUSMONEY] = {DrawChoices_LCBonusMoney,ProcessInput_Options_Two}, 
+	[MENUITEM_CUSTOM_TRAINERSCALING]={DrawChoices_TrainerScaling,ProcessInput_Options_Two}, 
 	[MENUITEM_CUSTOM_EXPSCALING]   = {DrawChoices_ExpScaling,  ProcessInput_Options_Two}, 
 	[MENUITEM_CUSTOM_EGGMOVECAPS]  = {DrawChoices_EggMoveCaps, ProcessInput_Options_Two}, 
     [MENUITEM_CUSTOM_HP_BAR]       = {DrawChoices_BarSpeed,    ProcessInput_Options_Eleven},
@@ -240,6 +243,7 @@ static const u8 sText_LevelCaps[]  	= _("LEVEL CAPS");
 static const u8 sText_LCBonusMoney[]= _("BONUS MONEY");
 static const u8 sText_ExpScaling[]  = _("EXP SCALING");
 static const u8 sText_EggMoveCaps[] = _("EGG MOVE CAPS");
+static const u8 sText_TrainerScaling[] = _("TRAINER SCALING");
 static const u8 *const sOptionMenuItemsNamesMain[MENUITEM_MAIN_COUNT] =
 {
     [MENUITEM_MAIN_TEXTSPEED]   = gText_TextSpeed,
@@ -256,6 +260,7 @@ static const u8 *const sOptionMenuItemsNamesCustom[MENUITEM_CUSTOM_COUNT] =
 {
 	[MENUITEM_CUSTOM_LEVELCAPS]	  = sText_LevelCaps,
 	[MENUITEM_CUSTOM_LCBONUSMONEY]= sText_LCBonusMoney,
+	[MENUITEM_CUSTOM_TRAINERSCALING]= sText_TrainerScaling,
 	[MENUITEM_CUSTOM_EXPSCALING]  = sText_ExpScaling,
 	[MENUITEM_CUSTOM_EGGMOVECAPS] = sText_EggMoveCaps,
     [MENUITEM_CUSTOM_HP_BAR]      = sText_HpBar,
@@ -297,6 +302,7 @@ static bool8 CheckConditions(int selection)
         {
 		case MENUITEM_CUSTOM_LEVELCAPS:		  return TRUE;
 		case MENUITEM_CUSTOM_LCBONUSMONEY:	  return sOptions->sel_custom[MENUITEM_CUSTOM_LEVELCAPS] == 1;
+		case MENUITEM_CUSTOM_TRAINERSCALING:  return TRUE;
 		case MENUITEM_CUSTOM_EXPSCALING:	  return TRUE;
 		case MENUITEM_CUSTOM_EGGMOVECAPS:  	  return TRUE;
         case MENUITEM_CUSTOM_HP_BAR:          return TRUE;
@@ -346,6 +352,8 @@ static const u8 sText_Desc_ExpScaling_On[]		= _("EXP gains scale up for POKÉMON
 static const u8 sText_Desc_ExpScaling_Off[]		= _("EXP gains are unaffected by the\nlevels of other POKÉMON.");
 static const u8 sText_Desc_EggMoveCaps_On[]		= _("Unlock more powerful EGG MOVES from\nthe TUTOR by earning BADGES.");
 static const u8 sText_Desc_EggMoveCaps_Off[]	= _("The EGG MOVE TUTOR will teach any\nEGG MOVE regardless of BADGES.");
+static const u8 sText_Desc_TrainerScaling_On[]	= _("Boosts weaker TRAINERS to keep\ntheir levels closer to yours.");
+static const u8 sText_Desc_TrainerScaling_Off[]	= _("Other TRAINERS' levels are not\naffected by your own.");
 static const u8 sText_Desc_BattleHPBar[]        = _("Choose how fast the HP BAR will get\ndrained in battles.");
 static const u8 sText_Desc_BattleExpBar[]       = _("Choose how fast the EXP BAR will get\nfilled in battles.");
 static const u8 sText_Desc_SurfOff[]            = _("Disables the SURF theme when\nusing SURF.");
@@ -359,6 +367,7 @@ static const u8 *const sOptionMenuItemDescriptionsCustom[MENUITEM_CUSTOM_COUNT][
 {
     [MENUITEM_CUSTOM_LEVELCAPS]	  = {sText_Desc_LevelCaps_Off,		sText_Desc_LevelCaps_On},
     [MENUITEM_CUSTOM_LCBONUSMONEY]= {sText_Desc_LCBonusMoney_Off,	sText_Desc_LCBonusMoney_On},
+	[MENUITEM_CUSTOM_TRAINERSCALING] = {sText_Desc_TrainerScaling_Off, sText_Desc_TrainerScaling_On},
 	[MENUITEM_CUSTOM_EXPSCALING]  = {sText_Desc_ExpScaling_Off,		sText_Desc_ExpScaling_On},
 	[MENUITEM_CUSTOM_EGGMOVECAPS] = {sText_Desc_EggMoveCaps_Off,	sText_Desc_EggMoveCaps_On},
 	[MENUITEM_CUSTOM_HP_BAR]      = {sText_Desc_BattleHPBar,        sText_Empty},
@@ -389,6 +398,7 @@ static const u8 *const sOptionMenuItemDescriptionsDisabledCustom[MENUITEM_CUSTOM
 {
 	[MENUITEM_CUSTOM_LEVELCAPS]   = sText_Empty,
 	[MENUITEM_CUSTOM_LCBONUSMONEY]= sText_Desc_Disabled_LCBonusMoney,
+	[MENUITEM_CUSTOM_TRAINERSCALING] = sText_Empty,
 	[MENUITEM_CUSTOM_EXPSCALING]  = sText_Empty,
 	[MENUITEM_CUSTOM_EGGMOVECAPS] = sText_Empty,
     [MENUITEM_CUSTOM_HP_BAR]      = sText_Desc_Disabled_BattleHPBar,
@@ -638,6 +648,7 @@ void CB2_InitOptionPlusMenu(void)
         
 		sOptions->sel_custom[MENUITEM_CUSTOM_LEVELCAPS]   = gSaveBlock2Ptr->optionsLevelCaps;
 		sOptions->sel_custom[MENUITEM_CUSTOM_LCBONUSMONEY]= gSaveBlock2Ptr->optionsLCBonusMoney;
+		sOptions->sel_custom[MENUITEM_CUSTOM_TRAINERSCALING] = gSaveBlock2Ptr->optionsTrainerScaling;
 		sOptions->sel_custom[MENUITEM_CUSTOM_EXPSCALING]  = gSaveBlock2Ptr->optionsExpScaling;
 		sOptions->sel_custom[MENUITEM_CUSTOM_EGGMOVECAPS] = gSaveBlock2Ptr->optionsEggMoveCaps;
         sOptions->sel_custom[MENUITEM_CUSTOM_HP_BAR]      = gSaveBlock2Ptr->optionsHpBarSpeed;
@@ -831,6 +842,7 @@ static void Task_OptionMenuSave(u8 taskId)
 
 	gSaveBlock2Ptr->optionsLevelCaps     	= sOptions->sel_custom[MENUITEM_CUSTOM_LEVELCAPS];
 	gSaveBlock2Ptr->optionsLCBonusMoney    	= sOptions->sel_custom[MENUITEM_CUSTOM_LCBONUSMONEY];
+	gSaveBlock2Ptr->optionsTrainerScaling   = sOptions->sel_custom[MENUITEM_CUSTOM_TRAINERSCALING];
 	gSaveBlock2Ptr->optionsExpScaling   	= sOptions->sel_custom[MENUITEM_CUSTOM_EXPSCALING];
 	gSaveBlock2Ptr->optionsEggMoveCaps  	= sOptions->sel_custom[MENUITEM_CUSTOM_EGGMOVECAPS];
     gSaveBlock2Ptr->optionsHpBarSpeed       = sOptions->sel_custom[MENUITEM_CUSTOM_HP_BAR];
@@ -1186,6 +1198,16 @@ static void DrawChoices_LevelCaps(int selection, int y)
 static void DrawChoices_LCBonusMoney(int selection, int y)
 {
     bool8 active = CheckConditions(MENUITEM_CUSTOM_LCBONUSMONEY);
+    u8 styles[2] = {0};
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(sText_GenericOff, 104, y, styles[0], active);
+    DrawOptionMenuChoice(sText_GenericOn, GetStringRightAlignXOffset(FONT_NORMAL, sText_GenericOn, 198), y, styles[1], active);
+}
+
+static void DrawChoices_TrainerScaling(int selection, int y)
+{
+    bool8 active = CheckConditions(MENUITEM_CUSTOM_TRAINERSCALING);
     u8 styles[2] = {0};
     styles[selection] = 1;
 

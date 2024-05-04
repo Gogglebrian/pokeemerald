@@ -3362,6 +3362,23 @@ u8 GetTeamLevel(void)
     return partyLevel;
 }
 
+u8 GetCurrentLevelCap(void)
+{
+	int i;
+	
+	if (gSaveBlock2Ptr->optionsLevelCaps == 0)
+		return 100;
+	
+	//For each level cap,
+	for (i = 0; i < NUM_LEVEL_CAPS; i++)
+    {
+		//If we don't have the matching flag,
+		if (!FlagGet(sLevelCapFlags[i]))
+			return sLevelCaps[i]; // return the level cap value
+	}
+	return 100;
+}
+
 double GetPkmnExpMultiplier(u8 level)
 {
     u8 i;

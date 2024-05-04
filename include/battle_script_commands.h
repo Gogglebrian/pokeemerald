@@ -24,4 +24,7 @@ bool8 UproarWakeUpCheck(u8 battlerId);
 extern void (* const gBattleScriptingCommandsTable[])(void);
 extern const u8 gBattlePalaceNatureToMoveGroupLikelihood[NUM_NATURES][4];
 
+u8 GetTeamLevel(void);
+u8 GetCurrentLevelCap(void);
+
 #endif // GUARD_BATTLE_SCRIPT_COMMANDS_H
