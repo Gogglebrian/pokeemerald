@@ -3534,12 +3534,20 @@ static void Cmd_getexp(void)
 					//Get exp multiplier from level caps and level scaling
 					double expMultiplier = GetPkmnExpMultiplier(gPlayerParty[gBattleStruct->expGetterMonId].level);
                     if (gBattleStruct->sentInPokes & 1)
+					{
+						if (expMultiplier == 0)
+							gBattleStruct->levelCapBonusExp += *exp;
 						gBattleMoveDamage = *exp * expMultiplier;
+					}
 					else
 						gBattleMoveDamage = 0;
 
 					if (holdEffect == HOLD_EFFECT_EXP_SHARE)
+					{
+						if (expMultiplier == 0)
+							gBattleStruct->levelCapBonusExp += gExpShareExp;
 						gBattleMoveDamage += gExpShareExp * expMultiplier;
+					}
                     if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
                     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
@@ -5794,7 +5802,10 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
             moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerMoneyTable[i].value;
     }
 
-    return moneyReward;
+	if (gSaveBlock2Ptr->optionsLevelCaps == 1 && gSaveBlock2Ptr->optionsLCBonusMoney == 1)
+		return moneyReward + gBattleStruct->levelCapBonusExp;
+    else
+		return moneyReward;
 }
 
 static void Cmd_getmoneyreward(void)

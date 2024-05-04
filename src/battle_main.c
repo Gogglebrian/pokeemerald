@@ -3178,6 +3178,8 @@ static void BattleStartClearSetData(void)
 
     gBattleStruct->arenaLostPlayerMons = 0;
     gBattleStruct->arenaLostOpponentMons = 0;
+	
+	gBattleStruct->levelCapBonusExp = 0;
 }
 
 void SwitchInClearSetData(void)

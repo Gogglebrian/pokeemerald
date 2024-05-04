@@ -520,9 +520,10 @@ struct SaveBlock2
              u16 optionsDisableMatchCall:1; //tx_optionsPlus
              u16 optionsCurrentFont:1;  //tx_optionsPlus
 			 u16 optionsLevelCaps:1; //tx_optionsPlus
+			 u16 optionsLCBonusMoney:1; //tx_optionsPlus
 			 u16 optionsExpScaling:1; //tx_optionsPlus
 			 u16 optionsEggMoveCaps:1; //tx_optionsPlus
-             u16 padding1:6;
+             u16 padding1:5;
              //u16 padding2;
     /*0x18*/ struct Pokedex pokedex;
     /*0x90*/ u8 filler_90[0x8];
