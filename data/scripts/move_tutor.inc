@@ -3,7 +3,7 @@ Common_EventScript_MoveTutor_Price::
 	msgbox Common_MoveTutor_Teach_Tutor_Moves, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq Common_EventScript_MoveTutor_ComeBackAnytime
-	checkmoney 8000, 0
+	checkmoney 6000, 0
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_MoveTutor_no_Money
 	goto Common_EventScript_MoveTutor_ChooseMon
@@ -29,7 +29,9 @@ Common_EventScript_MoveTutor_ChooseTutorMove:: @ 820140C
 	waitstate
 	compare VAR_0x8004, 0
 	goto_if_eq Common_EventScript_MoveTutor_ChooseMon
-	removemoney 8000, 0
+	removemoney 6000, 0
+	playse SE_SHOP
+	showmoneybox 0, 0
 	goto Common_EventScript_MoveTutor_ComeBackAnytime
 	end
 	
@@ -66,7 +68,7 @@ Common_MoveTutor_Teach_Tutor_Moves:
     .string "I can teach cool moves that only\n"
 	.string "the experts at the BATTLE FRONTIER\l"
 	.string "would usually know.\p"
-	.string "It's ¥8000 a pop, interested?$"
+	.string "It's ¥6000 a pop, interested?$"
 	
 Common_MoveTutor_ComeBackAnytime:
     .string "Come back anytime!$"

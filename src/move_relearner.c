@@ -877,12 +877,14 @@ static void DoMoveTutorMain(void)
     case MENU_STATE_PRINT_GIVE_UP_PROMPT:
         if (!MoveRelearnerRunTextPrinters())
         {
-            MoveRelearnerCreateYesNoMenu();
+            //MoveRelearnerCreateYesNoMenu();
             sMoveRelearnerStruct->state++;
         }
         break;
     case MENU_STATE_GIVE_UP_CONFIRM:
         {
+			sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
+			/* I'll leave this here just in case
             s8 selection = Menu_ProcessInputNoWrapClearOnChoose();
 
             if (selection == 0)
@@ -901,6 +903,7 @@ static void DoMoveTutorMain(void)
                     sMoveRelearnerStruct->state = MENU_STATE_SETUP_CONTEST_MODE;
                 }
             }
+			*/
         }
         break;
     case MENU_STATE_PRINT_TRYING_TO_LEARN_PROMPT:
@@ -931,20 +934,22 @@ static void DoMoveTutorMain(void)
         break;
     case MENU_STATE_PRINT_STOP_TEACHING:
         StringCopy(gStringVar2, gMoveNames[GetCurrentSelectedMove()]);
-        FormatAndPrintText(gText_MoveRelearnerStopTryingToTeachMove);
+        //FormatAndPrintText(gText_MoveRelearnerStopTryingToTeachMove);
         sMoveRelearnerStruct->state++;
         break;
     case MENU_STATE_WAIT_FOR_STOP_TEACHING:
         if (!MoveRelearnerRunTextPrinters())
         {
-            MoveRelearnerCreateYesNoMenu();
+            //MoveRelearnerCreateYesNoMenu();
             sMoveRelearnerStruct->state++;
         }
         break;
     case MENU_STATE_CONFIRM_STOP_TEACHING:
         {
+			sMoveRelearnerStruct->state = MENU_STATE_CHOOSE_SETUP_STATE;
+			/*
             s8 var = Menu_ProcessInputNoWrapClearOnChoose();
-
+			
             if (var == 0)
             {
                 sMoveRelearnerStruct->state = MENU_STATE_CHOOSE_SETUP_STATE;
@@ -962,6 +967,7 @@ static void DoMoveTutorMain(void)
                 }
                 sMoveRelearnerStruct->state = MENU_STATE_PRINT_TRYING_TO_LEARN_PROMPT;
             }
+			*/
         }
         break;
     case MENU_STATE_CHOOSE_SETUP_STATE:
@@ -1561,12 +1567,14 @@ static void DoEggTutorMain(void)
     case MENU_STATE_PRINT_GIVE_UP_PROMPT:
         if (!MoveRelearnerRunTextPrinters())
         {
-            MoveRelearnerCreateYesNoMenu();
+            //MoveRelearnerCreateYesNoMenu();
             sMoveRelearnerStruct->state++;
         }
         break;
     case MENU_STATE_GIVE_UP_CONFIRM:
         {
+			sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
+			/*
             s8 selection = Menu_ProcessInputNoWrapClearOnChoose();
 
             if (selection == 0)
@@ -1585,6 +1593,7 @@ static void DoEggTutorMain(void)
                     sMoveRelearnerStruct->state = MENU_STATE_SETUP_CONTEST_MODE;
                 }
             }
+			*/
         }
         break;
     case MENU_STATE_PRINT_TRYING_TO_LEARN_PROMPT:
@@ -1615,18 +1624,20 @@ static void DoEggTutorMain(void)
         break;
     case MENU_STATE_PRINT_STOP_TEACHING:
         StringCopy(gStringVar2, gMoveNames[GetCurrentSelectedMove()]);
-        FormatAndPrintText(gText_MoveRelearnerStopTryingToTeachMove);
+        //FormatAndPrintText(gText_MoveRelearnerStopTryingToTeachMove);
         sMoveRelearnerStruct->state++;
         break;
     case MENU_STATE_WAIT_FOR_STOP_TEACHING:
         if (!MoveRelearnerRunTextPrinters())
         {
-            MoveRelearnerCreateYesNoMenu();
+            //MoveRelearnerCreateYesNoMenu();
             sMoveRelearnerStruct->state++;
         }
         break;
     case MENU_STATE_CONFIRM_STOP_TEACHING:
         {
+			sMoveRelearnerStruct->state = MENU_STATE_CHOOSE_SETUP_STATE;
+			/*
             s8 var = Menu_ProcessInputNoWrapClearOnChoose();
 
             if (var == 0)
@@ -1646,6 +1657,7 @@ static void DoEggTutorMain(void)
                 }
                 sMoveRelearnerStruct->state = MENU_STATE_PRINT_TRYING_TO_LEARN_PROMPT;
             }
+			*/
         }
         break;
     case MENU_STATE_CHOOSE_SETUP_STATE:

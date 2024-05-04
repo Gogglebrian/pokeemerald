@@ -42,6 +42,7 @@
 #include "constants/battle_script_commands.h"
 #include "constants/daycare.h"
 #include "constants/hold_effects.h"
+#include "constants/flags.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/layouts.h"
@@ -6296,11 +6297,37 @@ u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
     }
 }
 
+//Inclusive power caps for the highest number badge you currently have, starting with 0, 1, 2...
+static const u8 sEggPowerCaps[] = {40, 60, 75, 85, 255, 255, 255, 255, 255};
+
+u8 GetEggMoveBasePowerLimit() 
+{
+	if (FlagGet(FLAG_BADGE08_GET) == TRUE)
+		return sEggPowerCaps[8];
+	else if (FlagGet(FLAG_BADGE07_GET) == TRUE)
+		return sEggPowerCaps[7];
+	else if (FlagGet(FLAG_BADGE06_GET) == TRUE)
+		return sEggPowerCaps[6];
+	else if (FlagGet(FLAG_BADGE05_GET) == TRUE)
+		return sEggPowerCaps[5];
+	else if (FlagGet(FLAG_BADGE04_GET) == TRUE)
+		return sEggPowerCaps[4];
+	else if (FlagGet(FLAG_BADGE03_GET) == TRUE)
+		return sEggPowerCaps[3];
+	else if (FlagGet(FLAG_BADGE02_GET) == TRUE)
+		return sEggPowerCaps[2];
+	else if (FlagGet(FLAG_BADGE01_GET) == TRUE)
+		return sEggPowerCaps[1];
+	else 
+		return sEggPowerCaps[0];
+}
+
 //Egg Move Tutor --------------------------------------------------
 u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves)
 {
     u16 learnedMoves[4];
     u8 numMoves = 0;
+	u8 maxInclusiveBasePower = GetEggMoveBasePowerLimit();
 	u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
 	u16 firsStage = GetFirstEvolution(species);
@@ -6314,7 +6341,8 @@ u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves)
 	//for (i = 0; i < numEggMove && learnedMoves[j] != eggMoveBuffer[i]; i++)
 	for (i = 0; i < numEggMoves; i++)
     {
-        moves[numMoves++] = eggMoveBuffer[i];
+		if (gSaveBlock2Ptr->optionsEggMoveCaps == FALSE || gBattleMoves[eggMoveBuffer[i]].power <= maxInclusiveBasePower)
+			moves[numMoves++] = eggMoveBuffer[i];
     }
 	
 	/*/for (i = 0; i< TUTOR_MOVE_COUNT; i++)
@@ -6333,6 +6361,7 @@ u8 GetNumberOfEggMoves(struct Pokemon *mon)
 {
 	u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
     u16 learnedMoves[MAX_MON_MOVES];
+	u8 maxInclusiveBasePower = GetEggMoveBasePowerLimit();
     u8 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
 	u16 firsStage = GetFirstEvolution(species);
@@ -6350,7 +6379,8 @@ u8 GetNumberOfEggMoves(struct Pokemon *mon)
 
     for (i = 0; i < numEggMoves; i++)
     {
-        moves[numMoves++] = eggMoveBuffer[i];
+		if (gSaveBlock2Ptr->optionsEggMoveCaps == FALSE || gBattleMoves[eggMoveBuffer[i]].power <= maxInclusiveBasePower)
+			moves[numMoves++] = eggMoveBuffer[i];
     }
 	
 	/*/for (i = 0; i< TUTOR_MOVE_COUNT; i++)
