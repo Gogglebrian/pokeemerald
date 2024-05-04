@@ -874,6 +874,7 @@ static void Task_EvolutionScene(u8 taskId)
                 BattleStringExpandPlaceholdersToDisplayedString(gBattleStringsTable[STRINGID_TRYTOLEARNMOVE1 - BATTLESTRINGS_TABLE_START]);
                 BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MSG);
                 gTasks[taskId].tLearnMoveState++;
+				gTasks[taskId].tLearnMoveState++; // skip over MVSTATE_INTRO_MSG_2
             }
             break;
         case MVSTATE_INTRO_MSG_2:
@@ -1266,6 +1267,7 @@ static void Task_TradeEvolutionScene(u8 taskId)
                 BattleStringExpandPlaceholdersToDisplayedString(gBattleStringsTable[STRINGID_TRYTOLEARNMOVE1 - BATTLESTRINGS_TABLE_START]);
                 DrawTextOnTradeWindow(0, gDisplayedStringBattle, 1);
                 gTasks[taskId].tLearnMoveState++;
+                gTasks[taskId].tLearnMoveState++; // skip over T_MVSTATE_INTRO_MSG_2
             }
             break;
         case T_MVSTATE_INTRO_MSG_2:

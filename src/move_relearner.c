@@ -601,8 +601,10 @@ static void DoMoveRelearnerMain(void)
         }
         break;
     case MENU_STATE_PRINT_TRYING_TO_LEARN_PROMPT:
-        PrintMessageWithPlaceholders(gText_MoveRelearnerPkmnTryingToLearnMove);
-        sMoveRelearnerStruct->state++;
+        //PrintMessageWithPlaceholders(gText_MoveRelearnerPkmnTryingToLearnMove);
+        //sMoveRelearnerStruct->state++;
+		//Skip over the prompt and just go straight to the moves screen
+		sMoveRelearnerStruct->state = MENU_STATE_PRINT_WHICH_MOVE_PROMPT;
         break;
     case MENU_STATE_WAIT_FOR_TRYING_TO_LEARN:
         if (!MoveRelearnerRunTextPrinters())
@@ -907,8 +909,10 @@ static void DoMoveTutorMain(void)
         }
         break;
     case MENU_STATE_PRINT_TRYING_TO_LEARN_PROMPT:
-        FormatAndPrintText(gText_MoveRelearnerPkmnTryingToLearnMove);
-        sMoveRelearnerStruct->state++;
+        //FormatAndPrintText(gText_MoveRelearnerPkmnTryingToLearnMove);
+        //sMoveRelearnerStruct->state++;
+		//Skip over the prompt and just go straight to the moves screen
+		sMoveRelearnerStruct->state = MENU_STATE_PRINT_WHICH_MOVE_PROMPT;
         break;
     case MENU_STATE_WAIT_FOR_TRYING_TO_LEARN:
         if (!MoveRelearnerRunTextPrinters())
@@ -1597,9 +1601,11 @@ static void DoEggTutorMain(void)
         }
         break;
     case MENU_STATE_PRINT_TRYING_TO_LEARN_PROMPT:
-        FormatAndPrintText(gText_MoveRelearnerPkmnTryingToLearnMove);
-        sMoveRelearnerStruct->state++;
-        break;
+        //FormatAndPrintText(gText_MoveRelearnerPkmnTryingToLearnMove);
+        //sMoveRelearnerStruct->state++;
+        //Skip over the prompt and just go straight to the moves screen
+		sMoveRelearnerStruct->state = MENU_STATE_PRINT_WHICH_MOVE_PROMPT;
+		break;
     case MENU_STATE_WAIT_FOR_TRYING_TO_LEARN:
         if (!MoveRelearnerRunTextPrinters())
         {
