@@ -41,6 +41,9 @@ void UpdateMirageRnd(u16 days)
 
 bool8 IsMirageIslandPresent(void)
 {
+	if (FlagGet(FLAG_IS_CHAMPION) == TRUE)
+		return TRUE;
+	
     u16 rnd = GetMirageRnd() >> 16;
     int i;
 
