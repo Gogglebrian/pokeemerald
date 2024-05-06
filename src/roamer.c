@@ -4,6 +4,7 @@
 #include "random.h"
 #include "roamer.h"
 #include "pokedex.h"
+#include "battle_script_commands.h"
 
 // Despite having a variable to track it, the roamer is
 // hard-coded to only ever be in map group 0
@@ -84,13 +85,25 @@ void ClearRoamerLocationData(void)
 
 static void CreateInitialRoamerMon(bool16 createLatios)
 {
+	u8 level = 40;
+	u8 playerAvgLevel; 
+	
+	if (gSaveBlock2Ptr->optionsTrainerScaling == TRUE)
+	{
+		playerAvgLevel = GetTeamLevel();
+		while ((playerAvgLevel > level) && (level < 100))
+			level += 5;
+		if (level > 100)
+			level = 100;
+	}
+	
     if (!createLatios)
         ROAMER->species = SPECIES_LATIAS;
     else
         ROAMER->species = SPECIES_LATIOS;
 
-    CreateMon(&gEnemyParty[0], ROAMER->species, 40, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
-    ROAMER->level = 40;
+    CreateMon(&gEnemyParty[0], ROAMER->species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    ROAMER->level = level;
     ROAMER->status = 0;
     ROAMER->active = TRUE;
     ROAMER->ivs = GetMonData(&gEnemyParty[0], MON_DATA_IVS);

@@ -9,6 +9,7 @@
 #include "battle_message.h"
 #include "battle_pyramid.h"
 #include "battle_scripts.h"
+#include "battle_script_commands.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
 #include "battle_util.h"
@@ -1990,6 +1991,138 @@ static void SpriteCB_UnusedBattleInit_Main(struct Sprite *sprite)
     }
 }
 
+//The minimum amount that the target level should be required to lag behind the player's party average
+static u8 GetMinLevelGapByTrainerClass(u8 trainerClass, u16 trainerNum)
+{
+	if (trainerNum == TRAINER_STEVEN) // specific carveout for Steven who's marked as a RIVAL
+		return 0;
+	
+	switch (trainerClass)
+	{
+		case TRAINER_CLASS_MAGMA_LEADER:
+		case TRAINER_CLASS_AQUA_LEADER:
+		case TRAINER_CLASS_ELITE_FOUR:
+		case TRAINER_CLASS_CHAMPION:
+			return 0;
+		case TRAINER_CLASS_COOLTRAINER:
+		case TRAINER_CLASS_RIVAL:
+			return 1;
+		default:
+			return 2;
+	}
+}
+
+//The maximum amount that the target level should be allowed to lag behind the player's party average
+static u8 GetMaxLevelGapByTrainerClass(u8 trainerClass, u16 trainerNum)
+{
+	if (trainerNum == TRAINER_STEVEN) // specific carveout for Steven who's marked as a RIVAL
+		return 0;
+	
+	switch (trainerClass)
+	{
+		case TRAINER_CLASS_RIVAL:
+			return 3;
+		case TRAINER_CLASS_LEADER:
+			return 2;
+		case TRAINER_CLASS_MAGMA_LEADER:
+		case TRAINER_CLASS_AQUA_LEADER:
+		case TRAINER_CLASS_ELITE_FOUR:
+			return 1;
+		case TRAINER_CLASS_CHAMPION:
+			return 0;
+		case TRAINER_CLASS_COOLTRAINER:
+			return 4;
+		default:
+			return 8;
+	}
+}
+
+static u8 GetNPCMonLevel(u8 playerTeamLevel, u8 defaultLevel, u8 targetLevel, u8 targetOffset)
+{
+	//Use default levels if scaling's off, we're appropriately leveled, or the target level is too low
+	if ((gSaveBlock2Ptr->optionsTrainerScaling == 0)
+	|| (playerTeamLevel < defaultLevel)
+	|| (targetLevel - targetOffset <= defaultLevel)
+	|| (targetLevel <= 5))
+		return defaultLevel;
+	else
+		return targetLevel - targetOffset;
+}
+
+//Flat penalty applied to scaled levels based on generic trainer party size
+static const u8 partySizeLevelPenalty[] = {0, 1, 2, 3, 5, 8};
+
+static u8 GetNPCPartyTargetLevel(u16 trainerNum, u8 trainerClass, u8 monsCount, u8 playerTeamLevel)
+{	
+	u8 trainerClassMax = 100;
+	u8 x;// helper
+	u8 maxValue; 
+	u8 minValue = 0; 
+	u8 maxGapFromPlayer;
+	u8 minGapFromPlayer;
+
+	//Start with setting our absolute max value relative to the current level cap (should be 100 if disabled)
+	if (trainerClass == TRAINER_CLASS_LEADER || trainerClass == TRAINER_CLASS_CHAMPION)
+		maxValue = GetCurrentLevelCap();
+	else if (GetCurrentLevelCap() == 100 && trainerNum == TRAINER_STEVEN) 
+		maxValue = 100;
+	else
+		maxValue = GetCurrentLevelCap() - 2;
+
+	//For specific trainer classes, impose a more restrictive max level
+	switch (trainerClass)
+	{
+		case TRAINER_CLASS_RIVAL:
+		{
+			if (trainerNum == TRAINER_STEVEN) // carve out a special exception for Steven who's marked as a RIVAL
+				trainerClassMax = 100;
+			else
+				trainerClassMax = 75;
+			break;
+		}
+		case TRAINER_CLASS_LEADER:
+		case TRAINER_CLASS_MAGMA_LEADER:
+		case TRAINER_CLASS_AQUA_LEADER:
+		case TRAINER_CLASS_ELITE_FOUR:
+			trainerClassMax = 70;
+			break;
+		case TRAINER_CLASS_CHAMPION:
+			trainerClassMax = 80;
+			break;
+		default:
+			trainerClassMax = 50;
+			break;
+	}
+	
+	// These determine how far we'll let the trainer's target level lag behind the player's party average
+	maxGapFromPlayer = GetMaxLevelGapByTrainerClass(trainerClass, trainerNum);
+	minGapFromPlayer = GetMinLevelGapByTrainerClass(trainerClass, trainerNum);
+	
+	//For our max bracketing value, get the minimum of the level cap max, the traner class max, and the player-relative max
+	if (trainerClassMax < maxValue) 
+		maxValue = trainerClassMax;
+	x = playerTeamLevel - minGapFromPlayer;
+	if (x < maxValue)
+		maxValue = x;
+	
+	minValue = maxValue - (maxGapFromPlayer-minGapFromPlayer);
+	
+	//Apply party size penalty for generic trainers
+	if (trainerClassMax <= 50) 
+	{
+		maxValue -= partySizeLevelPenalty[monsCount];
+		minValue -= partySizeLevelPenalty[monsCount];
+	}
+	
+	//If we're out of bounds, then just return 0, which will result in default levels
+	if (maxValue <= minValue || minValue == 0)
+		return 0;
+
+	//Get the range between our max and min
+	x = maxValue - minValue;
+	return (Random() % (x+1)) + minValue;
+}
+
 static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 firstTrainer)
 {
     u32 nameHash = 0;
@@ -1997,6 +2130,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 fixedIV;
     s32 i, j;
     u8 monsCount;
+	u8 defaultMaxLevel = 0;
+	u8 levelOffset;
+	u8 npcPartyTargetLevel = 0;
+	u8 playerTeamLevel = GetTeamLevel();
 
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
@@ -2019,10 +2156,52 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         {
             monsCount = gTrainers[trainerNum].partySize;
         }
+		
+		// Get the highest default level of the mons in the party
+		// (using this same exact switch structure twice is gross but I'm too lazy to find a better way)
+		switch (gTrainers[trainerNum].partyFlags)
+		{
+		case 0:
+		{
+			const struct TrainerMonNoItemDefaultMoves *partyData = gTrainers[trainerNum].party.NoItemDefaultMoves;
+			for (i = 0; i < monsCount; i++)
+				if (partyData[i].lvl > defaultMaxLevel)
+					defaultMaxLevel = partyData[i].lvl;
+			break;
+		}
+		case F_TRAINER_PARTY_CUSTOM_MOVESET:
+		{
+			const struct TrainerMonNoItemCustomMoves *partyData = gTrainers[trainerNum].party.NoItemCustomMoves;
+			for (i = 0; i < monsCount; i++)
+				if (partyData[i].lvl > defaultMaxLevel)
+					defaultMaxLevel = partyData[i].lvl;
+			break;
+		}
+		case F_TRAINER_PARTY_HELD_ITEM:
+		{
+			const struct TrainerMonItemDefaultMoves *partyData = gTrainers[trainerNum].party.ItemDefaultMoves;
+			for (i = 0; i < monsCount; i++)
+				if (partyData[i].lvl > defaultMaxLevel)
+					defaultMaxLevel = partyData[i].lvl;
+			break;
+		}
+		case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
+		{
+			const struct TrainerMonItemCustomMoves *partyData = gTrainers[trainerNum].party.ItemCustomMoves;
+			for (i = 0; i < monsCount; i++)
+				if (partyData[i].lvl > defaultMaxLevel)
+					defaultMaxLevel = partyData[i].lvl;
+			break;
+		}
+		} // end of switch statement where we get the max default level of the party
 
+		//Get scaled target level
+		if (gSaveBlock2Ptr->optionsTrainerScaling == 1)
+			npcPartyTargetLevel = GetNPCPartyTargetLevel(trainerNum, gTrainers[trainerNum].trainerClass, monsCount, playerTeamLevel);
+
+		//Loop through mons and actually create them
         for (i = 0; i < monsCount; i++)
         {
-
             if (gTrainers[trainerNum].doubleBattle == TRUE)
                 personalityValue = 0x80;
             else if (gTrainers[trainerNum].encounterMusic_gender & F_TRAINER_FEMALE)
@@ -2039,24 +2218,28 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             {
                 const struct TrainerMonNoItemDefaultMoves *partyData = gTrainers[trainerNum].party.NoItemDefaultMoves;
 
+				levelOffset = defaultMaxLevel - partyData[i].lvl; //Get level offset from highest-level mon on the team
+
                 for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; j++)
                     nameHash += gSpeciesNames[partyData[i].species][j];
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, GetNPCMonLevel(playerTeamLevel, partyData[i].lvl, npcPartyTargetLevel, levelOffset), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
             {
                 const struct TrainerMonNoItemCustomMoves *partyData = gTrainers[trainerNum].party.NoItemCustomMoves;
 
+				levelOffset = defaultMaxLevel - partyData[i].lvl; //Get level offset from highest-level mon on the team
+
                 for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; j++)
                     nameHash += gSpeciesNames[partyData[i].species][j];
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, GetNPCMonLevel(playerTeamLevel, partyData[i].lvl, npcPartyTargetLevel, levelOffset), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
@@ -2069,12 +2252,14 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             {
                 const struct TrainerMonItemDefaultMoves *partyData = gTrainers[trainerNum].party.ItemDefaultMoves;
 
+				levelOffset = defaultMaxLevel - partyData[i].lvl; //Get level offset from highest-level mon on the team
+
                 for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; j++)
                     nameHash += gSpeciesNames[partyData[i].species][j];
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, GetNPCMonLevel(playerTeamLevel, partyData[i].lvl, npcPartyTargetLevel, levelOffset), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                 break;
@@ -2083,12 +2268,14 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             {
                 const struct TrainerMonItemCustomMoves *partyData = gTrainers[trainerNum].party.ItemCustomMoves;
 
+				levelOffset = defaultMaxLevel - partyData[i].lvl; //Get level offset from highest-level mon on the team
+
                 for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; j++)
                     nameHash += gSpeciesNames[partyData[i].species][j];
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, GetNPCMonLevel(playerTeamLevel, partyData[i].lvl, npcPartyTargetLevel, levelOffset), fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
@@ -3178,6 +3365,8 @@ static void BattleStartClearSetData(void)
 
     gBattleStruct->arenaLostPlayerMons = 0;
     gBattleStruct->arenaLostOpponentMons = 0;
+	
+	gBattleStruct->levelCapBonusExp = 0;
 }
 
 void SwitchInClearSetData(void)
