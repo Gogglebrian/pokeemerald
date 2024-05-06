@@ -1957,3 +1957,11 @@
 	setvar VAR_0x8001, \stringvarnumber
 	special BufferUnitSystemText
 	.endm
+
+	@ Alternative to setwildbattle that scales up the pokemon's level to be somewhat stronger than the player party average
+	.macro setwildbattlescaled species:req, level:req, item=ITEM_NONE
+	.byte 0xe4
+	.2byte \species
+	.byte \level
+	.2byte \item
+	.endm
