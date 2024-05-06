@@ -140,6 +140,7 @@ static void SetInitialFansOfPlayer(void);
 static u16 PlayerGainRandomTrainerFan(void);
 static void BufferFanClubTrainerName_(struct LinkBattleRecords *, u8, u8);
 void ResetDefeatedLegendaries(void);
+u8 GetEggCapsEnabled(void);
 
 void Special_ShowDiploma(void)
 {
@@ -4343,4 +4344,9 @@ void ResetDefeatedLegendaries(void)
 		FlagClear(FLAG_DEFEATED_SUDOWOODO);
 	if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_DEOXYS), FLAG_GET_CAUGHT)== FALSE && FlagGet(FLAG_DEFEATED_DEOXYS))
 		FlagClear(FLAG_DEFEATED_DEOXYS);
+}
+
+u8 GetEggCapsEnabled(void)
+{
+	return (gSaveBlock2Ptr->optionsEggMoveCaps == TRUE);
 }

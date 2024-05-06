@@ -5260,7 +5260,7 @@ static void Task_HandleStopLearningMoveYesNoInput(u8 taskId)
     case 0:
 		GetMonNickname(mon, gStringVar1);
         StringCopy(gStringVar2, gMoveNames[gPartyMenu.data1]);
-        DisplayLearnMoveMessage(gText_PkmnNeedsToReplaceMove);
+        DisplayLearnMoveMessage(gText_PkmnNeedsToReplaceMoveShort);
         gTasks[taskId].func = Task_ReplaceMoveYesNo;
         break;
     case MENU_B_PRESSED:

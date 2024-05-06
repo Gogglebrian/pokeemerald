@@ -1,6 +1,7 @@
 #include "global.h"
 #include "frontier_util.h"
 #include "battle_setup.h"
+#include "battle_script_commands.h"
 #include "berry.h"
 #include "clock.h"
 #include "coins.h"
@@ -1897,6 +1898,26 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
     u8 level = ScriptReadByte(ctx);
     u16 item = ScriptReadHalfword(ctx);
 
+    CreateScriptedWildMon(species, level, item);
+    return FALSE;
+}
+
+bool8 ScrCmd_setwildbattlescaled(struct ScriptContext *ctx)
+{
+	u8 playerAvgLevel;
+    u16 species = ScriptReadHalfword(ctx);
+    u8 level = ScriptReadByte(ctx);
+    u16 item = ScriptReadHalfword(ctx);
+
+	if (gSaveBlock2Ptr->optionsTrainerScaling == TRUE)
+	{
+		playerAvgLevel = GetTeamLevel();
+		while ((playerAvgLevel > level - 4) && (level < 100))
+			level += 5;
+		if (level > 100)
+			level = 100;
+	}
+	
     CreateScriptedWildMon(species, level, item);
     return FALSE;
 }

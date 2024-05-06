@@ -43,6 +43,11 @@ bool8 IsMirageIslandPresent(void)
 {
     u16 rnd = GetMirageRnd() >> 16;
     int i;
+	
+	if (FlagGet(FLAG_IS_CHAMPION) == TRUE)
+		return TRUE;
+
+	rnd = GetMirageRnd() >> 16;
 
     for (i = 0; i < PARTY_SIZE; i++)
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && (GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY) & 0xFFFF) == rnd)
