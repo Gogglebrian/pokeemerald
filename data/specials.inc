@@ -545,4 +545,3 @@ gSpecials::
 	def_special TeachTutorMove
 	def_special GetEggCapsEnabled
 	def_special GetLeadMonEnvioliteLevel
-	
