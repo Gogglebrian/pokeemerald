@@ -2060,6 +2060,7 @@ static u8 GetNPCPartyTargetLevel(u16 trainerNum, u8 trainerClass, u8 monsCount, 
 	u8 minValue = 0; 
 	u8 maxGapFromPlayer;
 	u8 minGapFromPlayer;
+	u8 gapFromPlayerRange = 0;
 
 	//Start with setting our absolute max value relative to the current level cap (should be 100 if disabled)
 	if (trainerClass == TRAINER_CLASS_LEADER || trainerClass == TRAINER_CLASS_CHAMPION)
@@ -2105,19 +2106,29 @@ static u8 GetNPCPartyTargetLevel(u16 trainerNum, u8 trainerClass, u8 monsCount, 
 	if (x < maxValue)
 		maxValue = x;
 	
-	minValue = maxValue - (maxGapFromPlayer-minGapFromPlayer);
+	gapFromPlayerRange = maxGapFromPlayer-minGapFromPlayer;
+	if (maxGapFromPlayer < minGapFromPlayer)
+		minValue = maxValue;
+	else if (maxValue < gapFromPlayerRange)
+		return 0;
+	else
+		minValue = maxValue - (gapFromPlayerRange);
 	
 	//Apply party size penalty for generic trainers
 	if (trainerClassMax <= 50) 
 	{
+		if (maxValue <= partySizeLevelPenalty[monsCount] || minValue <= partySizeLevelPenalty[monsCount])
+			return 0;
 		maxValue -= partySizeLevelPenalty[monsCount];
 		minValue -= partySizeLevelPenalty[monsCount];
 	}
 	
 	//If we're out of bounds, then just return 0, which will result in default levels
-	if (maxValue <= minValue || minValue == 0)
+	if (maxValue < minValue || minValue == 0 || maxValue == 0 || maxValue > 100 || minValue > 100)
 		return 0;
-
+	else if (maxValue == minValue)
+		return maxValue;
+	
 	//Get the range between our max and min
 	x = maxValue - minValue;
 	return (Random() % (x+1)) + minValue;
