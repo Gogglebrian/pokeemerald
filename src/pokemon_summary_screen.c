@@ -3346,10 +3346,11 @@ static void PrintSkillsPageText(void)
 {
     PrintHeldItemName();
     PrintRibbonCount();
-    BufferLeftColumnStats();
-    PrintLeftColumnStats();
-    BufferRightColumnStats();
-    PrintRightColumnStats();
+    //BufferLeftColumnStats();
+    //PrintLeftColumnStats();
+    //BufferRightColumnStats();
+    //PrintRightColumnStats();
+	BufferIvOrEvStats(0);
     PrintExpPointsNextLevel();
 }
 
@@ -3366,17 +3367,12 @@ static void Task_PrintSkillsPage(u8 taskId)
         PrintRibbonCount();
         break;
     case 3:
-        BufferLeftColumnStats();
-        break;
     case 4:
-        PrintLeftColumnStats();
-        break;
     case 5:
-        BufferRightColumnStats();
-        break;
     case 6:
-        PrintRightColumnStats();
-        break;
+		data[0] = 6;
+		BufferIvOrEvStats(0);
+		break;
     case 7:
         PrintExpPointsNextLevel();
         break;
