@@ -577,6 +577,7 @@ static void DoMoveRelearnerMain(void)
         break;
     case MENU_STATE_GIVE_UP_CONFIRM:
         {
+			gSpecialVar_0x8004 = FALSE;
 			sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
 			/* I'll leave this here just in case
             s8 selection = Menu_ProcessInputNoWrapClearOnChoose();
@@ -885,6 +886,7 @@ static void DoMoveTutorMain(void)
         break;
     case MENU_STATE_GIVE_UP_CONFIRM:
         {
+			gSpecialVar_0x8004 = FALSE;
 			sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
 			/* I'll leave this here just in case
             s8 selection = Menu_ProcessInputNoWrapClearOnChoose();
@@ -1577,6 +1579,7 @@ static void DoEggTutorMain(void)
         break;
     case MENU_STATE_GIVE_UP_CONFIRM:
         {
+			gSpecialVar_0x8004 = FALSE;
 			sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
 			/*
             s8 selection = Menu_ProcessInputNoWrapClearOnChoose();
