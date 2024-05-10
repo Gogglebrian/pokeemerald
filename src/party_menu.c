@@ -70,6 +70,7 @@
 #include "constants/field_effects.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
+#include "constants/item.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
@@ -7176,6 +7177,7 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     u16 item = gSpecialVar_ItemId;
     u8 modifier;
+	u8 ivBoost = 10;
     u8 health = GetMonData(mon, MON_DATA_HP_IV);
     u8 attack = GetMonData(mon, MON_DATA_ATK_IV);
     u8 defense = GetMonData(mon, MON_DATA_DEF_IV);
@@ -7184,12 +7186,16 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
     u8 spDefense = GetMonData(mon, MON_DATA_SPDEF_IV);
     bool8 didActivate = FALSE;
 
+	//reduce ivBoost to 1 if it's a berry
+	if (ItemId_GetPocket(item) == POCKET_BERRIES)
+		ivBoost = 1;
+		
     switch (ItemId_GetSecondaryId(item))
     {
     case STAT_HP:
         if (health != MAX_PER_STAT_IVS)
         {
-            modifier = (health <= (MAX_PER_STAT_IVS - 10)) ? (health + 10) : MAX_PER_STAT_IVS;
+            modifier = (health <= (MAX_PER_STAT_IVS - ivBoost)) ? (health + ivBoost) : MAX_PER_STAT_IVS;
             SetMonData(mon, MON_DATA_HP_IV, &modifier);
             StringCopy(gStringVar2, gText_HP3);
             didActivate = TRUE;
@@ -7198,7 +7204,7 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
     case STAT_ATK:
         if (attack != MAX_PER_STAT_IVS)
         {
-            modifier = (attack <= (MAX_PER_STAT_IVS - 10)) ? (attack + 10) : MAX_PER_STAT_IVS;
+            modifier = (attack <= (MAX_PER_STAT_IVS - ivBoost)) ? (attack + ivBoost) : MAX_PER_STAT_IVS;
             SetMonData(mon, MON_DATA_ATK_IV, &modifier);
             StringCopy(gStringVar2, gText_Attack3);
             didActivate = TRUE;
@@ -7207,7 +7213,7 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
     case STAT_DEF:
         if (defense != MAX_PER_STAT_IVS)
         {
-            modifier = (defense <= (MAX_PER_STAT_IVS - 10)) ? (defense + 10) : MAX_PER_STAT_IVS;
+            modifier = (defense <= (MAX_PER_STAT_IVS - ivBoost)) ? (defense + ivBoost) : MAX_PER_STAT_IVS;
             SetMonData(mon, MON_DATA_DEF_IV, &modifier);
             StringCopy(gStringVar2, gText_Defense3);
             didActivate = TRUE;
@@ -7216,7 +7222,7 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
     case STAT_SPEED:
         if (speed != MAX_PER_STAT_IVS)
         {
-            modifier = (speed <= (MAX_PER_STAT_IVS - 10)) ? (speed + 10) : MAX_PER_STAT_IVS;
+            modifier = (speed <= (MAX_PER_STAT_IVS - ivBoost)) ? (speed + ivBoost) : MAX_PER_STAT_IVS;
             SetMonData(mon, MON_DATA_SPEED_IV, &modifier);
             StringCopy(gStringVar2, gText_Speed2);
             didActivate = TRUE;
@@ -7225,7 +7231,7 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
     case STAT_SPATK:
         if (spAttack != MAX_PER_STAT_IVS)
         {
-            modifier = (spAttack <= (MAX_PER_STAT_IVS - 10)) ? (spAttack + 10) : MAX_PER_STAT_IVS;
+            modifier = (spAttack <= (MAX_PER_STAT_IVS - ivBoost)) ? (spAttack + ivBoost) : MAX_PER_STAT_IVS;
             SetMonData(mon, MON_DATA_SPATK_IV, &modifier);
             StringCopy(gStringVar2, gText_SpAtk3);
             didActivate = TRUE;
@@ -7234,7 +7240,7 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
     case STAT_SPDEF:
         if (spDefense != MAX_PER_STAT_IVS)
         {
-            modifier = (spDefense <= (MAX_PER_STAT_IVS - 10)) ? (spDefense + 10) : MAX_PER_STAT_IVS;
+            modifier = (spDefense <= (MAX_PER_STAT_IVS - ivBoost)) ? (spDefense + ivBoost) : MAX_PER_STAT_IVS;
             SetMonData(mon, MON_DATA_SPDEF_IV, &modifier);
             StringCopy(gStringVar2, gText_SpDef3);
             didActivate = TRUE;
@@ -7249,7 +7255,10 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
         RemoveBagItem(item, 1);
         AdjustFriendship(mon, FRIENDSHIP_EVENT_VITAMIN);
         GetMonNickname(mon, gStringVar1);
-        StringExpandPlaceholders(gStringVar4, gText_PkmnPotentialVar2StatIncreased);
+		if (ivBoost >= 5)
+			StringExpandPlaceholders(gStringVar4, gText_PkmnPotentialVar2StatIncreased);
+		else
+			StringExpandPlaceholders(gStringVar4, gText_PkmnPotentialVar2StatIncreasedABit);
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;

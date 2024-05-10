@@ -583,29 +583,28 @@ static const u8 sIapapaBerryDesc[] = _(
     "may confuse.");
 
 static const u8 sRazzBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow RAZZ.");
+	"Raises a POKéMON's\n"
+	"HP potential a bit.");
 
 static const u8 sBlukBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow BLUK.");
+	"Raises a POKéMON's\n"
+	"ATTACK potential\n"
+	"a bit.");
 
 static const u8 sNanabBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow NANAB.");
+	"Raises a POKéMON's\n"
+	"DEFENSE potential\n"
+	"a bit.");
 
 static const u8 sWepearBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow WEPEAR.");
+	"Raises a POKéMON's\n"
+	"SPEED potential\n"
+	"a bit.");
 
 static const u8 sPinapBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow PINAP.");
+	"Raises a POKéMON's\n"
+	"SP. ATK potential\n"
+	"a bit.");
 
 static const u8 sPomegBerryDesc[] = _(
     "Makes a POKéMON\n"
@@ -638,39 +637,38 @@ static const u8 sTamatoBerryDesc[] = _(
     "the SPEED stat.");
 
 static const u8 sCornnBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow CORNN.");
+	"Reduces a POKéMON's\n"
+	"HP potential a bit.");
 
 static const u8 sMagostBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow MAGOST.");
+	"Reduces a POKéMON's\n"
+	"ATTACK potential\n"
+	"a bit.");
 
 static const u8 sRabutaBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow RABUTA.");
+	"Reduces a POKéMON's\n"
+	"DEFENSE potential\n"
+	"a bit.");
 
 static const u8 sNomelBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow NOMEL.");
+	"Reduces a POKéMON's\n"
+	"SPEED potential\n"
+	"a bit.");
 
 static const u8 sSpelonBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow SPELON.");
+    "Reduces a POKéMON's\n"
+	"SP. ATK potential\n"
+	"a bit.");
 
 static const u8 sPamtreBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow PAMTRE.");
+	"Reduces a POKéMON's\n"
+	"SP. DEF potential\n"
+	"a bit.");
 
 static const u8 sWatmelBerryDesc[] = _(
-    "{POKEBLOCK} ingredient.\n"
-    "Plant in loamy soil\n"
-    "to grow WATMEL.");
+	"Raises a POKéMON's\n"
+	"SP. DEF potential\n"
+	"a bit.");
 
 static const u8 sDurinBerryDesc[] = _(
     "{POKEBLOCK} ingredient.\n"
