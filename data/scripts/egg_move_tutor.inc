@@ -29,8 +29,11 @@ Common_EventScript_EggMoveTutor_ChooseEggMove:: @ 820140C
 	waitstate
 	compare VAR_0x8004, 0
 	goto_if_eq Common_EventScript_EggMoveTutor_ChooseMon
+	showmoneybox 0, 0
+	msgbox Common_EggMoveTutor_Text_TakeTheMoney, MSGBOX_DEFAULT
 	removemoney 3000, 0
 	playse SE_SHOP
+	hidemoneybox
 	showmoneybox 0, 0
 	goto Common_EventScript_EggMoveTutor_ComeBackWithMoreBadges
 	end
@@ -65,12 +68,15 @@ Common_EggMoveTutor_no_Money::
 	hidemoneybox
 	release
 	end
-	
-Common_EggMoveTutor_Text_TutorWhichMon: @ 82015A5
+
+Common_EggMoveTutor_Text_TakeTheMoney:
+	.string "That'll be ¥3000… Thanks!$"
+
+Common_EggMoveTutor_Text_TutorWhichMon:
 	.string "Which POKéMON should I have\n"
 	.string "remember a move?$"
 
-Common_EggMoveTutor_Text_TeachWhichMove: @ 82015C3
+Common_EggMoveTutor_Text_TeachWhichMove:
 	.string "Which move should it remember?$"	
 
 Common_EggMoveTutor_Teach_Egg_Moves:
@@ -91,7 +97,7 @@ Common_EggMoveTutor_Text_no_Money:
 	.string "It looks like you don't have enough\n"
 	.string "money!$"
 	
-Common_EggMoveTutor_Text_DontHaveMoveToTeachPokemon: @ 82015DE
+Common_EggMoveTutor_Text_DontHaveMoveToTeachPokemon:
 	.string "It doesn't seem like that POKéMON has\n"
 	.string "any moves that it can remember.$"
 

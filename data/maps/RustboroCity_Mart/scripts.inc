@@ -28,6 +28,7 @@ RustboroCity_Mart_Pokemart_Basic:
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFEND
+	.2byte ITEM_CATCH_UP_CANDY
 	.2byte ITEM_ABILITY_CAPSULE
 	.2byte ITEM_NONE
 	release
@@ -53,6 +54,7 @@ RustboroCity_Mart_Pokemart_Expanded:
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFEND
+	.2byte ITEM_CATCH_UP_CANDY
 	.2byte ITEM_ABILITY_CAPSULE
 	.2byte ITEM_NONE
 	release

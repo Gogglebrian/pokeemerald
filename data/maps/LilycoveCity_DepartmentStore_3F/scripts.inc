@@ -39,12 +39,6 @@ LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins:
 	.2byte ITEM_HONDEW_BERRY
 	.2byte ITEM_GREPA_BERRY
 	.2byte ITEM_TAMATO_BERRY
-	.2byte ITEM_MAGOST_BERRY
-	.2byte ITEM_RABUTA_BERRY
-	.2byte ITEM_NOMEL_BERRY
-	.2byte ITEM_SPELON_BERRY
-	.2byte ITEM_PAMTRE_BERRY
-	.2byte ITEM_CORNN_BERRY
 	.2byte ITEM_NONE
 	release
 	end
@@ -67,6 +61,7 @@ LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters:
 	.2byte ITEM_LEAF_STONE
 	.2byte ITEM_MOON_STONE
 	.2byte ITEM_SUN_STONE
+	.2byte ITEM_CATCH_UP_CANDY
 	.2byte ITEM_PP_UP
 	.2byte ITEM_PP_MAX
 	.2byte ITEM_ABILITY_CAPSULE
@@ -76,6 +71,18 @@ LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters:
 	.2byte ITEM_SUPER_CALCIUM
 	.2byte ITEM_SUPER_ZINC
 	.2byte ITEM_SUPER_HP_UP
+	.2byte ITEM_RAZZ_BERRY
+	.2byte ITEM_BLUK_BERRY
+	.2byte ITEM_NANAB_BERRY
+	.2byte ITEM_WEPEAR_BERRY
+	.2byte ITEM_PINAP_BERRY
+	.2byte ITEM_WATMEL_BERRY
+	.2byte ITEM_CORNN_BERRY
+	.2byte ITEM_MAGOST_BERRY
+	.2byte ITEM_RABUTA_BERRY
+	.2byte ITEM_NOMEL_BERRY
+	.2byte ITEM_SPELON_BERRY
+	.2byte ITEM_PAMTRE_BERRY
 	.2byte ITEM_ADAMANT_MINT
 	.2byte ITEM_BOLD_MINT
 	.2byte ITEM_BRAVE_MINT
@@ -95,12 +102,12 @@ LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters:
 	.2byte ITEM_RASH_MINT
 	.2byte ITEM_RELAXED_MINT
 	.2byte ITEM_SASSY_MINT
-	.2byte ITEM_SERIOUS_MINT
 	.2byte ITEM_TIMID_MINT
 	.2byte ITEM_HARDY_MINT
+	.2byte ITEM_DOCILE_MINT
 	.2byte ITEM_BASHFUL_MINT
 	.2byte ITEM_QUIRKY_MINT
-	.2byte ITEM_DOCILE_MINT
+	.2byte ITEM_SERIOUS_MINT
 	.2byte ITEM_NONE
 	release
 	end

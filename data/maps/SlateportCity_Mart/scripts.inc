@@ -21,6 +21,7 @@ SlateportCity_Mart_Pokemart:
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_ESCAPE_ROPE
 	.2byte ITEM_REPEL
+	.2byte ITEM_CATCH_UP_CANDY
 	.2byte ITEM_ABILITY_CAPSULE
 	.2byte ITEM_HARBOR_MAIL
 	.2byte ITEM_NONE

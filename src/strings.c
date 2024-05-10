@@ -429,6 +429,7 @@ const u8 gText_MovesPPIncreased[] = _("{STR_VAR_1}'s PP increased.{PAUSE_UNTIL_P
 const u8 gText_PkmnElevatedToLvVar2[] = _("{STR_VAR_1} was elevated to\nLv. {STR_VAR_2}.");
 const u8 gText_PkmnBaseVar2StatIncreased[] = _("{STR_VAR_1}'s base {STR_VAR_2}\nstat was raised.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnPotentialVar2StatIncreased[] = _("{STR_VAR_1}'s {STR_VAR_2} potential\ngreatly improved!{PAUSE_UNTIL_PRESS}");
+const u8 gText_PkmnPotentialVar2StatIncreasedABit[] = _("{STR_VAR_1}'s {STR_VAR_2} potential\nimproved a bit.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnFriendlyBaseVar2Fell[] = _("{STR_VAR_1} turned friendly.\nThe base {STR_VAR_2} fell!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnVar2Reset[] = _("{STR_VAR_1}'s efforts in the {STR_VAR_2}\nstat were undone!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnPotentialVar2StatFell[] = _("{STR_VAR_1}'s {STR_VAR_2}\npotential fell.{PAUSE_UNTIL_PRESS}");

@@ -501,6 +501,7 @@ extern const u8 gText_PkmnFriendlyBaseVar2Fell[];
 extern const u8 gText_PkmnVar2Reset[];
 extern const u8 gText_PkmnFriendlyBaseVar2CantFall[];
 extern const u8 gText_PkmnPotentialVar2StatIncreased[];
+extern const u8 gText_PkmnPotentialVar2StatIncreasedABit[];
 extern const u8 gText_PkmnPotentialVar2StatFell[];
 extern const u8 gText_PkmnAdoresBaseVar2Fell[];
 extern const u8 gText_PkmnAlreadyKnows[];

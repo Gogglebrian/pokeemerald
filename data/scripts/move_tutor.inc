@@ -29,8 +29,11 @@ Common_EventScript_MoveTutor_ChooseTutorMove:: @ 820140C
 	waitstate
 	compare VAR_0x8004, 0
 	goto_if_eq Common_EventScript_MoveTutor_ChooseMon
+	showmoneybox 0, 0
+	msgbox Common_MoveTutor_Text_TakeTheMoney, MSGBOX_DEFAULT
 	removemoney 6000, 0
 	playse SE_SHOP
+	hidemoneybox
 	showmoneybox 0, 0
 	goto Common_EventScript_MoveTutor_ComeBackAnytime
 	end
@@ -56,6 +59,9 @@ Common_MoveTutor_no_Money::
 	hidemoneybox
 	release
 	end
+	
+Common_MoveTutor_Text_TakeTheMoney:
+	.string "That'll be ¥6000… Thanks!$"
 	
 Common_MoveTutor_Text_TutorWhichMon: @ 82015A5
 	.string "Which POKéMON should I have\n"
