@@ -22,6 +22,7 @@ MossdeepCity_Mart_Pokemart:
 	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFEND
+	.2byte ITEM_CATCH_UP_CANDY
 	.2byte ITEM_ABILITY_CAPSULE
 	.2byte ITEM_NONE
 	release

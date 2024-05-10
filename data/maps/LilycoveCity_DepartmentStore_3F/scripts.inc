@@ -53,6 +53,7 @@ LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight::
 
 	.align 2
 LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters:
+	.2byte ITEM_CATCH_UP_CANDY
 	.2byte ITEM_PP_UP
 	.2byte ITEM_PP_MAX
 	.2byte ITEM_ABILITY_CAPSULE

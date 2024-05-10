@@ -807,7 +807,7 @@ const struct Item gItems[] =
     {
         .name = _("ABILITY PILL"),
         .itemId = ITEM_ABILITY_CAPSULE,
-        .price = 9800,
+        .price = 5800,
         .description = sAbilityCapsuleDesc,
         .pocket = POCKET_MEDICINE,
         .type = ITEM_USE_PARTY_MENU,
