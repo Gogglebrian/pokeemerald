@@ -295,6 +295,11 @@ static const u8 sPPMaxDesc[] = _(
     "Raises the PP of a\n"
     "move to its maximum\n"
     "points.");
+	
+static const u8 sCatchUpCandyDesc[] = _(
+    "Raises a POKéMON to\n"
+    "a level befitting\n"
+    "your BADGE count.");
 
 // Battle items
 static const u8 sGuardSpecDesc[] = _(

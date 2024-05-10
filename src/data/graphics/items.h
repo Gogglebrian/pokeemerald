@@ -151,6 +151,9 @@ const u32 gItemIconPalette_Zinc[] = INCBIN_U32("graphics/items/icon_palettes/zin
 const u32 gItemIcon_PPMax[] = INCBIN_U32("graphics/items/icons/pp_max.4bpp.lz");
 const u32 gItemIconPalette_PPMax[] = INCBIN_U32("graphics/items/icon_palettes/pp_max.gbapal.lz");
 
+const u32 gItemIcon_CatchUpCandy[] = INCBIN_U32("graphics/items/icons/dynamax_candy.4bpp.lz");
+const u32 gItemIconPalette_CatchUpCandy[] = INCBIN_U32("graphics/items/icon_palettes/dynamax_candy.gbapal.lz");
+
 // Battle items
 
 const u32 gItemIconPalette_GuardSpec[] = INCBIN_U32("graphics/items/icon_palettes/guard_spec.gbapal.lz");

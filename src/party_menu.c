@@ -5292,6 +5292,95 @@ static void Task_TryLearningNextMoveAfterText(u8 taskId)
         Task_TryLearningNextMove(taskId);
 }
 
+const u16 sCatchUpCandyLevelFlags[8] =
+{
+    FLAG_BADGE01_GET, FLAG_BADGE02_GET, FLAG_BADGE03_GET, FLAG_BADGE04_GET,
+    FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET
+};
+const u8 sCatchUpCandyLevels[9] = {11, 14, 18, 23, 28, 30, 32, 41, 45};
+
+static u8 GetCatchUpCandyTargetLevel(void) 
+{
+	u8 i;
+	//Loop through catchupcandy flags
+	for (i = 0; i < 8; i++)
+    {
+		if (!FlagGet(sCatchUpCandyLevelFlags[i]))
+			return sCatchUpCandyLevels[i];
+	}
+	return sCatchUpCandyLevels[8];
+}
+
+static void ApplyCatchUpCandy(struct Pokemon *mon)
+{
+	u8 currentLevel = GetMonData(mon, MON_DATA_LEVEL, 0);
+	u8 targetLevel = GetCatchUpCandyTargetLevel();
+	u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+	u32 expPoints = gExperienceTables[gBaseStats[species].growthRate][targetLevel];
+	bool8 firstMove;
+    u16 learnedMove;
+	
+	while (currentLevel < targetLevel)
+	{
+		currentLevel += 1;
+		SetMonData(mon, MON_DATA_LEVEL, &currentLevel);
+		// Teach the mon any moves it missed
+		firstMove = TRUE;
+		while ((learnedMove = MonTryLearningNewMove(mon, firstMove)) != 0)
+		{
+			firstMove = FALSE;
+			if (learnedMove == MON_HAS_MAX_MOVES)
+				DeleteFirstMoveAndGiveMoveToMon(mon, gMoveToLearn);
+		}
+	}
+	
+	SetMonData(mon, MON_DATA_EXP, &expPoints);
+	CalculateMonStats(mon);
+}
+
+void ItemUseCB_CatchUpCandy(u8 taskId, TaskFunc task)
+{
+	struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    struct PartyMenuInternal *ptr = sPartyMenuInternal;
+    s16 *arrayPtr = ptr->data;
+    u16 *itemPtr = &gSpecialVar_ItemId;
+    bool8 cannotUseEffect = FALSE;
+	u8 level = GetMonData(mon, MON_DATA_LEVEL);
+	u8 targetLevel = GetCatchUpCandyTargetLevel();
+
+    if (level < targetLevel)
+    {
+        BufferMonStatsToTaskData(mon, arrayPtr); // Not sure if this is needed
+		ApplyCatchUpCandy(mon);
+        BufferMonStatsToTaskData(mon, &ptr->data[NUM_STATS]);
+    }
+    else
+    {
+        cannotUseEffect = TRUE;
+    }
+    PlaySE(SE_SELECT);
+    if (cannotUseEffect)
+    {
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+    }
+    else
+    {
+        gPartyMenuUseExitCallback = TRUE;
+        PlayFanfareByFanfareNum(FANFARE_LEVEL_UP);
+        UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        GetMonNickname(mon, gStringVar1);
+        ConvertIntToDecimalStringN(gStringVar2, GetMonData(mon, MON_DATA_LEVEL), STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
+        DisplayPartyMenuMessage(gStringVar4, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
+    }
+}
+
 void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
@@ -5316,7 +5405,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
         gPartyMenuUseExitCallback = FALSE;
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
     }
     else
     {

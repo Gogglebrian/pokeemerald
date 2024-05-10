@@ -915,15 +915,15 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_PPUp,
     },
 
-    [ITEM_048] =
+    [ITEM_CATCH_UP_CANDY] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .name = _("CATCHUPCANDY"),
+        .itemId = ITEM_CATCH_UP_CANDY,
+        .price = 6800,
+        .description = sCatchUpCandyDesc,
+        .pocket = POCKET_MEDICINE,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CatchUpCandy,
     },
 
 // Battle items
