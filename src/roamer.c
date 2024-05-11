@@ -90,7 +90,7 @@ static void CreateInitialRoamerMon(bool16 createLatios)
 	
 	if (gSaveBlock2Ptr->optionsTrainerScaling == TRUE)
 	{
-		playerAvgLevel = GetTeamLevel();
+		playerAvgLevel = GetTeamLevel(FALSE);
 		while ((playerAvgLevel > level) && (level < 100))
 			level += 5;
 		if (level > 100)

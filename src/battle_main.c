@@ -2144,7 +2144,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 	u8 defaultMaxLevel = 0;
 	u8 levelOffset;
 	u8 npcPartyTargetLevel = 0;
-	u8 playerTeamLevel = GetTeamLevel();
+	u8 playerTeamLevel = GetTeamLevel(FALSE);
 
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
