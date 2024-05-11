@@ -1997,18 +1997,36 @@ static u8 GetMinLevelGapByTrainerClass(u8 trainerClass, u16 trainerNum)
 	if (trainerNum == TRAINER_STEVEN) // specific carveout for Steven who's marked as a RIVAL
 		return 0;
 	
-	switch (trainerClass)
+	if (gSaveBlock2Ptr->optionsTrainerScaling <= 1)
 	{
-		case TRAINER_CLASS_MAGMA_LEADER:
-		case TRAINER_CLASS_AQUA_LEADER:
-		case TRAINER_CLASS_ELITE_FOUR:
-		case TRAINER_CLASS_CHAMPION:
-			return 0;
-		case TRAINER_CLASS_COOLTRAINER:
-		case TRAINER_CLASS_RIVAL:
-			return 1;
-		default:
-			return 2;
+		switch (trainerClass)
+		{
+			case TRAINER_CLASS_MAGMA_LEADER:
+			case TRAINER_CLASS_AQUA_LEADER:
+			case TRAINER_CLASS_ELITE_FOUR:
+			case TRAINER_CLASS_CHAMPION:
+				return 0;
+			case TRAINER_CLASS_COOLTRAINER:
+			case TRAINER_CLASS_RIVAL:
+				return 1;
+			default:
+				return 2;
+		}
+	}
+	else
+	{
+		switch (trainerClass)
+		{
+			case TRAINER_CLASS_MAGMA_LEADER:
+			case TRAINER_CLASS_AQUA_LEADER:
+			case TRAINER_CLASS_ELITE_FOUR:
+			case TRAINER_CLASS_CHAMPION:
+			case TRAINER_CLASS_COOLTRAINER:
+			case TRAINER_CLASS_RIVAL:
+				return 0;
+			default:
+				return 1;
+		}
 	}
 }
 
@@ -2018,22 +2036,42 @@ static u8 GetMaxLevelGapByTrainerClass(u8 trainerClass, u16 trainerNum)
 	if (trainerNum == TRAINER_STEVEN) // specific carveout for Steven who's marked as a RIVAL
 		return 0;
 	
-	switch (trainerClass)
+	if (gSaveBlock2Ptr->optionsTrainerScaling <= 1)
 	{
-		case TRAINER_CLASS_RIVAL:
-			return 3;
-		case TRAINER_CLASS_LEADER:
-			return 2;
-		case TRAINER_CLASS_MAGMA_LEADER:
-		case TRAINER_CLASS_AQUA_LEADER:
-		case TRAINER_CLASS_ELITE_FOUR:
-			return 1;
-		case TRAINER_CLASS_CHAMPION:
-			return 0;
-		case TRAINER_CLASS_COOLTRAINER:
-			return 4;
-		default:
-			return 8;
+		switch (trainerClass)
+		{
+			case TRAINER_CLASS_RIVAL:
+				return 3;
+			case TRAINER_CLASS_LEADER:
+				return 2;
+			case TRAINER_CLASS_MAGMA_LEADER:
+			case TRAINER_CLASS_AQUA_LEADER:
+			case TRAINER_CLASS_ELITE_FOUR:
+				return 1;
+			case TRAINER_CLASS_CHAMPION:
+				return 0;
+			case TRAINER_CLASS_COOLTRAINER:
+				return 4;
+			default:
+				return 8;
+		}
+	}
+	else
+	{
+		switch (trainerClass)
+		{
+			case TRAINER_CLASS_LEADER:
+			case TRAINER_CLASS_MAGMA_LEADER:
+			case TRAINER_CLASS_AQUA_LEADER:
+			case TRAINER_CLASS_ELITE_FOUR:
+			case TRAINER_CLASS_CHAMPION:
+			case TRAINER_CLASS_RIVAL:
+				return 0;
+			case TRAINER_CLASS_COOLTRAINER:
+				return 2;
+			default:
+				return 3;
+		}
 	}
 }
 
@@ -2050,7 +2088,8 @@ static u8 GetNPCMonLevel(u8 playerTeamLevel, u8 defaultLevel, u8 targetLevel, u8
 }
 
 //Flat penalty applied to scaled levels based on generic trainer party size
-static const u8 partySizeLevelPenalty[] = {0, 1, 2, 3, 5, 8};
+static const u8 partySizeLevelPenalty[] 	= {0, 1, 2, 3, 5, 8};
+static const u8 partySizeLevelPenaltyHard[] = {0, 0, 0, 1, 2, 3};
 
 static u8 GetNPCPartyTargetLevel(u16 trainerNum, u8 trainerClass, u8 monsCount, u8 playerTeamLevel)
 {	
@@ -2067,6 +2106,8 @@ static u8 GetNPCPartyTargetLevel(u16 trainerNum, u8 trainerClass, u8 monsCount, 
 		maxValue = GetCurrentLevelCap();
 	else if (GetCurrentLevelCap() == 100 && trainerNum == TRAINER_STEVEN) 
 		maxValue = 100;
+	else if (gSaveBlock2Ptr->optionsTrainerScaling == 2)
+		maxValue = GetCurrentLevelCap() - 1;
 	else
 		maxValue = GetCurrentLevelCap() - 2;
 
@@ -2117,10 +2158,20 @@ static u8 GetNPCPartyTargetLevel(u16 trainerNum, u8 trainerClass, u8 monsCount, 
 	//Apply party size penalty for generic trainers
 	if (trainerClassMax <= 50) 
 	{
-		if (maxValue <= partySizeLevelPenalty[monsCount] || minValue <= partySizeLevelPenalty[monsCount])
-			return 0;
-		maxValue -= partySizeLevelPenalty[monsCount];
-		minValue -= partySizeLevelPenalty[monsCount];
+		if (gSaveBlock2Ptr->optionsTrainerScaling == 1) 
+		{
+			if (maxValue <= partySizeLevelPenalty[monsCount] || minValue <= partySizeLevelPenalty[monsCount])
+				return 0;
+			maxValue -= partySizeLevelPenalty[monsCount];
+			minValue -= partySizeLevelPenalty[monsCount];
+		}
+		else
+		{
+			if (maxValue <= partySizeLevelPenaltyHard[monsCount] || minValue <= partySizeLevelPenaltyHard[monsCount])
+				return 0;
+			maxValue -= partySizeLevelPenaltyHard[monsCount];
+			minValue -= partySizeLevelPenaltyHard[monsCount];
+		}
 	}
 	
 	//If we're out of bounds, then just return 0, which will result in default levels
@@ -2207,7 +2258,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 		} // end of switch statement where we get the max default level of the party
 
 		//Get scaled target level
-		if (gSaveBlock2Ptr->optionsTrainerScaling == 1)
+		if (gSaveBlock2Ptr->optionsTrainerScaling > 0)
 			npcPartyTargetLevel = GetNPCPartyTargetLevel(trainerNum, gTrainers[trainerNum].trainerClass, monsCount, playerTeamLevel);
 
 		//Loop through mons and actually create them

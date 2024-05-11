@@ -225,7 +225,7 @@ struct // MENU_CUSTOM
 {
 	[MENUITEM_CUSTOM_LEVELCAPS]    = {DrawChoices_LevelCaps,   ProcessInput_Options_Two}, 
 	[MENUITEM_CUSTOM_LCBONUSMONEY] = {DrawChoices_LCBonusMoney,ProcessInput_Options_Two}, 
-	[MENUITEM_CUSTOM_TRAINERSCALING]={DrawChoices_TrainerScaling,ProcessInput_Options_Two}, 
+	[MENUITEM_CUSTOM_TRAINERSCALING]={DrawChoices_TrainerScaling,ProcessInput_Options_Three}, 
 	[MENUITEM_CUSTOM_EXPSCALING]   = {DrawChoices_ExpScaling,  ProcessInput_Options_Two}, 
 	[MENUITEM_CUSTOM_EGGMOVECAPS]  = {DrawChoices_EggMoveCaps, ProcessInput_Options_Two}, 
     [MENUITEM_CUSTOM_HP_BAR]       = {DrawChoices_BarSpeed,    ProcessInput_Options_Eleven},
@@ -352,7 +352,8 @@ static const u8 sText_Desc_ExpScaling_On[]		= _("EXP gains scale up for POKÉMON
 static const u8 sText_Desc_ExpScaling_Off[]		= _("EXP gains are unaffected by the\nlevels of other POKÉMON.");
 static const u8 sText_Desc_EggMoveCaps_On[]		= _("Unlock more powerful EGG MOVES from\nthe TUTOR by earning BADGES.");
 static const u8 sText_Desc_EggMoveCaps_Off[]	= _("The EGG MOVE TUTOR will teach any\nEGG MOVE regardless of BADGES.");
-static const u8 sText_Desc_TrainerScaling_On[]	= _("Boosts weaker TRAINERS to keep\ntheir levels closer to yours.");
+static const u8 sText_Desc_TrainerScaling_Easy[]= _("Boosts weaker TRAINERS to keep\ntheir levels closer to yours.");
+static const u8 sText_Desc_TrainerScaling_Hard[]= _("Boosts weaker TRAINERS to keep\ntheir levels even closer to yours.");
 static const u8 sText_Desc_TrainerScaling_Off[]	= _("Other TRAINERS' levels are not\naffected by your own.");
 static const u8 sText_Desc_BattleHPBar[]        = _("Choose how fast the HP BAR will get\ndrained in battles.");
 static const u8 sText_Desc_BattleExpBar[]       = _("Choose how fast the EXP BAR will get\nfilled in battles.");
@@ -363,18 +364,18 @@ static const u8 sText_Desc_BikeOn[]             = _("Enables the BIKE theme when
 static const u8 sText_Desc_FontType[]           = _("Choose the font design.");
 static const u8 sText_Desc_OverworldCallsOn[]   = _("TRAINERs will be able to call you,\noffering rematches and info.");
 static const u8 sText_Desc_OverworldCallsOff[]  = _("You will not receive calls.\nSpecial events will still occur.");
-static const u8 *const sOptionMenuItemDescriptionsCustom[MENUITEM_CUSTOM_COUNT][2] =
+static const u8 *const sOptionMenuItemDescriptionsCustom[MENUITEM_CUSTOM_COUNT][3] =
 {
-    [MENUITEM_CUSTOM_LEVELCAPS]	  = {sText_Desc_LevelCaps_Off,		sText_Desc_LevelCaps_On},
-    [MENUITEM_CUSTOM_LCBONUSMONEY]= {sText_Desc_LCBonusMoney_Off,	sText_Desc_LCBonusMoney_On},
-	[MENUITEM_CUSTOM_TRAINERSCALING] = {sText_Desc_TrainerScaling_Off, sText_Desc_TrainerScaling_On},
-	[MENUITEM_CUSTOM_EXPSCALING]  = {sText_Desc_ExpScaling_Off,		sText_Desc_ExpScaling_On},
-	[MENUITEM_CUSTOM_EGGMOVECAPS] = {sText_Desc_EggMoveCaps_Off,	sText_Desc_EggMoveCaps_On},
-	[MENUITEM_CUSTOM_HP_BAR]      = {sText_Desc_BattleHPBar,        sText_Empty},
-    [MENUITEM_CUSTOM_EXP_BAR]     = {sText_Desc_BattleExpBar,       sText_Empty},
-    [MENUITEM_CUSTOM_FONT]        = {sText_Desc_FontType,           sText_Desc_FontType},
-    [MENUITEM_CUSTOM_MATCHCALL]   = {sText_Desc_OverworldCallsOn,   sText_Desc_OverworldCallsOff},
-    [MENUITEM_CUSTOM_CANCEL]      = {sText_Desc_Save,               sText_Empty},
+    [MENUITEM_CUSTOM_LEVELCAPS]	  = {sText_Desc_LevelCaps_Off,		sText_Desc_LevelCaps_On,			sText_Empty},
+    [MENUITEM_CUSTOM_LCBONUSMONEY]= {sText_Desc_LCBonusMoney_Off,	sText_Desc_LCBonusMoney_On,			sText_Empty},
+	[MENUITEM_CUSTOM_TRAINERSCALING] = {sText_Desc_TrainerScaling_Off, sText_Desc_TrainerScaling_Easy,	sText_Desc_TrainerScaling_Hard},
+	[MENUITEM_CUSTOM_EXPSCALING]  = {sText_Desc_ExpScaling_Off,		sText_Desc_ExpScaling_On,			sText_Empty},
+	[MENUITEM_CUSTOM_EGGMOVECAPS] = {sText_Desc_EggMoveCaps_Off,	sText_Desc_EggMoveCaps_On,			sText_Empty},
+	[MENUITEM_CUSTOM_HP_BAR]      = {sText_Desc_BattleHPBar,        sText_Empty,						sText_Empty},
+    [MENUITEM_CUSTOM_EXP_BAR]     = {sText_Desc_BattleExpBar,       sText_Empty,						sText_Empty},
+    [MENUITEM_CUSTOM_FONT]        = {sText_Desc_FontType,           sText_Desc_FontType,				sText_Empty},
+    [MENUITEM_CUSTOM_MATCHCALL]   = {sText_Desc_OverworldCallsOn,   sText_Desc_OverworldCallsOff,		sText_Empty},
+    [MENUITEM_CUSTOM_CANCEL]      = {sText_Desc_Save,               sText_Empty,						sText_Empty},
 };
 
 // Disabled Descriptions
@@ -1076,6 +1077,8 @@ static const u8 sText_Faster[] = _("FASTER");
 static const u8 sText_Instant[] = _("INSTANT");
 static const u8 sText_GenericOn[] = _("ON");
 static const u8 sText_GenericOff[] = _("OFF");
+static const u8 sText_Easy[] = _("EASY");
+static const u8 sText_Hard[] = _("HARD");
 static const u8 *const sTextSpeedStrings[] = {gText_TextSpeedSlow, gText_TextSpeedMid, gText_TextSpeedFast, sText_Faster};
 static void DrawChoices_TextSpeed(int selection, int y)
 {
@@ -1208,11 +1211,13 @@ static void DrawChoices_LCBonusMoney(int selection, int y)
 static void DrawChoices_TrainerScaling(int selection, int y)
 {
     bool8 active = CheckConditions(MENUITEM_CUSTOM_TRAINERSCALING);
-    u8 styles[2] = {0};
+    u8 styles[3] = {0};
+    int xMid = GetMiddleX(sText_GenericOff, sText_Easy, sText_Hard);
     styles[selection] = 1;
 
     DrawOptionMenuChoice(sText_GenericOff, 104, y, styles[0], active);
-    DrawOptionMenuChoice(sText_GenericOn, GetStringRightAlignXOffset(FONT_NORMAL, sText_GenericOn, 198), y, styles[1], active);
+    DrawOptionMenuChoice(sText_Easy, xMid, y, styles[1], active);
+    DrawOptionMenuChoice(sText_Hard, GetStringRightAlignXOffset(1, sText_Hard, 198), y, styles[2], active);
 }
 
 static void DrawChoices_ExpScaling(int selection, int y)
