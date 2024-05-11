@@ -88,7 +88,7 @@ static void CreateInitialRoamerMon(bool16 createLatios)
 	u8 level = 40;
 	u8 playerAvgLevel; 
 	
-	if (gSaveBlock2Ptr->optionsTrainerScaling == TRUE)
+	if (gSaveBlock2Ptr->optionsTrainerScaling > 0)
 	{
 		playerAvgLevel = GetTeamLevel(FALSE);
 		while ((playerAvgLevel > level) && (level < 100))
