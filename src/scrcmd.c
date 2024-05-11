@@ -1909,7 +1909,7 @@ bool8 ScrCmd_setwildbattlescaled(struct ScriptContext *ctx)
     u8 level = ScriptReadByte(ctx);
     u16 item = ScriptReadHalfword(ctx);
 
-	if (gSaveBlock2Ptr->optionsTrainerScaling == TRUE)
+	if (gSaveBlock2Ptr->optionsTrainerScaling > 0)
 	{
 		playerAvgLevel = GetTeamLevel(FALSE);
 		while ((playerAvgLevel > level - 4) && (level < 100))
