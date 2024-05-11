@@ -3331,35 +3331,40 @@ static void Cmd_jumpiftype(void)
         gBattlescriptCurrInstr += 7;
 }
 
-u8 GetTeamLevel(void)
+u8 GetTeamLevel(bool8 countOutliers)
 {
     u8 i;
     u16 partyLevel = 0;
+    u16 avgLevel = 0;
     u16 threshold = 0;
+	u8 fixedThreshold = 4;
+	u8 count = 0;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE)
-            partyLevel += gPlayerParty[i].level;
+            avgLevel += gPlayerParty[i].level;
         else
             break;
     }
-    partyLevel /= i;
+    avgLevel /= i;
 
-    threshold = partyLevel * .8;
-    partyLevel = 0;
+    threshold = avgLevel * .8;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE)
         {
-            if (gPlayerParty[i].level >= threshold)
-                partyLevel += gPlayerParty[i].level;
+            if (countOutliers || gPlayerParty[i].level >= threshold || gPlayerParty[i].level >= avgLevel - fixedThreshold) 
+			{
+				partyLevel += gPlayerParty[i].level;
+				count += 1;
+			}
         }
         else
             break;
     }
-    partyLevel /= i;
+	partyLevel /= count;
 
     return partyLevel;
 }
@@ -3409,7 +3414,7 @@ double GetPkmnExpMultiplier(u8 level)
 	if (gSaveBlock2Ptr->optionsExpScaling) 
 	{
 		// multiply the usual exp yield by the party-relative level multiplier
-		avgDiff = level - GetTeamLevel();
+		avgDiff = level - GetTeamLevel(TRUE);
 		if (avgDiff >= -1)
 			avgDiff = -1;
 		else if (avgDiff <= -15)
