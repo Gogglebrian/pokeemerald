@@ -7721,7 +7721,7 @@ static const struct TrainerMonItemCustomMoves sParty_Athena[] = {
     .lvl = 32,
     .species = SPECIES_LINOONE,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_SURF, MOVE_THIEF, MOVE_PSYCHIC, MOVE_COSMIC_POWER}
+    .moves = {MOVE_SURF, MOVE_THIEF, MOVE_HEADBUTT, MOVE_COVET}
     }
 };
 
