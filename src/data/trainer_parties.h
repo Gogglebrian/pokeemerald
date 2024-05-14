@@ -3250,7 +3250,7 @@ static const struct TrainerMonItemCustomMoves sParty_Sidney[] = {
     .lvl = 46,
     .species = SPECIES_CACTURNE,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_LEECH_SEED, MOVE_FAINT_ATTACK, MOVE_NEEDLE_ARM, MOVE_COTTON_SPORE}
+    .moves = {MOVE_LEECH_SEED, MOVE_FAINT_ATTACK, MOVE_NEEDLE_ARM, MOVE_POISON_JAB}
     },
 	{
     .iv = 250,
@@ -3309,7 +3309,7 @@ static const struct TrainerMonItemCustomMoves sParty_Phoebe[] = {
     .lvl = 50,
     .species = SPECIES_SABLEYE,
     .heldItem = ITEM_ENVIOLITE,
-    .moves = {MOVE_SHADOW_BALL, MOVE_DOUBLE_TEAM, MOVE_SHADOW_SNEAK, MOVE_FAINT_ATTACK}
+    .moves = {MOVE_SHADOW_BALL, MOVE_DOUBLE_TEAM, MOVE_POISON_JAB, MOVE_DARK_PULSE}
     },
     {
     .iv = 250,
@@ -3378,7 +3378,7 @@ static const struct TrainerMonItemCustomMoves sParty_Drake[] = {
     .lvl = 52,
     .species = SPECIES_SHELGON,
     .heldItem = ITEM_EVIOLITE,
-    .moves = {MOVE_ROCK_SLIDE, MOVE_DRAGON_CLAW, MOVE_SCARY_FACE, MOVE_DOUBLE_EDGE}
+    .moves = {MOVE_IRON_HEAD, MOVE_DRAGON_CLAW, MOVE_SCARY_FACE, MOVE_DOUBLE_EDGE}
     },
 	{
     .iv = 255,
@@ -3399,7 +3399,7 @@ static const struct TrainerMonItemCustomMoves sParty_Drake[] = {
     .lvl = 53,
     .species = SPECIES_KINGDRA,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_SMOKESCREEN, MOVE_DRAGON_DANCE, MOVE_SURF, MOVE_BODY_SLAM}
+    .moves = {MOVE_FLASH_CANNON, MOVE_DRAGON_DANCE, MOVE_SURF, MOVE_BODY_SLAM}
     },
     {
     .iv = 250,
@@ -3413,7 +3413,7 @@ static const struct TrainerMonItemCustomMoves sParty_Drake[] = {
     .lvl = 55,
     .species = SPECIES_SALAMENCE,
     .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_FLAMETHROWER, MOVE_DRAGON_CLAW, MOVE_ROCK_SLIDE, MOVE_CRUNCH}
+    .moves = {MOVE_FLAMETHROWER, MOVE_DRAGON_CLAW, MOVE_IRON_HEAD, MOVE_CRUNCH}
     }
 };
 
