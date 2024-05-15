@@ -2340,7 +2340,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Kirk[] = {
     {
     .iv = 0,
     .lvl = 17,
-    .species = SPECIES_ELECTRODE,
+    .species = SPECIES_VOLTORB,
     }
 };
 
@@ -3927,8 +3927,20 @@ static const struct TrainerMonItemDefaultMoves sParty_Victor[] = {
 static const struct TrainerMonItemDefaultMoves sParty_Miguel1[] = {
     {
     .iv = 0,
-    .lvl = 15,
+    .lvl = 14,
     .species = SPECIES_SKITTY,
+    .heldItem = ITEM_ORAN_BERRY
+    },
+	{
+    .iv = 0,
+    .lvl = 14,
+    .species = SPECIES_GULPIN,
+    .heldItem = ITEM_ORAN_BERRY
+    },
+	{
+    .iv = 0,
+    .lvl = 14,
+    .species = SPECIES_JIGGLYPUFF,
     .heldItem = ITEM_ORAN_BERRY
     }
 };
@@ -3981,8 +3993,20 @@ static const struct TrainerMonItemCustomMoves sParty_Colton[] = {
 static const struct TrainerMonItemDefaultMoves sParty_Miguel2[] = {
     {
     .iv = 0,
-    .lvl = 29,
+    .lvl = 28,
     .species = SPECIES_DELCATTY,
+    .heldItem = ITEM_ORAN_BERRY
+    },
+	{
+    .iv = 0,
+    .lvl = 28,
+    .species = SPECIES_SWALOT,
+    .heldItem = ITEM_ORAN_BERRY
+    },
+	{
+    .iv = 0,
+    .lvl = 28,
+    .species = SPECIES_WIGGLYTUFF,
     .heldItem = ITEM_ORAN_BERRY
     }
 };
@@ -3992,7 +4016,19 @@ static const struct TrainerMonItemDefaultMoves sParty_Miguel3[] = {
     .iv = 0,
     .lvl = 32,
     .species = SPECIES_DELCATTY,
-    .heldItem = ITEM_ORAN_BERRY
+    .heldItem = ITEM_SITRUS_BERRY
+    },
+	{
+    .iv = 0,
+    .lvl = 32,
+    .species = SPECIES_SWALOT,
+    .heldItem = ITEM_SITRUS_BERRY
+    },
+	{
+    .iv = 0,
+    .lvl = 32,
+    .species = SPECIES_WIGGLYTUFF,
+    .heldItem = ITEM_SITRUS_BERRY
     }
 };
 
@@ -4001,7 +4037,19 @@ static const struct TrainerMonItemDefaultMoves sParty_Miguel4[] = {
     .iv = 0,
     .lvl = 35,
     .species = SPECIES_DELCATTY,
-    .heldItem = ITEM_ORAN_BERRY
+    .heldItem = ITEM_SITRUS_BERRY
+    },
+	{
+    .iv = 0,
+    .lvl = 35,
+    .species = SPECIES_SWALOT,
+    .heldItem = ITEM_SITRUS_BERRY
+    },
+	{
+    .iv = 0,
+    .lvl = 35,
+    .species = SPECIES_WIGGLYTUFF,
+    .heldItem = ITEM_SITRUS_BERRY
     }
 };
 
@@ -4010,6 +4058,18 @@ static const struct TrainerMonItemDefaultMoves sParty_Miguel5[] = {
     .iv = 0,
     .lvl = 38,
     .species = SPECIES_DELCATTY,
+    .heldItem = ITEM_SITRUS_BERRY
+    },
+	{
+    .iv = 0,
+    .lvl = 38,
+    .species = SPECIES_SWALOT,
+    .heldItem = ITEM_SITRUS_BERRY
+    },
+	{
+    .iv = 0,
+    .lvl = 38,
+    .species = SPECIES_WIGGLYTUFF,
     .heldItem = ITEM_SITRUS_BERRY
     }
 };
