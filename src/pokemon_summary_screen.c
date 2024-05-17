@@ -3350,6 +3350,7 @@ static void PrintSkillsPageText(void)
     //PrintLeftColumnStats();
     //BufferRightColumnStats();
     //PrintRightColumnStats();
+	sMonSummaryScreen->statPage = 0;
 	BufferIvOrEvStats(0);
     PrintExpPointsNextLevel();
 }
@@ -3371,6 +3372,7 @@ static void Task_PrintSkillsPage(u8 taskId)
     case 5:
     case 6:
 		data[0] = 6;
+		sMonSummaryScreen->statPage = 0;
 		BufferIvOrEvStats(0);
 		break;
     case 7:

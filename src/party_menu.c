@@ -4591,7 +4591,7 @@ void Task_AbilityCapsule(u8 taskId)
             PlaySE(SE_SELECT);
             DisplayPartyMenuMessage(gText_WontHaveEffect, 1);
             ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
             return;
         }
         gPartyMenuUseExitCallback = TRUE;
@@ -4700,7 +4700,7 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
         PlaySE(SE_SELECT);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
     }
     else
     {
@@ -4722,7 +4722,10 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
         }
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1))
+			gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+		else
+			gTasks[taskId].func = task;
     }
 }
 
@@ -4806,7 +4809,10 @@ void ItemUseCB_ResetEV(u8 taskId, TaskFunc task)
         StringExpandPlaceholders(gStringVar4, gText_PkmnVar2Reset);
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1))
+			gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+		else
+			gTasks[taskId].func = task;
     }
     else
     {
@@ -4814,7 +4820,7 @@ void ItemUseCB_ResetEV(u8 taskId, TaskFunc task)
         PlaySE(SE_SELECT);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
     }
 }
 
@@ -7249,7 +7255,10 @@ void ItemUseCB_ReduceIV(u8 taskId, TaskFunc task)
         StringExpandPlaceholders(gStringVar4, gText_PkmnPotentialVar2StatFell);
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1))
+			gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+		else
+			gTasks[taskId].func = task;
     }
     else
     {
@@ -7257,7 +7266,7 @@ void ItemUseCB_ReduceIV(u8 taskId, TaskFunc task)
         PlaySE(SE_SELECT);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
     }
 }
 
@@ -7350,7 +7359,10 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
 			StringExpandPlaceholders(gStringVar4, gText_PkmnPotentialVar2StatIncreasedABit);
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1))
+			gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+		else
+			gTasks[taskId].func = task;
     }
     else
     {
@@ -7358,7 +7370,7 @@ void ItemUseCB_IncreaseIV(u8 taskId, TaskFunc task)
         PlaySE(SE_SELECT);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
     }
 }
 
