@@ -1991,88 +1991,65 @@ static void SpriteCB_UnusedBattleInit_Main(struct Sprite *sprite)
     }
 }
 
-//The minimum amount that the target level should be required to lag behind the player's party average
-static u8 GetMinLevelGapByTrainerClass(u8 trainerClass, u16 trainerNum)
+//Min and max level values relative to player average, on Easy or Hard scaling options, for each special trainer class
+static const s8 partyRelativeValuesByTrainerClass[] = 
+{	// Trainer class   				 Easy		 Hard		Max		//Start index in this array
+	/*TRAINER_STEVEN*/				 0,  3,		 5,  8,		100,	//  0
+	/*TRAINER_CLASS_CHAMPION*/		 0,  0,		 1,  4,		 80,	//  5
+	/*TRAINER_CLASS_ELITE_FOUR*/	-1,  0,		 0,  2,		 70,	// 10
+	/*TRAINER_CLASS_AQUA_LEADER*/	-1,  0,		 0,  2,		 70,	// 15
+	/*TRAINER_CLASS_LEADER*/		-2,  0,		 0,  2,		 70,	// 20
+	/*TRAINER_CLASS_RIVAL*/			-3, -1,		-1,  1,		 75,	// 25
+	/*TRAINER_CLASS_COOLTRAINER*/	-4, -1,		-2,  0,		 60,	// 30
+	/*default*/						-8, -2,		-4, -1,		 50,	// 35
+};
+
+//Returns the starting index for the trainer number/class in the partyRelativeValuesByTrainerClass const array
+static u8 GetIndexForPlayerRelativeValuesByTrainerClass(u8 trainerClass, u16 trainerNum)
 {
 	if (trainerNum == TRAINER_STEVEN) // specific carveout for Steven who's marked as a RIVAL
 		return 0;
-	
-	if (gSaveBlock2Ptr->optionsTrainerScaling <= 1)
+	switch (trainerClass)
 	{
-		switch (trainerClass)
-		{
-			case TRAINER_CLASS_MAGMA_LEADER:
-			case TRAINER_CLASS_AQUA_LEADER:
-			case TRAINER_CLASS_ELITE_FOUR:
-			case TRAINER_CLASS_CHAMPION:
-				return 0;
-			case TRAINER_CLASS_COOLTRAINER:
-			case TRAINER_CLASS_RIVAL:
-				return 1;
-			default:
-				return 2;
-		}
-	}
-	else
-	{
-		switch (trainerClass)
-		{
-			case TRAINER_CLASS_MAGMA_LEADER:
-			case TRAINER_CLASS_AQUA_LEADER:
-			case TRAINER_CLASS_ELITE_FOUR:
-			case TRAINER_CLASS_CHAMPION:
-			case TRAINER_CLASS_COOLTRAINER:
-			case TRAINER_CLASS_RIVAL:
-				return 0;
-			default:
-				return 1;
-		}
+		case TRAINER_CLASS_CHAMPION:
+			return 5;
+		case TRAINER_CLASS_ELITE_FOUR:
+			return 10;
+		case TRAINER_CLASS_MAGMA_LEADER:
+		case TRAINER_CLASS_AQUA_LEADER:
+			return 15;
+		case TRAINER_CLASS_LEADER:
+			return 20;
+		case TRAINER_CLASS_RIVAL:
+			return 25;
+		case TRAINER_CLASS_COOLTRAINER:
+			return 30;
+		default:
+			return 35;
 	}
 }
 
-//The maximum amount that the target level should be allowed to lag behind the player's party average
-static u8 GetMaxLevelGapByTrainerClass(u8 trainerClass, u16 trainerNum)
+static u8 GetAbsoluteMaxLevelByTrainerClass(u8 trainerClass, u16 trainerNum)
 {
-	if (trainerNum == TRAINER_STEVEN) // specific carveout for Steven who's marked as a RIVAL
-		return 0;
+	return partyRelativeValuesByTrainerClass[GetIndexForPlayerRelativeValuesByTrainerClass(trainerClass, trainerNum) + 4];
+}
+
+static u8 GetPlayerRelativeLevelBracketValue(bool8 max, u8 playerLevel, u8 trainerClass, u16 trainerNum)
+{
+	s8 bracketValue;
+	u8 i = GetIndexForPlayerRelativeValuesByTrainerClass(trainerClass, trainerNum);
 	
-	if (gSaveBlock2Ptr->optionsTrainerScaling <= 1)
-	{
-		switch (trainerClass)
-		{
-			case TRAINER_CLASS_RIVAL:
-				return 3;
-			case TRAINER_CLASS_LEADER:
-				return 2;
-			case TRAINER_CLASS_MAGMA_LEADER:
-			case TRAINER_CLASS_AQUA_LEADER:
-			case TRAINER_CLASS_ELITE_FOUR:
-				return 1;
-			case TRAINER_CLASS_CHAMPION:
-				return 0;
-			case TRAINER_CLASS_COOLTRAINER:
-				return 4;
-			default:
-				return 8;
-		}
-	}
+	if (gSaveBlock2Ptr->optionsTrainerScaling > 1) //if Hard scaling, add 2 to index
+		i += 2;
+	
+	if (max) //if returning Max value, add 1 to index
+		i += 1;
+	
+	bracketValue = playerLevel + partyRelativeValuesByTrainerClass[i];
+	if (bracketValue < 0)
+		return 0;
 	else
-	{
-		switch (trainerClass)
-		{
-			case TRAINER_CLASS_LEADER:
-			case TRAINER_CLASS_MAGMA_LEADER:
-			case TRAINER_CLASS_AQUA_LEADER:
-			case TRAINER_CLASS_ELITE_FOUR:
-			case TRAINER_CLASS_CHAMPION:
-			case TRAINER_CLASS_RIVAL:
-				return 0;
-			case TRAINER_CLASS_COOLTRAINER:
-				return 2;
-			default:
-				return 3;
-		}
-	}
+		return bracketValue;
 }
 
 static u8 GetNPCMonLevel(u8 playerTeamLevel, u8 defaultLevel, u8 targetLevel, u8 targetOffset)
@@ -2094,12 +2071,12 @@ static const u8 partySizeLevelPenaltyHard[] = {0, 0, 0, 1, 2, 3};
 static u8 GetNPCPartyTargetLevel(u16 trainerNum, u8 trainerClass, u8 monsCount, u8 playerTeamLevel)
 {	
 	u8 trainerClassMax = 100;
-	u8 x;// helper
+	u8 x; // helper
 	u8 maxValue; 
 	u8 minValue = 0; 
-	u8 maxGapFromPlayer;
-	u8 minGapFromPlayer;
-	u8 gapFromPlayerRange = 0;
+	s8 playerRelMax;
+	s8 playerRelMin;
+	s8 gapFromPlayerRange = 0;
 
 	//Start with setting our absolute max value relative to the current level cap (should be 100 if disabled)
 	if (trainerClass == TRAINER_CLASS_LEADER || trainerClass == TRAINER_CLASS_CHAMPION)
@@ -2112,43 +2089,20 @@ static u8 GetNPCPartyTargetLevel(u16 trainerNum, u8 trainerClass, u8 monsCount, 
 		maxValue = GetCurrentLevelCap() - 2;
 
 	//For specific trainer classes, impose a more restrictive max level
-	switch (trainerClass)
-	{
-		case TRAINER_CLASS_RIVAL:
-		{
-			if (trainerNum == TRAINER_STEVEN) // carve out a special exception for Steven who's marked as a RIVAL
-				trainerClassMax = 100;
-			else
-				trainerClassMax = 75;
-			break;
-		}
-		case TRAINER_CLASS_LEADER:
-		case TRAINER_CLASS_MAGMA_LEADER:
-		case TRAINER_CLASS_AQUA_LEADER:
-		case TRAINER_CLASS_ELITE_FOUR:
-			trainerClassMax = 70;
-			break;
-		case TRAINER_CLASS_CHAMPION:
-			trainerClassMax = 80;
-			break;
-		default:
-			trainerClassMax = 50;
-			break;
-	}
+	trainerClassMax = GetAbsoluteMaxLevelByTrainerClass(trainerClass, trainerNum);
 	
-	// These determine how far we'll let the trainer's target level lag behind the player's party average
-	maxGapFromPlayer = GetMaxLevelGapByTrainerClass(trainerClass, trainerNum);
-	minGapFromPlayer = GetMinLevelGapByTrainerClass(trainerClass, trainerNum);
+	// These determine how far we'll let the trainer's target level lag behind (or pull ahead of) the player's party average
+	playerRelMax = GetPlayerRelativeLevelBracketValue(TRUE,  playerTeamLevel, trainerClass, trainerNum);
+	playerRelMin = GetPlayerRelativeLevelBracketValue(FALSE, playerTeamLevel, trainerClass, trainerNum);
 	
 	//For our max bracketing value, get the minimum of the level cap max, the traner class max, and the player-relative max
 	if (trainerClassMax < maxValue) 
 		maxValue = trainerClassMax;
-	x = playerTeamLevel - minGapFromPlayer;
-	if (x < maxValue)
-		maxValue = x;
+	if (playerRelMax < maxValue)
+		maxValue = playerRelMax;
 	
-	gapFromPlayerRange = maxGapFromPlayer-minGapFromPlayer;
-	if (maxGapFromPlayer < minGapFromPlayer)
+	gapFromPlayerRange = playerRelMax-playerRelMin;
+	if (playerRelMax <= playerRelMin)
 		minValue = maxValue;
 	else if (maxValue < gapFromPlayerRange)
 		return 0;
